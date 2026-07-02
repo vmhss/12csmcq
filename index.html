@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1: Function — One Mark Practice</title>
+<style>
+:root{
+  --primary:#2563EB;--primary-dark:#1d4ed8;--accent:#059669;--error:#DC2626;
+  --bg:#F3F4F6;--card:#ffffff;--text:#111827;--muted:#6B7280;--border:#E5E7EB;
+  --radius:16px;--shadow:0 4px 20px rgba(17,24,39,.08);
+}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--border:#334155;--shadow:0 4px 24px rgba(0,0,0,.4);}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;background:var(--bg);color:var(--text);transition:.25s;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+.container{max-width:760px;margin:0 auto;padding:0 20px}
+
+.navbar{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:760px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand-badge{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.8rem}
+.theme-toggle{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:.82rem;font-weight:600;color:var(--text)}
+
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark) 60%,var(--accent) 140%);color:#fff;padding:44px 20px;text-align:center}
+.hero h1{margin:0 0 6px;font-size:1.7rem;font-weight:800}
+.hero p{margin:0;opacity:.9;font-size:.92rem}
+.hero .note{margin-top:10px;font-size:.78rem;background:rgba(255,255,255,.15);display:inline-block;padding:6px 14px;border-radius:20px}
+
+.btn{padding:12px 22px;border-radius:12px;font-weight:700;font-size:.9rem;border:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-outline{background:var(--card);color:var(--primary);border:1.5px solid var(--primary)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.start-wrap{padding:36px 20px;text-align:center}
+.start-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;max-width:420px;margin:0 auto}
+.start-card h2{margin:0 0 6px}
+.start-card p{color:var(--muted);font-size:.88rem;margin:0 0 20px}
+.meta-row{display:flex;justify-content:center;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.meta-item{text-align:center}
+.meta-item .n{font-weight:800;font-size:1.2rem;color:var(--primary)}
+.meta-item .l{font-size:.72rem;color:var(--muted);font-weight:600}
+
+.test-topbar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:40}
+.test-topbar-inner{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.test-topbar-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:600}
+.timer{font-weight:800;color:var(--primary)}
+.timer.warn{color:#F59E0B}
+.timer.danger{color:var(--error);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.progress-bar{height:8px;border-radius:6px;background:var(--bg);overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .3s}
+
+.question-wrap{max-width:700px;margin:0 auto;padding:26px 20px}
+.q-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;border:1px solid var(--border)}
+.q-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.q-bookmark{background:none;border:none;font-size:1.3rem;color:var(--muted)}
+.q-bookmark.active{color:#F59E0B}
+.q-text{font-size:1.1rem;font-weight:700;margin:0 0 18px;line-height:1.5}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{border:1.5px solid var(--border);border-radius:12px;padding:13px 16px;display:flex;gap:12px;align-items:center;transition:.15s;font-size:.94rem;background:var(--bg)}
+.option:hover{border-color:var(--primary)}
+.option.selected{border-color:var(--primary);background:rgba(37,99,235,.08);font-weight:700}
+.opt-letter{width:26px;height:26px;border-radius:50%;background:var(--card);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+.option.selected .opt-letter{background:var(--primary);color:#fff;border-color:var(--primary)}
+.nav-buttons{display:flex;justify-content:space-between;margin-top:22px;gap:10px}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal{background:var(--card);border-radius:var(--radius);padding:26px;max-width:360px;text-align:center;box-shadow:var(--shadow)}
+.modal h3{margin:0 0 8px}
+.modal p{color:var(--muted);margin:0 0 18px;font-size:.9rem}
+.modal-btns{display:flex;gap:10px;justify-content:center}
+
+.result-hero{text-align:center;padding:36px 20px}
+.score-circle{width:150px;height:150px;border-radius:50%;margin:0 auto 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:conic-gradient(var(--accent) calc(var(--pct)*1%),var(--border) 0);position:relative}
+.score-circle::before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--card)}
+.score-circle .score-val{position:relative;font-size:1.7rem;font-weight:800}
+.score-circle .score-lbl{position:relative;font-size:.75rem;color:var(--muted)}
+.perf-tag{display:inline-block;padding:6px 16px;border-radius:20px;background:var(--accent);color:#fff;font-weight:700;font-size:.82rem;margin-top:6px}
+.motivate{font-size:1rem;font-weight:700;margin:12px 0 0;color:var(--primary)}
+.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;max-width:700px;margin:26px auto;padding:0 20px}
+.result-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.result-stat .val{font-size:1.2rem;font-weight:800}
+.result-stat .lbl{font-size:.72rem;color:var(--muted);font-weight:600;margin-top:2px}
+.retry-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:6px 20px 30px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:0 20px;max-width:700px;margin-left:auto;margin-right:auto}
+.filter-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);font-size:.8rem;font-weight:600;color:var(--muted)}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.review-wrap{max-width:700px;margin:0 auto;padding:0 20px 30px}
+.review-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:18px;margin-bottom:14px;border-left:5px solid var(--border)}
+.review-card.correct{border-left-color:var(--accent)}
+.review-card.wrong{border-left-color:var(--error)}
+.review-card.skipped{border-left-color:var(--primary)}
+.review-status{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.review-status.correct{color:var(--accent)}
+.review-status.wrong{color:var(--error)}
+.review-status.skipped{color:var(--primary)}
+.review-opts{display:flex;flex-direction:column;gap:6px;margin:10px 0;font-size:.88rem}
+.review-opt{padding:8px 12px;border-radius:8px;background:var(--bg)}
+.review-opt.your-wrong{background:rgba(220,38,38,.15);font-weight:700}
+.review-opt.answer-key{background:rgba(5,150,105,.15);font-weight:700}
+.explain-box{background:var(--bg);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:.85rem;line-height:1.6}
+.explain-box b{color:var(--primary)}
+
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px 20px}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="brand"><div class="brand-badge">CS</div>Function — One Mark Practice</div>
+    <button class="theme-toggle" id="themeBtn">🌙 Dark</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Chapter 1: Function</h1>
+  <p>Practice • Learn • Improve • Score Better</p>
+  <div class="note">Source: 12th Computer Science — Book Back 1 Mark Q&A PDF (10 real questions only)</div>
+</div>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="start-wrap">
+  <div class="start-card">
+    <h2>Ready to practice?</h2>
+    <p>Every attempt shuffles question order and options.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="n">10</div><div class="l">Questions</div></div>
+      <div class="meta-item"><div class="n">10</div><div class="l">Minutes</div></div>
+      <div class="meta-item"><div class="n">Easy</div><div class="l">Difficulty</div></div>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="startTest()">Start Practice Test</button>
+  </div>
+</div>
+
+<!-- TEST SCREEN -->
+<div id="testScreen" class="hidden">
+  <div class="test-topbar">
+    <div class="test-topbar-inner">
+      <div class="test-topbar-row">
+        <span id="qCounter">Question 1 / 10</span>
+        <span class="timer" id="timerDisplay">10:00</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
+    </div>
+  </div>
+  <div class="question-wrap">
+    <div class="q-card">
+      <div class="q-top">
+        <div></div>
+        <button class="q-bookmark" id="bookmarkBtn" onclick="toggleBookmark()">☆</button>
+      </div>
+      <p class="q-text" id="qText"></p>
+      <div class="options" id="optionsWrap"></div>
+      <div class="nav-buttons">
+        <button class="btn btn-outline" id="prevBtn" onclick="prevQ()">← Previous</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBMIT MODAL -->
+<div id="submitModal" class="modal-overlay hidden">
+  <div class="modal">
+    <h3>Submit this test?</h3>
+    <p>You won't be able to change your answers after submitting.</p>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitTest()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="resultScreen" class="hidden">
+  <div class="result-hero">
+    <div class="score-circle" id="scoreCircle">
+      <div class="score-val" id="scoreVal">0/10</div>
+      <div class="score-lbl">Score</div>
+    </div>
+    <div class="perf-tag" id="perfTag">—</div>
+    <p class="motivate" id="motivateMsg"></p>
+  </div>
+  <div class="result-stats">
+    <div class="result-stat"><div class="val" id="statCorrect" style="color:var(--accent)">0</div><div class="lbl">Correct</div></div>
+    <div class="result-stat"><div class="val" id="statWrong" style="color:var(--error)">0</div><div class="lbl">Wrong</div></div>
+    <div class="result-stat"><div class="val" id="statSkipped" style="color:var(--primary)">0</div><div class="lbl">Skipped</div></div>
+    <div class="result-stat"><div class="val" id="statTime">0:00</div><div class="lbl">Time Taken</div></div>
+    <div class="result-stat"><div class="val" id="statAccuracy">0%</div><div class="lbl">Accuracy</div></div>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-f="all" onclick="setFilter('all')">All</button>
+    <button class="filter-btn" data-f="wrong" onclick="setFilter('wrong')">Wrong Only</button>
+    <button class="filter-btn" data-f="correct" onclick="setFilter('correct')">Correct Only</button>
+    <button class="filter-btn" data-f="skipped" onclick="setFilter('skipped')">Skipped Only</button>
+    <button class="filter-btn" data-f="bookmarked" onclick="setFilter('bookmarked')">Bookmarked</button>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+
+  <div class="retry-row">
+    <button class="btn btn-primary" onclick="startTest()">🔄 Retry Same Chapter</button>
+    <button class="btn btn-outline" onclick="retryWrongOnly()">🎯 Practice Wrong Questions Only</button>
+    <button class="btn btn-outline" onclick="location.reload()">🏠 Return Home</button>
+  </div>
+</div>
+
+<footer>Chapter 1 – Function • Content sourced only from the uploaded PDF • Built for exam practice</footer>
+
+<script>
+/* ---------------- DATA: only the 10 real questions from the PDF, Chapter 1 - Function ---------------- */
+const BASE_QUESTIONS = [
+{q:"The small sections of code that are used to perform a particular task is called",options:["Subroutines","Files","Pseudo code","Modules"],correct:0,exp:"A subroutine is a self-contained block of code written to carry out one specific task."},
+{q:"Which of the following is a unit of code that is often defined within a greater code structure?",options:["Subroutines","Function","Files","Modules"],correct:1,exp:"A function is a smaller unit of code nested inside a larger program."},
+{q:"Which of the following is a distinct syntactic block?",options:["Subroutines","Function","Definition","Modules"],correct:2,exp:"A definition is a clearly separated syntactic block in code."},
+{q:"The variables in a function definition are called as",options:["Subroutines","Function","Definition","Parameters"],correct:3,exp:"Variables listed in a function's definition are its parameters."},
+{q:"The values which are passed to a function definition are called",options:["Arguments","Subroutines","Function","Definition"],correct:0,exp:"The actual values sent into a function call are its arguments."},
+{q:"Which of the following are mandatory to write the type annotations in the function definition?",options:["{ }","( )","[ ]","< >"],correct:1,exp:"Parentheses are required around parameters/type annotations in a function definition."},
+{q:"Which of the following defines what an object can do?",options:["Operating System","Compiler","Interface","Interpreter"],correct:2,exp:"The interface specifies the operations an object supports."},
+{q:"Which of the following carries out the instructions defined in the interface?",options:["Operating System","Compiler","Implementation","Interpreter"],correct:2,exp:"The implementation is the code that actually performs what the interface promises."},
+{q:"The functions which will give exact result when same arguments are passed are called",options:["Impure functions","Partial Functions","Dynamic Functions","Pure functions"],correct:3,exp:"Pure functions always return the same output for the same input with no side effects."},
+{q:"The functions which cause side effects to the arguments passed are called",options:["Impure functions","Partial Functions","Dynamic Functions","Pure functions"],correct:0,exp:"Impure functions can modify their arguments or external state."}
+];
+
+let testQuestions = [];
+let currentIndex = 0;
+let answers = {};
+let bookmarks = {};
+let timeLeft = 600;
+let timerInterval = null;
+let startTime = null;
+let currentFilter = 'all';
+let lastResultData = null;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function buildTestSet(pool){
+  return shuffle(pool).map(orig=>{
+    const optIndices = shuffle([0,1,2,3]);
+    const options = optIndices.map(i=>orig.options[i]);
+    const correct = optIndices.indexOf(orig.correct);
+    return {q:orig.q, options, correct, exp:orig.exp};
+  });
+}
+
+function startTest(){
+  testQuestions = buildTestSet(BASE_QUESTIONS);
+  currentIndex = 0;
+  answers = {};
+  bookmarks = {};
+  timeLeft = 600;
+  startTime = Date.now();
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('testScreen').classList.remove('hidden');
+  renderQuestion();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(tickTimer,1000);
+}
+
+function tickTimer(){
+  timeLeft--;
+  const m = Math.floor(timeLeft/60), s = timeLeft%60;
+  const disp = document.getElementById('timerDisplay');
+  disp.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  disp.className = 'timer' + (timeLeft<=60?' danger':timeLeft<=300?' warn':'');
+  if(timeLeft<=0){
+    clearInterval(timerInterval);
+    submitTest();
+  }
+}
+
+function renderQuestion(){
+  const q = testQuestions[currentIndex];
+  document.getElementById('qCounter').textContent = `Question ${currentIndex+1} / ${testQuestions.length}`;
+  document.getElementById('progressFill').style.width = `${((currentIndex+1)/testQuestions.length)*100}%`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('bookmarkBtn').className = 'q-bookmark' + (bookmarks[currentIndex]?' active':'');
+  document.getElementById('bookmarkBtn').textContent = bookmarks[currentIndex]?'★':'☆';
+
+  const wrap = document.getElementById('optionsWrap');
+  wrap.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.options.forEach((opt,i)=>{
+    const div = document.createElement('div');
+    div.className = 'option' + (answers[currentIndex]===i?' selected':'');
+    div.innerHTML = `<span class="opt-letter">${letters[i]}</span><span>${opt}</span>`;
+    div.onclick = ()=>{ answers[currentIndex]=i; renderQuestion(); };
+    wrap.appendChild(div);
+  });
+
+  document.getElementById('prevBtn').disabled = currentIndex===0;
+  document.getElementById('nextBtn').textContent = currentIndex===testQuestions.length-1 ? 'Submit ✓' : 'Next →';
+}
+
+function toggleBookmark(){
+  bookmarks[currentIndex] = !bookmarks[currentIndex];
+  renderQuestion();
+}
+
+function prevQ(){ if(currentIndex>0){currentIndex--; renderQuestion();} }
+function nextQ(){
+  if(currentIndex<testQuestions.length-1){ currentIndex++; renderQuestion(); }
+  else { document.getElementById('submitModal').classList.remove('hidden'); }
+}
+function closeModal(){ document.getElementById('submitModal').classList.add('hidden'); }
+
+function submitTest(){
+  closeModal();
+  clearInterval(timerInterval);
+  const elapsed = Math.floor((Date.now()-startTime)/1000);
+  let correct=0, wrong=0, skipped=0;
+  const details = testQuestions.map((q,i)=>{
+    const chosen = answers[i];
+    let status;
+    if(chosen===undefined){ status='skipped'; skipped++; }
+    else if(chosen===q.correct){ status='correct'; correct++; }
+    else { status='wrong'; wrong++; }
+    return {...q, chosen, status, bookmarked: !!bookmarks[i]};
+  });
+  lastResultData = {details, correct, wrong, skipped, elapsed, total: testQuestions.length};
+  renderResult(lastResultData);
+}
+
+function renderResult(data){
+  document.getElementById('testScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+  const pct = Math.round((data.correct/data.total)*100);
+  document.getElementById('scoreCircle').style.setProperty('--pct', pct);
+  document.getElementById('scoreVal').textContent = `${data.correct}/${data.total}`;
+  document.getElementById('statCorrect').textContent = data.correct;
+  document.getElementById('statWrong').textContent = data.wrong;
+  document.getElementById('statSkipped').textContent = data.skipped;
+  const m = Math.floor(data.elapsed/60), s = data.elapsed%60;
+  document.getElementById('statTime').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  document.getElementById('statAccuracy').textContent = `${pct}%`;
+
+  let perf, msg;
+  if(pct>=90){perf='Excellent';msg='Excellent work! You know this chapter really well 🎉'; launchConfetti();}
+  else if(pct>=75){perf='Very Good';msg='Almost perfect! Just a little more revision.';}
+  else if(pct>=50){perf='Good';msg='Keep practicing — you are getting there!';}
+  else {perf='Needs Work';msg="Don't give up! Revisit the concepts and try again.";}
+  document.getElementById('perfTag').textContent = perf;
+  document.getElementById('motivateMsg').textContent = msg;
+
+  currentFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.dataset.f==='all'));
+  renderReview();
+}
+
+function setFilter(f){
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.dataset.f===f));
+  renderReview();
+}
+
+function renderReview(){
+  const wrap = document.getElementById('reviewWrap');
+  wrap.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  let list = lastResultData.details;
+  if(currentFilter==='wrong') list = list.filter(d=>d.status==='wrong');
+  if(currentFilter==='correct') list = list.filter(d=>d.status==='correct');
+  if(currentFilter==='skipped') list = list.filter(d=>d.status==='skipped');
+  if(currentFilter==='bookmarked') list = list.filter(d=>d.bookmarked);
+
+  if(list.length===0){
+    wrap.innerHTML = `<div style="text-align:center;color:var(--muted);padding:30px 0">No questions in this filter.</div>`;
+    return;
+  }
+
+  list.forEach((d,idx)=>{
+    const card = document.createElement('div');
+    card.className = `review-card ${d.status}`;
+    let optsHtml = d.options.map((opt,i)=>{
+      let cls = 'review-opt';
+      if(d.status==='wrong' && i===d.chosen) cls += ' your-wrong';
+      if(i===d.correct) cls += ' answer-key';
+      return `<div class="${cls}">${letters[i]}. ${opt}${i===d.correct?' ✓ (Correct Answer)':''}${d.status==='wrong'&&i===d.chosen?' ✗ (Your Answer)':''}</div>`;
+    }).join('');
+    card.innerHTML = `
+      <div class="review-status ${d.status}">${d.status}${d.bookmarked?' • ★ Bookmarked':''}</div>
+      <div style="font-weight:700;margin-bottom:6px">${d.q}</div>
+      <div class="review-opts">${optsHtml}</div>
+      <div class="explain-box"><b>Explanation:</b> ${d.exp}<br><b>Reference:</b> Chapter 1 – Function</div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+function retryWrongOnly(){
+  const wrongOrig = lastResultData.details.filter(d=>d.status!=='correct').map(d=>{
+    return {q:d.q, options:d.options, correct:d.correct, exp:d.exp};
+  });
+  if(wrongOrig.length===0){ alert('No wrong/skipped questions — great job!'); return; }
+  // re-map to base-like structure by finding original correct answer text
+  testQuestions = wrongOrig.map(o=>{
+    const optIndices = shuffle([0,1,2,3]);
+    const options = optIndices.map(i=>o.options[i]);
+    const correct = optIndices.indexOf(o.correct);
+    return {q:o.q, options, correct, exp:o.exp};
+  });
+  currentIndex = 0;
+  answers = {};
+  bookmarks = {};
+  timeLeft = 600;
+  startTime = Date.now();
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('testScreen').classList.remove('hidden');
+  renderQuestion();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(tickTimer,1000);
+}
+
+function launchConfetti(){
+  const colors = ['#2563EB','#059669','#F59E0B','#DC2626','#8B5CF6'];
+  for(let i=0;i<60;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `position:fixed;top:-10px;left:${Math.random()*100}vw;width:8px;height:14px;background:${colors[Math.floor(Math.random()*colors.length)]};opacity:.9;z-index:200;animation:fall ${2+Math.random()*2}s linear forwards;`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),4000);
+  }
+}
+const styleTag = document.createElement('style');
+styleTag.textContent = `@keyframes fall{to{transform:translateY(105vh) rotate(360deg);opacity:0}}`;
+document.head.appendChild(styleTag);
+
+/* Theme toggle */
+document.getElementById('themeBtn').onclick = function(){
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme', isDark?'light':'dark');
+  this.textContent = isDark? '🌙 Dark':'☀️ Light';
+};
+</script>
+</body>
+</html>
