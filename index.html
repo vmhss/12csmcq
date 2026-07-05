@@ -347,6 +347,18 @@ footer .fname{font-weight:800;color:var(--primary)}
   display:inline-block;margin-left:6px;font-size:.62rem;font-weight:800;letter-spacing:.03em;
   background:var(--amber);color:#fff;padding:2px 7px;border-radius:10px;vertical-align:middle;
 }
+.auth-checking{display:flex;align-items:center;justify-content:center;gap:12px;padding:34px 0;color:#fff;font-size:.88rem;opacity:.9}
+.spinner-standalone{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;
+  animation:gspin .7s linear infinite;
+}
+.edit-mode-badge{
+  display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  padding:5px 12px;border-radius:20px;margin-bottom:14px;
+}
+.edit-icon-btn{background:none;border:none;color:var(--muted);font-size:.85rem;margin-left:2px;padding:2px;cursor:pointer}
 .step{animation:stepIn .4s cubic-bezier(.22,1,.36,1)}
 @keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .google-account-pill{
@@ -591,30 +603,38 @@ html[data-fontsize="large"]{font-size:126%}
 
     <!-- STEP 1: Google sign-in -->
     <div id="googleStep" class="step">
-      <p class="tag">Sign in to save your name, XP and progress permanently — across any device.</p>
-
-      <div id="fbSetupNotice" class="fb-setup-notice hidden">
-        ⚠️ <b>Cloud login isn't configured yet.</b><br>
-        Add your Firebase project keys to <code>FIREBASE_CONFIG</code> near the top of the script to enable permanent, cross‑device sign‑in with Google.
+      <div id="authChecking" class="auth-checking">
+        <span class="spinner-standalone"></span>
+        <span>Checking your session…</span>
       </div>
 
-      <button class="google-btn" id="googleSignInBtn" onclick="signInWithGoogle()">
-        <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.3-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"/><path fill="#4CAF50" d="M24 43.5c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 34.6 26.9 35.5 24 35.5c-5.3 0-9.7-3.3-11.3-8l-6.6 5c3.3 6 9.9 10 17.9 10z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.7 2.1-2.1 4-3.9 5.3l6.6 5.4C41.4 36.1 43.5 30.5 43.5 24c0-1.2-.1-2.4-.3-3.5z"/></svg>
-        <span id="googleBtnLabel">Sign in with Google</span>
-      </button>
+      <div id="authControls" class="hidden">
+        <p class="tag">Sign in to save your name, XP and progress permanently — across any device.</p>
 
-      <ul class="welcome-perks">
-        <li><span class="ic">☁️</span> Your XP, streaks &amp; badges are saved to your account</li>
-        <li><span class="ic">🔄</span> Log in on any phone or computer — nothing resets</li>
-        <li><span class="ic">🔒</span> Only you can see your own progress</li>
-      </ul>
+        <div id="fbSetupNotice" class="fb-setup-notice hidden">
+          ⚠️ <b>Cloud login isn't configured yet.</b><br>
+          Add your Firebase project keys to <code>FIREBASE_CONFIG</code> near the top of the script to enable permanent, cross‑device sign‑in with Google.
+        </div>
 
-      <div class="or-divider">or</div>
-      <button class="guest-btn" id="guestBtn" onclick="continueAsGuest()">👤 Continue as Guest</button>
-      <p class="guest-note">No account needed — you can jump straight into a test. Guest progress stays on this device only and won't be saved once you close the tab.</p>
+        <button class="google-btn" id="googleSignInBtn" onclick="signInWithGoogle()">
+          <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.3-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"/><path fill="#4CAF50" d="M24 43.5c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 34.6 26.9 35.5 24 35.5c-5.3 0-9.7-3.3-11.3-8l-6.6 5c3.3 6 9.9 10 17.9 10z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.7 2.1-2.1 4-3.9 5.3l6.6 5.4C41.4 36.1 43.5 30.5 43.5 24c0-1.2-.1-2.4-.3-3.5z"/></svg>
+          <span id="googleBtnLabel">Sign in with Google</span>
+        </button>
+
+        <ul class="welcome-perks">
+          <li><span class="ic">☁️</span> Your XP, streaks &amp; badges are saved to your account</li>
+          <li><span class="ic">🔄</span> Log in on any phone or computer — nothing resets</li>
+          <li><span class="ic">🔒</span> Only you can see your own progress</li>
+        </ul>
+
+        <div class="or-divider">or</div>
+        <button class="guest-btn" id="guestBtn" onclick="continueAsGuest()">👤 Continue as Guest</button>
+        <p class="guest-note">No account needed — you can jump straight into a test. Guest progress stays on this device only and won't be saved once you close the tab.</p>
+      </div>
     </div>
 
     <!-- STEP 2: confirm name + pick class (first-time only) -->
+    <div id="editModeBadge" class="edit-mode-badge hidden">Editing your profile</div>
     <div id="classStep" class="step hidden">
       <div class="google-account-pill" id="googleAccountPill"></div>
       <p class="tag">Almost done — tell us your class</p>
@@ -657,7 +677,8 @@ html[data-fontsize="large"]{font-size:126%}
       <div class="student-chip" id="studentChip">
         <span class="avatar" id="studentAvatar">?</span>
         <span id="studentChipText"></span>
-        <button class="switch-link" onclick="switchUser()" title="Not you? Switch user">⟳</button>
+        <button class="edit-icon-btn" onclick="editProfile()" title="Edit your name/class">✎</button>
+        <button class="switch-link" onclick="switchUser()" title="Sign out completely">⟳</button>
       </div>
       <button class="nav-icon-btn" id="fontBtn" onclick="cycleFontSize()" title="Text size">Aa</button>
       <button class="nav-icon-btn" id="soundBtn" onclick="toggleSound()" title="Sound">🔊</button>
@@ -1134,6 +1155,9 @@ function showFirebaseNotice(){
     box.innerHTML = `⚠️ <b>Google sign-in is temporarily unavailable.</b><br>
       Your Firebase keys look fine, but the Firebase scripts didn't load — this usually means an ad‑blocker, browser privacy shield, or school/network firewall is blocking <code>gstatic.com</code>. Try a different network or browser, or disable ad‑blocking for this site.<br>
       You can still use <b>Continue as Guest</b> below.`;
+  } else if(!fbAuth){
+    box.innerHTML = `⚠️ <b>Google sign-in couldn't start.</b><br>
+      Something went wrong setting up Firebase — check the browser console for details, or use <b>Continue as Guest</b> below.`;
   } else {
     return; // Firebase is fine — nothing to show
   }
@@ -1403,6 +1427,7 @@ function applyStudentUI(){
 
 /* ---------------- STEP 1 → STEP 2 helpers ---------------- */
 function showClassStep(googleUser){
+  document.getElementById('editModeBadge')?.classList.add('hidden');
   document.getElementById('googleStep').classList.add('hidden');
   const step2 = document.getElementById('classStep');
   step2.classList.remove('hidden');
@@ -1417,8 +1442,41 @@ function showClassStep(googleUser){
   }
 }
 function showGoogleStep(){
+  document.getElementById('editModeBadge')?.classList.add('hidden');
   document.getElementById('classStep').classList.add('hidden');
   document.getElementById('googleStep').classList.remove('hidden');
+}
+
+/* ---------------- edit an already-logged-in profile (no sign-out involved) ---------------- */
+let editingProfile = false;
+function editProfile(){
+  editingProfile = true;
+  document.getElementById('studentName').value = student.name || '';
+  document.getElementById('studentClass').value = student.cls || '';
+  document.querySelectorAll('.class-chip').forEach(c=>c.classList.toggle('selected', c.dataset.cls === student.cls));
+  document.getElementById('welcomeError').textContent = '';
+  document.getElementById('editModeBadge')?.classList.remove('hidden');
+
+  const pill = document.getElementById('googleAccountPill');
+  const u = fbAuth && fbAuth.currentUser;
+  if(isGuest){
+    pill.innerHTML = `<span class="gac-avatar">👤</span><span>Guest profile</span>`;
+  } else if(u){
+    pill.innerHTML = u.photoURL
+      ? `<img src="${u.photoURL}" alt=""><span>${u.email || u.displayName || ''}</span>`
+      : `<span class="gac-avatar">${initials(u.displayName || u.email || '?')}</span><span>${u.email || u.displayName || ''}</span>`;
+  } else {
+    pill.innerHTML = '';
+  }
+
+  document.getElementById('googleStep').classList.add('hidden');
+  document.getElementById('classStep').classList.remove('hidden');
+
+  const gate = document.getElementById('welcomeScreen');
+  gate.style.transition = 'none';
+  gate.style.display = 'flex';
+  gate.style.opacity = '1';
+  gate.style.transform = 'scale(1)';
 }
 
 /* ---------------- Google sign-in ---------------- */
@@ -1434,10 +1492,21 @@ async function signInWithGoogle(){
   const prevLabel = label.textContent;
   label.innerHTML = '';
   const spin = document.createElement('span'); spin.className = 'spinner'; label.appendChild(spin);
+  const provider = new firebase.auth.GoogleAuthProvider();
   try{
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const result = await fbAuth.signInWithPopup(provider);
-    const user = result.user;
+    let user;
+    try{
+      const result = await fbAuth.signInWithPopup(provider);
+      user = result.user;
+    }catch(popupErr){
+      // popups are unreliable in mobile/in-app browsers (e.g. WhatsApp/Instagram) — fall back to a full redirect
+      const needsRedirect = ['auth/popup-blocked','auth/operation-not-supported-in-this-environment','auth/cancelled-popup-request'].includes(popupErr.code);
+      if(needsRedirect){
+        await fbAuth.signInWithRedirect(provider);
+        return; // the page will navigate away; onAuthStateChanged handles the rest after it comes back
+      }
+      throw popupErr;
+    }
     await loadCloudData(user.uid);
     const saved = CLOUD.data.student;
     if(saved && saved.name && saved.cls){
@@ -1480,7 +1549,23 @@ function confirmProfile(){
   err.textContent = '';
   student = {name, cls};
   lsSet('student', student); // saved to Firestore automatically, tied to this Google account
-  finishLogin();
+
+  if(editingProfile){
+    editingProfile = false;
+    document.getElementById('editModeBadge')?.classList.add('hidden');
+    applyStudentUI();
+    const gate = document.getElementById('welcomeScreen');
+    gate.style.transition = 'opacity .4s ease, transform .4s ease';
+    gate.style.opacity = '0';
+    gate.style.transform = 'scale(1.02)';
+    setTimeout(()=>{
+      gate.style.display = 'none';
+      gate.style.opacity = '1';
+      gate.style.transform = 'scale(1)';
+    }, 380);
+  } else {
+    finishLogin();
+  }
 }
 
 function finishLogin(){
@@ -1506,6 +1591,7 @@ async function switchUser(){
   CLOUD.uid = null; CLOUD.data = {};
   student = {name:'', cls:''};
   isGuest = false;
+  editingProfile = false;
   applyStudentUI();
   document.getElementById('studentName').value = '';
   document.getElementById('studentClass').value = '';
@@ -1513,6 +1599,7 @@ async function switchUser(){
   document.getElementById('welcomeError').textContent = '';
   showGoogleStep();
   const gate = document.getElementById('welcomeScreen');
+  gate.style.transition = 'none';
   gate.style.display = 'flex';
   gate.style.opacity = '1';
   gate.style.transform = 'scale(1)';
@@ -1520,8 +1607,14 @@ async function switchUser(){
 
 /* ---------------- auto-login returning users (any device, same Google account) ---------------- */
 if(FIREBASE_READY && fbAuth){
+  try{ fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL); }catch(e){}
+  fbAuth.getRedirectResult().catch(e=>{ if(e && e.code) console.warn('Redirect sign-in error', e); });
   fbAuth.onAuthStateChanged(async (user)=>{
-    if(!user) return; // stay on the "Sign in with Google" step
+    if(!user){
+      document.getElementById('authChecking')?.classList.add('hidden');
+      document.getElementById('authControls')?.classList.remove('hidden');
+      return; // stay on the "Sign in with Google" step
+    }
     await loadCloudData(user.uid);
     const saved = CLOUD.data.student;
     if(saved && saved.name && saved.cls){
@@ -1533,10 +1626,13 @@ if(FIREBASE_READY && fbAuth){
       renderChapterGrid();
       switchScreen('chapterScreen');
     } else {
+      document.getElementById('authChecking')?.classList.add('hidden');
       showClassStep(user);
     }
   });
 } else {
+  document.getElementById('authChecking')?.classList.add('hidden');
+  document.getElementById('authControls')?.classList.remove('hidden');
   showFirebaseNotice();
 }
 
