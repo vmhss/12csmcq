@@ -8,9 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Firebase (Google Sign-In + Firestore) — used to make student profile & XP permanent across devices -->
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js" onerror="window.__fbScriptFailed=true"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js" onerror="window.__fbScriptFailed=true"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js" onerror="window.__fbScriptFailed=true"></script>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563EB">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -1100,14 +1100,16 @@ let soundOn = true;
      file on (e.g. yourname.github.io). localhost is already allowed for testing.
 */
 const FIREBASE_CONFIG = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_PROJECT.appspot.com",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyBCN68ShvH_UVQekP_kIHbm5rUi-mreWcc",
+  authDomain: "csmcqtest.firebaseapp.com",
+  projectId: "csmcqtest",
+  storageBucket: "csmcqtest.firebasestorage.app",
+  messagingSenderId: "91500507160",
+  appId: "1:91500507160:web:04d1809aa09012947a536d"
 };
-const FIREBASE_READY = !!(FIREBASE_CONFIG.apiKey && !String(FIREBASE_CONFIG.apiKey).startsWith('PASTE_'));
+const FIREBASE_CONFIGURED = !!(FIREBASE_CONFIG.apiKey && !String(FIREBASE_CONFIG.apiKey).startsWith('PASTE_'));
+const FIREBASE_SDK_LOADED = typeof firebase !== 'undefined';
+const FIREBASE_READY = FIREBASE_CONFIGURED && FIREBASE_SDK_LOADED;
 
 let fbAuth = null, fbDB = null;
 if(FIREBASE_READY){
@@ -1116,6 +1118,26 @@ if(FIREBASE_READY){
     fbAuth = firebase.auth();
     fbDB = firebase.firestore();
   }catch(e){ console.warn('Firebase init failed', e); }
+} else if(FIREBASE_CONFIGURED && !FIREBASE_SDK_LOADED){
+  console.warn(window.__fbScriptFailed
+    ? 'Firebase SDK script(s) failed to load (network/ad-blocker likely blocked gstatic.com).'
+    : 'Firebase config looks correct, but the Firebase SDK never loaded — likely blocked by an ad-blocker or the network/firewall.');
+}
+
+function showFirebaseNotice(){
+  const box = document.getElementById('fbSetupNotice');
+  if(!box) return;
+  if(!FIREBASE_CONFIGURED){
+    box.innerHTML = `⚠️ <b>Cloud login isn't configured yet.</b><br>
+      Add your Firebase project keys to <code>FIREBASE_CONFIG</code> near the top of the script to enable permanent, cross‑device sign‑in with Google.`;
+  } else if(!FIREBASE_SDK_LOADED){
+    box.innerHTML = `⚠️ <b>Google sign-in is temporarily unavailable.</b><br>
+      Your Firebase keys look fine, but the Firebase scripts didn't load — this usually means an ad‑blocker, browser privacy shield, or school/network firewall is blocking <code>gstatic.com</code>. Try a different network or browser, or disable ad‑blocking for this site.<br>
+      You can still use <b>Continue as Guest</b> below.`;
+  } else {
+    return; // Firebase is fine — nothing to show
+  }
+  box.classList.remove('hidden');
 }
 
 /* In-memory cache of everything that used to live in localStorage.
@@ -1403,7 +1425,7 @@ function showGoogleStep(){
 async function signInWithGoogle(){
   const err = document.getElementById('welcomeError');
   if(!FIREBASE_READY){
-    document.getElementById('fbSetupNotice').classList.remove('hidden');
+    showFirebaseNotice();
     return;
   }
   const btn = document.getElementById('googleSignInBtn');
@@ -1515,7 +1537,7 @@ if(FIREBASE_READY && fbAuth){
     }
   });
 } else {
-  document.getElementById('fbSetupNotice')?.classList.remove('hidden');
+  showFirebaseNotice();
 }
 
 function shuffle(arr){
