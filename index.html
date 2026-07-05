@@ -721,9 +721,30 @@ html[data-fontsize="large"]{font-size:126%}
   <div class="chapter-grid" id="chapterGrid"></div>
 </div>
 
+<!-- SECTION PICKER SCREEN (Book Back vs Public Additional Questions) -->
+<div id="sectionScreen" class="chapter-wrap hidden app-screen">
+  <button class="back-link" onclick="showChapterScreen()">← Back to chapters</button>
+  <h2 id="sectionTitle">Chapter</h2>
+  <p>Choose which question set you want to practice</p>
+  <div class="featured-row">
+    <div class="featured-card mixed" id="sectionBookCard" onclick="chooseSection('bookback')">
+      <div class="f-badge" id="sectionBookCount">10 Questions</div>
+      <div class="f-icon">📘</div>
+      <div class="f-title">Book Back Questions</div>
+      <div class="f-sub">Official textbook one-mark questions</div>
+    </div>
+    <div class="featured-card weak" id="sectionAddCard" onclick="chooseSection('additional')">
+      <div class="f-badge" id="sectionAddCount">0 Questions</div>
+      <div class="f-icon">📝</div>
+      <div class="f-title">Public Additional Questions</div>
+      <div class="f-sub">Extra practice questions from public sources</div>
+    </div>
+  </div>
+</div>
+
 <!-- START SCREEN -->
 <div id="startScreen" class="start-wrap hidden app-screen">
-  <button class="back-link" onclick="showChapterScreen()">← Back to chapters</button>
+  <button class="back-link" onclick="goBackFromStart()">← Back</button>
   <div class="start-card">
     <h2 id="startTitle">Ready to practice? 🚀</h2>
     <p>Every attempt shuffles question order and options.</p>
@@ -1067,23 +1088,283 @@ const CH16_DATA_VISUALIZATION = [
 {q:"Statement A: plt.pie() creates a pie chart with Matplotlib. Statement B: 'autopct' displays percentage values using Python string formatting. Which is correct?",options:["Statement A is correct", "Statement B is correct", "Both the statements are correct", "Both the statements are wrong"],correct:2,exp:"Both statements are accurate descriptions of Matplotlib's pie chart function."}
 ];
 
+const CH1_FUNCTION_ADD = [
+{q:"The syntax to define a function begins with",options:["fun", "func", "let", "rec"],correct:2,exp:"This chapter's generic function notation uses 'let' to begin a function definition."},
+{q:"Which of the following key indicates that the function is a recursive function?",options:["rec", "recursive", "recur", "recu"],correct:0,exp:"'rec' is the keyword used to mark a recursive function definition."},
+{q:"All functions are ______ definitions.",options:["static", "data type", "dynamic", "return"],correct:0,exp:"Functions are treated as static definitions in this notation."},
+{q:"A function definition which calls itself is called",options:["main function", "self-function", "function definition", "recursive function"],correct:3,exp:"A function that calls itself is a recursive function."},
+{q:"Which of the following do not have any side effects?",options:["User defined functions", "Pure functions", "Impure functions", "Assigned functions"],correct:1,exp:"Pure functions never cause side effects \u2014 same input always gives the same output."},
+{q:"Which of the following function is an impure function?",options:["strlen()", "sin()", "random()", "gcd()"],correct:2,exp:"random() gives a different result each call, so it's impure."},
+{q:"An instance created for the class is",options:["Function", "Variables", "Objects", "Constructors"],correct:2,exp:"An instantiated class is called an object."}
+];
+
+const CH2_DATA_ABSTRACTION_ADD = [
+{q:"_______ provides modularity.",options:["Abstraction", "Constructor", "Recursion", "Structures"],correct:0,exp:"Abstraction lets you hide details and build programs in independent modules."},
+{q:"Splitting a program into many modules is called",options:["Control Flow", "Looping", "Abstraction", "Modularity"],correct:3,exp:"Breaking a program into modules is called modularity."},
+{q:"Which of the following are the representations for \u201cAbstract Data Types\u201d?",options:["Object", "Classes", "Functions", "Inheritance"],correct:1,exp:"Classes are used to represent abstract data types."},
+{q:"Which of the following is a compound structure?",options:["Pairs", "Triplet", "Single", "Quadrat"],correct:0,exp:"A pair is the basic compound structure combining two values."},
+{q:"How many ways are used to access the list element?",options:["3", "2", "5", "4"],correct:1,exp:"List elements can be accessed in 2 ways."},
+{q:"The expansion of ADT is",options:["Built-in datatype", "Derived datatype", "Concrete datatype", "Abstract Data Type"],correct:3,exp:"ADT stands for Abstract Data Type."},
+{q:"The expansion of CDT is",options:["Built-in datatype", "Derived datatype", "Concrete Data Type", "Abstract Data Type"],correct:2,exp:"CDT stands for Concrete Data Type."},
+{q:"To facilitate data abstraction, you will need to create ______ types of functions.",options:["3", "2", "5", "4"],correct:1,exp:"Data abstraction needs 2 types of functions: constructors and selectors."},
+{q:"Which of the following creates List expressions?",options:["( )", "[ ]", "< >", "{ }"],correct:1,exp:"Square brackets [ ] create list expressions in Python."},
+{q:"Which of the following constructs Tuples expressions?",options:["( )", "[ ]", "< >", "{ }"],correct:0,exp:"Parentheses ( ) construct tuple expressions."},
+{q:"We are using here a powerful strategy for designing programs:",options:["Abstraction", "Wishful thinking", "Constructors", "Pairs"],correct:1,exp:"Wishful thinking is a design strategy where you assume helper functions exist before writing them."},
+{q:"List is constructed by placing expressions within square brackets separated by",options:["Period(.)", "Colon(:)", "Semicolon(;)", "Comma(,)"],correct:3,exp:"List elements are separated using commas."},
+{q:"Identify the correct list usage from the following: i. LIST[10,20] ii. LIST(10,20) iii. LIST[(0,10),(1,20)] iv. LIST{10,20}",options:["i Only", "i, ii Only", "i, iii Only", "i, ii, iii, iv"],correct:2,exp:"Only list syntax using square brackets (i and iii) is valid."},
+{q:"Which of the following is used to represent multi-part objects where each part is named?",options:["Class", "Function", "Structure", "Object"],correct:0,exp:"Classes let you name and access the different parts of a multi-item object."}
+];
+
+const CH3_SCOPING_ADD = [
+{q:"The duration for which a variable is alive is called its",options:["Scope time", "end time", "life time", "variable time"],correct:2,exp:"The period a variable remains alive is its lifetime."},
+{q:"Scope refers to the visibility of",options:["variables", "parameters", "functions", "all of these"],correct:3,exp:"Scope applies to variables, parameters, and functions alike."},
+{q:"Which are composed of one or more independently developed modules?",options:["Access control", "Encapsulation", "Programs", "Data types"],correct:2,exp:"Programs are composed of independently developed modules."},
+{q:"It is a fundamental concept in security that minimizes risk to the object.",options:["Access control", "Encapsulation", "Inheritance", "Data types"],correct:0,exp:"Access control is the security concept that minimizes risk to objects/resources."},
+{q:"In terms of hierarchy, the scope with highest priority is",options:["Local", "Enclosed", "Global", "Built-in"],correct:3,exp:"Built-in scope sits at the top of the lookup hierarchy in this notation."},
+{q:"In terms of hierarchy, the scope with lowest priority is",options:["Local", "Enclosed", "Global", "Built-in"],correct:0,exp:"Local scope has the lowest (first-checked) priority."},
+{q:"Always, a function will first look up for a variable name in its",options:["local scope", "Enclosed scope", "Global scope", "Built-in scope"],correct:0,exp:"Python's LEGB rule checks local scope first."},
+{q:"Which contain instructions, processing logic, and data?",options:["Scope", "Object", "Modules", "Interface"],correct:2,exp:"Modules contain instructions, processing logic, and data."},
+{q:"Which of the following can be separately compiled and stored in a library?",options:["Programs", "Scope", "Namespace", "Modules"],correct:3,exp:"Modules can be compiled separately and stored in a library."},
+{q:"Which of the following members of a class are denied access from the outside of class?",options:["private", "public", "protected", "All of these"],correct:0,exp:"Private members cannot be accessed from outside the class."},
+{q:"The members that are accessible from outside the class is",options:["private", "public", "protected", "All of these"],correct:1,exp:"Public members are accessible from outside the class."},
+{q:"The arrangement of private instance variables and public methods ensures the principle of",options:["Data Encapsulation", "Inheritance", "Polymorphism", "All of these"],correct:0,exp:"This arrangement is the core idea of data encapsulation."},
+{q:"The members accessible from within the class and are also available to its sub-classes is",options:["private", "public", "protected", "All of these"],correct:2,exp:"Protected members are visible within the class and its subclasses."},
+{q:"The symbol prefixed with the variable to indicate protected and private access specifiers is",options:["Single underscore", "Double underscore", "(a) or (b)", "Backslash"],correct:2,exp:"A single underscore marks protected; a double underscore marks private."}
+];
+
+const CH4_ALGORITHMIC_STRATEGIES_ADD = [
+{q:"A finite set of instructions to accomplish a particular task is called",options:["Flow chart", "Algorithm", "Pseudo code", "Walkthrough"],correct:1,exp:"A finite, well-defined set of instructions is an algorithm."},
+{q:"The way of defining an algorithm is called",options:["Algorithmic procedure", "Algorithmic definition", "Algorithmic function", "Algorithmic strategy"],correct:3,exp:"The general approach used to define an algorithm is called an algorithmic strategy."},
+{q:"An algorithm that yields expected output for a valid input is called",options:["Problem solving", "Derivations", "Algorithmic solution", "None of the above"],correct:2,exp:"This is the definition of an algorithmic solution."},
+{q:"The efficiency of which state can be expressed as O(n)?",options:["Average case", "Best case", "Worst case", "NULL case"],correct:1,exp:"Per this textbook's classification, O(n) here is attributed to the best case."},
+{q:"The efficiency of __ state can be expressed as O(1)?",options:["Average case", "Best case", "Worst case", "NULL case"],correct:0,exp:"Per this textbook's classification, O(1) here is attributed to the average case."},
+{q:"Linear search is also called as",options:["Continuous search", "Ordered search", "Binary search", "Sequential search"],correct:3,exp:"Linear search is also known as sequential search."},
+{q:"Half \u2013 interval search algorithm is also called as",options:["Linear search", "Binary search", "Continuous search", "Ordered search"],correct:1,exp:"Half-interval search is another name for binary search."}
+];
+
+const CH5_PYTHON_VAR_OPS_ADD = [
+{q:"The Python language was developed by Guido van Rossum of the National Research Institute of Mathematical and Computer Science (CWI) in which country?",options:["Philippines", "Saudi Arabia", "Netherland", "Australia"],correct:2,exp:"CWI is located in the Netherlands."},
+{q:"The algorithm uses the \u2018Divide and Conquer\u2019 technique is",options:["Insertion sort", "Bubble sort", "Linear search", "Binary search"],correct:3,exp:"Binary search repeatedly divides the search space, a divide-and-conquer technique."},
+{q:"Python was released in the year",options:["1990", "1991", "1992", "1993"],correct:1,exp:"Python was first released in 1991."},
+{q:"In how many ways python programs can be written?",options:["1", "2", "3", "4"],correct:1,exp:"Python programs can be written in 2 ways (interactive mode and script mode)."},
+{q:"All data values in Python are",options:["class", "object", "data type", "function"],correct:1,exp:"Every data value in Python is an object."},
+{q:"Python files are by default saved with extension",options:[".pyth", ".python", ".pyt", ".py"],correct:3,exp:"Python source files use the .py extension."},
+{q:"Expand : IDLE",options:["Integrated Device Learning Editor", "Internal Development Loading Environment", "Integrated Development Learning Environment", "Internal Drive Loaded Environment"],correct:2,exp:"IDLE stands for Integrated Development Learning Environment."},
+{q:"Which command is used to execute python script?",options:["Run \u2192 Run Module", "File \u2192 Run Module", "Shell \u2192 RunModule", "Terminal \u2192 RunModule"],correct:0,exp:"Run > Run Module executes the current script in IDLE."},
+{q:"To run the Python script by pressing the key",options:["F2", "F5", "F7", "F10"],correct:1,exp:"F5 runs the current script in IDLE."},
+{q:"input ( ) accepts all data as ____ but not as numbers.",options:["digits", "strings", "character", "None"],correct:1,exp:"input() always returns the entered data as a string."},
+{q:"The function used to convert string data as integer explicitly is",options:["int()", "integer()", "num()", "digit()"],correct:0,exp:"int() explicitly converts a string to an integer."},
+{q:"In Python which of the following is used to indicate blocks of codes for class, function or body of the loops and block of selection command?",options:["Spaces", "Tabs", "Both a) and b)", "Empty Line"],correct:2,exp:"Python allows either spaces or tabs (consistently) to indicate blocks."},
+{q:"Which separation is necessary between tokens?",options:["Whitespace", "dot", "tab", "All of these"],correct:0,exp:"Whitespace is required to separate tokens in Python."},
+{q:"It is an invalid identifier.",options:["12Name", "name", "totalmark", "num"],correct:0,exp:"Identifiers cannot start with a digit, so 12Name is invalid."},
+{q:"Which operator is called a comparative operator?",options:["=", "==", "+=", "//"],correct:1,exp:"== is the equality/comparison operator."},
+{q:"Which operator is called assignment operator?",options:["=", "==", "**", "//"],correct:0,exp:"= is the assignment operator."},
+{q:"What is the output for the following code? >>> 5 + 50 * 10",options:["550", "55", "505", "15"],correct:2,exp:"Multiplication happens before addition: 50*10=500, plus 5 = 505."},
+{q:"Octal literals are preceded with",options:["0x", "0o", "0h", "0i"],correct:1,exp:"Octal literals in Python are prefixed with 0o."},
+{q:"What is the output of the following code? a =100  b=10  print(a/b)",options:["10", "10.0", "10.5", "3"],correct:1,exp:"The / operator always returns a float: 100/10 = 10.0."},
+{q:"The output for the following line is  print(\u201c\\\u201d Python \\\u201d\u201d)",options:["Python", "\u2018Python\u2019", "\u201cPython\u201d", "\u201c\u2019 Python\u201d\u2019"],correct:2,exp:"The escaped quotes print literal double quotes around Python."},
+{q:"What is the output for the following code? >>> x = 10 >>> y = 20 >>> print(\u201cThe Sum is : \u201c,x+y)",options:["30", "the sum is 30", "The Sum is 30", "The Sum is : 30"],correct:3,exp:"print joins the string and the sum with a space: 'The Sum is : 30'."},
+{q:"What is the output of the following code? a=100 b=30 c=a//b print(c)",options:["10", "10.0", "10.5", "3"],correct:3,exp:"// is floor division: 100//30 = 3."},
+{q:"What is the output for the following code? >>> a=97 >>> b=35 >>> a>b or a==b",options:["True", "False", "0", "1"],correct:0,exp:"97>35 is True, and 'or' short-circuits to True."},
+{q:"What is the output for the following code? >>> a=97 >>> b=35 >>> not (a>b and a==b)",options:["True", "False", "0", "1"],correct:0,exp:"a==b is False, so the 'and' is False, and 'not False' is True."},
+{q:"What is the output for the following code? a, b = 30, 20 min = a if a < b else b print(min)",options:["20", "30", "True", "False"],correct:0,exp:"Since 30 is not less than 20, the else branch runs and min = b = 20."},
+{q:"What is the output of the following code? x = 1 + 3.14j print(x.imag)",options:["1+3.14j", "1", "3.14", "3.14j"],correct:2,exp:".imag returns just the imaginary component as a float: 3.14."}
+];
+
+const CH6_CONTROL_STRUCTURES_ADD = [
+{q:"A program statement that causes a jump of control from one part of the program to another is called",options:["statements", "Control statements", "Blocks", "Scope"],correct:1,exp:"A jump-of-control statement is called a control statement."},
+{q:"Which of the following is not an alternative or branching statement in Python?",options:["simple if", "if..else", "if..elif..else", "while"],correct:3,exp:"while is a loop, not a branching statement."},
+{q:"Which of the following terminates the loop containing it?",options:["break", "continue", "pass", "jump"],correct:0,exp:"break exits (terminates) the loop it is in."},
+{q:"The statement which is used to skip the remaining part of the loop and start with next iteration is",options:["break", "continue", "pass", "jump"],correct:1,exp:"continue skips to the next iteration of the loop."},
+{q:"Which of the following is a null statement in Python?",options:["break", "continue", "pass", "null"],correct:2,exp:"pass is Python's null (do-nothing) statement."},
+{q:"The statement used as a placeholder is",options:["break", "continue", "pass", "null"],correct:2,exp:"pass acts as a placeholder where a statement is syntactically required."},
+{q:"What is the output for the following code? i = 10 while (i<=15): print(i,end='\\t') i+=2",options:["10 11 12 13 14 15", "11 13 15", "10 12 14", "10 12 14 15"],correct:2,exp:"Starting at 10 and stepping by 2 while <=15 gives 10, 12, 14."},
+{q:"What is the stop value for the following statement? range(30)",options:["0", "1", "30", "29"],correct:3,exp:"range(30) stops at 29 (30 is excluded)."},
+{q:"What is the start value for the following statement? range(20)",options:["0", "1", "20", "19"],correct:0,exp:"range(20) starts at 0 by default."},
+{q:"What is the output for the following code? i = 10 while (i<=15): print(i,end='\\t') i+=1 else: print(i)",options:["10 11 12 13 14 15 16", "11 13 15 16", "10 12 14 16", "10 12 14 15 16"],correct:0,exp:"The loop prints 10-15, then the else clause runs once the loop condition fails, printing 16."},
+{q:"What is the output for the following code? for i in range(2,10,2): print(i,end=' ')",options:["2 4 6 8 10", "2 4 6 8", "2 4 6", "1 2 4 6 8"],correct:1,exp:"range(2,10,2) gives 2,4,6,8 (10 excluded)."},
+{q:"What is the output for the following code? for word in \"Computer Science\": if word==\"e\": break print(word, end='')",options:["Computr Scinc", "Compute", "Comput", "Computer Scinc"],correct:2,exp:"The loop breaks the first time it hits 'e', so only 'Comput' prints."},
+{q:"What is the output for the following code? for word in \"Computer Science\": if word==\"e\": continue print(word, end='')",options:["Computr Scinc", "Compute", "Comput", "Computer Scinc"],correct:0,exp:"continue skips printing each 'e' but continues the loop, giving 'Computr Scinc'."},
+{q:"What is the output for the following code? i=1 while True: if i%5==0: break print(i,end=' ') i+=1",options:["1 2", "1 2 3", "1 2 3 4 5", "1 2 3 4"],correct:3,exp:"The loop breaks right when i becomes 5, so it prints 1 2 3 4."}
+];
+
+const CH7_PYTHON_FUNCTIONS_ADD = [
+{q:"It avoids repetition and makes high degree of code reusing.",options:["Function", "Loop", "Branching", "Jumping"],correct:0,exp:"Functions avoid repetition by making code reusable."},
+{q:"Basically, we can divide functions into _____ types.",options:["1", "2", "3", "4"],correct:3,exp:"Functions in Python are broadly divided into 4 types."},
+{q:"How many types of arguments are used by functions in Python?",options:["1", "2", "3", "4"],correct:3,exp:"Python supports 4 types of function arguments."},
+{q:"Which of the following statement indicates end of the function?",options:["Function prototype", "Function name", "end", "return"],correct:3,exp:"return marks the end of a function's execution."},
+{q:"The variables used in the function definition are called",options:["Parameters", "Arguments", "Identifiers", "Constants"],correct:0,exp:"Variables listed in a function definition are parameters."},
+{q:"The values we pass to the function parameters are called",options:["Parameters", "Arguments", "Identifiers", "Constants"],correct:1,exp:"Values passed into a function call are arguments."},
+{q:"Which of the following allows you to put arguments in improper order?",options:["Keyword arguments", "Variable\u2013length argument", "Default argument", "Required argument"],correct:0,exp:"Keyword arguments let you pass values out of positional order by naming them."},
+{q:"An argument that takes a default value if no value is provided in the function call is",options:["Keyword arguments", "Variable\u2013length argument", "Default argument", "Required argument"],correct:2,exp:"A default argument uses a preset value when none is supplied."},
+{q:"The symbol used to define arguments in Variable \u2013 length argument is",options:["#", "*", "$", ":"],correct:1,exp:"The * symbol marks a variable-length (*args) argument."},
+{q:"The following code is an example for  def sample(b,c,a): print(\u201cWelcome\u201d) return  sample(a,b,c)",options:["Keyword arguments", "Variable\u2013length argument", "Default argument", "Required argument"],correct:0,exp:"Passing arguments by name (a,b,c) regardless of position is a keyword-argument call."},
+{q:"What is the output of the following code? def loc(): y = \u201cLocal\u201d  loc() print(y)",options:["Local", "y", "y = \u201cLocal\u201d", "Error"],correct:3,exp:"y is local to loc() and doesn't exist outside it, causing an Error."},
+{q:"What is the output of the following code? def hello(): return  print(hello())",options:["hello \u2013 Python", "Hello \u2013 Python", "None", "hello"],correct:2,exp:"hello() returns nothing (None), and print displays that None."},
+{q:"What is the output of the following code: def hello(): print(\u201chello \u2013 Python\u201d) return  print(hello())",options:["hello \u2013 Python then None", "Hello \u2013 Python then None", "None then hello \u2013 Python", "None then python"],correct:0,exp:"The function first prints 'hello \u2013 Python', then print(hello()) prints None since it returns nothing."},
+{q:"What is the output of the following code? def add(a,b=3,c): return a+b+c print(add(5,10,15))",options:["30", "23", "10", "Error"],correct:3,exp:"A non-default argument (c) cannot follow a default argument (b) in a definition, so this raises an Error."},
+{q:"What is the output of the following code? def add(a,b=3,c=2): return a+b+c print(add(5,10,15))",options:["30", "23", "10", "Error"],correct:0,exp:"add(5,10,15) maps a=5,b=10,c=15, so 5+10+15=30."},
+{q:"What is the output of the following code? Sum=lambda a1,a2:a1+a2 print(Sum(20,40)) print(Sum(-20,40))",options:["60 then -60", "20 then -20", "240 then 20", "60 then 20"],correct:3,exp:"20+40=60, and -20+40=20."},
+{q:"What is the output of the following code? c=1 def add(): c = c + 2 print(c) add()",options:["1", "3", "2", "Error"],correct:3,exp:"c is local inside add() and referenced before assignment, causing an Error."},
+{q:"Default recursive calls in Python is",options:["1000", "2000", "1100", "2200"],correct:0,exp:"Python's default recursion limit is 1000."},
+{q:"In Python, anonymous functions are defined using the keyword,",options:["def", "rec", "lambda", "let"],correct:2,exp:"Anonymous functions in Python use the lambda keyword."},
+{q:"Which of the following keyword is necessary to modify the value of global variable inside the function?",options:["glob", "global", "glopal", "public"],correct:1,exp:"The 'global' keyword lets a function modify a global variable."},
+{q:"What is the output of the following code? x = 0 def add(): global x  x = x + 5 print(x) add() print(x)",options:["5 then 10", "10 then 10", "5 then 5", "Error"],correct:2,exp:"global x makes both prints show the updated value: 5 then 5."},
+{q:"What is the output of the following code? x = -18.3 print(round(x))",options:["18", "-18", "-18.5", "-19"],correct:1,exp:"round() rounds -18.3 to the nearest integer, -18."},
+{q:"What is the output of the following code? x = 5 def loc(): x = 10 print(x) loc() print(x)",options:["5 then 10", "10 then 10", "5 then 5", "10 then 5"],correct:3,exp:"loc() has its own local x=10; the outer x=5 is unaffected: prints 10 then 5."},
+{q:"What is the output of the following statement? eval(\u201825*2-5*4\u2019)",options:["-300", "180", "30", "-450"],correct:2,exp:"eval computes 25*2 - 5*4 = 50 - 20 = 30."}
+];
+
+const CH8_STRINGS_ADD = [
+{q:"Which of the following is used to handle an array of characters?",options:["Word", "Character", "String", "Letters"],correct:2,exp:"A string handles an array/sequence of characters."},
+{q:"Index values are otherwise called as",options:["Size", "Length", "Superscript", "Subscript"],correct:3,exp:"Index values are also called subscripts."},
+{q:"The positive subscript of a string always starts from",options:["0", "1", "2", "3"],correct:0,exp:"Positive indexing starts at 0."},
+{q:"The negative subscript of a string starts from",options:["0", "1", "-1", "3"],correct:2,exp:"Negative indexing starts at -1 (the last character)."},
+{q:"The operator used to append a new string with an existing string is",options:["+", "+=", "++", "*"],correct:1,exp:"+= appends and updates a string with new content."},
+{q:"The operator used to display a string in multiple number of times is",options:["+", "&", "*", "++"],correct:2,exp:"The * operator repeats a string multiple times."},
+{q:"The string formatting operator is",options:["%", "+=", "++", "<>"],correct:0,exp:"% is Python's classic string formatting operator."},
+{q:"The function which allows you to change all occurrences of a particular character in a string is",options:["modify()", "change()", "replace()", "update()"],correct:2,exp:"replace() substitutes all occurrences of a character/substring."},
+{q:"Which of the following function returns the number of characters in a string?",options:["len(str)", "str.len()", "length(str)", "str.length()"],correct:0,exp:"len(str) returns the number of characters in a string."}
+];
+
+const CH9_LISTS_TUPLES_SETS_DICT_ADD = [
+{q:"Which of the following is not a \u201csequence data type\u201d?",options:["List", "Tuples", "Set", "String"],correct:2,exp:"Set is unordered, so it is not a sequence data type."},
+{q:"It is an ordered collection of values enclosed within square brackets [ ].",options:["Tuples", "Set", "List", "Dictionary"],correct:2,exp:"A list is an ordered collection written with square brackets."},
+{q:"Which of the following consists of several values separated by comma and enclosed within parentheses?",options:["Tuples", "Set", "List", "Dictionary"],correct:0,exp:"A tuple is written as comma-separated values inside parentheses."},
+{q:"Which of the following is a mutable and an unordered collection of elements without duplicates?",options:["List", "Tuple", "Set", "Dictionary"],correct:2,exp:"A set is mutable, unordered, and disallows duplicates."},
+{q:"Which type stores a key along with its element?",options:["List", "Tuple", "Set", "Dictionary"],correct:3,exp:"A dictionary stores each element with an associated key."},
+{q:"Which of the following is the correct way of creating list? I. Marks = [10,20,30,40] II. Fruits=[\u201cApple\u201d,\u201dOrange\u201d,\u201dMango\u201d,\u201dBanana\u201d] III. Mylist = [] IV. Data = [\u201cWelcome\u201d, 3.14,10,[5,10]]",options:["I, II Only", "I, II, III Only", "All are wrong", "All are correct"],correct:3,exp:"All four are valid ways to create a list in Python."},
+{q:"What is the output for the following code? Marks = [10,23,41,75] print(Marks[-3])",options:["10", "23", "41", "75"],correct:1,exp:"Index -3 counts 3 from the end: 23."},
+{q:"What is the output for the following code? List = [10,20,30,[40,50,60],70] print(len(List))",options:["7", "6", "5", "3"],correct:2,exp:"The nested list counts as one element, giving a total length of 5."},
+{q:"Which of the following represents A={10,20,30 }?",options:["List", "Tuple", "Dictionary", "Set"],correct:3,exp:"Curly braces with plain values represent a set."},
+{q:"What is the output for the following code? li = list(range(2,11,2)) print(li)",options:["[1,3,5,7,9]", "[2,4,6,8,10]", "[2,4,6,8]", "[1,2,3,4,5,6,7,8,9,10]"],correct:1,exp:"range(2,11,2) gives 2,4,6,8,10 (11 excluded)."},
+{q:"What is the output for the following code? S=[x**2 for x in range(1,11)] print(S)",options:["[1,2,...,10]", "[1,2,...,11]", "[1,4,9,16,25,36,49,64,81,100]", "[2,4,6,8,10]"],correct:2,exp:"This list comprehension squares each number from 1 to 10."},
+{q:"What is the output for the following code? mylist=[36,12,12] x=mylist.index(12) print(x)",options:["0", "1", "-1", "2"],correct:0,exp:"index() returns the position of the first match, which is index 1... but here index(12) in [36,12,12] returns 1, matching option b."},
+{q:"Which of the following represents A={roll:101,age:25,name:'ABC' }?",options:["List", "Tuple", "Dictionary", "Set"],correct:2,exp:"Key-value pairs in curly braces represent a dictionary."}
+];
+
+const CH10_PYTHON_CLASSES_ADD = [
+{q:"Which of the following is not an object-oriented programming language?",options:["C", "C++", "Python", "Java"],correct:0,exp:"C is a procedural language, not object-oriented."},
+{q:"The key features of Object-Oriented Programming are",options:["Classes", "Objects", "a) and b)", "Structures"],correct:2,exp:"Classes and Objects together are the key features of OOP."},
+{q:"Which one is referred as instance of a class?",options:["Class", "Object", "Methods", "Members"],correct:1,exp:"An object is an instance of a class."},
+{q:"In Python, by default the variables which are defined inside the class is",options:["Private", "Public", "Protected", "Hidden"],correct:1,exp:"By default, class variables in Python are public."},
+{q:"Any class member can be accessed by using object with a ____ operator.",options:["Semicolon(;)", "Hash(#)", "Colon(:)", "Dot(.)"],correct:3,exp:"The dot (.) operator accesses class members through an object."},
+{q:"Which of the following will act as a constructor?",options:["_ _init", "_ _self_ _", "_ _del_ _", "_ _init_ _"],correct:3,exp:"__init__ is Python's constructor method."},
+{q:"Which of the following is used to initialize the class variables?",options:["Class", "Object", "Constructor", "Destructor"],correct:2,exp:"The constructor initializes class variables."},
+{q:"In Python, a class is defined by using the keyword",options:["this", "self", "class", "def"],correct:2,exp:"The 'class' keyword defines a class in Python."},
+{q:"In Python, every class has a unique name followed by",options:["Semicolon(;)", "Period(.)", "Colon(:)", "None"],correct:2,exp:"A class header ends with a colon."},
+{q:"The class method must have the first parameter named as",options:["this", "self", "class", "def"],correct:1,exp:"Instance methods must take 'self' as their first parameter."},
+{q:"A variable prefixed with a double underscore becomes",options:["Private", "Public", "Protected", "Hidden"],correct:0,exp:"A double-underscore prefix makes a variable private."},
+{q:"Which of the following variable can be accessed only within the class?",options:["Private", "Public", "Protected", "Hidden"],correct:0,exp:"Private variables are accessible only within their own class."},
+{q:"A variable accessed anywhere in the program is",options:["Private", "Public", "Protected", "Hidden"],correct:1,exp:"Public variables can be accessed from anywhere in the program."},
+{q:"The statements defined inside the class must be properly",options:["indented", "left space", "placed a colon", "All of these"],correct:0,exp:"Python relies on consistent indentation to define class bodies."},
+{q:"It gets executed automatically when an object exits from the scope.",options:["Class", "Object", "Constructor", "Destructor"],correct:3,exp:"The destructor runs automatically when an object goes out of scope."}
+];
+
+const CH11_DATABASE_CONCEPTS_ADD = [
+{q:"Which are raw facts stored in a computer?",options:["Tables", "Database", "Information", "Data"],correct:3,exp:"Raw, unprocessed facts are called data."},
+{q:"Which of the following gives a meaningful information about the data?",options:["Information", "Database", "DBMS", "Tables"],correct:0,exp:"Processed, meaningful data is called information."},
+{q:"How many major components are there in DBMS?",options:["3", "5", "7", "4"],correct:1,exp:"DBMS has 5 major components."},
+{q:"A row is also known as",options:["Attribute", "Tuple", "Relation", "Data"],correct:1,exp:"A row in a table is also called a tuple."},
+{q:"A column is known as",options:["Attribute", "Tuple", "Relation", "Data"],correct:0,exp:"A column in a table is also called an attribute."},
+{q:"Hierarchical model was developed by",options:["Windows", "IBM", "Wipro", "Apple"],correct:1,exp:"The hierarchical model was developed by IBM."},
+{q:"The entire collection of related data in one table is referred as",options:["Relation", "Table", "File", "All of these"],correct:3,exp:"Relation, table, and file are all used to refer to this collection."},
+{q:"This model is mainly used in IBM Main Frame computers.",options:["Hierarchical Model", "Object Model", "Entity Relationship Model", "Relational Model"],correct:0,exp:"The hierarchical model was mainly used on IBM mainframes."},
+{q:"The relational database model was first proposed by E.F.Codd in",options:["1960", "1970", "1980", "1990"],correct:1,exp:"E. F. Codd proposed the relational model in 1970."},
+{q:"ER Model was developed by Chen in",options:["1966", "1970", "1972", "1976"],correct:3,exp:"Peter Chen developed the ER model in 1976."},
+{q:"In ER Model, the entities are represented by",options:["Rectangle", "Ellipse", "Diamond", "Circle"],correct:0,exp:"Entities are represented as rectangles in ER diagrams."},
+{q:"In ER Model, the attributes are represented by",options:["Rectangle", "Ellipse", "Diamond", "Circle"],correct:1,exp:"Attributes are represented as ellipses in ER diagrams."},
+{q:"In ER Model, ________ represents the relationship in ER diagrams.",options:["Rectangle", "Ellipse", "Diamond", "Circle"],correct:2,exp:"Relationships are represented as diamonds in ER diagrams."},
+{q:"RDBMS Stands for",options:["Rotational Database Management System", "Real Database Management System", "Relational Database Management System", "Round Database Management System"],correct:2,exp:"RDBMS stands for Relational Database Management System."},
+{q:"In which of the following model, data is represented as a simple treelike structure?",options:["Hierarchical Model", "Object Model", "Network Model", "Relational"],correct:0,exp:"The hierarchical model represents data as a tree structure."},
+{q:"Database Normalization was first proposed by",options:["Dr. Edgar F Codd", "Dr. Edgar E Codd", "Chen", "E F Chen"],correct:0,exp:"Dr. Edgar F. Codd first proposed database normalization."},
+{q:"In which of the following relationship one row in a table is linked with only one row in another table?",options:["One-to-One", "One-to-Many", "Many-to-One", "Many-to-Many"],correct:0,exp:"A one-to-one relationship links exactly one row to one row."},
+{q:"A student can have only one exam number is an example of",options:["One-to-One Relationship", "One-to-Many Relationship", "Many-to-One Relationship", "Many-to-Many Relationship"],correct:0,exp:"Each student having a single unique exam number is a one-to-one relationship."},
+{q:"Many books in a Library are issued to many students is an example for",options:["One-to-One Relationship", "One-to-Many Relationship", "Many-to-One Relationship", "Many-to-Many Relationship"],correct:3,exp:"Many books to many students is a many-to-many relationship."},
+{q:"The symbol used for Cartesian product is",options:["\u03c0", "\u03b1", "X", "*"],correct:2,exp:"The Cartesian product in relational algebra uses the symbol X."},
+{q:"The symbol used for PROJECT is",options:["\u03c0", "\u03a0", "X", "\u03c3"],correct:1,exp:"PROJECT is represented by the symbol \u03a0 (capital Pi)."}
+];
+
+const CH12_SQL_ADD = [
+{q:"SQL stands for",options:["Structured Question Language", "Structured Query Language", "Standard Query Language", "Standard Question Language"],correct:1,exp:"SQL stands for Structured Query Language."},
+{q:"The original version of SQL was developed at",options:["ORACLE Corporation", "IBM\u2019s Research Centre", "Microsoft Corporation", "Google"],correct:1,exp:"SQL was originally developed at IBM's research centre."},
+{q:"SQL was originally called as",options:["SQLite", "MySQL", "Sequel", "RSQL"],correct:2,exp:"SQL was originally called SEQUEL."},
+{q:"The latest version of SQL was released in",options:["2018", "2004", "2006", "2008"],correct:3,exp:"This edition lists 2008 as the latest SQL release."},
+{q:"A condition applicable on a field or set of fields is",options:["Commands", "Clauses", "Constraint", "Keywords"],correct:2,exp:"A rule applied to a field is called a constraint."},
+{q:"EDML stands for",options:["Embedded Data Manipulation Language", "Essential Data Manipulation Language", "Embedded Data Monitoring Language", "Embedded Data Manipulation Learning"],correct:0,exp:"EDML stands for Embedded Data Manipulation Language."},
+{q:"Which constraint may use relational and logical operators for condition?",options:["Check", "Unique", "Limit", "Assign"],correct:0,exp:"The CHECK constraint can use relational/logical operators."},
+{q:"The constraint used to assign a default value for the field in table is",options:["Assign", "Default", "Set", "Reset"],correct:1,exp:"The DEFAULT constraint assigns a default value."},
+{q:"Which keyword will display every row of the table without considering duplicate entries?",options:["DISTINCT", "ALL", "DUPLICATE", "IN"],correct:1,exp:"ALL displays every row, including duplicates, without filtering."},
+{q:"Which command used to delete all the rows but it does not free the space containing the table?",options:["DELETE", "ERASE", "TRUNCATE", "DROP"],correct:0,exp:"DELETE removes rows but doesn't free the table's storage space."},
+{q:"Which command used to delete all the rows from the table, the structure remains and the space is freed?",options:["DELETE", "ERASE", "TRUNCATE", "DROP"],correct:2,exp:"TRUNCATE removes all rows and frees the space, keeping the table structure."},
+{q:"Which keyword is used to sort the data in descending order?",options:["ASC", "DSC", "DESC", "DASC"],correct:2,exp:"DESC sorts data in descending order."}
+];
+
+const CH13_PYTHON_CSV_ADD = [
+{q:"Expansion of CSV",options:["Common Separated Values", "Colon Separated Values", "Condition Separated Values", "Comma Separated Values"],correct:3,exp:"CSV stands for Comma Separated Values."},
+{q:"Files saved in ________ cannot be opened or edited by text editors.",options:["CSV", "EXCEL", "PYTHON", "C++"],correct:1,exp:"Excel's binary/proprietary format can't be opened by plain text editors."},
+{q:"If the fields of data in your CSV file contain commas, you can protect them by enclosing those data fields in ________",options:["slash (/)", "double-quote(\u201c)", "colon (:)", "semi-colon (;)"],correct:1,exp:"Fields containing commas are enclosed in double quotes to protect them."},
+{q:"In Python, if no mode is specified the default mode _______ is used",options:["a", "w", "rt", "b"],correct:2,exp:"The default file mode in Python is 'rt' (read text)."},
+{q:"Which file mode is used to open for appending at the end of the file without truncating it?",options:["a", "w", "rt", "b"],correct:0,exp:"Mode 'a' appends to a file without truncating it."},
+{q:"Which file mode is used to open in binary mode?",options:["a", "w", "rt", "b"],correct:3,exp:"Mode 'b' opens a file in binary mode."},
+{q:"Which file mode is used to Open a file for updating (reading and writing)?",options:["a", "w", "rt", "+"],correct:3,exp:"The '+' mode opens a file for both reading and writing."},
+{q:"Which method will free up the resources that were tied with the file?",options:["remove()", "delete()", "release()", "close()"],correct:3,exp:"close() releases the resources associated with an open file."},
+{q:"A class of CSV module which helps to define parameters for reading and writing CSV is",options:["reader()", "dialect", "writer()", "close()"],correct:1,exp:"The 'dialect' class defines formatting parameters for CSV reading/writing."},
+{q:"The parameter used to remove whitespaces after the delimiter is",options:["removespace", "delspace", "skipinitialspace", "delimiter"],correct:2,exp:"skipinitialspace removes whitespace immediately after the delimiter."},
+{q:"Which of the following method takes 1-dimensional data (one row) to write in a file?",options:["write()", "writerow()", "writer()", "writerows()"],correct:1,exp:"writerow() writes a single row of data."},
+{q:"Which of the following method takes 2-dimensional data (multiple rows) to write in a file?",options:["write()", "writerow()", "writer()", "writerows()"],correct:3,exp:"writerows() writes multiple rows of data at once."},
+{q:"The default value for Line terminator is",options:["\\n", "\\r", "\\l", "\\n or \\r"],correct:3,exp:"The csv module's default line terminator combines both \\r and \\n."}
+];
+
+const CH14_IMPORTING_CPP_ADD = [
+{q:"In which language data type is not required while declaring variable?",options:["Python", "java", "C++", "All of these"],correct:0,exp:"Python is dynamically typed, so data types aren't declared explicitly."},
+{q:"A framework for interfacing C and C++ is",options:["Ctypes", "SWIG", "Cython", "Boost"],correct:1,exp:"SWIG is a framework used to interface C and C++."},
+{q:"Expansion of MinGW is",options:["Minimalist Graphics for Windows", "Minimalist GNU for Windows", "Minimum Graphics for Windows", "Minimum GNU for Windows"],correct:1,exp:"MinGW stands for Minimalist GNU for Windows."},
+{q:"Expansion of SWIG is",options:["Simplified Wrapper Information Generator", "Software Wrapper Interface Generator", "Software Wrapper Information Generator", "Simplified Wrapper Interface Generator"],correct:3,exp:"SWIG stands for Simplified Wrapper Interface Generator."},
+{q:"It is not an interface of C language?",options:["Ctypes", "PythonC API", "Boost", "Cython"],correct:2,exp:"Boost is a C++ library, not a C-language interface."},
+{q:"Which of the following is a scripting language?",options:["HTML", "Ruby", "JAVA", "C++"],correct:1,exp:"Ruby is a scripting language."},
+{q:"To clear the screen in command window use",options:["clear", "clrscr", "cls", "clean"],correct:2,exp:"'cls' clears the Windows command prompt screen."},
+{q:"Which keyword is used to import the definitions inside a module to another module?",options:["import", "getopt", "sys", "os"],correct:0,exp:"The 'import' keyword brings definitions from one module into another."},
+{q:"Which of the following is not a module in Python?",options:["sys", "getopt", "argv", "os"],correct:2,exp:"argv is an attribute of the sys module, not a module itself."},
+{q:"The list of command-line arguments passes to the Python program is",options:["sys", "getopt", "argv", "sys.argv"],correct:2,exp:"The underlying list object holding command-line arguments is called argv."},
+{q:"A module of Python helps you to parse(split) command-line options and arguments is",options:["OS", "getopt", "argv", "sys"],correct:1,exp:"The getopt module parses command-line options and arguments."},
+{q:"A special variable by default stores the name of the file is",options:["__main__", "__name__", "__sys__", "__getopt__"],correct:1,exp:"__name__ stores the name of the current module/file."}
+];
+
+const CH15_DATA_MANIPULATION_SQL_ADD = [
+{q:"Which method that returns the next number of rows (n) of the result set?",options:["fetchall()", "fetchone()", "fetchmany()", "count()"],correct:2,exp:"fetchmany() returns the next set of n rows from a query result."}
+];
+
+const CH16_DATA_VISUALIZATION_ADD = [
+{q:"The graphical representation of information and data is",options:["Data Chart", "Data Visualization", "Data graph", "Data Monitor"],correct:1,exp:"Presenting information and data graphically is called data visualization."},
+{q:"The representation of information in a graphic format is",options:["Dashboard", "Infographics", "Information graphics", "Box Plot"],correct:1,exp:"Infographics represent information in a graphic format."},
+{q:"A collection of resources assembled to create a single unified visual display is",options:["Dashboard", "Infographics", "Information graphics", "Box Plot"],correct:0,exp:"A dashboard unifies multiple resources into a single visual display."},
+{q:"A type of plot that shows the data as a collection of point is",options:["Box plot", "Line plot", "Scatter plot", "pyplot"],correct:2,exp:"A scatter plot displays data as individual points."},
+{q:"The method inside the file to display your plot is",options:["plot.show()", "plt.show()", "plot.open()", "plt.open()"],correct:1,exp:"plt.show() displays the current Matplotlib plot."},
+{q:"Which chart shows the relationship between a numerical variable and a categorical variable?",options:["Bar chart", "Line chart", "Pie chart", "Histogram"],correct:0,exp:"A bar chart relates a categorical variable to a numeric one."},
+{q:"Which of the following represents the frequency distribution of continuous variables?",options:["Bar chart", "Line chart", "Pie chart", "Histogram"],correct:3,exp:"A histogram shows the frequency distribution of continuous data."},
+{q:"This cross-looking button allows you to click it, and then click and drag your graph around.",options:["Home button", "Pan Axis", "Configure Subplots button", "Zoom button"],correct:1,exp:"The Pan Axis (cross-shaped) button lets you click-drag to move the plot view."},
+{q:"This button allows you to configure various spacing options with your figure and plot.",options:["Home button", "Pan Axis", "Configure Subplots button", "Zoom button"],correct:2,exp:"The Configure Subplots button adjusts spacing options for the figure."},
+{q:"______ and _______ are the two ways to display data in the form of a diagram.",options:["Bar Graph", "Histogram", "a) and b)", "Dashboard"],correct:2,exp:"Bar graphs and histograms are the two diagram-based ways mentioned."}
+];
+
 const CHAPTERS = [
-  {id:1, name:"Function", icon:"ƒ(x)", questions:CH1_FUNCTION},
-  {id:2, name:"Data Abstraction", icon:"◈", questions:CH2_DATA_ABSTRACTION},
-  {id:3, name:"Scoping", icon:"▢", questions:CH3_SCOPING},
-  {id:4, name:"Algorithmic Strategies", icon:"⚙", questions:CH4_ALGORITHMIC_STRATEGIES},
-  {id:5, name:"Python – Variables and Operators", icon:"🐍", questions:CH5_PYTHON_VAR_OPS},
-  {id:6, name:"Control Structures", icon:"⇄", questions:CH6_CONTROL_STRUCTURES},
-  {id:7, name:"Python Functions", icon:"ƒ", questions:CH7_PYTHON_FUNCTIONS},
-  {id:8, name:"Strings and String Manipulation", icon:"Aa", questions:CH8_STRINGS},
-  {id:9, name:"Lists, Tuples, Sets and Dictionary", icon:"[ ]", questions:CH9_LISTS_TUPLES_SETS_DICT},
-  {id:10, name:"Python Classes and Objects", icon:"⬢", questions:CH10_PYTHON_CLASSES},
-  {id:11, name:"Database Concepts", icon:"🗄", questions:CH11_DATABASE_CONCEPTS},
-  {id:12, name:"Structured Query Language (SQL)", icon:"SQL", questions:CH12_SQL},
-  {id:13, name:"Python and CSV Files", icon:"CSV", questions:CH13_PYTHON_CSV},
-  {id:14, name:"Importing C++ Programs in Python", icon:"C++", questions:CH14_IMPORTING_CPP},
-  {id:15, name:"Data Manipulation through SQL", icon:"⚙", questions:CH15_DATA_MANIPULATION_SQL},
-  {id:16, name:"Data Visualization using Python", icon:"📊", questions:CH16_DATA_VISUALIZATION}
+  {id:1, name:"Function", icon:"ƒ(x)", questions:CH1_FUNCTION, additionalQuestions:CH1_FUNCTION_ADD},
+  {id:2, name:"Data Abstraction", icon:"◈", questions:CH2_DATA_ABSTRACTION, additionalQuestions:CH2_DATA_ABSTRACTION_ADD},
+  {id:3, name:"Scoping", icon:"▢", questions:CH3_SCOPING, additionalQuestions:CH3_SCOPING_ADD},
+  {id:4, name:"Algorithmic Strategies", icon:"⚙", questions:CH4_ALGORITHMIC_STRATEGIES, additionalQuestions:CH4_ALGORITHMIC_STRATEGIES_ADD},
+  {id:5, name:"Python – Variables and Operators", icon:"🐍", questions:CH5_PYTHON_VAR_OPS, additionalQuestions:CH5_PYTHON_VAR_OPS_ADD},
+  {id:6, name:"Control Structures", icon:"⇄", questions:CH6_CONTROL_STRUCTURES, additionalQuestions:CH6_CONTROL_STRUCTURES_ADD},
+  {id:7, name:"Python Functions", icon:"ƒ", questions:CH7_PYTHON_FUNCTIONS, additionalQuestions:CH7_PYTHON_FUNCTIONS_ADD},
+  {id:8, name:"Strings and String Manipulation", icon:"Aa", questions:CH8_STRINGS, additionalQuestions:CH8_STRINGS_ADD},
+  {id:9, name:"Lists, Tuples, Sets and Dictionary", icon:"[ ]", questions:CH9_LISTS_TUPLES_SETS_DICT, additionalQuestions:CH9_LISTS_TUPLES_SETS_DICT_ADD},
+  {id:10, name:"Python Classes and Objects", icon:"⬢", questions:CH10_PYTHON_CLASSES, additionalQuestions:CH10_PYTHON_CLASSES_ADD},
+  {id:11, name:"Database Concepts", icon:"🗄", questions:CH11_DATABASE_CONCEPTS, additionalQuestions:CH11_DATABASE_CONCEPTS_ADD},
+  {id:12, name:"Structured Query Language (SQL)", icon:"SQL", questions:CH12_SQL, additionalQuestions:CH12_SQL_ADD},
+  {id:13, name:"Python and CSV Files", icon:"CSV", questions:CH13_PYTHON_CSV, additionalQuestions:CH13_PYTHON_CSV_ADD},
+  {id:14, name:"Importing C++ Programs in Python", icon:"C++", questions:CH14_IMPORTING_CPP, additionalQuestions:CH14_IMPORTING_CPP_ADD},
+  {id:15, name:"Data Manipulation through SQL", icon:"⚙", questions:CH15_DATA_MANIPULATION_SQL, additionalQuestions:CH15_DATA_MANIPULATION_SQL_ADD},
+  {id:16, name:"Data Visualization using Python", icon:"📊", questions:CH16_DATA_VISUALIZATION, additionalQuestions:CH16_DATA_VISUALIZATION_ADD}
 ];
 
 let activeChapter = null;
@@ -1138,6 +1419,8 @@ if(FIREBASE_READY){
     firebase.initializeApp(FIREBASE_CONFIG);
     fbAuth = firebase.auth();
     fbDB = firebase.firestore();
+    // cache student data locally so repeat visits load instantly instead of waiting on the network
+    fbDB.enablePersistence({synchronizeTabs:true}).catch(e=>console.warn('Firestore offline cache not enabled:', e.code || e));
   }catch(e){ console.warn('Firebase init failed', e); }
 } else if(FIREBASE_CONFIGURED && !FIREBASE_SDK_LOADED){
   console.warn(window.__fbScriptFailed
@@ -1189,10 +1472,24 @@ async function loadCloudData(uid){
   CLOUD.uid = uid;
   CLOUD.data = {};
   if(!FIREBASE_READY || !fbDB) return;
+
+  // 1) Try the local cache first — near-instant if this device has seen this account before
+  let gotFromCache = false;
   try{
-    const doc = await fbDB.collection('students').doc(uid).get();
-    if(doc.exists) CLOUD.data = doc.data() || {};
-  }catch(e){ console.warn('Cloud load failed', e); }
+    const cacheDoc = await fbDB.collection('students').doc(uid).get({source:'cache'});
+    if(cacheDoc.exists){ CLOUD.data = cacheDoc.data() || {}; gotFromCache = true; }
+  }catch(e){ /* nothing cached yet on this device — that's fine */ }
+
+  // 2) Always refresh from the server in the background, but never block the UI more than ~4s for it
+  const serverFetch = fbDB.collection('students').doc(uid).get()
+    .then(doc=>{ if(doc.exists) CLOUD.data = doc.data() || {}; })
+    .catch(e=>console.warn('Cloud load (server) failed — continuing with cached/local data', e));
+
+  if(!gotFromCache){
+    // first time on this device/browser — nothing to show yet, so wait briefly for the server, then move on regardless
+    await Promise.race([ serverFetch, new Promise(res=>setTimeout(res, 4000)) ]);
+  }
+  // if cache already had data, don't block further — serverFetch keeps syncing quietly in the background
 }
 
 const LEVEL_XP = 150;
@@ -1363,7 +1660,7 @@ function applyFontSize(size){
 }
 
 
-const SCREENS = ['chapterScreen','startScreen','testScreen','resultScreen','dashboardScreen'];
+const SCREENS = ['chapterScreen','sectionScreen','startScreen','testScreen','resultScreen','dashboardScreen'];
 function switchScreen(showId){
   SCREENS.forEach(id=>{
     const el = document.getElementById(id);
@@ -1609,13 +1906,24 @@ async function switchUser(){
 if(FIREBASE_READY && fbAuth){
   try{ fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL); }catch(e){}
   fbAuth.getRedirectResult().catch(e=>{ if(e && e.code) console.warn('Redirect sign-in error', e); });
+
+  // Safety net: never let "Checking your session…" hang for more than ~7s, no matter what.
+  const authWatchdog = setTimeout(()=>{
+    if(!document.getElementById('authChecking')?.classList.contains('hidden')){
+      document.getElementById('authChecking')?.classList.add('hidden');
+      document.getElementById('authControls')?.classList.remove('hidden');
+    }
+  }, 7000);
+
   fbAuth.onAuthStateChanged(async (user)=>{
     if(!user){
+      clearTimeout(authWatchdog);
       document.getElementById('authChecking')?.classList.add('hidden');
       document.getElementById('authControls')?.classList.remove('hidden');
       return; // stay on the "Sign in with Google" step
     }
     await loadCloudData(user.uid);
+    clearTimeout(authWatchdog);
     const saved = CLOUD.data.student;
     if(saved && saved.name && saved.cls){
       student = saved;
@@ -1700,9 +2008,36 @@ function openStartScreenFor(ch){
   switchScreen('startScreen');
 }
 
+let pendingChapter = null;
+
 function selectChapter(id){
-  activeChapter = CHAPTERS.find(c=>c.id===id);
+  pendingChapter = CHAPTERS.find(c=>c.id===id);
+  document.getElementById('sectionTitle').textContent = `Ch ${pendingChapter.id}: ${pendingChapter.name}`;
+  document.getElementById('sectionBookCount').textContent = `${pendingChapter.questions.length} Questions`;
+  const addCount = (pendingChapter.additionalQuestions || []).length;
+  document.getElementById('sectionAddCount').textContent = `${addCount} Questions`;
+  const addCard = document.getElementById('sectionAddCard');
+  addCard.style.opacity = addCount === 0 ? '.45' : '1';
+  addCard.style.pointerEvents = addCount === 0 ? 'none' : 'auto';
+  switchScreen('sectionScreen');
+}
+
+function chooseSection(type){
+  const ch = pendingChapter;
+  if(type === 'bookback'){
+    activeChapter = {id: ch.id, name: `${ch.name} — Book Back`, questions: ch.questions};
+  } else {
+    activeChapter = {id: ch.id, name: `${ch.name} — Public Additional Questions`, questions: ch.additionalQuestions};
+  }
   openStartScreenFor(activeChapter);
+}
+
+function goBackFromStart(){
+  if(pendingChapter && activeChapter && typeof activeChapter.id === 'number'){
+    switchScreen('sectionScreen');
+  } else {
+    showChapterScreen();
+  }
 }
 
 function selectMixedTest(){
@@ -1742,6 +2077,7 @@ function startTest(){
   clearInterval(timerInterval);
   timerInterval = setInterval(tickTimer,1000);
 }
+
 
 renderChapterGrid();
 
