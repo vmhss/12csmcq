@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vmhss.github.io/12csmcq/sitemap.xml
