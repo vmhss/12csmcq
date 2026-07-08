@@ -1,0 +1,17 @@
+{
+  "name": "12th CS Practice Portal - Vethathiri Maharishi Higher Secondary School, S.V.G Puram",
+  "short_name": "CS Practice",
+  "description": "12th Computer Science one-mark practice portal with 16 chapters, mixed tests, and spaced-repetition weak-question review.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EEF2FF",
+  "theme_color": "#2563EB",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
