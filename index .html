@@ -139,9 +139,12 @@ button{font-family:inherit;cursor:pointer}
 
 .test-topbar{background:var(--card);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:62px;z-index:40}
 .test-topbar-inner{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:9px}
-.test-topbar-row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--muted);font-weight:700}
-.test-home-btn{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-weight:700;font-size:.78rem;padding:6px 12px;border-radius:20px;transition:.2s}
-.test-home-btn:hover{transform:scale(1.05);border-color:var(--primary);color:var(--primary)}
+.test-topbar-row{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--muted);font-weight:700}
+.test-home-btn{
+  background:var(--bg);border:1px solid var(--border);color:var(--text);font-weight:700;font-size:.78rem;
+  padding:5px 12px;border-radius:20px;transition:.2s;display:inline-flex;align-items:center;gap:4px;
+}
+.test-home-btn:hover{background:var(--card);transform:translateY(-1px);box-shadow:var(--shadow)}
 .timer{font-weight:800;color:var(--primary);transition:.2s}
 .timer.warn{color:var(--amber)}
 .timer.danger{color:var(--error);animation:pulse 1s infinite}
@@ -454,6 +457,8 @@ html[data-fontsize="large"]{font-size:126%}
 .featured-card:hover{transform:translateY(-5px) scale(1.015)}
 .featured-card.mixed{background:linear-gradient(135deg,var(--primary),var(--purple) 70%,var(--pink))}
 .featured-card.weak{background:linear-gradient(135deg,var(--amber),#f97316 70%,var(--error))}
+.featured-card.physics{background:linear-gradient(135deg,#0ea5e9,#22c55e 70%,#10b981)}
+.featured-card.chemistry{background:linear-gradient(135deg,#d946ef,#f43f5e 60%,#f59e0b)}
 .featured-card .f-icon{font-size:1.6rem;margin-bottom:8px}
 .featured-card .f-title{font-weight:800;font-size:1rem;margin-bottom:4px;font-family:var(--font-head)}
 .featured-card .f-sub{font-size:.78rem;opacity:.9}
@@ -693,10 +698,12 @@ html[data-fontsize="large"]{font-size:126%}
         <label>Your Class</label>
         <input type="hidden" id="studentClass" value="">
         <div class="class-picker" id="classPicker">
-          <button type="button" class="class-chip" data-cls="12 B1" style="animation-delay:.05s">12 B1<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 B2" style="animation-delay:.1s">12 B2<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 B3" style="animation-delay:.15s">12 B3<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="Other" style="animation-delay:.2s">Other<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 A1" style="animation-delay:.05s">12 A1<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 A2" style="animation-delay:.1s">12 A2<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B1" style="animation-delay:.15s">12 B1<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B2" style="animation-delay:.2s">12 B2<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B3" style="animation-delay:.25s">12 B3<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="Other" style="animation-delay:.3s">Other<span class="chip-check">✓</span></button>
         </div>
       </div>
       <div class="welcome-error" id="welcomeError"></div>
@@ -760,6 +767,18 @@ html[data-fontsize="large"]{font-size:126%}
       <div class="f-icon">📐</div>
       <div class="f-title">Mathematics</div>
       <div class="f-sub">Matrices, Calculus, Probability &amp; more</div>
+    </div>
+    <div class="featured-card physics" onclick="selectSubject('physics')">
+      <div class="f-badge">11 Ch</div>
+      <div class="f-icon">🧪</div>
+      <div class="f-title">Physics</div>
+      <div class="f-sub">Electrostatics, Optics, Modern Physics &amp; more</div>
+    </div>
+    <div class="featured-card chemistry" onclick="selectSubject('chemistry')">
+      <div class="f-badge">15 Units</div>
+      <div class="f-icon">⚗️</div>
+      <div class="f-title">Chemistry</div>
+      <div class="f-sub">Metallurgy, Organic Chemistry, Biomolecules &amp; more</div>
     </div>
   </div>
 </div>
@@ -829,7 +848,7 @@ html[data-fontsize="large"]{font-size:126%}
   <div class="test-topbar">
     <div class="test-topbar-inner">
       <div class="test-topbar-row">
-        <button class="test-home-btn" id="testHomeBtn" onclick="confirmExitTest()" aria-label="Go back to home">🏠 Home</button>
+        <button class="test-home-btn" onclick="confirmExitTest()" title="Go to Home">🏠 Home</button>
         <span id="qCounter">Question 1 / 10</span>
         <span class="timer" id="timerDisplay">10:00</span>
       </div>
@@ -865,13 +884,13 @@ html[data-fontsize="large"]{font-size:126%}
 </div>
 
 <!-- EXIT TEST MODAL -->
-<div id="exitModal" class="modal-overlay hidden">
+<div id="exitTestModal" class="modal-overlay hidden">
   <div class="modal">
-    <h3>Leave this test? 🚪</h3>
-    <p>Your progress on this attempt will be lost if you go back to home now.</p>
+    <h3>Leave this test? 🏠</h3>
+    <p>Your progress on this test won't be saved. You'll go back to the home screen.</p>
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeExitModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="exitTest()">Go to Home</button>
+      <button class="btn btn-primary" onclick="exitTestToHome()">Leave Test</button>
     </div>
   </div>
 </div>
@@ -1747,9 +1766,490 @@ const CHAPTERS_MATHS = [
   {id:112, name:"Discrete Mathematics", icon:"p∧q", questions:MU12_DISCRETE_MATH, additionalQuestions:[]}
 ];
 
+/* ================= PHYSICS QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
+const PH1_ELECTROSTATICS = [
+{q:"Two identical point charges of magnitude -q are fixed as shown, with a third charge +q placed midway between them at P. If +q is displaced a small distance from P in the indicated directions, in which direction(s) will +q be stable?",options:["A1 and A2","B1 and B2","both directions","No stable direction"],correct:1},
+{q:"Which charge configuration produces a uniform electric field?",options:["point charge","uniformly charged infinite line","uniformly charged infinite plane","uniformly charged spherical shell"],correct:2},
+{q:"What is the ratio of charges q1/q2 for a field line pattern where 11 field lines are linked with q1 and 25 with q2?",options:["1/5","25/11","5","11/25"],correct:3},
+{q:"An electric dipole is placed at an alignment angle of 30° with an electric field of 2×10⁵ N C⁻¹. It experiences a torque of 8 N m. If the dipole length is 1 cm, the charge on the dipole is",options:["4 mC","8 mC","5 mC","7 mC"],correct:1},
+{q:"Four Gaussian surfaces are given with charges inside each. Rank the electric flux through each surface in increasing order.",options:["D < C < B < A","A < B = C < D","C < A = B < D","D > C > B > A"],correct:0},
+{q:"The total electric flux for a closed surface kept inside water (with charge q enclosed) is",options:["80q/ε0","q/40ε0","q/80ε0","q/160ε0"],correct:2},
+{q:"Two identical conducting balls with positive charges q1 and q2, separated by distance r, are made to touch each other and then separated to the same distance. The force between them will be",options:["less than before","same as before","more than before","zero"],correct:2},
+{q:"Rank the electrostatic potential energies for the given systems of charges (1: Q,-Q sep. by r; 2: -Q,-Q sep. by r; 3: -Q,-2Q sep. by r; 4: Q,-2Q sep. by 2r) in increasing order.",options:["1 = 4 < 2 < 3","2 = 4 < 3 < 1","2 = 3 < 1 < 4","3 < 1 < 2 < 4"],correct:0},
+{q:"An electric field E⃗ = 10x î exists in a region of space. The potential difference V = V0 - VA, where V0 is the potential at the origin and VA is the potential at x = 2 m, is",options:["10 V","-20 V","+20 V","-10 V"],correct:2},
+{q:"A thin conducting spherical shell of radius R has charge Q uniformly distributed on its surface. The correct plot for the electrostatic potential due to this shell is",options:["Plot (a)","Plot (b)","Plot (c)","Plot (d)"],correct:1},
+{q:"Two points A and B are maintained at potentials of 7 V and -4 V respectively. The work done in moving 50 electrons from A to B is",options:["8.80 × 10⁻¹⁷ J","-8.80 × 10⁻¹⁷ J","4.40 × 10⁻¹⁷ J","5.80 × 10⁻¹⁷ J"],correct:0},
+{q:"If the voltage applied on a capacitor is increased from V to 2V, choose the correct conclusion.",options:["Q remains the same, C is doubled","Q is doubled, C is doubled","C remains same, Q doubled","Both Q and C remain same"],correct:2},
+{q:"A parallel plate capacitor stores charge Q at voltage V. If the area and the distance between the plates are each doubled, which quantity will change?",options:["Capacitance","Charge","Voltage","Energy density"],correct:3},
+{q:"Three capacitors are connected in a triangle. The equivalent capacitance between two of its points (each side having 1μF and 2μF capacitors as shown) is",options:["1 μF","2 μF","3 μF","1/4 μF"],correct:1},
+{q:"Two metallic spheres of radii 1 cm and 3 cm are given charges of -1×10⁻² C and 5×10⁻² C respectively. If connected by a conducting wire, the final charge on the bigger sphere is",options:["3 × 10⁻² C","4 × 10⁻² C","1 × 10⁻² C","2 × 10⁻² C"],correct:0}
+];
+
+const PH2_CURRENT_ELECTRICITY = [
+{q:"A current-versus-voltage graph of an unknown conductor gives ΔV=4 at ΔI=2. The resistance of this conductor is",options:["2 ohm","4 ohm","8 ohm","1 ohm"],correct:0},
+{q:"A wire of resistance 2 ohms per metre is bent to form a circle of radius 1 m. The equivalent resistance between its two diametrically opposite points, A and B, is",options:["π Ω","π/2 Ω","2π Ω","π/4 Ω"],correct:0},
+{q:"A toaster operating at 240 V has a resistance of 120 Ω. Its power is",options:["400 W","2 W","480 W","240 W"],correct:2},
+{q:"A carbon resistor of (47 ± 4.7) kΩ is to be marked with colour rings. The colour code sequence will be",options:["Yellow – Green – Violet – Gold","Yellow – Violet – Orange – Silver","Violet – Yellow – Orange – Silver","Green – Orange – Violet – Gold"],correct:1},
+{q:"What is the value of resistance of a resistor with colour bands Brown-Black-Yellow-Gold?",options:["100 kΩ","10 kΩ","1 kΩ","1000 kΩ"],correct:0},
+{q:"Two wires A and B with circular cross section are made of the same material with equal lengths. If RA = 3RB, the ratio of radius of wire A to that of B is",options:["3","√3","1/√3","1/3"],correct:2},
+{q:"A wire connected to a 230 V supply has power dissipation P1. If the wire is cut into two equal pieces and connected in parallel to the same supply, the power dissipation is P2. The ratio P2/P1 is",options:["1","2","3","4"],correct:3},
+{q:"In India electricity is supplied at 220 V; in the USA at 110 V. If the resistance of a 60W bulb for use in India is R, the resistance of a 60W bulb for use in the USA will be",options:["R","2R","R/4","R/4 (matched to explanation)"],correct:3},
+{q:"A building has 15 bulbs of 40W, 5 bulbs of 100W, 5 fans of 80W and 1 heater of 1kW, with mains voltage 220V. The maximum capacity of the main fuse of the building will be",options:["14 A","8 A","10 A","12 A"],correct:3},
+{q:"There is a current of 1.0 A in a circuit with resistors 3Ω, 2.5Ω and P connected in series across 9V. What is the resistance of P?",options:["1.5 Ω","2.5 Ω","3.5 Ω","4.5 Ω"],correct:2},
+{q:"What is the current drawn out from the battery, if three 15Ω equal resistors are connected in parallel across a 5V source?",options:["1 A","2 A","3 A","4 A"],correct:0},
+{q:"The temperature coefficient of resistance of a wire is 0.00125 per °C. At 20°C its resistance is 1 Ω. The resistance of the wire will be 2 Ω at",options:["800 °C","700 °C","850 °C","820 °C"],correct:3},
+{q:"The internal resistance of a 2.1 V cell which gives a current of 0.2 A through a resistance of 10 Ω is",options:["0.2 Ω","0.5 Ω","0.8 Ω","1.0 Ω"],correct:1},
+{q:"A piece of copper and another of germanium are cooled from room temperature to 80 K. The resistance of",options:["each of them increases","each of them decreases","copper increases and germanium decreases","copper decreases and germanium increases"],correct:3},
+{q:"In Joule's heating law, when R and t are constant, if H is taken along the y axis and I² along the x axis, the graph is",options:["straight line","parabola","circle","ellipse"],correct:0}
+];
+
+const PH3_MAGNETISM = [
+{q:"The magnetic field at the centre O of a current loop made of two straight wires (X, Z) and a semicircular arc (Y), with current flowing clockwise, is",options:["μ0I/4r, into the page","μ0I/4r, out of the page","μ0I/2r, into the page","μ0I/2r, out of the page"],correct:0},
+{q:"An electron moves in a straight line inside a charged parallel plate capacitor of uniform charge density σ. The time taken by the electron to cross the capacitor undeflected when the plates are under a constant magnetic field of induction B is",options:["ε0(e l B)/σ","ε0(l B)/(σ l)","ε0(l B)/(e σ)","ε0(l B)/σ"],correct:3},
+{q:"A particle having mass m and charge q is accelerated through a potential difference V. Find the force experienced when it is kept under a perpendicular magnetic field B.",options:["√(2q³BV/m)","√(q³B²V/2m)","√(2q³B²V/m)","√(2q³BV/m³)"],correct:2},
+{q:"A circular coil of radius 5 cm and 50 turns carries a current of 3 ampere. The magnetic dipole moment of the coil is nearly",options:["1.0 A m²","1.2 A m²","0.5 A m²","0.8 A m²"],correct:1},
+{q:"A thin insulated wire forms a plane spiral of N = 100 tight turns carrying a current I = 8 mA. The radii of the inside and outside turns are a = 50 mm and b = 100 mm. The magnetic induction at the centre of the spiral is",options:["5 μT","7 μT","8 μT","10 μT"],correct:1},
+{q:"Three wires of equal length are bent into a circle, a semi-circle, and a square. Placed in a uniform magnetic field with the same current, which loop configuration will experience the greatest torque?",options:["Circle","Semi-circle","Square","All of them"],correct:0},
+{q:"Two identical coils, each with N turns and radius R, are placed coaxially at a distance R. If I is the current in each in the same direction, the magnetic field at a point P at distance R/2 from the centre of each coil is",options:["8Nμ0I/√5R","8Nμ0I/(5^(3/2)R)","8Nμ0I/5R","4Nμ0I/√5R"],correct:1},
+{q:"A wire of length l carrying a current I along the Y direction is kept in a magnetic field B⃗ = (β/√3)(î+ĵ+k̂)T. The magnitude of Lorentz force acting on the wire is",options:["√(2/3) Ilβ","√(1/3) Ilβ","√2 Ilβ","√(1/2) Ilβ"],correct:0},
+{q:"A bar magnet of length l and magnetic moment pm is bent into the form of an arc. The new magnetic dipole moment will be",options:["pm","(3/π)pm","(2/π)pm","pm/2"],correct:1},
+{q:"A non-conducting charged ring carrying a charge of q, mass m and radius r is rotated about its axis with constant angular speed ω. Find the ratio of its magnetic moment to angular momentum.",options:["q/m","2q/m","q/2m","q/4m"],correct:2},
+{q:"The BH curve for a ferromagnetic material is shown; the material is placed inside a long solenoid with 1000 turns/cm. The current needed to demagnetize the ferromagnet completely is",options:["1.00 mA","1.25 mA","1.50 mA","1.75 mA"],correct:2},
+{q:"Two short bar magnets have magnetic moments 1.20 Am² and 1.00 Am² respectively, kept parallel on a table with north poles pointing south, separated by 20.0 cm on a common magnetic equator. If the horizontal component of Earth's field is 3.6×10⁻⁵ Wb m⁻², the resultant horizontal magnetic induction at the midpoint is",options:["3.60 × 10⁻⁵ Wb m⁻²","3.5 × 10⁻⁵ Wb m⁻²","2.56 × 10⁻⁴ Wb m⁻²","2.2 × 10⁻⁴ Wb m⁻²"],correct:2},
+{q:"The vertical component of Earth's magnetic field at a place is equal to the horizontal component. What is the value of the angle of dip at this place?",options:["30°","45°","60°","90°"],correct:1},
+{q:"A flat dielectric disc of radius R carries an excess charge with surface charge density σ, and rotates about a perpendicular axis with angular velocity ω. Find the magnitude of the torque on the disc if placed in a uniform magnetic field B directed perpendicular to the axis of rotation.",options:["(1/4)σωπR","(1/4)σωπBR²","(1/4)σωπBR³","(1/4)σωπBR⁴"],correct:3},
+{q:"The potential energy of a magnetic dipole with dipole moment pm = (-0.5î + 0.4ĵ) Am² kept in a uniform magnetic field B = 0.2î T is",options:["-0.1 J","-0.8 J","0.1 J","0.8 J"],correct:2}
+];
+const PH4_EMI_AC = [
+{q:"An electron moves on a straight line path XY, with a coil abcd adjacent to its path. What will be the direction of current, if any, induced in the coil?",options:["The current will reverse direction as the electron goes past the coil","No current will be induced","abcd","adcb"],correct:0},
+{q:"A thin semi-circular conducting ring (PQR) of radius r is falling with its plane vertical in a horizontal magnetic field B. The potential difference developed across the ring when its speed is v is",options:["Zero","Bvπr²/2, P at higher potential","πrBv, R at higher potential","2rBv, R at higher potential"],correct:3},
+{q:"The flux linked with a coil at any instant t is given by φB = 10t² - 50t + 250. The induced emf at t = 3 s is",options:["-190 V","-10 V","10 V","190 V"],correct:1},
+{q:"When the current changes from +2A to -2A in 0.05 s, an emf of 8 V is induced in a coil. The co-efficient of self-induction of the coil is",options:["0.2 H","0.4 H","0.8 H","0.1 H"],correct:3},
+{q:"The current i in a coil varies with time as a trapezoidal ramp (rising linearly, then constant, then falling). The variation of induced emf with time would be",options:["Graph (a) — step-like, constant segments","Graph (b)","Graph (c)","Graph (d)"],correct:0},
+{q:"A circular coil with a cross-sectional area of 4 cm² has 10 turns, placed at the centre of a long solenoid with 15 turns/cm and cross-sectional area 10 cm². What is their mutual inductance?",options:["7.54 μH","8.54 μH","9.54 μH","10.54 μH"],correct:0},
+{q:"In a transformer, the number of turns in the primary and secondary are 410 and 1230 respectively. If the current in the primary is 6A, that in the secondary coil is",options:["2 A","18 A","12 A","1 A"],correct:0},
+{q:"A step-down transformer reduces the supply voltage from 220 V to 11 V and increases the current from 6 A to 100 A. Its efficiency is",options:["1.2","0.83","0.12","0.9"],correct:1},
+{q:"In an RLC series circuit with an AC source, when L is removed the phase difference between voltage and current is π/3. If C is removed instead, the phase difference is again π/3. The power factor of the circuit is",options:["1/2","1/√2","1","√3/2"],correct:2},
+{q:"In a series RL circuit, the resistance and inductive reactance are the same. The phase difference between voltage and current is",options:["π/4","π/2","π/6","zero"],correct:0},
+{q:"In a series resonant RLC circuit, the voltage across the 100 Ω resistor is 40 V. The resonant frequency ω is 250 rad/s. If C is 4 μF, the voltage across L is",options:["600 V","4000 V","400 V","1 V"],correct:2},
+{q:"An inductor 20 mH, a capacitor 50 μF and a resistor 40 Ω are connected in series across a source of emf V = 10 sin 340t. The power loss in the AC circuit is",options:["0.76 W","0.89 W","0.46 W","0.67 W"],correct:2},
+{q:"The instantaneous values of alternating current and voltage in a circuit are i = (1/√2)sin(100πt), v = (1/√2)sin(100πt + π/3). The average power in watts consumed in the circuit is",options:["1/4","√3/4","1/2","1/8"],correct:3},
+{q:"In an oscillating LC circuit, the maximum charge on the capacitor is Q. The charge on the capacitor when the energy is stored equally between the electric and magnetic fields is",options:["Q/2","Q/√3","Q/√2","Q"],correct:2},
+{q:"A (20/π²)H inductor is connected to a capacitor of capacitance C. The value of C to impart maximum power at 50 Hz is",options:["50 μF","0.5 μF","500 μF","5 μF"],correct:3}
+];
+
+const PH5_EM_WAVES = [
+{q:"The dimension of 1/(μ0ε0) is",options:["[L T⁻¹]","[L² T⁻²]","[L⁻¹ T]","[L⁻² T²]"],correct:1},
+{q:"If the amplitude of the magnetic field is 3 × 10⁻⁶ T, the amplitude of the electric field for the electromagnetic wave is",options:["100 V m⁻¹","300 V m⁻¹","600 V m⁻¹","900 V m⁻¹"],correct:3},
+{q:"Which of the following electromagnetic radiations is used for viewing objects through fog?",options:["microwave","gamma rays","X-rays","infrared"],correct:3},
+{q:"Which of the following is false for electromagnetic waves?",options:["transverse","non-mechanical waves","longitudinal","produced by accelerating charges"],correct:2},
+{q:"Consider an oscillator with a charged particle oscillating about its mean position with a frequency of 300 MHz. The wavelength of electromagnetic waves produced is",options:["1 m","10 m","100 m","1000 m"],correct:0},
+{q:"The electric and magnetic fields associated with an electromagnetic wave propagating along the negative X axis can be represented by",options:["E=E0î and B=B0k̂","E=E0k̂ and B=B0ĵ","E=E0î and B=B0ĵ","E=E0ĵ and B=B0î"],correct:1},
+{q:"In an electromagnetic wave travelling in free space, the rms value of the electric field is 3 V m⁻¹. The peak value of the magnetic field is",options:["1.414 × 10⁻⁸ T","1.0 × 10⁻⁸ T","2.828 × 10⁻⁸ T","2.0 × 10⁻⁸ T"],correct:0},
+{q:"An e.m. wave propagates with velocity v⃗ = vî. If the oscillating electric field of this wave is along the +y axis, the direction of the oscillating magnetic field is along",options:["-y direction","-x direction","+z direction","-z direction"],correct:2},
+{q:"If the magnetic monopole exists, then which of Maxwell's equations needs to be modified?",options:["∮E⃗·dA⃗ = Qenclosed/ε0","∮B⃗·dA⃗ = 0","∮B⃗·dl⃗ = μ0ic + μ0ε0 d/dt∮E⃗·dA⃗","∮E⃗·dl⃗ = -d/dt∮φB"],correct:1},
+{q:"Fraunhofer lines are an example of ……. spectrum.",options:["line emission","line absorption","band emission","band absorption"],correct:1},
+{q:"Which of the following is an electromagnetic wave?",options:["α-rays","β-rays","γ-rays","all of them"],correct:2},
+{q:"Which one of these is used to produce a propagating electromagnetic wave?",options:["an accelerating charge","a charge moving with constant velocity","a stationary charge","an uncharged particle"],correct:0},
+{q:"If E = E0 Sin[10⁶x - ωt] is the electric field of a plane electromagnetic wave, the value of ω is",options:["0.3 × 10⁻¹⁴ rad s⁻¹","3 × 10⁻¹⁴ rad s⁻¹","0.3 × 10¹⁴ rad s⁻¹","3 × 10¹⁴ rad s⁻¹"],correct:3},
+{q:"Which of the following is NOT true for electromagnetic waves?",options:["it transports energy","it transports momentum","it transports angular momentum","in vacuum, it travels with different speeds which depend on their frequency"],correct:3},
+{q:"The electric and magnetic fields of an electromagnetic wave are",options:["in phase and perpendicular to each other","out of phase and not perpendicular to each other","in phase and not perpendicular to each other","out of phase and perpendicular to each other"],correct:0}
+];
+
+const PH6_RAY_OPTICS = [
+{q:"The speed of light in an isotropic medium depends on",options:["its intensity","its wavelength","the nature of propagation","the motion of the source w.r.t medium"],correct:1},
+{q:"A rod of length 10 cm lies along the principal axis of a concave mirror of focal length 10 cm, with its end closer to the pole 20 cm away from the mirror. The length of the image is",options:["2.5 cm","5 cm","10 cm","15 cm"],correct:1},
+{q:"An object is placed in front of a convex mirror of focal length f. The maximum and minimum distance of the object from the mirror such that the image formed is real and magnified is",options:["2f and ∞","c and ∞","f and O","None of these"],correct:3},
+{q:"For light incident from air on a slab of refractive index 2, the maximum possible angle of refraction is",options:["30°","45°","60°","90°"],correct:0},
+{q:"If the velocity and wavelength of light in air are va and λa, and in water are vw and λw, then the refractive index of water is",options:["vw/va","va/vw","λw/λa","vaλa/(vwλw)"],correct:1},
+{q:"Stars twinkle due to",options:["reflection","total internal reflection","refraction","polarisation"],correct:2},
+{q:"When a biconvex lens of glass with refractive index 1.47 is dipped in a liquid, it acts as a plane sheet of glass. This implies that the liquid must have a refractive index",options:["less than one","less than that of glass","greater than that of glass","equal to that of glass"],correct:3},
+{q:"The radius of curvature of the curved surface of a thin planoconvex lens is 10 cm, refractive index 1.5. If the plane surface is silvered, the focal length will be",options:["5 cm","10 cm","15 cm","20 cm"],correct:3},
+{q:"An air bubble in a glass slab of refractive index 1.5 is 5 cm deep viewed from one surface and 3 cm deep viewed from the opposite face. The thickness of the slab is",options:["8 cm","10 cm","12 cm","16 cm"],correct:2},
+{q:"A ray of light travelling in a transparent medium of refractive index n falls on a surface separating the medium from air at an angle of incidence of 45°. The ray can undergo total internal reflection for which of the following n?",options:["n = 1.25","n = 1.33","n = 1.4","n = 1.5"],correct:3}
+];
+const PH7_WAVE_OPTICS = [
+{q:"A plane glass is placed over various coloured letters (violet, green, yellow, red). The letter which appears to be raised more is",options:["red","yellow","green","violet"],correct:3},
+{q:"Two point white dots are 1 mm apart on a black paper, viewed by an eye of pupil diameter 3 mm. The maximum distance at which these dots can be resolved by the eye is (λ = 500 nm)",options:["1 m","5 m","3 m","6 m"],correct:1},
+{q:"In a Young's double-slit experiment, the slit separation is doubled. To maintain the same fringe spacing on the screen, the screen-to-slit distance D must be changed to",options:["2D","D/2","√2 D","D/√2"],correct:0},
+{q:"Two coherent monochromatic light beams of intensities I and 4I are superposed. The maximum and minimum possible intensities in the resulting beam are",options:["5I and I","5I and 3I","9I and I","9I and 3I"],correct:2},
+{q:"When light is incident on a soap film of thickness 5×10⁻⁵ cm, the wavelength of light reflected maximum in the visible region is 5320 Å. The refractive index of the film is",options:["1.22","1.33","1.51","1.83"],correct:1},
+{q:"The first diffraction minimum due to a single slit of width 1.0×10⁻⁵ cm is at 30°. The wavelength of light used is",options:["400 Å","500 Å","600 Å","700 Å"],correct:1},
+{q:"A ray of light strikes a glass plate at an angle of 60°. If the reflected and refracted rays are perpendicular to each other, the refractive index of the glass is",options:["√3","3/2","√(3/2)","2"],correct:0},
+{q:"One of Young's double slits is covered with a glass plate. The position of the central maximum will",options:["get shifted downwards","get shifted upwards","remain the same","data insufficient to conclude"],correct:1},
+{q:"Light transmitted by a Nicol prism is",options:["partially polarised","unpolarised","plane polarised","elliptically polarised"],correct:2},
+{q:"The transverse nature of light is shown in",options:["interference","diffraction","scattering","polarisation"],correct:3}
+];
+
+const PH8_DUAL_NATURE = [
+{q:"The wavelength λe of an electron and λp of a photon of the same energy E are related by",options:["λp ∝ λe","λp ∝ √λe","λp ∝ 1/√λe","λp ∝ λe²"],correct:3},
+{q:"In an electron microscope, electrons are accelerated by 14 kV. If the voltage is changed to 224 kV, the de Broglie wavelength of the electrons would",options:["increase by 2 times","decrease by 2 times","decrease by 4 times","increase by 4 times"],correct:2},
+{q:"A wave associated with a moving particle of mass 3 × 10⁻⁶ g has the same wavelength as an electron moving at 6 × 10⁶ m s⁻¹. The velocity of the particle is",options:["1.82 × 10⁻¹⁸ m s⁻¹","9 × 10⁻² m s⁻¹","3 × 10⁻³¹ m s⁻¹","1.82 × 10⁻¹⁵ m s⁻¹"],correct:3},
+{q:"When a metallic surface illuminated with wavelength λ has stopping potential V, and with wavelength 2λ has stopping potential V/4, the threshold wavelength for the surface is",options:["4λ","5λ","5λ/2","3λ"],correct:3},
+{q:"If light of wavelength 330 nm is incident on a metal with work function 3.55 eV, electrons are emitted. The wavelength of the wave associated with the emitted electron is",options:["< 2.75 × 10⁻⁹ m","≥ 2.75 × 10⁻⁹ m","≤ 2.75 × 10⁻¹² m","< 2.5 × 10⁻¹⁰ m"],correct:0},
+{q:"A photoelectric surface illuminated successively by wavelength λ and λ/2 gives a maximum kinetic energy in the second case 3 times that of the first case. The work function of the material is",options:["hc/λ","2hc/λ","hc/3λ","hc/2λ"],correct:3},
+{q:"In photoelectric emission, a radiation whose frequency is 4 times the threshold frequency of a metal is incident on it. The maximum possible velocity of the emitted electron will be",options:["√(hν0/m)","√(6hν0/m)","2√(hν0/m)","√(hν0/2m)"],correct:1},
+{q:"Two radiations with photon energies 0.9 eV and 3.3 eV fall successively on a metallic surface with work function 0.6 eV. The ratio of maximum speeds of emitted electrons in the two cases will be",options:["1:4","1:3","1:1","1:9"],correct:1},
+{q:"A light source of wavelength 520 nm emits 1.04 × 10¹⁵ photons per second, while a second source of 460 nm produces 1.38 × 10¹⁵ photons per second. The ratio of power of the second source to the first is",options:["1.00","1.02","1.5","0.98"],correct:2},
+{q:"If the mean wavelength of light from the sun is 550 nm and its mean power is 3.8 × 10²⁶ W, the average number of photons received by the human eye per second from sunlight is of the order of",options:["10⁴⁵","10⁴²","10⁵⁴","10⁵¹"],correct:0},
+{q:"The threshold wavelength for a metal surface whose photoelectric work function is 3.313 eV is",options:["4125 Å","3750 Å","6000 Å","20625 Å"],correct:1},
+{q:"A light of wavelength 500 nm is incident on a sensitive metal plate of photoelectric work function 1.235 eV. The kinetic energy of the photoelectrons emitted is",options:["0.58 eV","2.48 eV","1.24 eV","1.16 eV"],correct:2},
+{q:"Photons of wavelength λ are incident on a metal. The most energetic electrons ejected are bent into a circular arc of radius R by a perpendicular magnetic field B. The work function of the metal is",options:["hc/λ - me + e²B²R²/2me","hc/λ + 2me[eBR/2me]²","hc/λ - mec² - e²B²R²/2me","hc/λ - 2me[eBR/2me]²"],correct:3},
+{q:"The work functions for metals A, B and C are 1.92 eV, 2.0 eV and 5.0 eV respectively. The metal(s) which will emit photoelectrons for radiation of wavelength 4100 Å is/are",options:["A only","both A and B","all these metals","none"],correct:1},
+{q:"Emission of electrons by the absorption of heat energy is called ……… emission.",options:["photoelectric","field","thermionic","secondary"],correct:2}
+];
+
+const PH9_ATOMIC_NUCLEAR = [
+{q:"Suppose an alpha particle accelerated by a potential of V volt collides with a nucleus of atomic number Z. The distance of closest approach of the alpha particle is",options:["14.4 (Z/V) Å","14.4 (V/Z) Å","1.44 (Z/V) Å","1.44 (Z/V) Å (alt.)"],correct:0},
+{q:"In a hydrogen atom, the electron revolving in the fourth orbit has angular momentum equal to",options:["h","h/π","4h/π","2h/π"],correct:3},
+{q:"The atomic number of a H-like atom with ionization potential 122.4 V for n=1 is",options:["1","2","3","4"],correct:2},
+{q:"The ratio of radius between the first three orbits of a hydrogen atom is",options:["1:2:3","2:4:6","1:4:9","1:3:5"],correct:2},
+{q:"The charge of cathode ray particles is",options:["positive","negative","neutral","not defined"],correct:1},
+{q:"In J.J. Thomson's e/m experiment, a beam of electrons is replaced by muons (same charge as electrons but 208 times the mass). The no-deflection condition is achieved only if",options:["B is increased by 208 times","B is decreased by 208 times","B is increased by 14.4 times","B is decreased by 14.4 times"],correct:2},
+{q:"The ratio of the wavelengths of radiation emitted for the transition from n=2 to n=1 in Li++, He+ and H is",options:["1: 2: 3","1: 4: 9","3:2:1","4: 9: 36"],correct:3},
+{q:"The electric potential of an electron is given by V = V0 ln(r/r0), where r0 is a constant. If the Bohr atom model is valid, the variation of the radius of the nth orbit rn with the principal quantum number n is",options:["rn ∝ 1/n","rn ∝ n","rn ∝ 1/n²","rn ∝ n²"],correct:1},
+{q:"If the nuclear radius of ²⁷Al is 3.6 Fermi, the approximate nuclear radius of ⁶⁴Cu in Fermi is",options:["2.4","1.2","4.8","3.6"],correct:2},
+{q:"The nucleus is approximately spherical in shape. The surface area of a nucleus with mass number A varies as",options:["A^(2/3)","A^(4/3)","A^(1/3)","A^(5/3)"],correct:0},
+{q:"The mass of a ⁷Li nucleus is 0.042 u less than the sum of masses of its nucleons. The binding energy per nucleon of ⁷Li is",options:["4 MeV","5.6 MeV","3.9 MeV","23 MeV"],correct:1},
+{q:"Mp and Mn denote the masses of the proton and neutron. A nucleus of binding energy B contains Z protons and N neutrons. The mass M(N,Z) of the nucleus is given by (c = speed of light)",options:["M(N,Z) = NMn + ZMp - Bc²","M(N,Z) = NMn + ZMp + Bc²","M(N,Z) = NMn + ZMp - B/c²","M(N,Z) = NMn + ZMp + B/c²"],correct:2},
+{q:"A radioactive nucleus (initial mass number A, atomic number Z) emits two α-particles and 2 positrons. The ratio of the number of neutrons to protons in the final nucleus will be",options:["(A-Z-4)/(Z-2)","(A-Z-2)/(Z-6)","(A-Z-4)/(Z-6)","(A-Z-12)/(Z-4)"],correct:1},
+{q:"The half-life of radioactive element A is the same as the mean life of element B. Initially both have the same number of atoms. Then",options:["A and B have the same decay rate initially","A and B decay at the same rate always","B will decay at a faster rate than A","A will decay at a faster rate than B"],correct:2},
+{q:"A radioactive element has N0 nuclei at t=0. The number of nuclei remaining after half of a half-life (t = T½/2) is",options:["N0/2","N0/√2","N0/4","N0/8"],correct:1}
+];
+const PH10_ELECTRONICS = [
+{q:"The barrier potential of a silicon diode is approximately",options:["0.7 V","0.3 V","2.0 V","2.2 V"],correct:0},
+{q:"Doping a semiconductor results in",options:["a decrease in mobile charge carriers","a change in chemical properties","a change in the crystal structure","the breaking of the covalent bond"],correct:2},
+{q:"In an unbiased p-n junction, the majority charge carriers (holes) in the p-region diffuse into the n-region because of",options:["the potential difference across the p-n junction","the higher hole concentration in the p-region than in the n-region","the attraction of free electrons of the n-region","the higher concentration of electrons in the n-region than in the p-region"],correct:1},
+{q:"If a positive half-wave rectified voltage is fed to a load resistor, for which part of a cycle will there be current flow through the load?",options:["0°–90°","90°–180°","0°–180°","0°–360°"],correct:2},
+{q:"The zener diode is primarily used as a",options:["Rectifier","Amplifier","Oscillator","Voltage regulator"],correct:3},
+{q:"The principle on which a solar cell operates is",options:["Diffusion","Recombination","Photovoltaic action","Carrier flow"],correct:2},
+{q:"The light emitted in an LED is due to",options:["Recombination of charge carriers","Reflection of light due to lens action","Amplification of light falling at the junction","Large current capacity"],correct:0},
+{q:"The barrier potential of a p-n junction depends on i) type of semiconductor material ii) amount of doping iii) temperature. Which one of the following is correct?",options:["(i) and (ii) only","(ii) only","(ii) and (iii) only","(i) (ii) and (iii)"],correct:3},
+{q:"To obtain sustained oscillation in an oscillator,",options:["Feedback should be positive","Feedback factor must be unity","Phase shift must be 0 or 2π","All the above"],correct:3},
+{q:"If the input to the NOT gate is A = 1011, its output is",options:["0100","1000","1100","0011"],correct:0},
+{q:"Which one of the following represents a forward-biased diode?",options:["Configuration (a) — 0V at P, -2V at N","Configuration (b)","Configuration (c)","Configuration (d)"],correct:0},
+{q:"The given electrical network of gates is equivalent to",options:["AND gate","OR gate","NOR gate","NOT gate"],correct:2},
+{q:"The output of a given logic circuit is 1 when the input ABC is",options:["101","100","110","010"],correct:0},
+{q:"The variation of frequency of the carrier wave with respect to the amplitude of the modulating signal is called",options:["Amplitude modulation","Frequency modulation","Phase modulation","Pulse width modulation"],correct:1},
+{q:"The frequency range of 3 MHz to 30 MHz is used for",options:["Ground wave propagation","Space wave propagation","Sky wave propagation","Satellite communication"],correct:2}
+];
+
+const PH11_RECENT_DEVELOPMENTS = [
+{q:"The particle size of ZnO material is 30 nm. Based on the dimension, it is classified as",options:["Bulk material","Nanomaterial","Soft material","Magnetic material"],correct:1},
+{q:"Which one of the following is a natural nanomaterial?",options:["Peacock feather","Peacock beak","Grain of sand","Skin of the whale"],correct:0},
+{q:"The blueprint for making ultra durable synthetic material is mimicked from",options:["Lotus leaf","Morpho butterfly","Parrot fish","Peacock feather"],correct:2},
+{q:"The method of making nanomaterial by assembling atoms is called",options:["Top down approach","Bottom up approach","Cross down approach","Diagonal approach"],correct:1},
+{q:"\"Ski wax\" is an application of a nano product in the field of",options:["Medicine","Textile","Sports","Automotive industry"],correct:2},
+{q:"The materials used in Robotics are",options:["Aluminium and silver","Silver and gold","Copper and gold","Steel and aluminum"],correct:3},
+{q:"The alloys used for muscle wires in Robots are",options:["Shape memory alloys","Gold copper alloys","Gold silver alloys","Two dimensional alloys"],correct:0},
+{q:"The technology used for stopping the brain from processing pain is",options:["Precision medicine","Wireless brain sensor","Virtual reality","Radiology"],correct:2},
+{q:"The particle which gives mass to protons and neutrons is",options:["Higgs particle","Einstein particle","Nanoparticle","Bulk particle"],correct:0},
+{q:"The gravitational waves were theoretically proposed by",options:["Conrad Rontgen","Marie Curie","Albert Einstein","Edward Purcell"],correct:2}
+];
+
+
+/* ================= CHEMISTRY QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
+const CH1_METALLURGY = [
+{q:"Bauxite has the composition",options:["Al2O3","Al2O3.nH2O","Fe2O3.2H2O","None of these"],correct:1},
+{q:"Roasting of sulphide ore gives the gas (A). (A) is a colourless gas. Aqueous solution of (A) is acidic. The gas (A) is",options:["CO2","SO3","SO2","H2S"],correct:2},
+{q:"Which one of the following reactions represents calcination?",options:["2Zn + O2 → 2ZnO","2ZnS + 3O2 → 2ZnO + 2SO2","MgCO3 → MgO + CO2","Both (a) and (c)"],correct:2},
+{q:"The metal oxide which cannot be reduced to metal by carbon is",options:["PbO","Al2O3","ZnO","FeO"],correct:1},
+{q:"Which of the metal is extracted by Hall-Heroult process?",options:["Al","Ni","Cu","Zn"],correct:0},
+{q:"Which of the following statements, about the advantage of roasting of sulphide ore before reduction, is not true?",options:["ΔG⁰f of sulphide is greater than those for CS2 and H2S","ΔG⁰r is negative for roasting of sulphide ore to oxide","Roasting of the sulphide to its oxide is thermodynamically feasible","Carbon and hydrogen are suitable reducing agents for metal sulphides"],correct:3},
+{q:"Wolframite ore is separated from tinstone by the process of",options:["Smelting","Calcination","Roasting","Electromagnetic separation"],correct:3},
+{q:"Which one of the following is not feasible? Zn(s) + Cu2+(aq) → Cu(s) + Zn2+(aq) is feasible; which reverse-type reaction is NOT feasible?",options:["Zn(s) + Cu2+(aq) → Cu(s) + Zn2+(aq)","Cu(s) + Zn2+(aq) → Zn(s) + Cu2+(aq)","Cu(s) + 2Ag+(aq) → 2Ag(s) + Cu2+(aq)","Fe(s) + Cu2+(aq) → Cu(s) + Fe2+(aq)"],correct:1},
+{q:"Electrochemical process is used to extract",options:["Iron","Lead","Sodium","Silver"],correct:2},
+{q:"Flux is a substance which is used to convert",options:["Mineral into silicate","Infusible impurities to soluble impurities","Soluble impurities to infusible impurities","All of these"],correct:1},
+{q:"Which one of the following ores is best concentrated by froth-floatation method?",options:["Magnetite","Hematite","Galena","Cassiterite"],correct:2},
+{q:"In the extraction of aluminium from alumina by electrolysis, cryolite is added to",options:["Lower the melting point of alumina","Remove impurities from alumina","Decrease the electrical conductivity","Increase the rate of reduction"],correct:0},
+{q:"Zinc is obtained from ZnO by",options:["Carbon reduction","Reduction using silver","Electrochemical process","Acid leaching"],correct:0},
+{q:"Extraction of gold and silver involves leaching with cyanide ion. Silver is later recovered by",options:["Distillation","Zone refining","Displacement with zinc","Liquation"],correct:2},
+{q:"Considering the Ellingham diagram, which of the following metals can be used to reduce alumina?",options:["Fe","Cu","Mg","Zn"],correct:2},
+{q:"Which of the following is used for concentrating ore in metallurgy?",options:["Leaching","Roasting","Froth floatation","Both leaching and froth floatation"],correct:3}
+];
+
+const CH2_PBLOCK1 = [
+{q:"An aqueous solution of borax is",options:["Neutral","Acidic","Basic","Amphoteric"],correct:2},
+{q:"Boric acid is an acid because its molecule",options:["Contains a replaceable H+ ion","Gives up a proton","Combines with a proton to form a water molecule","Accepts OH- from water, releasing a proton"],correct:3},
+{q:"Which among the following is not a borane?",options:["B2H6","B3H6","B4H10","None of these"],correct:1},
+{q:"Which of the following metals has the largest abundance in the earth's crust?",options:["Aluminium","Calcium","Magnesium","Sodium"],correct:0},
+{q:"In diborane, the number of electrons that accounts for the banana bonds is",options:["Six","Two","Four","Three"],correct:2},
+{q:"The element that does not show catenation among the following p-block elements is",options:["Carbon","Silicon","Lead","Germanium"],correct:2},
+{q:"Carbon atoms in fullerene with formula C60 have",options:["sp3 hybridised","sp hybridised","sp2 hybridised","Partially sp2 and partially sp3 hybridised"],correct:2},
+{q:"Oxidation state of carbon in its hydrides (e.g. CH4) is",options:["+4","-4","+3","+2"],correct:0},
+{q:"The basic structural unit of silicates is",options:["(SiO3)2-","(SiO4)2-","(SiO)-","(SiO4)4-"],correct:3},
+{q:"Which of these is not a monomer for a high molecular mass silicone polymer?",options:["Me3SiCl","PhSiCl3","MeSiCl3","Me2SiCl2"],correct:0},
+{q:"Which of the following is not sp2 hybridised?",options:["Graphite","Graphene","Fullerene","Dry ice"],correct:3},
+{q:"The geometry in which carbon atoms in diamond are bonded to each other is",options:["Tetrahedral","Hexagonal","Octahedral","None of these"],correct:0},
+{q:"Which of the following statements is not correct?",options:["Beryl is a cyclic silicate","Mg2SiO4 is an orthosilicate","SiO4^4- is the basic structural unit of silicates","Feldspar is not an aluminosilicate"],correct:3},
+{q:"Duralumin is an alloy of",options:["Cu, Mn","Cu, Al, Mg","Al, Mn","Al, Cu, Mn, Mg"],correct:3},
+{q:"The compound that is used in nuclear reactors as protective shields and control rods is",options:["Metal borides","Metal oxides","Metal carbonates","Metal carbide"],correct:0},
+{q:"The stability of the +1 oxidation state increases in the sequence",options:["Al < Ga < In < Tl","Tl > In < Ga < Al","In < Tl < Ga < Al","Ga < In < Al < Tl"],correct:0}
+];
+
+const CH3_PBLOCK2 = [
+{q:"In which of the following is NH3 not used?",options:["Nessler's reagent","Reagent for the analysis of IV group basic radical","Reagent for the analysis of III group basic radical","Tollen's reagent"],correct:0},
+{q:"Which is true regarding nitrogen?",options:["Least electronegative element","Has low ionisation enthalpy than oxygen","d-orbitals available","Ability to form pπ-pπ bonds with itself"],correct:3},
+{q:"An element belongs to group 15 and 3rd period of the periodic table. Its electronic configuration would be",options:["1s2 2s2 2p4","1s2 2s2 2p3","1s2 2s2 2p6 3s2 3p2","1s2 2s2 2p6 3s2 3p3"],correct:3},
+{q:"Solid (A) reacts with strong aqueous NaOH liberating a foul smelling gas (B) which spontaneously burns in air giving smoky rings. A and B are respectively",options:["P4(red) and PH3","P4(white) and PH3","S8 and H2S","P4(white) and H2S"],correct:1},
+{q:"In the brown ring test, the brown colour of the ring is due to",options:["A mixture of NO and NO2","Nitroso ferrous sulphate","Ferrous nitrate","Ferric nitrate"],correct:1},
+{q:"On hydrolysis, PCl3 gives",options:["H3PO3","PH3","H3PO4","POCl3"],correct:0},
+{q:"P4O6 reacts with cold water to give",options:["H3PO3","H4P2O7","HPO3","H3PO4"],correct:0},
+{q:"The basicity of pyrophosphorous acid (H4P2O5) is",options:["4","2","3","5"],correct:1},
+{q:"The molarity of a given orthophosphoric acid solution is 2M. Its normality is",options:["6N","4N","2N","None of these"],correct:0},
+{q:"Among the following, which is the strongest oxidizing agent?",options:["Cl2","F2","Br2","I2"],correct:1},
+{q:"The correct order of the thermal stability of hydrogen halides is",options:["HI > HBr > HCl > HF","HF > HCl > HBr > HI","HCl > HF > HBr > HI","HI > HCl > HF > HBr"],correct:1},
+{q:"Which one of the following compounds is not formed?",options:["XeOF4","XeO3","XeF2","NeF2"],correct:3},
+{q:"Most easily liquefiable noble gas is",options:["Ar","Ne","He","Kr"],correct:2},
+{q:"XeF6 on complete hydrolysis produces",options:["XeOF4","XeO2F2","XeO3","XeO2"],correct:2},
+{q:"On oxidation with iodine, sulphite ion is transformed to",options:["S4O6^2-","S2O6^2-","SO4^2-","SO3^2-"],correct:2},
+{q:"Which of the following is the strongest acid among all?",options:["HI","HF","HBr","HCl"],correct:0},
+{q:"Which one of the following orders is correct for the bond dissociation enthalpy of halogen molecules?",options:["Br2 > I2 > F2 > Cl2","F2 > Cl2 > Br2 > I2","I2 > Br2 > Cl2 > F2","Cl2 > Br2 > F2 > I2"],correct:3},
+{q:"Among the following, the correct order of acidity is",options:["HClO2 < HClO < HClO3 < HClO4","HClO4 < HClO2 < HClO < HClO3","HClO3 < HClO4 < HClO2 < HClO","HClO < HClO2 < HClO3 < HClO4"],correct:3},
+{q:"When copper is heated with concentrated HNO3 it produces",options:["Cu(NO3)2, NO and NO2","Cu(NO3)2 and N2O","Cu(NO3)2 and NO2","Cu(NO3)2 and NO"],correct:2}
+];
+
+const CH4_TRANSITION = [
+{q:"Sc (Z = 21) is a transition element but Zinc (Z = 30) is not, because",options:["Both Sc3+ and Zn2+ ions are colourless and form white compounds","In case of Sc, 3d orbitals are partially filled but in Zn these are completely filled","The last electron is assumed to be added to the 4s level in case of zinc","Both Sc and Zn do not exhibit variable oxidation states"],correct:1},
+{q:"Which of the following d-block elements has a half filled penultimate d sub-shell as well as a half filled valence sub-shell?",options:["Cr","Pd","Pt","None of these"],correct:0},
+{q:"Which one of the following ions has the same number of unpaired electrons as present in V3+?",options:["Ti3+","Fe3+","Ni2+","Cr3+"],correct:2},
+{q:"The magnetic moment of the Mn2+ ion is",options:["5.92 BM","2.80 BM","8.95 BM","3.90 BM"],correct:0},
+{q:"The catalytic behaviour of transition metals and their compounds is ascribed mainly due to",options:["Their magnetic behaviour","Their unfilled d orbitals","Their ability to adopt variable oxidation states","Their chemical reactivity"],correct:2},
+{q:"In acid medium, potassium permanganate oxidizes oxalic acid to",options:["Oxalate","Carbon dioxide","Acetate","Acetic acid"],correct:1},
+{q:"Which of the following statements is not true?",options:["On passing H2S through acidified K2Cr2O7 solution, a milky colour is observed","Na2Cr2O7 is preferred over K2Cr2O7 in volumetric analysis","K2Cr2O7 solution in acidic medium is orange in colour","K2Cr2O7 solution becomes yellow on increasing the pH beyond 7"],correct:1},
+{q:"Permanganate ion changes to ........... in acidic medium",options:["MnO4^2-","Mn2+","Mn3+","MnO2"],correct:1},
+{q:"How many moles of I2 are liberated when 1 mole of potassium dichromate reacts with potassium iodide?",options:["1","2","3","4"],correct:2},
+{q:"Which one of the following statements related to lanthanons is incorrect?",options:["Europium shows a +2 oxidation state","The basicity decreases as the ionic radius decreases from Pr to Lu","All the lanthanons are much more reactive than aluminium","Ce4+ solutions are widely used as oxidising agents in volumetric analysis"],correct:2},
+{q:"Which of the following lanthanoid ions is diamagnetic?",options:["Eu2+","Yb2+","Ce2+","Sm2+"],correct:1},
+{q:"Which of the following oxidation states is most common among the lanthanoids?",options:["4","2","5","3"],correct:3},
+{q:"The most common oxidation state of actinoids is",options:["+2","+3","+4","+6"],correct:1},
+{q:"The actinoid elements which show the highest oxidation state of +7 are",options:["Np, Pu, Am","U, Fm, Th","U, Th, Md","Es, No, Lr"],correct:0},
+{q:"Which one of the following is not correct?",options:["La(OH)3 is less basic than Lu(OH)3","In the lanthanoid series, the ionic radius of Ln3+ ions decreases","La is actually an element of the transition metal series rather than the lanthanide series","Atomic radii of Zr and Hf are the same because of lanthanide contraction"],correct:0}
+];
+
+const CH5_COORDINATION = [
+{q:"Oxidation state of iron and the charge on the ligand NO in [Fe(H2O)5NO]SO4 are",options:["+2 and 0 respectively","+3 and 0 respectively","+3 and -1 respectively","+1 and +1 respectively"],correct:3},
+{q:"A magnetic moment of 1.73 BM will be shown by one among the following",options:["TiCl4","[CoCl4]2-","[Cu(NH3)4]2+","[Ni(CN)4]2-"],correct:2},
+{q:"Which one of the following will give a pair of enantiomorphs?",options:["[Cr(NH3)6][Co(CN)6]","[Co(en)2Cl2]Cl","[Pt(NH3)4][PtCl4]","[Co(NH3)4Cl2]NO2"],correct:1},
+{q:"Which type of isomerism is exhibited by [Pt(NH3)2Cl2]?",options:["Coordination isomerism","Linkage isomerism","Optical isomerism","Geometrical isomerism"],correct:3},
+{q:"How many geometrical isomers are possible for [Pt(Py)(NH3)(Br)(Cl)]?",options:["3","4","0","15"],correct:0},
+{q:"Which one of the following pairs represents linkage isomers?",options:["[Cu(NH3)4][PtCl4] and [Pt(NH3)4][CuCl4]","[Co(NH3)5(NO2)]SO4 and [Co(NH3)5(ONO)]SO4","[Co(NH3)4(NCS)2]Cl and [Co(NH3)4(SCN)2]Cl","Both (b) and (c)"],correct:2},
+{q:"Which kind of isomerism is possible for the complex [Co(NH3)4Br2]Cl?",options:["Geometrical and ionization","Geometrical and optical","Optical and ionization","Geometrical only"],correct:0},
+{q:"Which one of the following complexes is not expected to exhibit isomerism?",options:["[Ni(NH3)4(H2O)2]2+","[Pt(NH3)2Cl2]","[Co(NH3)5SO4]Cl","[Fe(en)3]3+"],correct:3},
+{q:"A complex in which the oxidation number of the metal is zero is",options:["K4[Fe(CN)6]","[Fe(CN)3(NH3)3]","[Fe(CO)5]","Both (b) and (c)"],correct:2},
+{q:"Which of the following is paramagnetic in nature?",options:["[Zn(NH3)4]2+","[Co(NH3)6]3+","[Ni(H2O)6]2+","[Ni(CN)4]2-"],correct:2},
+{q:"Fac-mer isomerism is shown by",options:["[Co(en)3]3+","[Co(NH3)4Cl2]+","[Co(NH3)3(Cl)3]","[Co(NH3)4Cl]SO4"],correct:2},
+{q:"Which of the following statements is correct?",options:["Square planar complexes are more stable than octahedral complexes","The spin only magnetic moment of [CuCl4]2- is 1.732 BM and it has a square planar structure","The crystal field splitting energy (Δ0) of [FeF6]4- is higher than that of [Fe(CN)6]4-","The crystal field stabilization energy of [V(H2O)6]2+ is higher than the crystal field stabilization of [Ti(H2O)6]2+"],correct:3}
+];
+
+const CH6_SOLIDSTATE = [
+{q:"Graphite and diamond are",options:["Covalent and molecular crystals","Ionic and covalent crystals","Both covalent crystals","Both molecular crystals"],correct:2},
+{q:"An ionic compound AxBy crystallizes in an fcc-type crystal structure with B ions at the centre of each face and A ions occupying the centre of the cube. The correct formula of AxBy is",options:["AB","AB3","A3B","A8B6"],correct:1},
+{q:"Solid CO2 is an example of",options:["Covalent solid","Metallic solid","Molecular solid","Ionic solid"],correct:2},
+{q:"Assertion: monoclinic sulphur is an example of a monoclinic crystal system. Reason: for a monoclinic system, a ≠ b ≠ c and α = γ = 90°, β ≠ 90°.",options:["Both assertion and reason are true and reason is the correct explanation of assertion","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"In calcium fluoride, having the fluorite structure, the coordination numbers of the Ca2+ ion and F- ion are",options:["4 and 2","6 and 6","8 and 4","4 and 8"],correct:2},
+{q:"The vacant space in a bcc lattice unit cell is",options:["48%","23%","32%","26%"],correct:2},
+{q:"The yellow colour in an NaCl crystal is due to",options:["Excitation of electrons in F centres","Reflection of light from Cl- ions on the surface","Refraction of light from Na+ ions","All of the above"],correct:0},
+{q:"Schottky defect in a crystal is observed when",options:["An unequal number of cations and anions are missing from the lattice","An equal number of cations and anions are missing from the lattice","An ion leaves its normal site and occupies an interstitial site","No ion is missing from its lattice"],correct:1},
+{q:"The cation leaves its normal position in the crystal and moves to some interstitial position; this defect in the crystal is known as",options:["Schottky defect","F centre","Frenkel defect","Non-stoichiometric defect"],correct:2},
+{q:"Assertion: Due to Frenkel defect, the density of the crystalline solid decreases. Reason: In Frenkel defect, the cation and anion leave the crystal.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:3},
+{q:"The crystal with a metal deficiency defect is",options:["NaCl","FeO","ZnO","KCl"],correct:1},
+{q:"A two-dimensional solid pattern is formed by two different atoms X and Y. The black and white squares represent atoms X and Y respectively. The simplest formula for the compound based on the unit cell is",options:["XY8","X4Y9","XY2","XY4"],correct:0}
+];
+
+const CH7_KINETICS = [
+{q:"The addition of a catalyst during a chemical reaction alters which of the following quantities?",options:["Enthalpy","Activation energy","Entropy","Internal energy"],correct:1},
+{q:"The decomposition of phosphine (PH3) on tungsten at low pressure is a first order reaction. It is because",options:["The rate is proportional to the surface coverage","The rate is inversely proportional to the surface coverage","The rate is independent of the surface coverage","The rate of decomposition is slow"],correct:0},
+{q:"Assertion: The rate of reaction doubles when the concentration of the reactant is doubled if it is a first order reaction. Reason: The rate constant also doubles.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:2},
+{q:"The rate constant of a reaction is 5.8 × 10⁻² s⁻¹. The order of the reaction is",options:["First order","Zero order","Second order","Third order"],correct:0},
+{q:"If the initial concentration of the reactant is doubled, the time for half reaction is also doubled. Then the order of the reaction is",options:["Zero","One","Fraction","None"],correct:0},
+{q:"If 75% of a first order reaction was completed in 60 minutes, 50% of the same reaction under the same conditions would be completed in",options:["20 minutes","30 minutes","35 minutes","75 minutes"],correct:1},
+{q:"The half-life period of a radioactive element is 140 days. After 560 days, 1 g of the element will be reduced to",options:["1/2 g","1/4 g","1/8 g","1/16 g"],correct:3},
+{q:"The correct difference between first and second order reactions is that",options:["A first order reaction can be catalysed; a second order reaction cannot be catalysed","The half life of a first order reaction does not depend on [A0]; the half life of a second order reaction does depend on [A0]","The rate of a first order reaction does not depend on reactant concentrations, but the rate of a second order reaction does","The rate of a first order reaction depends on reactant concentrations; the rate of a second order reaction does not"],correct:1},
+{q:"After 2 hours, a radioactive substance becomes 1/16th of its original amount. The half-life (in minutes) is",options:["60 minutes","120 minutes","30 minutes","15 minutes"],correct:2},
+{q:"For a reaction with Rate = k[acetone]^(3/2), the unit of the rate constant and the rate of reaction respectively is",options:["(mol L⁻¹s⁻¹), mol^(-1/2)L^(1/2)s⁻¹","mol^(-1/2)L^(1/2)s⁻¹, (mol L⁻¹s⁻¹)","mol^(1/2)L^(1/2)s⁻¹, (mol L⁻¹s⁻¹)","(mol L s⁻¹), mol^(1/2)L^(1/2)s"],correct:1},
+{q:"For a reaction 2A + B → C + 3D, initial rate data are given for varying [A] and [B]. Doubling [A] alone doubles the rate; doubling [B] alone quadruples the rate. The rate law is",options:["rate = k[A]2[B]","rate = k[A][B]2","rate = k[A][B]","rate = k[A]1/2[B]3/2"],correct:1}
+];
+
+const CH8_IONIC = [
+{q:"Concentration of the Ag+ ions in a saturated solution of Ag2C2O4 is 2.24 × 10⁻⁴ mol L⁻¹. The solubility product of Ag2C2O4 is",options:["2.42 × 10⁻⁸ mol³ L⁻³","2.66 × 10⁻¹² mol³ L⁻³","4.5 × 10⁻¹¹ mol³ L⁻³","5.619 × 10⁻¹² mol³ L⁻³"],correct:3},
+{q:"The solubility of BaSO4 in water is 2.42 × 10⁻³ g L⁻¹ at 298K (molar mass of BaSO4 = 233 g/mol). The value of its solubility product (Ksp) will be",options:["1.08 × 10⁻¹⁴ mol²L⁻²","1.08 × 10⁻¹² mol²L⁻²","1.08 × 10⁻¹⁰ mol²L⁻²","1.08 × 10⁻⁸ mol²L⁻²"],correct:2},
+{q:"pH of a saturated solution of Ca(OH)2 is 9. The solubility product (Ksp) of Ca(OH)2 is",options:["0.5 × 10⁻¹⁵","0.25 × 10⁻¹⁰","0.125 × 10⁻¹⁵","0.5 × 10⁻¹⁰"],correct:0},
+{q:"Conjugate bases for the Bronsted acids H2O and HF are",options:["OH- and H2F+, respectively","H3O+ and F-, respectively","OH- and F-, respectively","H3O+ and H2F-, respectively"],correct:2},
+{q:"Which will make a basic buffer?",options:["50 mL of 0.1M HCl + 25 mL of 0.1M CH3COOH","100 mL of 0.1M CH3COOH + 100 mL of 0.1M NH4OH","100 mL of 0.1M HCl + 200 mL of 0.1M NH4OH","100 mL of 0.1M HCl + 100 mL of 0.1M NaOH"],correct:2},
+{q:"Which of the following fluoro-compounds is most likely to behave as a Lewis base?",options:["BF3","PF3","CF4","SiF4"],correct:1},
+{q:"Which of these is not likely to act as a Lewis base?",options:["BF3","PF3","CO","F-"],correct:0},
+{q:"The aqueous solutions of sodium formate, anilinium chloride and potassium cyanide are respectively",options:["Acidic, acidic, basic","Basic, acidic, basic","Basic, neutral, basic","None of these"],correct:1},
+{q:"Equal volumes of three acid solutions of pH 1, 2 and 3 are mixed in a vessel. What will be the H+ ion concentration in the mixture?",options:["3.7 × 10⁻²","10⁻⁶","0.111","None of these"],correct:0},
+{q:"The solubility of AgCl(s) with solubility product 1.6 × 10⁻¹⁰ in 0.1M NaCl solution would be",options:["1.26 × 10⁻⁵ M","1.6 × 10⁻⁹ M","1.6 × 10⁻¹¹ M","Zero"],correct:1},
+{q:"If the solubility product of lead iodide is 3.2 × 10⁻⁸, its solubility will be",options:["2 × 10⁻³ M","4 × 10⁻⁴ M","1.6 × 10⁻⁵ M","1.8 × 10⁻⁵ M"],correct:0},
+{q:"What is the pH of the resulting solution when equal volumes of 0.1M NaOH and 0.01M HCl are mixed?",options:["2.0","3","7.0","12.65"],correct:3},
+{q:"The dissociation constant of a weak acid is 1 × 10⁻³. To prepare a buffer solution with pH = 4, the [acid]/[salt] ratio should be",options:["4:3","3:4","10:1","1:10"],correct:3},
+{q:"The pH of a 10⁻⁵ M KOH solution will be",options:["9","5","19","None of these"],correct:0},
+{q:"H2PO4- is the conjugate base of",options:["PO4^3-","P2O5","HPO4^2-","H3PO4"],correct:3},
+{q:"Which of the following can act as a Lowry-Bronsted acid as well as base?",options:["HCl","SO4^2-","HPO4^2-","Br-"],correct:2},
+{q:"The pH of an aqueous solution is zero. The solution is",options:["Slightly acidic","Strongly acidic","Neutral","Basic"],correct:1},
+{q:"Dissociation constant of NH4OH is 1.8 × 10⁻⁵. The hydrolysis constant of NH4Cl would be",options:["1.8 × 10⁻¹⁹","5.55 × 10⁻¹⁰","5.55 × 10⁻⁵","1.80 × 10⁻⁵"],correct:1}
+];
+const CH9_ELECTROCHEM = [
+{q:"The number of electrons that have a total charge of 9650 coulombs is",options:["6.22 × 10²³","6.022 × 10²⁴","6.022 × 10²²","6.022 × 10⁻³⁴"],correct:2},
+{q:"Consider the half-cell reactions: Mn2+ + 2e- → Mn, E° = -1.18V; Mn2+ → Mn3+ + e-, E° = -1.51V. The E° for the reaction 3Mn2+ → Mn + 2Mn3+, and the possibility of the forward reaction are respectively",options:["2.69 V and spontaneous","-2.69 V and non-spontaneous","0.33 V and spontaneous","4.18 V and non-spontaneous"],correct:1},
+{q:"A button cell used in watches: Zn(s) + Ag2O(s) + H2O(l) → 2Ag(s) + Zn2+(aq) + 2OH-(aq), E°ox = 0.76V; Ag2O(s) + H2O(l) + 2e- → 2Ag(s) + 2OH-(aq), E°red = 0.34V. The cell potential will be",options:["0.84 V","1.34 V","1.10 V","0.42 V"],correct:2},
+{q:"Faraday's constant is defined as",options:["Charge carried by 1 electron","Charge carried by one mole of electrons","Charge required to deposit one mole of substance","Charge carried by 6.22 × 10¹⁰ electrons"],correct:1},
+{q:"How many faradays of electricity are required for the reaction MnO4- → Mn2+ to occur?",options:["5F","3F","1F","7F"],correct:0},
+{q:"Which of the following electrolytic solutions has the least specific conductance?",options:["2N","0.002N","0.02N","0.2N"],correct:1},
+{q:"While charging a lead storage battery",options:["PbSO4 on the cathode is reduced to Pb","PbSO4 on the anode is oxidised to PbO2","PbSO4 on the anode is reduced to Pb","PbSO4 on the cathode is oxidised to Pb"],correct:2},
+{q:"Among the following cells: (I) Leclanche cell (II) Nickel-Cadmium cell (III) Lead storage battery (IV) Mercury cell — the primary cells are",options:["I and IV","I and III","III and IV","II and III"],correct:0},
+{q:"Zinc can be coated on iron to produce galvanized iron but the reverse is not possible. It is because",options:["Zinc is lighter than iron","Zinc has a lower melting point than iron","Zinc has a lower negative electrode potential than iron","Zinc has a higher negative electrode potential than iron"],correct:3},
+{q:"Assertion: Pure iron when heated in dry air is converted into a layer of rust. Reason: Rust has the composition Fe3O4.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:3},
+{q:"In the H2-O2 fuel cell, the reaction that occurs at the cathode is",options:["O2(g) + 2H2O(l) + 4e- → 4OH-(aq)","H+(aq) + OH-(aq) → H2O(l)","2H2(g) + O2(g) → 2H2O(g)","H+(aq) + e- → 1/2 H2(g)"],correct:0},
+{q:"In the electrochemical cell Zn | ZnSO4(0.01M) || CuSO4(1.0M) | Cu, the emf is E1. When the concentration of ZnSO4 is changed to 1.0M and CuSO4 to 0.01M, the emf changes to E2. The relationship between E1 and E2 is",options:["E1 < E2","E1 > E2","E2 ≥ E1","E1 = E2"],correct:1},
+{q:"Consider the change in oxidation state of bromine corresponding to different emf values (BrO4- → BrO3- → HBrO → Br2 → Br-). The species undergoing disproportionation is",options:["Br2","BrO4-","BrO3-","HBrO"],correct:3},
+{q:"A gas X at 1 atm is bubbled through a solution containing a mixture of 1M Y- and 1M Z- at 25°C. If the reduction potential of Z > Y > X, then",options:["Y will oxidize X and not Z","Y will oxidize Z and not X","Y will oxidize both X and Z","Y will reduce both X and Z"],correct:0},
+{q:"A conductivity cell was calibrated with a 0.01M, 1:1 electrolytic solution (specific conductance = 1.25 × 10⁻³ S cm⁻¹) and the measured resistance was 800 Ω at 25°C. The cell constant is",options:["10⁻¹ cm⁻¹","10¹ cm⁻¹","1 cm⁻¹","5.7 × 10⁻¹²"],correct:2}
+];
+
+const CH10_SURFACE = [
+{q:"For a Freundlich isotherm, a graph of log(x/m) is plotted against log p. The slope and y-axis intercept respectively correspond to",options:["1/n, k","log(1/n), k","1/n, log k","log(1/n), log k"],correct:2},
+{q:"Which of the following is incorrect for physisorption?",options:["Reversible","Increases with increase in temperature","Low heat of adsorption","Increases with increase in surface area"],correct:1},
+{q:"Which one of the following characteristics is associated with adsorption?",options:["ΔG and ΔH are negative but ΔS is positive","ΔG and ΔS are negative but ΔH is positive","ΔG is negative but ΔH and ΔS are positive","ΔG, ΔH and ΔS are all negative"],correct:3},
+{q:"Fog is a colloidal solution of",options:["Solid in gas","Gas in gas","Liquid in gas","Gas in liquid"],correct:2},
+{q:"Assertion: The coagulation power of Al3+ is more than Na+. Reason: The greater the valency of the flocculating ion added, the greater its power to cause precipitation.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"To stop bleeding from an injury, ferric chloride can be applied. Which comment about this is justified?",options:["It is not true; ferric chloride is a poison","It is true; Fe3+ ions coagulate blood, which is a negatively charged sol","It is not true; ferric chloride is ionic and gets into the blood stream","It is true; coagulation happens due to a negatively charged sol with Cl-"],correct:1},
+{q:"Hair cream is a/an",options:["Gel","Emulsion","Solid sol","Sol"],correct:1},
+{q:"Which one of the following is correctly matched?",options:["Emulsion - Smoke","Gel - Butter","Foam - Mist","Whipped cream - Sol"],correct:1},
+{q:"The most effective electrolyte for the coagulation of an As2S3 sol is",options:["NaCl","Ba(NO3)2","K3[Fe(CN)6]","Al2(SO4)3"],correct:3},
+{q:"The phenomenon observed when a beam of light is passed through a colloidal solution is",options:["Cataphoresis","Electrophoresis","Coagulation","Tyndall effect"],correct:3},
+{q:"Collodion is a 4% solution of which one of the following compounds in an alcohol-ether mixture?",options:["Nitroglycerine","Cellulose acetate","Glycol dinitrate","Nitrocellulose"],correct:3},
+{q:"Which one of the following is an example of homogeneous catalysis?",options:["Manufacture of ammonia by Haber's process","Manufacture of sulphuric acid by the contact process","Hydrogenation of oil","Hydrolysis of sucrose in the presence of dilute HCl"],correct:3},
+{q:"Adsorption of a gas on a solid metal surface is spontaneous and exothermic; then",options:["ΔH increases","ΔS increases","ΔG increases","ΔS decreases"],correct:3},
+{q:"On which of the following properties does the coagulating power of an ion depend?",options:["Both the magnitude and sign of the charge on the ion","Size of the ion alone","The magnitude of the charge on the ion alone","The sign of charge on the ion alone"],correct:0},
+{q:"Which of the following is not a surfactant?",options:["CH3(CH2)15N+(CH3)3Br-","CH3(CH2)15NH2","CH3(CH2)16CH2OSO3-Na+","OHC(CH2)14CH2COO-Na+"],correct:1}
+];
+
+const CH11_HYDROXY = [
+{q:"Carbolic acid is",options:["Phenol","Picric acid","Benzoic acid","Phenylacetic acid"],correct:0},
+{q:"Which one of the following is the strongest acid among the substituted phenols?",options:["2-nitrophenol","4-chlorophenol","4-nitrophenol","3-nitrophenol"],correct:2},
+{q:"Which one of the following will react with phenol to give salicylaldehyde after hydrolysis?",options:["Dichloromethane","Trichloroethane","Trichloromethane","CO2"],correct:2},
+{q:"Assertion: Phenol is more acidic than ethanol. Reason: The phenoxide ion is resonance stabilized.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"HOCH2CH2OH on heating with periodic acid gives",options:["Methanoic acid","Glyoxal","Methanol","CO2"],correct:2},
+{q:"Which of the following compounds can be used as antifreeze in automobile radiators?",options:["Methanol","Ethanol","Neopentyl alcohol","Ethane-1,2-diol"],correct:3},
+{q:"Isopropylbenzene on air oxidation in the presence of dilute acid gives",options:["C6H5COOH","C6H5COCH3","C6H5COC6H5","C6H5OH"],correct:3},
+{q:"Assertion: Phenol is more reactive than benzene towards electrophilic substitution. Reason: In phenol, the intermediate arenium ion is more stabilized by resonance.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"Williamson synthesis of preparing dimethyl ether is a/an",options:["SN1 reaction","SN2 reaction","Electrophilic addition","Electrophilic substitution"],correct:1},
+{q:"On reacting with neutral ferric chloride, phenol gives",options:["Red colour","Violet colour","Dark green colour","No colouration"],correct:1},
+{q:"The correct IUPAC name of the compound is often asked for chloro-methyl substituted pentanols. Which naming pattern fits 4-chloro-2,3-dimethylpentan-1-ol?",options:["4-chloro-2,3-dimethylpentan-1-ol","2,3-dimethyl-4-chloropentan-1-ol","2,3,4-trimethyl-4-chlorobutan-1-ol","4-chloro-2,3,4-trimethylpentan-1-ol"],correct:0},
+{q:"In the reaction sequence ethanol → (PCl5) → chloroethane → (alc. KOH) → ethene → (H2SO4/H2O), the final product Z is",options:["Ethane","Ethoxyethane","Ethyl bisulphite","Ethanol"],correct:3},
+{q:"Which of the following compounds on reaction with methyl magnesium bromide will give a tertiary alcohol?",options:["Benzaldehyde","Propanoic acid","Methyl propanoate","Acetaldehyde"],correct:2}
+];
+
+const CH12_CARBONYL = [
+{q:"The formation of cyanohydrin from acetone is an example of",options:["Nucleophilic substitution","Electrophilic substitution","Electrophilic addition","Nucleophilic addition"],correct:3},
+{q:"Reaction of acetone with one of the following reagents involves nucleophilic addition followed by elimination of water. The reagent is",options:["Grignard reagent","Sn/HCl","Hydrazine in the presence of a slightly acidic solution","Hydrocyanic acid"],correct:2},
+{q:"Assertion: 2,2-dimethylpropanoic acid does not give the HVZ reaction. Reason: 2,2-dimethylpropanoic acid does not have an α-hydrogen atom.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"Which of the following represents the correct order of acidity in haloacetic acids?",options:["FCH2COOH > CH3COOH > BrCH2COOH > ClCH2COOH","FCH2COOH > ClCH2COOH > BrCH2COOH > CH3COOH","CH3COOH > ClCH2COOH > FCH2COOH > BrCH2COOH","ClCH2COOH > CH3COOH > BrCH2COOH > ICH2COOH"],correct:1},
+{q:"Ethanoic acid on reaction with P/Br2 gives 2-bromoethanoic acid. This reaction is called",options:["Finkelstein reaction","Haloform reaction","Hell-Volhard-Zelinsky reaction","None of these"],correct:2},
+{q:"Which one of the following reduces Tollens' reagent?",options:["Formic acid","Acetic acid","Benzophenone","None of these"],correct:0},
+{q:"The IUPAC name of CH2=CH-CH2-COOH is",options:["But-3-enoic acid","But-1-ene-4-oic acid","But-2-ene-1-oic acid","But-3-ene-1-oic acid"],correct:0},
+{q:"Assertion: p-N,N-dimethylaminobenzaldehyde undergoes benzoin condensation. Reason: The aldehydic (-CHO) group is meta directing.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:1},
+{q:"Which one of the following reactions is an example of a disproportionation reaction?",options:["Aldol condensation","Cannizzaro reaction","Benzoin condensation","None of these"],correct:1},
+{q:"Which one of the following undergoes reaction with 50% sodium hydroxide solution to give the corresponding alcohol and acid?",options:["Phenylmethanal","Ethanal","Ethanol","Methanol"],correct:0},
+{q:"The reagent used to distinguish between acetaldehyde and benzaldehyde is",options:["Tollens' reagent","Fehling's solution","2,4-dinitrophenylhydrazine","Semicarbazide"],correct:1},
+{q:"In which of the following reactions is a new carbon-carbon bond not formed?",options:["Aldol condensation","Friedel-Crafts reaction","Kolbe's reaction","Wolff-Kishner reduction"],correct:3},
+{q:"Carboxylic acids have higher boiling points than aldehydes, ketones and even alcohols of comparable molecular mass. It is due to their",options:["More extensive association via van der Waals forces","Formation of a carboxylate ion","Formation of intramolecular H-bonding","Formation of intermolecular H-bonding"],correct:3}
+];
+
+const CH13_NITROGEN = [
+{q:"Which of the following reagents can be used to convert nitrobenzene to aniline?",options:["Sn/HCl","Zn-Hg/NaOH","LiAlH4","All of these"],correct:0},
+{q:"The method by which aniline cannot be prepared is",options:["Degradation of benzamide with Br2/NaOH","Potassium salt of phthalimide treated with chlorobenzene followed by hydrolysis","Hydrolysis of phenylcyanide with acidic solution","Reduction of nitrobenzene by Sn/HCl"],correct:1},
+{q:"Which one of the following will not undergo the Hofmann bromamide reaction?",options:["CH3CONHCH3","CH3CH2CONH2","CH3CONH2","C6H5CONH2"],correct:0},
+{q:"Assertion: Acetamide on reaction with KOH and bromine gives acetic acid. Reason: Bromine catalyses the hydrolysis of acetamide.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:3},
+{q:"Which one of the following nitro compounds does not react with nitrous acid?",options:["CH3-CH2-CH2-NO2","(CH3)2CH-CH2NO2","(CH3)3C-NO2","CH3-CH(NO2)-OCH3"],correct:2},
+{q:"Aniline plus benzoyl chloride in the presence of NaOH gives C6H5-NH-COC6H5. This reaction is known as",options:["Friedel-Crafts reaction","HVZ reaction","Schotten-Baumann reaction","None of these"],correct:2},
+{q:"The product formed by the reaction of an aldehyde with a primary amine is",options:["Carboxylic acid","Aromatic acid","Schiff's base","Ketone"],correct:2},
+{q:"When aniline reacts with acetic anhydride the product formed is",options:["o-aminoacetophenone","m-aminoacetophenone","p-aminoacetophenone","Acetanilide"],correct:3},
+{q:"The order of basic strength for methyl-substituted amines in aqueous solution is",options:["N(CH3)3 > N(CH3)2H > N(CH3)H2 > NH3","N(CH3)H2 > N(CH3)2H > N(CH3)3 > NH3","NH3 > N(CH3)H2 > N(CH3)2H > N(CH3)3","N(CH3)2H > N(CH3)H2 > N(CH3)3 > NH3"],correct:3},
+{q:"Nitrobenzene on reaction with concentrated HNO3/H2SO4 at 80-100°C forms which one of the following products?",options:["1,4-dinitrobenzene","2,4,6-trinitrobenzene","1,2-dinitrobenzene","1,3-dinitrobenzene"],correct:3},
+{q:"Secondary nitroalkanes react with nitrous acid to form",options:["A red solution","A blue solution","A green solution","A yellow solution"],correct:1},
+{q:"Which of the following amines does not undergo acetylation?",options:["t-butylamine","Ethylamine","Diethylamine","Triethylamine"],correct:3},
+{q:"Which one of the following is most basic?",options:["2,4-dichloroaniline","2,4-dimethylaniline","2,4-dinitroaniline","2,4-dibromoaniline"],correct:1},
+{q:"Among the following, the reaction that proceeds through electrophilic substitution is",options:["Diazonium salt + AlCl3 giving a hydrocarbon and N2 loss","Benzene + Cl2 with AlCl3 giving chlorobenzene and HCl","Cyclohexane + Cl2 under UV light giving a substituted product","Ethanol + HCl on heating giving chloroethane and water"],correct:1},
+{q:"The ammonium salt of benzoic acid is heated strongly with P2O5, the product is reduced, then treated with NaNO2/HCl at low temperature. The final compound formed is",options:["Benzene diazonium chloride","Benzyl alcohol","Phenol","Nitrosobenzene"],correct:1}
+];
+
+const CH14_BIOMOLECULES = [
+{q:"Which one of the following rotates the plane of polarized light towards the left?",options:["D(+) Glucose","L(+) Glucose","D(-) Fructose","D(+) Galactose"],correct:2},
+{q:"Which one given below is a non-reducing sugar?",options:["Glucose","Sucrose","Maltose","Lactose"],correct:1},
+{q:"Assertion: A solution of sucrose in water is dextrorotatory, but on hydrolysis in the presence of a little hydrochloric acid, it becomes laevorotatory. Reason: Sucrose hydrolysis gives unequal amounts of glucose and fructose, causing a change in the sign of rotation.",options:["Both assertion and reason are true and reason is the correct explanation","Both assertion and reason are true but reason is not the correct explanation","Assertion is true but reason is false","Both assertion and reason are false"],correct:0},
+{q:"The central dogma of molecular genetics states that genetic information flows from",options:["Amino acids, Protein, DNA","DNA, Carbohydrates, Protein","DNA, RNA, Proteins","DNA, RNA, Carbohydrates"],correct:2},
+{q:"In a protein, various amino acids are linked together by a",options:["Peptide bond","Dative bond","α-Glycosidic bond","β-Glycosidic bond"],correct:0},
+{q:"Among the following, the achiral amino acid is",options:["2-ethylalanine","2-methylglycine","2-hydroxymethylserine","Tryptophan"],correct:1},
+{q:"The correct statement regarding RNA and DNA respectively is",options:["The sugar in RNA is arabinose, in DNA is ribose","The sugar in RNA is 2-deoxyribose, in DNA is arabinose","The sugar in RNA is arabinose, in DNA is 2-deoxyribose","The sugar in RNA is ribose, in DNA is 2-deoxyribose"],correct:3},
+{q:"In aqueous solution, amino acids mostly exist as",options:["NH2-CH(R)-COOH","NH2-CH(R)-COO-","H3N+-CH(R)-COOH","H3N+-CH(R)-COO-"],correct:3},
+{q:"Which one of the following is not produced by the body?",options:["DNA","Enzymes","Hormones","Vitamins"],correct:3},
+{q:"Vitamin B2 is also known as",options:["Riboflavin","Thiamine","Nicotinamide","Pyridoxine"],correct:0},
+{q:"The pyrimidine bases present in DNA are",options:["Cytosine and Adenine","Cytosine and Guanine","Cytosine and Thymine","Cytosine and Uracil"],correct:2},
+{q:"The secondary structure of a protein refers to",options:["The fixed configuration of the polypeptide backbone","Hydrophobic interaction","The sequence of α-amino acids","The α-helical backbone"],correct:3},
+{q:"Which of the following vitamins is water soluble?",options:["Vitamin E","Vitamin K","Vitamin A","Vitamin B"],correct:3},
+{q:"Complete hydrolysis of cellulose gives",options:["L-Glucose","D-Fructose","D-Ribose","D-Glucose"],correct:3},
+{q:"Which of the following statements is correct?",options:["Ovalbumin is a simple food reserve in egg-white","Blood proteins thrombin and fibrinogen are involved in blood clotting","Denaturation makes protein more active","Insulin maintains the sugar level in the human body"],correct:1},
+{q:"α-D(+)-Glucose and β-D(+)-Glucose are",options:["Epimers","Anomers","Enantiomers","Conformational isomers"],correct:1},
+{q:"Which of the following amino acids is achiral?",options:["Alanine","Leucine","Proline","Glycine"],correct:3}
+];
+
+const CH15_EVERYDAY = [
+{q:"Which of the following is an analgesic?",options:["Streptomycin","Chloromycetin","Aspirin","Penicillin"],correct:2},
+{q:"Antiseptics and disinfectants either kill or prevent the growth of microorganisms. Which statement is not true?",options:["Dilute solutions of boric acid and hydrogen peroxide are strong antiseptics","Disinfectants harm living tissues","A 0.2% solution of phenol is an antiseptic while a 1% solution acts as a disinfectant","Chlorine and iodine are used as strong disinfectants"],correct:1},
+{q:"Drugs that bind to the receptor site and inhibit its natural function are called",options:["Antagonists","Agonists","Enzymes","Molecular targets"],correct:0},
+{q:"Aspirin is a/an",options:["Acetylsalicylic acid","Benzoylsalicylic acid","Chlorobenzoic acid","Anthranilic acid"],correct:0},
+{q:"Natural rubber has",options:["Alternate cis- and trans-configuration","Random cis- and trans-configuration","All cis-configuration","All trans-configuration"],correct:2},
+{q:"Nylon is an example of",options:["Polyamide","Polythene","Polyester","Polysaccharide"],correct:0},
+{q:"Terylene is an example of",options:["Polyamide","Polythene","Polyester","Polysaccharide"],correct:2},
+{q:"Which one of the following is a bio-degradable polymer?",options:["HDPE","PVC","Nylon 6","PHBV"],correct:3},
+{q:"Non-stick cookware generally has a coating of a polymer whose monomer is",options:["Ethane","Prop-2-enenitrile","Chloroethene","1,1,2,2-tetrafluoroethene"],correct:3},
+{q:"Which of the following is a co-polymer?",options:["Orlon","PVC","Teflon","PHBV"],correct:3},
+{q:"The polymer used in making blankets (artificial wool) is",options:["Polystyrene","PAN","Polyester","Polythene"],correct:1},
+{q:"Regarding cross-linked or network polymers, which of the following statements is incorrect?",options:["Examples are Bakelite and melamine","They are formed from bi- and tri-functional monomers","They contain covalent bonds between various linear polymer chains","They contain weak covalent bonds in their polymer chain"],correct:3}
+];
+
+const CHAPTERS_CHEMISTRY = [
+  {id:301, name:"Metallurgy", icon:"⛏️", questions:CH1_METALLURGY, additionalQuestions:[]},
+  {id:302, name:"p-Block Elements - I", icon:"🧊", questions:CH2_PBLOCK1, additionalQuestions:[]},
+  {id:303, name:"p-Block Elements - II", icon:"🧪", questions:CH3_PBLOCK2, additionalQuestions:[]},
+  {id:304, name:"Transition and Inner Transition Elements", icon:"🔶", questions:CH4_TRANSITION, additionalQuestions:[]},
+  {id:305, name:"Coordination Chemistry", icon:"🔗", questions:CH5_COORDINATION, additionalQuestions:[]},
+  {id:306, name:"Solid State", icon:"🧱", questions:CH6_SOLIDSTATE, additionalQuestions:[]},
+  {id:307, name:"Chemical Kinetics", icon:"⏱️", questions:CH7_KINETICS, additionalQuestions:[]},
+  {id:308, name:"Ionic Equilibrium", icon:"⚖️", questions:CH8_IONIC, additionalQuestions:[]},
+  {id:309, name:"Electro Chemistry", icon:"🔋", questions:CH9_ELECTROCHEM, additionalQuestions:[]},
+  {id:310, name:"Surface Chemistry", icon:"🌫️", questions:CH10_SURFACE, additionalQuestions:[]},
+  {id:311, name:"Hydroxy Compounds and Ethers", icon:"🧫", questions:CH11_HYDROXY, additionalQuestions:[]},
+  {id:312, name:"Carbonyl Compounds and Carboxylic Acids", icon:"🍶", questions:CH12_CARBONYL, additionalQuestions:[]},
+  {id:313, name:"Organic Nitrogen Compounds", icon:"💊", questions:CH13_NITROGEN, additionalQuestions:[]},
+  {id:314, name:"Biomolecules", icon:"🧬", questions:CH14_BIOMOLECULES, additionalQuestions:[]},
+  {id:315, name:"Chemistry in Everyday Life", icon:"🧴", questions:CH15_EVERYDAY, additionalQuestions:[]}
+];
+
+
+const CHAPTERS_PHYSICS = [
+  {id:201, name:"Electrostatics", icon:"⚡", questions:PH1_ELECTROSTATICS, additionalQuestions:[]},
+  {id:202, name:"Current Electricity", icon:"I", questions:PH2_CURRENT_ELECTRICITY, additionalQuestions:[]},
+  {id:203, name:"Magnetism and Magnetic Effects of Electric Current", icon:"🧲", questions:PH3_MAGNETISM, additionalQuestions:[]},
+  {id:204, name:"Electromagnetic Induction and Alternating Current", icon:"∿", questions:PH4_EMI_AC, additionalQuestions:[]},
+  {id:205, name:"Electromagnetic Waves", icon:"📡", questions:PH5_EM_WAVES, additionalQuestions:[]},
+  {id:206, name:"Ray Optics", icon:"🔍", questions:PH6_RAY_OPTICS, additionalQuestions:[]},
+  {id:207, name:"Wave Optics", icon:"〜", questions:PH7_WAVE_OPTICS, additionalQuestions:[]},
+  {id:208, name:"Dual Nature of Radiation and Matter", icon:"e⁻", questions:PH8_DUAL_NATURE, additionalQuestions:[]},
+  {id:209, name:"Atomic and Nuclear Physics", icon:"⚛️", questions:PH9_ATOMIC_NUCLEAR, additionalQuestions:[]},
+  {id:210, name:"Electronics and Communication", icon:"💻", questions:PH10_ELECTRONICS, additionalQuestions:[]},
+  {id:211, name:"Recent Developments in Physics", icon:"🔬", questions:PH11_RECENT_DEVELOPMENTS, additionalQuestions:[]}
+];
+
 const SUBJECT_INFO = {
-  cs:    {key:'cs',    name:'Computer Science', icon:'🖥️', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,    unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
-  maths: {key:'maths', name:'Mathematics',      icon:'📐', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS, unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
+  cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
+  maths:   {key:'maths',   name:'Mathematics',      icon:'📐', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
+  physics: {key:'physics', name:'Physics',          icon:'🧪', tagline:'11 chapters • Electrostatics, Optics, Modern Physics & more', chapters:CHAPTERS_PHYSICS, unitLabel:'Ch',   sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
+  chemistry: {key:'chemistry', name:'Chemistry',     icon:'⚗️', tagline:'15 units • Metallurgy, Organic Chemistry, Biomolecules & more', chapters:CHAPTERS_CHEMISTRY, unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
 };
 let currentSubject = 'cs';
 function activeChapters(){ return SUBJECT_INFO[currentSubject].chapters; }
@@ -2605,12 +3105,12 @@ function nextQ(){
 }
 function closeModal(){ document.getElementById('submitModal').classList.add('hidden'); }
 
-function confirmExitTest(){ document.getElementById('exitModal').classList.remove('hidden'); }
-function closeExitModal(){ document.getElementById('exitModal').classList.add('hidden'); }
-function exitTest(){
+function confirmExitTest(){ document.getElementById('exitTestModal').classList.remove('hidden'); }
+function closeExitModal(){ document.getElementById('exitTestModal').classList.add('hidden'); }
+function exitTestToHome(){
   closeExitModal();
   clearInterval(timerInterval);
-  showSubjectScreen();
+  showChapterScreen();
 }
 
 function submitTest(){
@@ -2852,7 +3352,6 @@ document.addEventListener('keydown', (e)=>{
   const testScreenEl = document.getElementById('testScreen');
   if(!testScreenEl || testScreenEl.classList.contains('hidden')) return;
   if(!document.getElementById('submitModal').classList.contains('hidden')) return;
-  if(!document.getElementById('exitModal').classList.contains('hidden')) return;
   const key = e.key.toLowerCase();
   const map = {'1':0,'2':1,'3':2,'4':3,'a':0,'b':1,'c':2,'d':3};
   if(map[key]!==undefined){
