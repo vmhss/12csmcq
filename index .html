@@ -735,6 +735,7 @@ html[data-fontsize="large"]{font-size:126%}
 .sub-maths{--sc-1:#6366F1;--sc-2:#6D28D9;--sc-3:#1E1B4B;--sc-glow:rgba(99,102,241,.6)}
 .sub-physics{--sc-1:#8B5CF6;--sc-2:#5B21B6;--sc-3:#1E1044;--sc-glow:rgba(139,92,246,.6)}
 .sub-chemistry{--sc-1:#10B981;--sc-2:#0D9488;--sc-3:#052E2B;--sc-glow:rgba(16,185,129,.6)}
+.sub-ca{--sc-1:#F59E0B;--sc-2:#B45309;--sc-3:#2E1B05;--sc-glow:rgba(245,158,11,.6)}
 .subject-badge{position:relative;z-index:2;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);padding:4px 13px;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.03em;margin-bottom:8px}
 .subject-name{position:relative;z-index:2;font-family:var(--font-head);font-weight:700;font-size:1.18rem;margin:8px 0 4px}
 .subject-desc{position:relative;z-index:2;font-size:.8rem;opacity:.88;line-height:1.5;margin-bottom:16px;max-width:220px}
@@ -911,7 +912,7 @@ html[data-fontsize="large"]{font-size:126%}
 <!-- SUBJECT PICKER SCREEN -->
 <div id="subjectScreen" class="chapter-wrap hidden app-screen">
   <h2 class="subject-hub-title">Choose your world</h2>
-  <p id="subjectSubtitle">Four subjects, four practice worlds — pick one to begin</p>
+  <p id="subjectSubtitle">Five subjects, five practice worlds — pick one to begin</p>
   <div class="subject-grid tilt-parent" id="subjectGrid">
     <div class="subject-card sub-cs tilt-card" onclick="selectSubject('cs')">
       <div class="subject-card-sheen"></div>
@@ -965,6 +966,17 @@ html[data-fontsize="large"]{font-size:126%}
       </div>
       <div class="subject-name">Chemistry</div>
       <div class="subject-desc">Metallurgy, Organic Chemistry, Biomolecules &amp; more</div>
+      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
+    </div>
+    <div class="subject-card sub-ca tilt-card" onclick="selectSubject('ca')">
+      <div class="subject-card-sheen"></div>
+      <div class="subject-badge">16 Chapters</div>
+      <div class="subject-orb">
+        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
+        <span class="subject-emoji">💻</span>
+      </div>
+      <div class="subject-name">Computer Applications</div>
+      <div class="subject-desc">Multimedia, PHP, Networking &amp; E-Commerce</div>
       <div class="subject-cta">Enter world <span class="arrow">→</span></div>
     </div>
   </div>
@@ -1651,6 +1663,245 @@ const CHAPTERS_CS = [
   {id:14, name:"Importing C++ Programs in Python", icon:"C++", questions:CH14_IMPORTING_CPP, additionalQuestions:CH14_IMPORTING_CPP_ADD},
   {id:15, name:"Data Manipulation through SQL", icon:"⚙", questions:CH15_DATA_MANIPULATION_SQL, additionalQuestions:CH15_DATA_MANIPULATION_SQL_ADD},
   {id:16, name:"Data Visualization using Python", icon:"📊", questions:CH16_DATA_VISUALIZATION, additionalQuestions:CH16_DATA_VISUALIZATION_ADD}
+];
+
+/* ================= COMPUTER APPLICATIONS QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
+const CA1_MULTIMEDIA = [
+{q:"What is multimedia?",options:["a type of computer hardware","a type of computer software","a type of computer network","the use of multiple forms of media to communicate information"],correct:3},
+{q:"________ has five major components like text, images, sound, video and animation.",options:["Multimedia","Master Page","Master item","Multi-word"],correct:0},
+{q:"What is a raster image?",options:["a type of image made up of pixels","a type of image made up of geometric shapes","a type of image made up of text","a type of image made up of sound waves"],correct:0},
+{q:"What is a vector image?",options:["a type of image made of pixels","a type of image made up of geometric shapes","a type of image made up of text","a type of image made up of sound waves"],correct:1},
+{q:"Which of the following is a raster image file format?",options:["JPEG","EPS","CDR","SVG"],correct:0},
+{q:"Which of the following is a vector image file format?",options:["PSD","JPEG","EPS","BMP"],correct:2},
+{q:"RTF (Rich Text Format) file format was introduced by __________",options:["TCS","Microsoft","Apple Inc.","IBM"],correct:1},
+{q:"The expansion of JPEG is _____________",options:["Joint Photographic Experts Group","Joint Photo Experts Group","Join Photon Experts Group","Joint Photographic expressGroup"],correct:0},
+{q:"AIFF file format was developed by _______",options:["TCS","Microsoft","Apple Inc.","IBM"],correct:2},
+{q:"Which of the following is an audio file format?",options:["MP3","AVI","MPEG","PNG"],correct:0},
+];
+
+const CA2_DTP_PAGEMAKER = [
+{q:"DTP stands for ______________",options:["Desktop Publishing","Desktop Publication","Doctor To Patient","Desktop Printer"],correct:0},
+{q:"____________ is a DTP software.",options:["Lotus 1-2-3","PageMaker","Maya","Flash"],correct:1},
+{q:"Which menu contains the New option?",options:["File menu","Edit menu","Layout menu","Type menu"],correct:0},
+{q:"In PageMaker Window, the area outside of the dark border is referred to as _________.",options:["page","pasteboard","blackboard","dashboard"],correct:1},
+{q:"Shortcut to close a document in PageMaker is ______________",options:["Ctrl + A","Ctrl + B","Ctrl + C","Ctrl + W"],correct:3},
+{q:"A __________ tool is used for magnifying the particular portion of the area.",options:["Text tool","Line tool","Zoom tool","Hand tool"],correct:2},
+{q:"_________ tool is used for drawing boxes.",options:["Line","Ellipse","Rectangle","Text"],correct:2},
+{q:"Place option is present in _____________ menu.",options:["File","Edit","Layout","Window"],correct:0},
+{q:"To select an entire document using the keyboard, press ___________",options:["Ctrl + A","Ctrl + B","Ctrl + C","Ctrl + D"],correct:0},
+{q:"Character formatting consists of which of the following text properties?",options:["Bold","Italic","Underline","All of these"],correct:3},
+{q:"Which tool lets you edit text?",options:["Text tool","Type tool","Crop tool","Hand tool"],correct:0},
+{q:"Shortcut to print a document in PageMaker is _______",options:["Ctrl + A","Ctrl + P","Ctrl + C","Ctrl + V"],correct:1},
+];
+
+const CA3_DATABASE_MYSQL = [
+{q:"Which language is used to request information from a Database?",options:["Relational","Structural","Query","Compiler"],correct:2},
+{q:"The ---------- diagram gives a logical structure of the database graphically?",options:["Entity-Relationship","Entity","Architectural Representation","Database"],correct:0},
+{q:"An entity set that does not have enough attributes to form primary key is known as",options:["Strong entity set","Weak entity set","Identity set","Owner set"],correct:1},
+{q:"---------- Command is used to delete a database.",options:["Delete database database_name","Delete database_name","drop database database_name","drop database_name"],correct:2},
+{q:"MySQL belongs to which category of DBMS?",options:["Object Oriented","Hierarchical","Relational","Network"],correct:2},
+{q:"MySQL is freely available and is open source.",options:["True","False"],correct:0},
+{q:"---------- represents a \"tuple\" in a relational database?",options:["Table","Row","Column","Object"],correct:1},
+{q:"Communication is established with MySQL using",options:["SQL","Network calls","Java","API's"],correct:0},
+{q:"Which is the MySQL instance responsible for data processing?",options:["MySQL Client","MySQL Server","SQL","Server Daemon Program"],correct:1},
+{q:"The structure representing the organizational view of entire database is known as -------- in MySQL database.",options:["Schema","View","Instance","Table"],correct:0},
+];
+
+const CA4_PHP_BASICS = [
+{q:"The expansion of PHP is _________",options:["PHP: Hypertext Preprocessor","Personal Hypertext Preprocessor","Pretext Home page","Preprocessor Home Page"],correct:0},
+{q:"What is the extension of PHP file?",options:[".html",".xml",".php",".ph"],correct:2},
+{q:"The PHP script should start with _________",options:["<?php","<php","<php?","<:?"],correct:0},
+{q:"How many data types does PHP support?",options:["18","28","8","38"],correct:2},
+{q:"Every variable name in PHP must begin with a _________ symbol.",options:["#","//","$","<"],correct:2},
+{q:"_________ in PHP are case -- sensitive.",options:["variable names","keywords","Variable names and keywords","None of the above"],correct:0},
+{q:"The assignment operator is ___________",options:["=","==","===","!="],correct:0},
+{q:"_________ operators perform an action to compare two values.",options:["arithmetic","comparison","increment","logical"],correct:1},
+{q:"Which operator is called \"identical\"?",options:["=","==","===","<>"],correct:2},
+{q:"_________ is a data type which contains decimal numbers.",options:["Integer","Float","Boolean","NULL"],correct:1},
+];
+
+const CA5_PHP_FUNCTIONS_ARRAYS = [
+{q:"A_________ is a block of code that performs a specific task.",options:["parameter","function","class","label"],correct:1},
+{q:"Pre-defined functions are also called _________.",options:["user-defined functions","recursive functions","built-in functions","lambda functions"],correct:2},
+{q:"Which one of the following is the right way of defining a function in PHP?",options:["function functionname() { // code to be executed }","function() {}","def myFunction():","None of the above"],correct:0},
+{q:"A user-defined function in PHP starts with the keyword _________.",options:["function","def","defined","funct"],correct:0},
+{q:"Which of the following is a correct way to call a function in PHP?",options:["functionName();","call functionName;","execute functionName;","run functionName();"],correct:0},
+{q:"What is an array in PHP?",options:["An array is a special data type.","It can hold many values under a single variable name.","An array element can be any type of data.","All of the above"],correct:3},
+{q:"How many types of arrays are there in PHP?",options:["2","3","4","5"],correct:1},
+{q:"What is the index of the first element in an indexed array in PHP?",options:["0","1","2","3"],correct:0},
+{q:"What is the index of the third element in an indexed array in PHP with 5 elements?",options:["2","3","4","5"],correct:0},
+{q:"How do you create an indexed array in PHP?",options:["By enclosing a comma-separated list of values in square brackets","By using the array() function","By enclosing a comma-separated list of values in curly braces","Both A and B"],correct:3},
+{q:"How do you access the elements of an indexed array in PHP?",options:["By using the array index in square brackets","By using the array key in square brackets","By using the array index in curly braces","By using the array key in curly braces"],correct:0},
+];
+
+const CA6_PHP_CONDITIONALS = [
+{q:"Which of the following is NOT a type of conditional statement in PHP?",options:["if","if ... else","if ... elseif ... else","while"],correct:3},
+{q:"What type of statement is the if...else statement?",options:["Conditional statement","Looping","Input statement","Output statement"],correct:0},
+{q:"What is the simplest conditional statement in PHP?",options:["if-else statement","if statement","switch statement","if-elseif-else statement"],correct:1},
+{q:"How does the if statement work in PHP?",options:["A block of code is executed if a certain condition is true.","A block of code is executed if a certain condition is false.","A block of code is executed if multiple conditions are true.","A block of code is executed if multiple conditions are false."],correct:0},
+{q:"What happens if the condition in an \"if\" statement is false?",options:["The code inside the curly braces is executed.","The code inside the curly braces is skipped.","The program terminates.","None of the above"],correct:1},
+{q:"What is the syntax for an if-else statement in PHP?",options:["if(condition) { //True-block; }","if(condition) { //True-block; } else { //False-block; }","if-else(condition) { //True-block; } else { //False-block; }","if-elseif(condition) { //True-block; } else { //False-block; }"],correct:1},
+{q:"Which of the following is used to specify multiple conditions in an if ... elseif ... else statement?",options:["AND","OR","case","elseif"],correct:3},
+{q:"Which of the following is used to specify multiple conditions in a switch statement?",options:["AND","OR","case","if"],correct:2},
+{q:"What happens if none of the case values match the expression in a switch statement?",options:["The default case block is executed","The program terminates","The nearest case block is executed","The first case block is executed"],correct:0},
+{q:"Which of the following is used to terminate the switch statement?",options:["return","continue","goto","break"],correct:3},
+];
+
+const CA7_PHP_LOOPS = [
+{q:"Which of the following is NOT a type of loop statement in PHP?",options:["for","if ... else","while","do ... while"],correct:1},
+{q:"What type of loop is \"for loop\" in PHP?",options:["Entry-Check Loop","Exit-Check Loop","Counter Loop","Iteration Loop"],correct:2},
+{q:"What is the syntax for for loop in PHP?",options:["for(initialization; condition; increment) { // code}","foreach(initialization; condition; decrement) { // code}","while(condition)","do{...}while(condition)"],correct:0},
+{q:"What are the three parts of the for loop syntax in PHP?",options:["initialization, condition, increment","initialization, code block, condition","code block, condition, increment","condition, initialization, code block"],correct:0},
+{q:"When is the 'initialization' part of a for loop executed?",options:["Before each iteration","After each iteration","Only once at the beginning of the loop","Only once at the end of the loop"],correct:2},
+{q:"What is the purpose of the 'increment' part of a for loop?",options:["To initialize variables","To update variables","To check the condition","To execute the code block"],correct:1},
+{q:"What type of loop is \"while loop\" in PHP?",options:["Entry-Check Loop","Exit-Check Loop","Counter Loop","Iteration Loop"],correct:0},
+{q:"What type of loop is \"do...while loop\" in PHP?",options:["Entry-Check Loop","Exit-Check Loop","Counter Loop","Iteration Loop"],correct:1},
+{q:"Which looping structure should be used to iterate over elements of an array in PHP?",options:["for loop","while loop","do...while loop","foreach loop"],correct:3},
+{q:"What is the output of the following code? $array = array(1, 2, 3, 4, 5); foreach ($array as $value) { echo $value; }",options:["1 2 3 4 5","5 4 3 2 1","1 1 1 1 1","None of the above"],correct:0},
+];
+
+const CA8_HTML_FORMS_VALIDATION = [
+{q:"What are HTML forms used for?",options:["To collect input from users","To create server-side programming language","To create a database","To send emails"],correct:0},
+{q:"Which of the following is NOT a form control available in HTML forms?",options:["Text inputs","Buttons","Checkboxes","Cropping Tool"],correct:3},
+{q:"Which tag is used to create an HTML form?",options:["form","input","textarea","select"],correct:0},
+{q:"What form control allows the user to select multiple values?",options:["text inputs","buttons","checkboxes","radio buttons"],correct:2},
+{q:"What form control allows the user to select only one value at a time?",options:["text inputs","buttons","checkboxes","radio buttons"],correct:3},
+{q:"What is the purpose of validation in PHP?",options:["To check the input data submitted by the user from the client machine","To display data to users","To store data on the server","To send data to the client"],correct:0},
+{q:"How many types of validation are available in PHP?",options:["One","Two","Three","Four"],correct:1},
+];
+
+const CA9_PHP_FILES_MYSQLI = [
+{q:"Which PHP function can be used to open a file?",options:["fopen()","fread()","fclose()","fwrite()"],correct:0},
+{q:"What PHP function can be used to read a file?",options:["fopen()","fread()","fclose()","fwrite()"],correct:1},
+{q:"What PHP function can be used to close a file?",options:["fopen()","fread()","fclose()","fwrite()"],correct:2},
+{q:"Which is the correct function to execute the SQL queries in PHP ?",options:["mysqli_query(\"Connection Object\",\"SQL Query\")","query(\"Connection Object\",\"SQL Query\")","mysql_query(\"Connection Object\",\"SQL Query\")","mysql_query(\"SQL Query\")"],correct:0},
+{q:"Which is the correct function Closing Connection in PHP ?",options:["mysqli_close(\"Connection Object\");","close(\"Connection Object\");","mysql_close(\"Connection Object\");","mysqli_close(\"Database Object\");"],correct:0},
+{q:"Which is the correct function to establish Connection in PHP ?",options:["mysqli_connect(\"Server Name \",\"User Name\",\"Password\",\"DB Name\");","connect(\"Server Name \",\"User Name\",\"Password\",\"DB Name\");","mysql_connect(\"Server Name \",\"User Name\",\"Password\",\"DB Name\");","mysqli_connect (\"Database Object\");"],correct:0},
+{q:"Which is the not a correct MySQL Function in PHP ?",options:["Mysqli_connect() Function","Mysqli_close() Function","mysqli_select_data() Function","mysqli_affected_rows() Function"],correct:2},
+{q:"How many parameter are required for MYSQLi connect function in PHP ?",options:["2","3","4","5"],correct:2},
+{q:"How many parameter are required for MYSQLi query function in PHP ?",options:["2","3","4","5"],correct:0},
+{q:"How many parameter are required for MYSQLi Close function in PHP ?",options:["1","2","3","5"],correct:0},
+{q:"Which version of PHP supports MySQLi fuctions ?",options:["Version 2.0","Version 3.0","Version 4.0","Version 5.0"],correct:3},
+];
+
+const CA10_NETWORKING = [
+{q:"A set of computers connecting together is called as ----------",options:["Network","Server","Hub","Node"],correct:0},
+{q:"Many discussions in an online forum leads to personal attacks and is called",options:["Hackers","Virus","Online war","Flame war"],correct:3},
+{q:"Wi-Fi is short name for",options:["Wireless Fidelity","Wired fidelity","Wired fiber optic","Wireless fiber optic"],correct:0},
+{q:"Which among them was challenging to the business people on computer networking",options:["Hacking","Viruses","Both a & b","none of this above"],correct:2},
+{q:"Which one of the following is not the social media",options:["Gmail","Facebook","twitter","Linkedin"],correct:0},
+{q:"In mobile network, land areas for network coverage was distributed as",options:["Firmware","cells","Range","Service"],correct:1},
+{q:"Which one of the following are harmful to computer?",options:["Bloggers","Browser","Hackers","twitter"],correct:2},
+{q:"Which of the following system securely share business's information with suppliers, vendors, partners and customers.",options:["Extranet","Intranet","arpanet","arcnet"],correct:0},
+{q:"Match the following and choose the correct answer i. HTTP -The core protocol of the World Wide Web. ii. FTP- enables a client to send and receive complete files from a server. iii. SMTP - Provide e-mail services. iv. DNS- Refer to other host computers by using names rather than numbers.",options:["i, ii, iii, iv","ii, iii, iv, i","iii, iv, i, ii","iv, iii, ii, i"],correct:0},
+{q:"Communication over ------------------is be made up of voice, data, images and text messages.",options:["Social media","mobile network","whatsapp","software"],correct:1},
+{q:"Wi-Fi stands for---------------------",options:["Wireless Fidelity","wired fidelity","wired optic fibre","wireless optic fibre"],correct:0},
+{q:"A TCP/IP network with access restricted to members of an organization",options:["LAN","MAN","WAN","Intranet"],correct:3},
+{q:"RFID stands for --------------",options:["Radio Free identification","real Frequency identity","Radio Frequency indicators","Radio Frequency Identification."],correct:3},
+{q:"It guarantees the sending of data is successful and which checks error on operation at OSI layer is--------------",options:["Application layer","Network layer","Transport Layer","Physical layer"],correct:2},
+{q:"Which one of the following will secure data on transmissions",options:["HTTPS","HTTP","FTP","SMTP"],correct:0},
+{q:"----------- provides e-mail service",options:["DNS","TCP","FTP","SMTP"],correct:3},
+{q:"------------- refer to other host computers by using names rather than numbers.",options:["DNS","TCP","FTP","SMTP"],correct:0},
+];
+
+const CA11_INTERNET_DNS = [
+{q:"Which of the following is used to maintain all the directories of domain names?",options:["Domain name system","Domain name space","Name space","IP address"],correct:1},
+{q:"Which of the following notation is used to denote IPv4 addresses?",options:["Binary","Dotted-decimal","Hexadecimal","a and b"],correct:1},
+{q:"How many bits are used in the IPv6 addresses?",options:["32","64","128","16"],correct:2},
+{q:"Expansion of URL is",options:["Uniform Resource Location","Universal Resource Location","Uniform Resource Locator","Universal Resource Locator"],correct:2},
+{q:"How many types are available in URL?",options:["2","3","4","5"],correct:0},
+{q:"Maximum characters used in the label of a node?",options:["255","128","63","32"],correct:2},
+{q:"In the domain name, the sequence of labels is separated by",options:["semicolon (;)","dot (.)","colon (:)","NULL"],correct:1},
+{q:"Which of the following initiates the mapping of domain name to IP address?",options:["Zone","Domain","Resolver","Name servers"],correct:2},
+{q:"Which is the contiguous area up to which the server has access?",options:["Zone","Domain","Resolver","Name servers"],correct:0},
+{q:"Root Name servers are maintained by",options:["IANA","ICANN","WHOIS","DNS"],correct:0},
+{q:"ARPANET stands for",options:["American Research Project Agency Network","Advanced Research Project Area Network","Advanced Research Project Agency Network","American Research Programs And Network"],correct:2},
+{q:"WWW was invented by",options:["Tim Berners Lee","Charles Babbage","Blaise Pascal","John Napier"],correct:0},
+{q:"Which cable is used in cable TV?",options:["UTP cable","Fibre optics","Coaxial cable","USB cable"],correct:2},
+{q:"Expansion of UTP is",options:["Uninterrupted Twisted Pair","Uninterrupted Twisted Protocol","Unshielded Twisted Pair","Universal Twisted Protocol"],correct:2},
+{q:"Which medium is used in the optical fiber cables to transmit data?",options:["Microwave","infra red","light","sound"],correct:2},
+{q:"Which of the following is a small peripheral device with a sim slot to connect the computers to Internet?",options:["USB","Dongles","Memory card","Mobiles"],correct:1},
+{q:"Which connector is used in the Ethernet cables?",options:["RJ11","RJ21","RJ61","RJ45"],correct:3},
+{q:"Which of the following connector is called as champ connector?",options:["RJ11","RJ21","RJ61","RJ45"],correct:1},
+{q:"How many pins are used in RJ45 cables?",options:["8","6","50","25"],correct:0},
+{q:"Which wiring standard is used for connecting two computers directly?",options:["straight Through wiring","Cross Over wiring","Rollover wiring","None"],correct:1},
+];
+
+const CA12_NETWORK_SIM_OPENSOURCE = [
+{q:"If the source code of a software is freely accessible by the public, then it is known as",options:["freeware","Firmware","Open source","Public source"],correct:2},
+{q:"Which of the following is a software program that replicates the functioning of a computer network?",options:["Network software","Network simulation","Network testing","Network calculator"],correct:1},
+{q:"Which of the following can document every incident that happened in the simulation and are used for examination?",options:["Net Exam","Network hardware","Trace file","Net document"],correct:2},
+{q:"Which is an example of network simulator?",options:["simulator","TCL","Ns2","C++"],correct:2},
+{q:"Choose the Correct Pair from the following to build NS2",options:["UNIX & TCL","UNIX & a. C++","C++ & OTcl","C++ & NS2"],correct:2},
+{q:"Which of the following is not a network simulation software?",options:["Ns2","OPNET","SSFNet","C++"],correct:3},
+{q:"Which of the following is a open source network monitoring software?",options:["C++","OPNET","Open NMS","OMNet++"],correct:2},
+{q:"Open NMS was released in .....................",options:["1999","2000","2003","2004"],correct:1},
+];
+
+const CA13_ECOMMERCE_INTRO = [
+{q:"A company involved in E-Business if",options:["it has many branches across the world.","it conduct business electronically over the Internet.","it sells commodities to a foreign country.","it has many employees."],correct:1},
+{q:"Which of the following is not a tangible good?",options:["Mobile Phone","Mobile Apps","Medicine","Flower bouquet"],correct:1},
+{q:"SME stands for",options:["Small and medium sized enterprises","Simple and medium enterprises","Sound messaging enterprises","Short messaging enterprises"],correct:0},
+{q:"The dotcom phenomenon deals with ________",options:["Textile industries","Mobile phone companies","Internet based companies","All the above"],correct:2},
+{q:"Which of the following is not correctly matched",options:["The First Wave of Electronic Commerce: 1985 -1990","The Second Wave of Electronic Commerce: 2004 -- 2009","The Third Wave of Electronic Commerce: 2010 -- Present","Dotcom burst: 2000 -- 2002"],correct:1},
+{q:"Assertion (A): The websites of first wave dotcom companies were only in English. Reason (R): The dotcom companies of first wave are mostly American companies.",options:["Both (A) and (R) are correct and (R) is the correct explanation of (A)","Both (A) and (R) are correct, but (R) is not the correct explanation of (A)","(A) is true and (R) is false","(A) is false and (R) is true"],correct:0},
+{q:"Off-shoring means",options:["Work outsourced to a branch of its own company","Work outsourced to new employees","Work outsourced to a third party locally","Work outsourced to a third party outside its own country"],correct:3},
+{q:"G2G systems are classified into",options:["Internal facing and External facing","Internet and Extranet","First wave and Second wave","Left facing and Right facing"],correct:0},
+{q:"____ host the e-books on their websites.",options:["Bulk-buying websites","Community websites","Digital publishing websites","Licensing websites"],correct:2},
+{q:"Which of the following is a characteristics of E-Commerce",options:["Products can be inspected physically before purchase.","Goods are delivered instantly.","Resource focus supply side","Scope of business is global."],correct:3},
+];
+
+const CA14_EPAYMENT = [
+{q:"Based on the monetary value e payment system can be classified into",options:["Mirco and Macro","Micro and Nano","Maximum and Minimum","Maximum and Macro"],correct:0},
+{q:"______ refers to a payment made from one bank account to another bank account using eletronic methods.",options:["Electronic payment","Direct payment","Indirect payment","None of the above"],correct:0},
+{q:"Assertion (A): Macro electronic payment systems support higher value payments. Reason (R): Expensive cryptographic operations are included in macro payments",options:["Both (A) and (R) are correct and (R) is the correct explanation of (A)","Both (A) and (R) are correct, but (R) is not the correct explanation of (A)","(A) is true and (R) is false","(A) is false and (R) is true"],correct:0},
+{q:"Which of the following is correctly matched",options:["Credit Cards - pay before","Debit Cards - pay now","Stored Value Card - pay later","Smart card -- pay anytime"],correct:3},
+{q:"ECS stands for",options:["Electronic Clearing Services","Electronic Cloning Services","Electronic Clearing Station","Electronic Cloning Station"],correct:0},
+{q:"Which of the following is a online payment system for small payments.",options:["Card based payment","Micro electronic payment","Macro electronic payment","Credit card payment"],correct:1},
+{q:"Which of the following is true about Virtual payment address (VPA)",options:["Customers can use their e-mail id as VPA","VPA does not includes numbers","VPA is a unique ID","Multiple bank accounts cannot have single VPA"],correct:2},
+{q:"Pick the odd one in the credit card transaction",options:["card holder","merchant","marketing manager","acquirer"],correct:2},
+{q:"Which of the following is true about debit card i. debit cards cannot be used in ATMs ii. debit cards cannot be used in online transactions iii. debit cards do not need bank accounts iv. debit cards and credit cards are identical in physical properties",options:["i, ii, iii","ii, iii, iv","iii alone","iv alone"],correct:3},
+{q:"Match the following List A List B A1) First Digit B1) Account number A2) 9th to 15th Digit B2) MII Code A3) First 6 Digits B3) BIN Code A4) Last Digit B4) Check digit A1 A2 A3 A4",options:["B4 B3 B2 B1","B2 B1 B3 B4","B2 B3 B4 B1","B2 B4 B3 B1"],correct:1},
+];
+
+const CA15_ECOMMERCE_SECURITY = [
+{q:"In E-Commerce, when a stolen credit card is used to make a purchase it is termed as",options:["Friendly fraud","Clean fraud","Triangulation fraud","Cyber squatting"],correct:1},
+{q:"Which of the following is not a security element involved in E-Commerce?",options:["Authenticity","Confidentiality","Fishing","Privacy"],correct:2},
+{q:"Asymmetric encryption use ___________ keys for encryption and decryption",options:["Same","Different","Positive","Negative"],correct:1},
+{q:"The security authentication technology includes i) Digital Signatures ii) Digital Currency iii) Digital Image iv) Digital Certificates",options:["i & iv","ii & iii","i, ii & iii","all the above"],correct:0},
+{q:"PGP stands for",options:["Pretty Good Privacy","Pretty Good Person","Private Good Privacy","Private Good Person"],correct:0},
+{q:"_____ protocol is used for securing credit cards transactions via the Internet",options:["Secure Electronic Transaction (SET)","Credit Card Verification","Symmetric Key Encryption","Public Key Encryption"],correct:0},
+{q:"Secure Electronic Transaction (SET) was developed in",options:["1999","1996","1969","1997"],correct:1},
+{q:"The websites secured by Secure Socket Layer protocols can be identified using",options:["html://","http://","htmls://","https://"],correct:3},
+{q:"______ is the process of converting plain text into meaningless cipher text",options:["Encryption","Decryption","Digital certificate","Digital signature"],correct:0},
+{q:"Which of the following is true about Ransomware",options:["Ransomware is not a subset of malware","Ransomware deletes the file instantly","Typopiracy is a form of ransomware","Hackers demand ransom from the victim"],correct:3},
+];
+
+const CA16_EDI = [
+{q:"EDI stands for",options:["Electronic Details Information","Electronic Data Information","Electronic Data Interchange","Electronic Details Interchange"],correct:2},
+{q:"Which of the following is an internationally recognized standard format for EDI?",options:["TSLFACT","SETFACT","FTPFACT","EDIFACT"],correct:3},
+{q:"Which is the first industry-specific EDI standard?",options:["TDCC","VISA","Master","ANSI"],correct:0},
+{q:"Which of the following is a type of EDI?",options:["Direct EDI","Indirect EDI","Collective EDI","Unique EDI"],correct:0},
+{q:"Who is called as the father of EDI?",options:["Charles Babbage","Ed Guilbert","Pascal","None of the above"],correct:1},
+];
+
+const CHAPTERS_CA = [
+  {id:501, name:"Multimedia", icon:"🎬", questions:CA1_MULTIMEDIA, additionalQuestions:[]},
+  {id:502, name:"Desktop Publishing – PageMaker", icon:"🖨️", questions:CA2_DTP_PAGEMAKER, additionalQuestions:[]},
+  {id:503, name:"Database Concepts & MySQL", icon:"🗄", questions:CA3_DATABASE_MYSQL, additionalQuestions:[]},
+  {id:504, name:"PHP Basics", icon:"🐘", questions:CA4_PHP_BASICS, additionalQuestions:[]},
+  {id:505, name:"PHP Functions & Arrays", icon:"ƒ()", questions:CA5_PHP_FUNCTIONS_ARRAYS, additionalQuestions:[]},
+  {id:506, name:"PHP Control Structures – Conditionals", icon:"⚖️", questions:CA6_PHP_CONDITIONALS, additionalQuestions:[]},
+  {id:507, name:"PHP Control Structures – Loops", icon:"🔁", questions:CA7_PHP_LOOPS, additionalQuestions:[]},
+  {id:508, name:"HTML Forms & PHP Validation", icon:"📝", questions:CA8_HTML_FORMS_VALIDATION, additionalQuestions:[]},
+  {id:509, name:"PHP File Handling & MySQLi", icon:"📁", questions:CA9_PHP_FILES_MYSQLI, additionalQuestions:[]},
+  {id:510, name:"Networking Concepts", icon:"🌐", questions:CA10_NETWORKING, additionalQuestions:[]},
+  {id:511, name:"Internet & Domain Name System", icon:"🔗", questions:CA11_INTERNET_DNS, additionalQuestions:[]},
+  {id:512, name:"Network Simulation & Open Source", icon:"🧪", questions:CA12_NETWORK_SIM_OPENSOURCE, additionalQuestions:[]},
+  {id:513, name:"Introduction to E-Commerce", icon:"🛒", questions:CA13_ECOMMERCE_INTRO, additionalQuestions:[]},
+  {id:514, name:"E-Payment Systems", icon:"💳", questions:CA14_EPAYMENT, additionalQuestions:[]},
+  {id:515, name:"E-Commerce Security", icon:"🔒", questions:CA15_ECOMMERCE_SECURITY, additionalQuestions:[]},
+  {id:516, name:"Electronic Data Interchange (EDI)", icon:"🔄", questions:CA16_EDI, additionalQuestions:[]}
 ];
 
 /* ================= MATHS QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
@@ -2531,7 +2782,8 @@ const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
   maths:   {key:'maths',   name:'Mathematics',      icon:'📐', short:'Math', heroLine:'Mathematics — One Mark Practice',       themeColor:'#6366F1', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   physics: {key:'physics', name:'Physics',          icon:'⚛️', short:'Phy',  heroLine:'Physics — One Mark Practice',           themeColor:'#8B5CF6', tagline:'11 chapters • Electrostatics, Optics, Modern Physics & more', chapters:CHAPTERS_PHYSICS, unitLabel:'Ch',   sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
-  chemistry: {key:'chemistry', name:'Chemistry',     icon:'⚗️', short:'Chem', heroLine:'Chemistry — One Mark Practice',        themeColor:'#10B981', tagline:'15 units • Metallurgy, Organic Chemistry, Biomolecules & more', chapters:CHAPTERS_CHEMISTRY, unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
+  chemistry: {key:'chemistry', name:'Chemistry',     icon:'⚗️', short:'Chem', heroLine:'Chemistry — One Mark Practice',        themeColor:'#10B981', tagline:'15 units • Metallurgy, Organic Chemistry, Biomolecules & more', chapters:CHAPTERS_CHEMISTRY, unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
+  ca:      {key:'ca',      name:'Computer Applications', icon:'💻', short:'CA', heroLine:'Computer Applications — One Mark Practice', themeColor:'#F59E0B', tagline:'16 chapters • Multimedia, PHP, Networking, E-Commerce & more', chapters:CHAPTERS_CA, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
 };
 let currentSubject = 'cs';
 function activeChapters(){ return SUBJECT_INFO[currentSubject].chapters; }
