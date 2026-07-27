@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vmhss.github.io/12csmcq/sitemap.xml
+Sitemap: https://sparkx-svg.github.io/vmhss-one-mark/sitemap.xml
