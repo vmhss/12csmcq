@@ -9,12 +9,12 @@ importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging-com
 
 // Same public config used in script.js — safe to expose client-side.
 firebase.initializeApp({
-  apiKey: "AIzaSyCFBhAK-9EkG3_Zdcuvdly2wlP1Re5qYbA",
-  authDomain: "vmhss-one-marks.firebaseapp.com",
-  projectId: "vmhss-one-marks",
-  storageBucket: "vmhss-one-marks.firebasestorage.app",
-  messagingSenderId: "850933256837",
-  appId: "1:850933256837:web:ae07a4b333e8e7b0870fec"
+  apiKey: "AIzaSyC2pLr4kRH26bkOM73JW-Us6X029qaDp0E",
+  authDomain: "onemarkvmhss.firebaseapp.com",
+  projectId: "onemarkvmhss",
+  storageBucket: "onemarkvmhss.firebasestorage.app",
+  messagingSenderId: "372823957264",
+  appId: "1:372823957264:web:a1a8742ff4a1caaab80f95"
 });
 
 const messaging = firebase.messaging();
