@@ -1,3 +1,4 @@
+[README-notifications.md](https://github.com/user-attachments/files/30409228/README-notifications.md)
 # Test Reminder Push Notifications — Setup Guide
 
 This adds **real push notifications** for test reminders — students get
