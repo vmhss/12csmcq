@@ -2559,6 +2559,276 @@ const CHAPTERS_ECONOMICS = [
   {id:812, name:"Introduction to Statistical Methods and Econometrics", icon:"📊", questions:ECO12_INTRODUCTION_TO_STATISTICAL_METHODS_AND_ECONOMETRICS, additionalQuestions:[]}
 ];
 
+/* ================= QUESTION PAPER GENERATOR — DATA =================
+   2/3/5-mark descriptive question bank, used ONLY by the admin's
+   "Generate Question Paper" feature (Part I of the generated paper reuses
+   the existing 1-mark MCQ bank above instead of duplicating it).
+
+   ⚠️ PLACEHOLDER / SAMPLE DATA ONLY. The questions below are real,
+   correct, general Class-12 CS content, but only a handful per chapter —
+   nowhere near the full book-back set. Replace/extend this object with
+   your actual 2/3/5-mark book-back Q&A once you send it over; the
+   generator code does not need to change, only this data.
+
+   Format:
+     2marks / 3marks: [{ chapter:"Chapter name", q:"...", a:"..." }, ...]
+     5marks (either/or pairs): [{ chapter:"...", qa:{q,a}, qb:{q,a} }, ...]
+*/
+const DESCRIPTIVE_QUESTIONS = {
+  cs: {
+    2: [
+      {chapter:"Function", q:"What is a subroutine?", a:""},
+      {chapter:"Function", q:"Define Function with respect to Programming language.", a:""},
+      {chapter:"Function", q:"Write the inference you get from X:=(78).", a:""},
+      {chapter:"Function", q:"Differentiate interface and implementation.", a:""},
+      {chapter:"Function", q:"Which of the following is a normal function definition and which is recursive function definition i) let sum x y: return x + y ii) let disp: print \u2018welcome\u2019 iii) let sum num: if (num!=0) then return num + sum (num-1) else return num", a:""},
+      {chapter:"Data Abstraction", q:"What is abstract data type?", a:""},
+      {chapter:"Data Abstraction", q:"Differentiate constructors and selectors.", a:""},
+      {chapter:"Data Abstraction", q:"What is a Pair? Give an example.", a:""},
+      {chapter:"Data Abstraction", q:"What is a List? Give an example.", a:""},
+      {chapter:"Data Abstraction", q:"What is a Tuple? Give an example.", a:""},
+      {chapter:"Scoping", q:"What is a scope?", a:""},
+      {chapter:"Scoping", q:"Why scope should be used for variable. State the reason.", a:""},
+      {chapter:"Scoping", q:"What is Mapping?", a:""},
+      {chapter:"Scoping", q:"What do you mean by Namespaces?", a:""},
+      {chapter:"Scoping", q:"How Python represents the private and protected Access specifiers?", a:""},
+      {chapter:"Algorithmic Strategies", q:"What is an Algorithm?", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write the phase of the performance evaluation of an algorithm.", a:""},
+      {chapter:"Algorithmic Strategies", q:"What is Insertion sort?", a:""},
+      {chapter:"Algorithmic Strategies", q:"What is Sorting?", a:""},
+      {chapter:"Algorithmic Strategies", q:"What is searching? Write its types.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"What are the different modes that can be used to test Python Program ?", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Write short notes on Tokens.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"What are the different operators that can be used in Python?", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"What is a literal? Explain the types of literals ?", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Write short notes on Exponent data?", a:""},
+      {chapter:"Control Structures", q:"List the control structures in Python.", a:""},
+      {chapter:"Control Structures", q:"Write note on break statement.", a:""},
+      {chapter:"Control Structures", q:"Write is the syntax of if .. else statement.", a:""},
+      {chapter:"Control Structures", q:"Define control structure.", a:""},
+      {chapter:"Control Structures", q:"Write note on range () in loop.", a:""},
+      {chapter:"Python Functions", q:"What is function?", a:""},
+      {chapter:"Python Functions", q:"Write the different types of function.", a:""},
+      {chapter:"Python Functions", q:"What are the main advantages of function?", a:""},
+      {chapter:"Python Functions", q:"What is meant by scope of variable? Mention its types.", a:""},
+      {chapter:"Python Functions", q:"Define global scope.", a:""},
+      {chapter:"Python Functions", q:"What is base condition in recursive function?", a:""},
+      {chapter:"Python Functions", q:"How to set the limit for recursive function? Give an example.", a:""},
+      {chapter:"Strings and String Manipulation", q:"What is String?", a:""},
+      {chapter:"Strings and String Manipulation", q:"Do you modify a string in Python?", a:""},
+      {chapter:"Strings and String Manipulation", q:"How will you delete a string in Python?", a:""},
+      {chapter:"Strings and String Manipulation", q:"What will be the output of the following python code? str1 = \u201cSchool\u201d print(str1*3)", a:""},
+      {chapter:"Strings and String Manipulation", q:"What is slicing?", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What is List in Python?", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"How will you access the list elements in reverse order?", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What will be the value of x in following python code? List1=[2,4,6,[1,3,5]] x=len(List1)", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Differentiate del with remove() function of List.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write the syntax of creating a Tuple with n number of elements.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What is set in Python?", a:""},
+      {chapter:"Python Classes and Objects", q:"What is class?", a:""},
+      {chapter:"Python Classes and Objects", q:"What is instantiation?", a:""},
+      {chapter:"Python Classes and Objects", q:"What is the output of the following program? class Sample: __num=10 def disp(self): S=Sample() S.disp() print(S.__num)", a:""},
+      {chapter:"Python Classes and Objects", q:"How will you create constructor in Python?", a:""},
+      {chapter:"Python Classes and Objects", q:"What is the purpose of Destructor?", a:""},
+      {chapter:"Database Concepts", q:"Mention few examples of a database.", a:""},
+      {chapter:"Database Concepts", q:"List some examples of RDBMS.", a:""},
+      {chapter:"Database Concepts", q:"What is data consistency?", a:""},
+      {chapter:"Database Concepts", q:"What is the difference between Hierarchical and Network data model?", a:""},
+      {chapter:"Database Concepts", q:"What is normalization?", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write a query that selects all students whose age is less than 18 in order wise.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Differentiate Unique and Primary Key constraint.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write the difference between table constraint and column constraint?", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Which component of SQL lets insert values in tables and which lets to create a table?", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"What is the difference between SQL and MySQL?", a:""},
+      {chapter:"Python and CSV Files", q:"What is CSV File?", a:""},
+      {chapter:"Python and CSV Files", q:"Mention the two ways to read a CSV file using Python.", a:""},
+      {chapter:"Python and CSV Files", q:"Mention the default modes of the File.", a:""},
+      {chapter:"Python and CSV Files", q:"What is use of next() function?", a:""},
+      {chapter:"Python and CSV Files", q:"How will you sort more than one column from a csv file? Give an example statement.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is the theoretical difference between Scripting language and other programming language?", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Differentiate compiler and interpreter.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Write the expansion of (i) SWIG (ii)MinGW", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is the use of modules?", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is the use of cd command? Give an example.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Mention the users who uses the Database.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Which method is used to connect a database? Give an example.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"What is the advantage of declaring a column as \u201cINTEGER PRIMARY KEY\u201d?", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Write the command to populate record in a table. Give an example.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Which method is used to fetch all rows from the database table?", a:""},
+      {chapter:"Data Visualization using Python", q:"What is Data Visualization.", a:""},
+      {chapter:"Data Visualization using Python", q:"List the general types of data visualization.", a:""},
+      {chapter:"Data Visualization using Python", q:"List the types of Visualizations in Matplotlib.", a:""},
+      {chapter:"Data Visualization using Python", q:"How will you install Matplotlib?", a:""},
+      {chapter:"Data Visualization using Python", q:"Write the difference between the following functions: plt.plot([1,2,3,4]), plt.plot([1,2,3,4], [1,4,9,16]).", a:""},
+    ],
+    3: [
+      {chapter:"Function", q:"Mention the characteristics of Interface.", a:""},
+      {chapter:"Function", q:"Why strlen is called pure function?", a:""},
+      {chapter:"Function", q:"What is the side effect of impure function? Give example.", a:""},
+      {chapter:"Function", q:"Differentiate pure and impure function.", a:""},
+      {chapter:"Function", q:"What happens if you modify a variable outside the function? Give an example.", a:""},
+      {chapter:"Data Abstraction", q:"Differentiate Concrete data type and abstract datatype.", a:""},
+      {chapter:"Data Abstraction", q:"Which strategy is used for program designing? Define that Strategy.", a:""},
+      {chapter:"Data Abstraction", q:"Identify Which of the following are constructors and selectors? (a) N1=number( ) - Constructor (b) accetnum(n1) - Selectors (c) displaynum(n1) - Selectors (d) eval(a/b) - Selectors (e) x,y= makeslope (m), makeslope(n) - Constructor (f) display( ) - Selectors", a:""},
+      {chapter:"Data Abstraction", q:"What are the different ways to access the elements of a list. Give example.", a:""},
+      {chapter:"Data Abstraction", q:"Identify Which of the following are List, Tuple and class ? (a) arr [1, 2, 34] - List (b) arr (1, 2, 34) - Tuple (c) student [rno, name, mark] - Class (d) day= (\u2018sun\u2019, \u2018mon\u2019, \u2018tue\u2019, \u2018wed\u2019) - Tuple (e) x= [2, 5, 6.5, [5, 6], 8.2] - List (f) employee [eno, ename, esal, eaddress] - Class", a:""},
+      {chapter:"Scoping", q:"Define Local scope with an example.", a:""},
+      {chapter:"Scoping", q:"Define Global scope with an example.", a:""},
+      {chapter:"Scoping", q:"Define Enclosed scope with an example.", a:""},
+      {chapter:"Scoping", q:"Why access control is required?", a:""},
+      {chapter:"Scoping", q:"Identify the scope of the variables in the following pseudo code and write its output.", a:""},
+      {chapter:"Algorithmic Strategies", q:"List the characteristics of an algorithm.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Discuss about Algorithmic complexity and its types.", a:""},
+      {chapter:"Algorithmic Strategies", q:"What are the factors that influence time and space complexity.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write a note on Asymptotic notation.", a:""},
+      {chapter:"Algorithmic Strategies", q:"What do you understand by Dynamic programming?", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Write short notes on Arithmetic operator with examples.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"What are the assignment operators that can be used in Python?", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Explain Ternary operator with examples.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Write short notes on Escape sequences with examples.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"What are string literals? Explain.", a:""},
+      {chapter:"Control Structures", q:"Write a program to display", a:""},
+      {chapter:"Control Structures", q:"Write note on if .. else structure.", a:""},
+      {chapter:"Control Structures", q:"Using if .. else .. elif statement write a suitable program to display largest of 3 numbers.", a:""},
+      {chapter:"Control Structures", q:"Write the syntax of while loop.", a:""},
+      {chapter:"Control Structures", q:"List the differences between break and continue statements.", a:""},
+      {chapter:"Python Functions", q:"Write the rules of local variable.", a:""},
+      {chapter:"Python Functions", q:"Write the basic rules for global keyword in python.", a:""},
+      {chapter:"Python Functions", q:"What happens when we modify global variable inside the function?", a:""},
+      {chapter:"Python Functions", q:"Differentiate ceil() and floor() function?", a:""},
+      {chapter:"Python Functions", q:"Write a Python code to check whether a given year is leap year or not.", a:""},
+      {chapter:"Python Functions", q:"What is composition in functions?", a:""},
+      {chapter:"Python Functions", q:"How recursive function works?", a:""},
+      {chapter:"Python Functions", q:"What are the points to be noted while defining a function?", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a Python program to display the given pattern C O M P U T E R C O M P U T E C O M P U T C O M P U C O M P C O M C O C", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a short about the followings with suitable example: (a) capitalize( ) (b) swapcase( )", a:""},
+      {chapter:"Strings and String Manipulation", q:"What will be the output of the given python program? str1=\u201cwelcome\u201d str2=\u201cto school\u201d str3=str1[:2]+str2[len(str2)-2:] print(str3)", a:""},
+      {chapter:"Strings and String Manipulation", q:"What is the use of format()? Give an example.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a note about count() function in python.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What are the difference between list and of Tuples ot?", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write a short note about sort( ).", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What will be the output of the following code? list = [2\u2217\u2217x for x in range(5)] print(list)", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Explain the difference between del and clear() in dictionary with an example.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"List out the set operations supported by python.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What are the difference between List and Dictionary?", a:""},
+      {chapter:"Python Classes and Objects", q:"What are class members? How do you define it?", a:""},
+      {chapter:"Python Classes and Objects", q:"Write a class with two private class variables and print the sum using a method.", a:""},
+      {chapter:"Python Classes and Objects", q:"Find the error in the following program to get the given output? class Fruits: def __init__(self, f1, f2): self.f2=f2 def display(self): F = Fruits ('Apple', 'Mango') del F.display F.display() Output: Fruit 1 = Apple, Fruit 2 = Mango", a:""},
+      {chapter:"Python Classes and Objects", q:"What is the output of the following program? class Greeting: def __init__(self, name): def display(self): obj=Greeting('Bindu Madhavan') obj.display()", a:""},
+      {chapter:"Python Classes and Objects", q:"How do define constructor and destructor in Python?", a:""},
+      {chapter:"Database Concepts", q:"What is the difference between Select and Project command?", a:""},
+      {chapter:"Database Concepts", q:"What is the role of DBA?", a:""},
+      {chapter:"Database Concepts", q:"Explain Cartesian product with a suitable example.", a:""},
+      {chapter:"Database Concepts", q:"Explain Object Model with example.", a:""},
+      {chapter:"Database Concepts", q:"Write a note on different types of DBMS users.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"What is a constraint? Write short note on Primary key constraint.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write a SQL statement to modify the student table structure by adding a new field.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write any three DDL commands.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write the use of Savepoint command with an example.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write a SQL statement using DISTINCT keyword.", a:""},
+      {chapter:"Python and CSV Files", q:"Write a note on open() function of python. What is the difference between the two methods?", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to modify an existing file.", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to read a CSV file with default delimiter comma (,).", a:""},
+      {chapter:"Python and CSV Files", q:"What is the difference between the write mode and append mode.", a:""},
+      {chapter:"Python and CSV Files", q:"What is the difference between reader() method and DictReader() class?", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Differentiate PYTHON and C++", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What are the applications of scripting language?", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is MinGW? What is its use?", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Identify the module, operator, definition name for the following welcome.display()", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is sys.argv? What does it contain?", a:""},
+      {chapter:"Data Manipulation through SQL", q:"What is SQLite? What is it advantage?", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Mention the difference between fetchone() and fetchmany()", a:""},
+      {chapter:"Data Manipulation through SQL", q:"What is the use of Where Clause. Give a python statement Using the where clause.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Read the following details. Based on that write a python script to display department wise records database name :- organization.db Table name :- Employee Columns in the table :- Eno, EmpName, Esal, Dept", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Read the following details. Based on that write a python script to display records in descending order of Eno database name :- organization.db Table name :- Employee Columns in the table :- Eno, EmpName, Esal, Dept", a:""},
+      {chapter:"Data Visualization using Python", q:"Draw the output for the following data visualization plot.", a:""},
+      {chapter:"Data Visualization using Python", q:"Write any three uses of data visualization.", a:""},
+      {chapter:"Data Visualization using Python", q:"Write the plot for the following pie chart output.", a:""},
+    ],
+    5: [
+      {chapter:"Function", q:"What are called Parameters and write a note on (i) Parameter without Type (ii) Parameter with Type", a:""},
+      {chapter:"Function", q:"Identify in the following program let rec gcd a b := if b <> 0 then gcd b (a mod b) else return a i) Name of the function ii) Identify the statement which tells it is a recursive function iii) Name of the argument variable iv) Statement which invoke the function recursively v) Statement which terminates the recursion", a:""},
+      {chapter:"Function", q:"Explain with example Pure and impure functions.", a:""},
+      {chapter:"Function", q:"Explain with an example interface and implementation.", a:""},
+      {chapter:"Data Abstraction", q:"How will you facilitate data abstraction. Explain it with suitable example.", a:""},
+      {chapter:"Data Abstraction", q:"What is a List? Why List can be called as Pairs. Explain with suitable example", a:""},
+      {chapter:"Data Abstraction", q:"How will you access the multi-item. Explain with example.", a:""},
+      {chapter:"Scoping", q:"Explain the types of scopes for variable or LEGB rule with example.", a:""},
+      {chapter:"Scoping", q:"Write any Five Characteristics of Modules.", a:""},
+      {chapter:"Scoping", q:"Write any five benefits in using modular programming.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Explain the characteristics of an algorithm.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Discuss about Linear search algorithm.", a:""},
+      {chapter:"Algorithmic Strategies", q:"What is Binary search? Discuss with example.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Explain the Bubble sort algorithm with example.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Explain the concept of Dynamic programming with suitable example.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Describe in detail the procedure Script mode programming.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Explain input() and print() functions with examples.", a:""},
+      {chapter:"Python \u2013 Variables and Operators", q:"Discuss in detail about Tokens in Python.", a:""},
+      {chapter:"Control Structures", q:"Write a detail note on for loop.", a:""},
+      {chapter:"Control Structures", q:"Write a detail note on if .. else .. elif statement with suitable example.", a:""},
+      {chapter:"Control Structures", q:"Write a program to display all 3 digit odd numbers.", a:""},
+      {chapter:"Control Structures", q:"Write a program to display multiplication table for a given number.", a:""},
+      {chapter:"Python Functions", q:"Explain the different types of function with an example.", a:""},
+      {chapter:"Python Functions", q:"Explain the scope of variables with an example.", a:""},
+      {chapter:"Python Functions", q:"Explain the following built-in functions.", a:""},
+      {chapter:"Python Functions", q:"Write a Python code to find the L.C.M. of two numbers.", a:""},
+      {chapter:"Python Functions", q:"Explain recursive function with an example.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Explain about string operators in python with suitable example.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What the different ways to insert an element in a list. Explain with suitable example.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What is the purpose of range( )? Explain with an example.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"What is nested tuple? Explain with an example.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Explain the different set operations supported by python with suitable example.", a:""},
+      {chapter:"Python Classes and Objects", q:"Explain about constructor and destructor with suitable example.", a:""},
+      {chapter:"Database Concepts", q:"Explain the different types of data model.", a:""},
+      {chapter:"Database Concepts", q:"Explain the different types of relationship mapping.", a:""},
+      {chapter:"Database Concepts", q:"Differentiate DBMS and RDBMS.", a:""},
+      {chapter:"Database Concepts", q:"Explain the different operators in Relational algebra with suitable examples.", a:""},
+      {chapter:"Database Concepts", q:"Explain the characteristics of RDBMS.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write the different types of constraints and their functions.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Consider the following employee table. Write SQL commands for the questions. (i) to (v). (i) To display the details of all employees in descending order of pay. (ii) To display all employees whose allowance is between 5000 and 7000. (iii) To remove the employees who are mechanic. (iv) To add a new row. (v) To display the details of all employees who are operators.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"What are the components of SQL? Write the commands in each.", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Construct the following SQL statements in the student table. (i) SELECT statement using GROUP BY clause. (ii) SELECT statement using ORDER BY clause. If the Student table has the following data:", a:""},
+      {chapter:"Structured Query Language (SQL)", q:"Write a SQL statement to create a table for employee having any five fields and create a table constraint for the employee table. CREATE TABLE EMPLOYEE ( EMPCODE CHAR(20), NAME CHAR(20), DESIG VARCHAR(20), PAY INTEGER, ALLOWANCE INTEGER, PRIMARY KEY(EMPCODE) Table constraint );", a:""},
+      {chapter:"Python and CSV Files", q:"Differentiate Excel file and CSV file.", a:""},
+      {chapter:"Python and CSV Files", q:"Tabulate the different file modes with its meaning.", a:""},
+      {chapter:"Python and CSV Files", q:"Write the different methods to read a File in Python. Example:", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to write a CSV File with custom quotes.", a:""},
+      {chapter:"Python and CSV Files", q:"Write the rules to be followed to format the data in a CSV file.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Write any 5 features of Python.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Explain each word of the following command. python <filename.py> -<i> <C++ filename without cpp extension>", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"What is the purpose of sys, os, getopt module in Python. Explain.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Write the syntax for getopt() and explain its arguments and return values.", a:""},
+      {chapter:"Importing C++ Programs in Python", q:"Write a Python program to execute the following c++ coding. `", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Write in brief about SQLite and the steps used to use it.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Write the Python script to display all the records of the following table using fetchmany()", a:""},
+      {chapter:"Data Manipulation through SQL", q:"What is the use of HAVING clause. Give an example python script.", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Write a Python script to create a table called ITEM with following specification. Add one record to the table. Name of the database :- ABC Name of the table :- Item Column name and specification :-", a:""},
+      {chapter:"Data Manipulation through SQL", q:"Consider the following table Supplier and item .Write a python script for (i) to (ii) i) Display Name, City and Itemname of suppliers who do not reside in Delhi. ii) Increment the SuppQty of Akila by 40", a:""},
+      {chapter:"Data Visualization using Python", q:"Explain in detail the types of pyplots using Matplotlib.", a:""},
+      {chapter:"Data Visualization using Python", q:"Explain the various buttons in a matplotlib window.", a:""},
+      {chapter:"Data Visualization using Python", q:"Explain the purpose of the following functions: a. plt.xlabel b. plt.ylabel c. plt.title d. plt.legend() e. plt.show()", a:""},
+    ]
+  }
+};
+  // maths, physics, chemistry, ca, biology, commerce, economics: add the
+  // same { 2:[], 3:[], 5:[] } shape here once you send that subject's
+  // question bank text.
+
+/* Fixed section pattern per paper total. Proposed defaults for 30/50 —
+   confirm or replace these counts once you tell me the real numbers. */
+/* 70-mark pattern verified against real TN board / Samacheer Kalvi model
+   papers: Part I = Q1–15 (1 mark, all compulsory). Part II = Q16–24 (9
+   shown, 2 marks each, answer any 6 — one of the 9 is always marked
+   compulsory). Part III = Q25–33 (9 shown, 3 marks each, answer any 6,
+   one compulsory). Part IV = Q34–38 (5 questions, 5 marks each, each
+   with an internal either/or choice, all compulsory). 15+12+18+25=70.
+   30/50 are not official sizes — proportionally scaled the same way. */
+const PAPER_PATTERNS = {
+  70: { part1:{marks:1, count:15},               part2:{marks:2, shown:9, chooseAny:6},  part3:{marks:3, shown:9, chooseAny:6},  part4:{marks:5, pairs:5} },
+  50: { part1:{marks:1, count:10},               part2:{marks:2, shown:8, chooseAny:5},  part3:{marks:3, shown:7, chooseAny:5},  part4:{marks:5, pairs:3} },
+  30: { part1:{marks:1, count:5},                part2:{marks:2, shown:5, chooseAny:3},  part3:{marks:3, shown:5, chooseAny:3},  part4:{marks:5, pairs:2} }
+};
+
 const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
   maths:   {key:'maths',   name:'Mathematics',      icon:'📐', short:'Math', heroLine:'Mathematics — One Mark Practice',       themeColor:'#6366F1', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
@@ -2708,12 +2978,12 @@ function continueAsGuest(){
 
 /* ================= FIREBASE — Google Sign-In ================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyCFBhAK-9EkG3_Zdcuvdly2wlP1Re5qYbA",
-  authDomain: "vmhss-one-marks.firebaseapp.com",
-  projectId: "vmhss-one-marks",
-  storageBucket: "vmhss-one-marks.firebasestorage.app",
-  messagingSenderId: "850933256837",
-  appId: "1:850933256837:web:ae07a4b333e8e7b0870fec"
+  apiKey: "AIzaSyC2pLr4kRH26bkOM73JW-Us6X029qaDp0E",
+  authDomain: "onemarkvmhss.firebaseapp.com",
+  projectId: "onemarkvmhss",
+  storageBucket: "onemarkvmhss.firebasestorage.app",
+  messagingSenderId: "372823957264",
+  appId: "1:372823957264:web:a1a8742ff4a1caaab80f95"
 };
 firebase.initializeApp(firebaseConfig);
 const fbAuth = firebase.auth();
@@ -2937,7 +3207,7 @@ const ADMIN_PASSWORD = "vmhss2026";
 /* This must exactly match the isAdmin() list in your Firestore rules. The
    password gate only hides/shows the panel in the browser — these emails are
    what Firestore actually checks before allowing any delete/ban. */
-const ADMIN_EMAILS = ["immortalassassin064@gmail.com", "magnate2242@gmail.com"];
+const ADMIN_EMAILS = ["immortalassassin064@gmail.com", "magnate2242@gmail.com", "pmsureshmscit1@gmail.com"];
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2945,12 +3215,26 @@ function escapeHtml(s){
 
 function openAdminLogin(){
   document.getElementById('adminLoginError').textContent = '';
-  document.getElementById('adminPassword').value = '';
+  const pwField = document.getElementById('adminPassword');
+  pwField.value = '';
+  pwField.type = 'password';
+  const toggleBtn = document.getElementById('adminPwToggle');
+  if(toggleBtn){ toggleBtn.textContent = '👁️'; toggleBtn.setAttribute('aria-label','Show password'); }
   document.getElementById('adminLoginModal').classList.remove('hidden');
   setTimeout(()=>document.getElementById('adminPassword')?.focus(), 50);
 }
 function closeAdminLogin(){
   document.getElementById('adminLoginModal').classList.add('hidden');
+}
+function toggleAdminPasswordVisibility(){
+  const pwField = document.getElementById('adminPassword');
+  const btn = document.getElementById('adminPwToggle');
+  const nowVisible = pwField.type === 'password';
+  pwField.type = nowVisible ? 'text' : 'password';
+  if(btn){
+    btn.textContent = nowVisible ? '🙈' : '👁️';
+    btn.setAttribute('aria-label', nowVisible ? 'Hide password' : 'Show password');
+  }
 }
 async function adminLogin(){
   const pass = document.getElementById('adminPassword').value;
@@ -2975,6 +3259,7 @@ function applyAdminModeVisibility(){
   document.getElementById('adminActionsHeaderCell')?.classList.toggle('hidden', !admin);
   document.getElementById('bannedSection')?.classList.toggle('hidden', !admin);
   document.getElementById('testReminderSection')?.classList.toggle('hidden', !admin);
+  document.getElementById('paperGeneratorSection')?.classList.toggle('hidden', !admin);
 }
 
 async function openAdminScreen(){
@@ -3003,6 +3288,7 @@ async function openAdminScreen(){
     }
     renderBannedTable();
     loadTestReminders();
+    populatePaperSubjectDropdown();
   }
 }
 function closeAdminScreen(){
@@ -3194,6 +3480,42 @@ function toggleLeaderboardVisibility(){
 }
 
 /* ================= TEST REMINDER NOTIFICATIONS ================= */
+/* Shows the nearest upcoming testReminders entry (matching the student's
+   class, or an "all classes" one) as a banner on the chapter screen —
+   a persistent visual reminder that complements the push notification. */
+async function loadUpcomingTestBanner(){
+  const banner = document.getElementById('upcomingTestBanner');
+  if(!banner) return;
+  banner.classList.add('hidden');
+  if(!(CLOUD.mode === 'cloud' && CLOUD.uid)) return; // needs sign-in to read Firestore
+  try{
+    const now = firebase.firestore.Timestamp.now();
+    const snap = await fbDB.collection('testReminders')
+      .where('testAt', '>', now)
+      .orderBy('testAt', 'asc')
+      .limit(10)
+      .get();
+    const studentClass = student.cls || '';
+    const match = snap.docs.map(d=>d.data()).find(r => r.targetClass === 'all' || r.targetClass === studentClass);
+    if(!match || !match.testAt || !match.testAt.toDate) return;
+    const testDate = match.testAt.toDate();
+    const countdown = formatCountdown(testDate - new Date());
+    banner.innerHTML = `📅 Upcoming: <b>${escapeHtml(match.title || 'Test')}</b> — ${testDate.toLocaleString('en-IN', {dateStyle:'medium', timeStyle:'short'})}<span class="utb-countdown">${countdown}</span>`;
+    banner.classList.remove('hidden');
+  }catch(e){
+    console.warn('Loading upcoming test banner failed', e);
+  }
+}
+function formatCountdown(ms){
+  if(ms <= 0) return 'Starting now';
+  const mins = Math.floor(ms/60000);
+  if(mins < 60) return `in ${mins} min`;
+  const hours = Math.floor(mins/60);
+  if(hours < 24) return `in ${hours} hr${hours>1?'s':''}`;
+  const days = Math.floor(hours/24);
+  return `in ${days} day${days>1?'s':''}`;
+}
+
 function updateNotifSettingsUI(){
   const toggle = document.getElementById('notifToggle');
   const sub = document.getElementById('notifStatusSub');
@@ -3381,6 +3703,224 @@ async function cancelTestReminder(id){
     console.warn('Cancel reminder failed', e);
     showToast('Could not cancel — check the browser console.', 'info');
   }
+}
+
+/* ================= ADMIN: QUESTION PAPER GENERATOR ================= */
+function populatePaperSubjectDropdown(){
+  const sel = document.getElementById('paperSubject');
+  if(!sel || sel.options.length) return; // already populated
+  Object.keys(SUBJECT_INFO).forEach(key=>{
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = SUBJECT_INFO[key].name;
+    sel.appendChild(opt);
+  });
+}
+
+/* Pulls Part I (1-mark) questions straight from the existing book-back
+   MCQ bank, spread across all of that subject's chapters. */
+function collectOneMarkPool(subjectKey){
+  const chapters = SUBJECT_INFO[subjectKey].chapters;
+  const pool = [];
+  chapters.forEach(ch=>{
+    (ch.questions||[]).forEach(q=>pool.push({...q, chapter:ch.name}));
+  });
+  return pool;
+}
+
+function generateQuestionPaper(){
+  const errEl = document.getElementById('paperFormError');
+  if(errEl) errEl.textContent = '';
+  const subjectKey = document.getElementById('paperSubject').value;
+  const totalMarks = parseInt(document.getElementById('paperTotal').value, 10);
+  const examTitle = document.getElementById('paperExamTitle').value.trim() || 'Model Examination';
+  const pattern = PAPER_PATTERNS[totalMarks];
+  const bank = DESCRIPTIVE_QUESTIONS[subjectKey];
+
+  if(!bank){
+    if(errEl) errEl.textContent = `No 2/3/5-mark question bank has been added for ${SUBJECT_INFO[subjectKey].name} yet — only Computer Science has one loaded so far.`;
+    return;
+  }
+
+  const onemarkPool = collectOneMarkPool(subjectKey);
+  const need = {
+    p1: pattern.part1.count,
+    p2: pattern.part2.shown,
+    p3: pattern.part3.shown,
+    p4: pattern.part4.pairs
+  };
+  if(onemarkPool.length < need.p1 || (bank[2]||[]).length < need.p2 || (bank[3]||[]).length < need.p3 || (bank[5]||[]).length < need.p4*2){
+    if(errEl) errEl.textContent = `Not enough questions in the bank yet for a ${totalMarks}-mark paper (need ${need.p1} one-mark, ${need.p2} two-mark, ${need.p3} three-mark, ${need.p4*2} five-mark questions to make ${need.p4} either/or pairs). Add more questions to DESCRIPTIVE_QUESTIONS.`;
+    return;
+  }
+
+  const part1 = shuffle(onemarkPool).slice(0, need.p1);
+  const part2 = shuffle(bank[2]).slice(0, need.p2);
+  const part3 = shuffle(bank[3]).slice(0, need.p3);
+  // 5-mark bank is a flat list (source book doesn't pre-pair either/or
+  // questions) — randomly pair two distinct questions per "either/or" slot.
+  const fiveMarkPicked = shuffle(bank[5]).slice(0, need.p4*2);
+  const part4 = [];
+  for(let i=0;i<fiveMarkPicked.length;i+=2){
+    part4.push({ chapter: fiveMarkPicked[i].chapter, qa: fiveMarkPicked[i], qb: fiveMarkPicked[i+1] });
+  }
+
+  // Real TN board papers mark one specific question within each
+  // "answer any N of M" choice as compulsory — pick one at random here,
+  // same as a teacher would when assembling a paper.
+  const part2CompulsoryPos = 1 + Math.floor(Math.random()*part2.length);
+  const part3CompulsoryPos = 1 + Math.floor(Math.random()*part3.length);
+
+  openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank});
+}
+
+function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank}){
+  const subjectName = SUBJECT_INFO[subjectKey].name;
+  const win = window.open('', '_blank');
+  if(!win){ showToast('Please allow pop-ups to open the question paper.', 'info'); return; }
+
+  const esc = (s)=>String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const part1Start = 1;
+  const part2Start = part1Start + part1.length;
+  const part3Start = part2Start + part2.length;
+  const part4Start = part3Start + part3.length;
+  const part2CompulsoryNum = part2Start + part2CompulsoryPos - 1;
+  const part3CompulsoryNum = part3Start + part3CompulsoryPos - 1;
+
+  // Full pools + the initial selection are handed to the new window so its
+  // own script can swap any single question for another one on demand,
+  // without re-opening/regenerating the whole paper.
+  const clientData = {
+    part1, part2, part3, part4,
+    pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5] },
+    nums: { part1Start, part2Start, part3Start, part4Start }
+  };
+  // Safety: prevent a stray "</script>" inside any question text from
+  // prematurely closing the inline <script> tag it's embedded in.
+  const clientDataJson = JSON.stringify(clientData).replace(/<\/script/gi, '<\\/script');
+
+  const paperScript = [
+    'const D = window.__PAPER_DATA;',
+    'function esc(s){ var d=document.createElement("div"); d.textContent=String(s); return d.innerHTML; }',
+    '',
+    'function usedKeys(){',
+    '  var s = new Set();',
+    '  D.part1.forEach(function(q){ s.add(q.q); });',
+    '  D.part2.forEach(function(q){ s.add(q.q); });',
+    '  D.part3.forEach(function(q){ s.add(q.q); });',
+    '  D.part4.forEach(function(p){ s.add(p.qa.q); s.add(p.qb.q); });',
+    '  return s;',
+    '}',
+    '',
+    'function pickReplacement(pool){',
+    '  var used = usedKeys();',
+    '  var avail = pool.filter(function(q){ return !used.has(q.q); });',
+    '  if(!avail.length) return null;',
+    '  return avail[Math.floor(Math.random()*avail.length)];',
+    '}',
+    '',
+    'function replaceBtn(kind, idx){',
+    '  return " <button type=\\"button\\" class=\\"repl-btn\\" data-kind=\\"" + kind + "\\" data-idx=\\"" + idx + "\\">🔁 Replace</button>";',
+    '}',
+    '',
+    'function renderP1(i){',
+    '  var q = D.part1[i], num = D.nums.part1Start + i;',
+    '  var opts = (q.options||[]).map(function(o,oi){ return "<span class=\\"opt\\">(" + String.fromCharCode(97+oi) + ") " + esc(o) + "</span>"; }).join("");',
+    '  document.getElementById("p1-"+i).innerHTML = "<b>"+num+".</b> "+esc(q.q)+"<div class=\\"opts\\">"+opts+"</div>"+replaceBtn("p1",i);',
+    '}',
+    'function renderP2(i){',
+    '  var q = D.part2[i], num = D.nums.part2Start + i;',
+    '  document.getElementById("p2-"+i).innerHTML = "<b>"+num+".</b> "+esc(q.q)+replaceBtn("p2",i);',
+    '}',
+    'function renderP3(i){',
+    '  var q = D.part3[i], num = D.nums.part3Start + i;',
+    '  document.getElementById("p3-"+i).innerHTML = "<b>"+num+".</b> "+esc(q.q)+replaceBtn("p3",i);',
+    '}',
+    'function renderP4(i){',
+    '  var pair = D.part4[i], num = D.nums.part4Start + i;',
+    '  document.getElementById("p4-"+i).innerHTML =',
+    '    "<b>"+num+". (a)</b> "+esc(pair.qa.q)+replaceBtn("p5a",i)+',
+    '    "<div class=\\"or\\">OR</div>"+',
+    '    "<b>"+num+". (b)</b> "+esc(pair.qb.q)+replaceBtn("p5b",i);',
+    '}',
+    '',
+    'function doReplace(kind, idx){',
+    '  var pool, current;',
+    '  if(kind==="p1"){ pool=D.pools.p1; }',
+    '  else if(kind==="p2"){ pool=D.pools.p2; }',
+    '  else if(kind==="p3"){ pool=D.pools.p3; }',
+    '  else if(kind==="p5a" || kind==="p5b"){ pool=D.pools.p5; }',
+    '  var repl = pickReplacement(pool);',
+    '  if(!repl){ alert("No more unused questions available in this bank to swap in."); return; }',
+    '  if(kind==="p1"){ D.part1[idx]=repl; renderP1(idx); }',
+    '  else if(kind==="p2"){ D.part2[idx]=repl; renderP2(idx); }',
+    '  else if(kind==="p3"){ D.part3[idx]=repl; renderP3(idx); }',
+    '  else if(kind==="p5a"){ D.part4[idx].qa=repl; renderP4(idx); }',
+    '  else if(kind==="p5b"){ D.part4[idx].qb=repl; renderP4(idx); }',
+    '}',
+    '',
+    'document.addEventListener("click", function(e){',
+    '  var btn = e.target.closest(".repl-btn");',
+    '  if(!btn) return;',
+    '  doReplace(btn.getAttribute("data-kind"), parseInt(btn.getAttribute("data-idx"),10));',
+    '});'
+  ].join('\n');
+
+  const part1Html = part1.map((q,i)=>`<div class="q" id="p1-${i}"></div>`).join('');
+  const part2Html = part2.map((q,i)=>`<div class="q" id="p2-${i}"></div>`).join('');
+  const part3Html = part3.map((q,i)=>`<div class="q" id="p3-${i}"></div>`).join('');
+  const part4Html = part4.map((p,i)=>`<div class="q" id="p4-${i}"></div>`).join('');
+
+  const initScript = 'D.part1.forEach((_,i)=>renderP1(i));D.part2.forEach((_,i)=>renderP2(i));D.part3.forEach((_,i)=>renderP3(i));D.part4.forEach((_,i)=>renderP4(i));';
+
+  win.document.write(`<!DOCTYPE html><html><head><title>${esc(examTitle)} — ${esc(subjectName)}</title>
+  <style>
+    body{font-family:Georgia,'Times New Roman',serif;max-width:800px;margin:30px auto;padding:0 20px;color:#111;line-height:1.5}
+    .header{text-align:center;margin-bottom:20px;border-bottom:2px solid #111;padding-bottom:14px}
+    .header h1{font-size:1.15rem;margin:0 0 4px}
+    .header .school{font-size:.95rem;font-weight:bold}
+    .header .meta{display:flex;justify-content:space-between;margin-top:10px;font-size:.9rem}
+    .part-title{font-weight:bold;text-decoration:underline;margin:22px 0 4px;font-size:1rem}
+    .part-note{font-style:italic;font-size:.85rem;margin-bottom:10px}
+    .q{margin-bottom:12px;font-size:.95rem}
+    .opts{display:flex;flex-wrap:wrap;gap:14px;margin:4px 0 0 20px;font-size:.9rem}
+    .or{text-align:center;font-weight:bold;margin:4px 0}
+    .repl-btn{font-family:sans-serif;font-size:.72rem;padding:2px 8px;margin-left:8px;border:1px solid #4F46E5;color:#4F46E5;background:#fff;border-radius:12px;cursor:pointer;vertical-align:middle}
+    .repl-btn:hover{background:#EEF2FF}
+    .print-btn{position:fixed;top:12px;right:12px;padding:10px 16px;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.9rem}
+    @media print{ .print-btn,.repl-btn{display:none} }
+  </style></head>
+  <body>
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <div class="header">
+      <div class="school">Vethathiri Maharishi Higher Secondary School, S.V.G Puram</div>
+      <h1>${esc(examTitle)} — ${esc(subjectName)}</h1>
+      <div class="meta"><span>Time: 3 hrs (approx.)</span><span><b>Marks: ${totalMarks}</b></span></div>
+    </div>
+    <p style="font-size:.82rem;font-style:italic;text-align:center;margin-top:-8px">The question paper comprises of four parts. You are to attempt all the parts. An internal choice of questions is provided wherever applicable. All questions of Part I, II, III and IV are to be attempted separately. Click 🔁 Replace next to any question to swap it for another from the bank before printing.</p>
+
+    <div class="part-title">Part I</div>
+    <div class="part-note">Question numbers ${part1Start} to ${part2Start-1} are Multiple Choice Questions of one mark each. Choose the most suitable answer from the given four alternatives and write the option code with the corresponding answer. ${pattern.part1.count} × 1 = ${pattern.part1.count}</div>
+    ${part1Html}
+
+    <div class="part-title">Part II</div>
+    <div class="part-note">Question numbers ${part2Start} to ${part3Start-1} are two-mark questions, to be answered in about one or two sentences each. Answer any ${pattern.part2.chooseAny} questions. Question No. ${part2CompulsoryNum} is compulsory. ${pattern.part2.chooseAny} × 2 = ${pattern.part2.chooseAny*2}</div>
+    ${part2Html}
+
+    <div class="part-title">Part III</div>
+    <div class="part-note">Question numbers ${part3Start} to ${part3Start+part3.length-1} are three-mark questions. Answer any ${pattern.part3.chooseAny} questions. Question No. ${part3CompulsoryNum} is compulsory. ${pattern.part3.chooseAny} × 3 = ${pattern.part3.chooseAny*3}</div>
+    ${part3Html}
+
+    <div class="part-title">Part IV</div>
+    <div class="part-note">Answer all questions, choosing either (a) or (b) in each. ${pattern.part4.pairs} × 5 = ${pattern.part4.pairs*5}</div>
+    ${part4Html}
+
+    <script>window.__PAPER_DATA = ${clientDataJson};<\/script>
+    <script>${paperScript}<\/script>
+    <script>${initScript}<\/script>
+  </body></html>`);
+  win.document.close();
 }
 
 /* ================= HAPTICS ================= */
@@ -3832,6 +4372,8 @@ function renderChapterGrid(){
   const badgeEl = document.getElementById('weakCountBadge');
   if(badgeEl) badgeEl.textContent = `${weakCount} Qs`;
 
+  loadUpcomingTestBanner();
+
   const progress = getProgress();
   chapters.forEach((ch,i)=>{
     const rec = progress[ch.id];
@@ -4050,6 +4592,68 @@ function tickTimer(){
 function escHtmlQ(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+
+// Unicode superscript/subscript glyph -> plain char maps, used to rebuild
+// real <sup>/<sub> tags so sizing/alignment is controlled by CSS instead of
+// relying on font-dependent unicode glyphs (which render inconsistently).
+const MATHIFY_SUP_MAP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-','⁼':'=','⁽':'(','⁾':')','ⁿ':'n','ⁱ':'i'};
+const MATHIFY_SUB_MAP = {'₀':'0','₁':'1','₂':'2','₃':'3','₄':'4','₅':'5','₆':'6','₇':'7','₈':'8','₉':'9','₊':'+','₋':'-','₌':'=','₍':'(','₎':')','ₐ':'a','ₑ':'e','ₒ':'o','ₓ':'x','ₕ':'h','ₖ':'k','ₗ':'l','ₘ':'m','ₙ':'n','ₚ':'p','ₛ':'s','ₜ':'t'};
+
+function mathifyRunsToTag(s, map, tag){
+  const chars = Object.keys(map).map(c=>c.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('');
+  const re = new RegExp('['+chars+']+','g');
+  return s.replace(re, run => `<${tag}>` + run.split('').map(c=>map[c]).join('') + `</${tag}>`);
+}
+
+// Unit/rate tokens that should stay as plain "a/b" instead of being turned
+// into a stacked fraction (e.g. "cm/s", "rad/s", "N/A").
+const MATHIFY_UNIT_TOKENS = new Set(['s','sec','secs','hr','hrs','h','min','mins','day','days','yr','yrs',
+  'cm','mm','nm','pm','km','m','kg','mg','mcg','g','ml','l','L','N','J','W','A','V','Hz','Pa','kPa',
+  'mol','atm','K','rad','deg','ohm','dB','lb','oz','ft','in','mi','yd','gal','cal','kcal','eV','MeV','GeV',
+  'Wb','T','H','F','S','C','Ω']);
+
+function mathifyBuildFrac(num, den, neg){
+  const sign = neg ? '<span class="frac-sign">−</span>' : '';
+  return `<span class="frac-wrap">${sign}<span class="frac"><span class="num">${num}</span><span class="den">${den}</span></span></span>`;
+}
+
+// Convert simple slash fractions like "1/2", "3π/10", "(1/2)", "-5π/6", "a/2"
+// into a stacked numerator/denominator visual, with any leading minus sign
+// pulled in and vertically centered against the stack (rather than left
+// floating at text baseline, which looks like it's "hanging above" the
+// fraction). Deliberately conservative: only matches short alphanumeric/π/√
+// tokens on each side, and skips common unit-rate pairs like "cm/s" so those
+// stay inline as written.
+// A token is treated as a genuine math fraction operand only if it's a
+// single letter (a variable, e.g. "a/2") or contains a digit/π/√ (e.g.
+// "3π", "√3a", "243"). This keeps ordinary word pairs like "and/or",
+// "TCP/IP", "module/file" from being mistaken for fractions.
+function mathifyIsFracToken(t){
+  if(t.length===1 && /[A-Za-z]/.test(t)) return true;
+  return /[0-9π√]/.test(t);
+}
+
+function mathifyFractions(s){
+  const TOKEN = '[A-Za-z0-9π√.]{1,8}';
+  const re = new RegExp('(-)?(\\(?)('+TOKEN+')\\/('+TOKEN+')(\\)?)(?!\\()','g');
+  return s.replace(re, (m, neg, lp, num, den, rp) => {
+    if(!mathifyIsFracToken(num) || !mathifyIsFracToken(den)) return m;
+    if(MATHIFY_UNIT_TOKENS.has(num) || MATHIFY_UNIT_TOKENS.has(den)) return m;
+    const frac = mathifyBuildFrac(num, den, !!neg);
+    const left = lp === '(' ? '(' : '';
+    const right = rp === ')' ? ')' : '';
+    return left + frac + right;
+  });
+}
+
+// Convert "∫(lower to upper)" into a properly stacked integral with the
+// lower limit as a subscript and upper limit as a superscript beside ∫.
+function mathifyIntegrals(s){
+  return s.replace(/∫\(([^()]+?)\s+to\s+([^()]+?)\)/g, (m, lower, upper) => {
+    return `<span class="int-wrap"><span class="int-sym">∫</span><span class="int-lim"><span class="int-up">${upper}</span><span class="int-low">${lower}</span></span></span>`;
+  });
+}
+
 function mathify(str){
   if(str==null) return '';
   let s = escHtmlQ(str);
@@ -4071,6 +4675,13 @@ function mathify(str){
   // chemistry subscripts/superscripts: H_{2}O, SO_{4}^{2-}, Fe^{3+}, 10^{-4}
   s = s.replace(/\^\{([^{}]+)\}/g, '<sup>$1</sup>');
   s = s.replace(/_\{([^{}]+)\}/g, '<sub>$1</sub>');
+  // real unicode superscript/subscript glyphs (x², sin⁻¹x, H₂O, SO₄²⁻ ...) -> proper <sup>/<sub>
+  s = mathifyRunsToTag(s, MATHIFY_SUP_MAP, 'sup');
+  s = mathifyRunsToTag(s, MATHIFY_SUB_MAP, 'sub');
+  // integral limits: ∫(0 to π) -> stacked lower/upper limits beside ∫
+  s = mathifyIntegrals(s);
+  // simple numeric/algebraic fractions: 1/2, 3π/10, (1/2), a/2 -> stacked fraction
+  s = mathifyFractions(s);
   return s;
 }
 
@@ -4152,7 +4763,19 @@ function toggleBookmark(){
 function prevQ(){ if(currentIndex>0){currentIndex--; renderQuestion();} }
 function nextQ(){
   if(currentIndex<testQuestions.length-1){ currentIndex++; renderQuestion(); }
-  else { document.getElementById('submitModal').classList.remove('hidden'); }
+  else { confirmSubmitTest(); }
+}
+function confirmSubmitTest(){
+  const total = testQuestions.length;
+  const answeredCount = Object.keys(answers).filter(k=>answers[k]!==undefined).length;
+  const unanswered = total - answeredCount;
+  const msgEl = document.getElementById('submitModalMsg');
+  if(msgEl){
+    msgEl.textContent = unanswered === 0
+      ? `You've answered all ${total} questions. You won't be able to change your answers after submitting.`
+      : `You've answered ${answeredCount} of ${total} questions. The remaining ${unanswered} will be marked as skipped. You won't be able to change your answers after submitting.`;
+  }
+  document.getElementById('submitModal').classList.remove('hidden');
 }
 function closeModal(){ document.getElementById('submitModal').classList.add('hidden'); }
 
@@ -4497,8 +5120,18 @@ if('serviceWorker' in navigator){
   });
 }
 
+/* ================= OFFLINE STATUS BANNER ================= */
+function updateOfflineBanner(){
+  const banner = document.getElementById('offlineBanner');
+  if(!banner) return;
+  banner.classList.toggle('hidden', navigator.onLine);
+}
+window.addEventListener('online', updateOfflineBanner);
+window.addEventListener('offline', updateOfflineBanner);
+
 /* ================= INITIAL SETUP ================= */
 (function initPreferences(){
   applyLoadedPreferences();
   refreshNavGamificationChips();
+  updateOfflineBanner();
 })();
