@@ -30,6 +30,7 @@
 </head>
 <body>
 
+<div id="offlineBanner" class="offline-banner hidden">📡 You're offline — guest/local progress still works, but sign-in, sync, and reminders need internet.</div>
 <div class="bg-pattern" id="bgPattern"></div>
 <div class="bg-bubbles" id="bgBubbles"></div>
 
@@ -252,6 +253,7 @@
   <button class="back-link" onclick="showSubjectScreen()">← Change subject</button>
   <h2>Choose a chapter</h2>
   <p id="chapterSubtitle">Pick a chapter to begin your one-mark practice test</p>
+  <div id="upcomingTestBanner" class="upcoming-test-banner hidden"></div>
 
   <div class="featured-row tilt-parent">
     <div class="featured-card mixed tilt-card" onclick="selectMixedTest()">
@@ -353,6 +355,7 @@
         <button class="test-home-btn" onclick="confirmExitTest()" title="Go to Home">🏠 Home</button>
         <span id="qCounter">Question 1 / 10</span>
         <span class="timer" id="timerDisplay">10:00</span>
+        <button class="test-submit-btn" onclick="confirmSubmitTest()" title="Submit test now">✅ Submit</button>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:10%"></div></div>
     </div>
@@ -377,7 +380,7 @@
 <div id="submitModal" class="modal-overlay hidden">
   <div class="modal">
     <h3>Submit this test? 📝</h3>
-    <p>You won't be able to change your answers after submitting.</p>
+    <p id="submitModalMsg">You won't be able to change your answers after submitting.</p>
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
       <button class="btn btn-primary" onclick="submitTest()">Submit</button>
@@ -594,7 +597,10 @@
     <button class="admin-close" onclick="closeAdminLogin()">✕</button>
     <h3>Teacher Access</h3>
     <p class="admin-sub">Enter the teacher password to view all students' progress.</p>
-    <input type="password" id="adminPassword" class="admin-input" placeholder="Password" onkeydown="if(event.key==='Enter') adminLogin()">
+    <div class="pw-field-wrap">
+      <input type="password" id="adminPassword" class="admin-input" placeholder="Password" onkeydown="if(event.key==='Enter') adminLogin()" style="margin-bottom:0">
+      <button type="button" class="pw-toggle-btn" id="adminPwToggle" onclick="toggleAdminPasswordVisibility()" aria-label="Show password">👁️</button>
+    </div>
     <div class="admin-error" id="adminLoginError"></div>
     <button class="btn btn-primary" onclick="adminLogin()">Enter</button>
   </div>
@@ -672,6 +678,35 @@
         <thead><tr><th>Title</th><th>Class</th><th>Test Time</th><th>Reminder Sent At</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody id="reminderTableBody"><tr><td colspan="6">Loading…</td></tr></tbody>
       </table>
+    </div>
+  </div>
+
+  <div id="paperGeneratorSection" class="hidden">
+    <div class="admin-header" style="margin-top:28px">
+      <h2>📝 Generate Question Paper</h2>
+    </div>
+    <div class="admin-table-wrap" style="padding:18px;max-width:1000px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+        <div class="admin-field" style="flex:1;min-width:180px;margin-bottom:0">
+          <label for="paperSubject">Subject</label>
+          <select id="paperSubject" class="admin-input" style="margin-bottom:0"></select>
+        </div>
+        <div class="admin-field" style="flex:1;min-width:140px;margin-bottom:0">
+          <label for="paperTotal">Total marks</label>
+          <select id="paperTotal" class="admin-input" style="margin-bottom:0">
+            <option value="30">30 marks</option>
+            <option value="50">50 marks</option>
+            <option value="70" selected>70 marks</option>
+          </select>
+        </div>
+        <div class="admin-field" style="flex:2;min-width:220px;margin-bottom:0">
+          <label for="paperExamTitle">Exam title</label>
+          <input type="text" id="paperExamTitle" class="admin-input" placeholder="e.g. Quarterly Examination 2026" style="margin-bottom:0">
+        </div>
+      </div>
+      <div class="admin-error" id="paperFormError"></div>
+      <button class="btn btn-primary" onclick="generateQuestionPaper()">📤 Generate Paper (opens in new tab)</button>
+      <p style="font-size:.78rem;color:var(--muted);margin-top:10px">Opens a printable paper — use your browser's Print → Save as PDF. Currently only Computer Science has a real 2/3/5-mark question bank loaded (83 two-mark, 82 three-mark, 61 five-mark questions across all 16 chapters). Model answers for these aren't available yet, so the answer key page will note that for now.</p>
     </div>
   </div>
 
