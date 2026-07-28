@@ -5818,7 +5818,7 @@ window.addEventListener('offline', updateOfflineBanner);
      Duvan will show a friendly "try again in a bit" message instead of
      crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "AIzaSyC2pLr4kRH26bkOM73JW-Us6X029qaDp0E";
+const DUVAN_API_KEY = "AQ.Ab8RN6LfE1TziY4exEyElDE4CTSni-DZxcns55rbHTtDYs79dw";
 const DUVAN_MODEL = "gemini-2.5-flash";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
