@@ -4420,7 +4420,13 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     part1, part2, part3, part4,
     pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5], numerical: bank.numerical || [] },
     nums: { part1Start, part2Start, part3Start, part4Start },
-    numericalSlots: numericalCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null
+    numericalSlots: numericalCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null,
+    meta: {
+      examTitle, subjectName, totalMarks,
+      schoolName: 'Vethathiri Maharishi Higher Secondary School, S.V.G Puram',
+      part2CompulsoryNum, part3CompulsoryNum, numericalCompulsory,
+      part1Count: pattern.part1.count, part2ChooseAny: pattern.part2.chooseAny, part3ChooseAny: pattern.part3.chooseAny, part4Pairs: pattern.part4.pairs
+    }
   };
   // Safety: prevent a stray "</script>" inside any question text from
   // prematurely closing the inline <script> tag it's embedded in.
@@ -4495,7 +4501,80 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     '  var btn = e.target.closest(".repl-btn");',
     '  if(!btn) return;',
     '  doReplace(btn.getAttribute("data-kind"), parseInt(btn.getAttribute("data-idx"),10));',
-    '});'
+    '});',
+    '',
+    'function savePDF(){',
+    '  if(!window.jspdf){ alert("PDF library did not load — check your internet connection and try again."); return; }',
+    '  var docPdf = new window.jspdf.jsPDF({unit:"pt", format:"a4"});',
+    '  var pageW = docPdf.internal.pageSize.getWidth();',
+    '  var pageH = docPdf.internal.pageSize.getHeight();',
+    '  var margin = 42, maxW = pageW - margin*2, lineH = 13, y = margin;',
+    '  function ensureSpace(h){ if(y + h > pageH - margin){ docPdf.addPage(); y = margin; } }',
+    '  function addText(text, opts){',
+    '    opts = opts || {};',
+    '    docPdf.setFont("helvetica", opts.bold ? "bold" : (opts.italic ? "italic" : "normal"));',
+    '    docPdf.setFontSize(opts.size || 9.5);',
+    '    var lines = docPdf.splitTextToSize(text, maxW - (opts.indent||0));',
+    '    lines.forEach(function(line){',
+    '      ensureSpace(lineH);',
+    '      docPdf.text(line, margin + (opts.indent||0), y);',
+    '      y += lineH;',
+    '    });',
+    '  }',
+    '  function addCentered(text, opts){',
+    '    opts = opts || {};',
+    '    docPdf.setFont("helvetica", opts.bold ? "bold" : "normal");',
+    '    docPdf.setFontSize(opts.size || 9.5);',
+    '    ensureSpace(lineH);',
+    '    docPdf.text(text, pageW/2, y, {align:"center"});',
+    '    y += lineH;',
+    '  }',
+    '  var M = D.meta;',
+    '  addCentered(M.schoolName, {bold:true, size:12.5});',
+    '  addCentered(M.examTitle + " \u2014 " + M.subjectName, {bold:true, size:11});',
+    '  y += 2;',
+    '  addText("Time: 3 hrs (approx.)" + "                                                                    " + "Marks: " + M.totalMarks, {size:9});',
+    '  y += 4;',
+    '  addText("The question paper comprises of four parts. You are to attempt all the parts. An internal choice of questions is provided wherever applicable.", {italic:true, size:8});',
+    '  y += 8;',
+    '',
+    '  addText("Part I", {bold:true, size:11}); y += 1;',
+    '  addText("Question numbers " + D.nums.part1Start + " to " + (D.nums.part2Start-1) + " are Multiple Choice Questions of one mark each. Choose the most suitable answer from the given four alternatives and write the option code with the corresponding answer. " + M.part1Count + " \u00d7 1 = " + M.part1Count, {italic:true, size:8});',
+    '  D.part1.forEach(function(q,i){',
+    '    var num = D.nums.part1Start + i;',
+    '    addText(num + ". " + q.q, {size:9.5});',
+    '    if(q.options){',
+    '      var optLine = q.options.map(function(o,oi){ return "(" + String.fromCharCode(97+oi) + ") " + o; }).join("     ");',
+    '      addText(optLine, {size:9, indent:14});',
+    '    }',
+    '    y += 2;',
+    '  });',
+    '  y += 6;',
+    '',
+    '  addText("Part II", {bold:true, size:11}); y += 1;',
+    '  addText("Question numbers " + D.nums.part2Start + " to " + (D.nums.part3Start-1) + " are two-mark questions, to be answered in about one or two sentences each. Answer any " + M.part2ChooseAny + " questions. Question No. " + M.part2CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part2ChooseAny + " \u00d7 2 = " + (M.part2ChooseAny*2), {italic:true, size:8});',
+    '  D.part2.forEach(function(q,i){ addText((D.nums.part2Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
+    '  y += 6;',
+    '',
+    '  addText("Part III", {bold:true, size:11}); y += 1;',
+    '  addText("Question numbers " + D.nums.part3Start + " to " + (D.nums.part3Start+D.part3.length-1) + " are three-mark questions. Answer any " + M.part3ChooseAny + " questions. Question No. " + M.part3CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part3ChooseAny + " \u00d7 3 = " + (M.part3ChooseAny*3), {italic:true, size:8});',
+    '  D.part3.forEach(function(q,i){ addText((D.nums.part3Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
+    '  y += 6;',
+    '',
+    '  addText("Part IV", {bold:true, size:11}); y += 1;',
+    '  addText("Answer all questions, choosing either (a) or (b) in each. " + M.part4Pairs + " \u00d7 5 = " + (M.part4Pairs*5), {italic:true, size:8});',
+    '  D.part4.forEach(function(pair,i){',
+    '    var num = D.nums.part4Start + i;',
+    '    addText(num + ". (a) " + pair.qa.q, {size:9.5});',
+    '    addCentered("OR", {size:8.5, bold:true});',
+    '    addText(num + ". (b) " + pair.qb.q, {size:9.5});',
+    '    y += 4;',
+    '  });',
+    '',
+    '  var fname = (M.examTitle + "_" + M.subjectName).replace(/[^a-zA-Z0-9]+/g,"_") + ".pdf";',
+    '  docPdf.save(fname);',
+    '}',
+    'window.savePDF = savePDF;'
   ].join('\n');
 
   const part1Html = part1.map((q,i)=>`<div class="q" id="p1-${i}"></div>`).join('');
@@ -4506,6 +4585,7 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
   const initScript = 'D.part1.forEach((_,i)=>renderP1(i));D.part2.forEach((_,i)=>renderP2(i));D.part3.forEach((_,i)=>renderP3(i));D.part4.forEach((_,i)=>renderP4(i));';
 
   win.document.write(`<!DOCTYPE html><html><head><title>${esc(examTitle)} — ${esc(subjectName)}</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
   <style>
     body{font-family:Georgia,'Times New Roman',serif;max-width:800px;margin:30px auto;padding:0 20px;color:#111;line-height:1.5}
     .header{text-align:center;margin-bottom:20px;border-bottom:2px solid #111;padding-bottom:14px}
@@ -4519,11 +4599,17 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     .or{text-align:center;font-weight:bold;margin:4px 0}
     .repl-btn{font-family:sans-serif;font-size:.72rem;padding:2px 8px;margin-left:8px;border:1px solid #4F46E5;color:#4F46E5;background:#fff;border-radius:12px;cursor:pointer;vertical-align:middle}
     .repl-btn:hover{background:#EEF2FF}
-    .print-btn{position:fixed;top:12px;right:12px;padding:10px 16px;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.9rem}
-    @media print{ .print-btn,.repl-btn{display:none} }
+    .toolbar{position:fixed;top:12px;right:12px;display:flex;gap:8px;z-index:10}
+    .toolbar button{padding:10px 16px;border:none;border-radius:8px;cursor:pointer;font-size:.85rem;font-family:sans-serif;font-weight:600}
+    .print-btn{background:#fff;color:#4F46E5;border:1.5px solid #4F46E5!important}
+    .save-btn{background:#4F46E5;color:#fff}
+    @media print{ .toolbar,.repl-btn{display:none} }
   </style></head>
   <body>
-    <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <div class="toolbar">
+      <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+      <button class="save-btn" onclick="savePDF()">💾 Save as PDF</button>
+    </div>
     <div class="header">
       <div class="school">Vethathiri Maharishi Higher Secondary School, S.V.G Puram</div>
       <h1>${esc(examTitle)} — ${esc(subjectName)}</h1>
