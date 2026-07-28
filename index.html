@@ -723,6 +723,36 @@
   </div>
 </div>
 
+<!-- Duvan — AI Doubt Assistant -->
+<button id="duvanFab" class="duvan-fab" onclick="toggleDuvanChat()" title="Ask Duvan">
+  <span id="duvanFabIcon">💬</span>
+</button>
+
+<div id="duvanPanel" class="duvan-panel hidden">
+  <div class="duvan-header">
+    <div class="duvan-header-title">
+      <span class="duvan-avatar">🤖</span>
+      <div>
+        <b>Duvan</b>
+        <span>Ask me any doubt</span>
+      </div>
+    </div>
+    <div class="duvan-header-actions">
+      <button class="duvan-icon-btn" onclick="clearDuvanChat()" title="Clear chat">🗑️</button>
+      <button class="duvan-icon-btn" onclick="toggleDuvanChat()" title="Close">✕</button>
+    </div>
+  </div>
+  <div class="duvan-messages" id="duvanMessages">
+    <div class="duvan-msg duvan-msg-bot">
+      Hi! I'm Duvan 👋 Ask me any doubt about Computer Science, Maths, Physics, Chemistry or Commerce — I'll do my best to explain it clearly.
+    </div>
+  </div>
+  <div class="duvan-input-row">
+    <textarea id="duvanInput" class="duvan-input" placeholder="Type your doubt…" rows="1" onkeydown="handleDuvanKeydown(event)"></textarea>
+    <button class="duvan-send-btn" id="duvanSendBtn" onclick="sendDuvanMessage()" title="Send">➤</button>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
