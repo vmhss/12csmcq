@@ -1027,6 +1027,11 @@ html[data-fontsize="large"]{font-size:126%}
 .duvan-send-btn:disabled{opacity:.5;cursor:not-allowed}
 
 @media (max-width:480px){
-  .duvan-panel{right:12px;left:12px;width:auto;bottom:82px;height:calc(100vh - 150px)}
+  .duvan-panel{
+    right:12px;left:12px;width:auto;bottom:82px;
+    height:calc(100vh - 150px);
+    height:calc(100dvh - 150px); /* dynamic viewport height: accounts for mobile browser chrome */
+    max-height:calc(100dvh - 150px);
+  }
   .duvan-fab{right:14px;bottom:14px}
 }
