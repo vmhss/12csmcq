@@ -5783,3 +5783,179 @@ window.addEventListener('offline', updateOfflineBanner);
   refreshNavGamificationChips();
   updateOfflineBanner();
 })();
+
+/* ================= DUVAN — AI DOUBT ASSISTANT (Gemini API) ================= */
+/*
+  SETUP:
+  1. Get a free API key at https://aistudio.google.com/apikey
+  2. Paste it below in place of "PASTE_YOUR_GEMINI_API_KEY_HERE"
+  3. IMPORTANT — this is a static site, so this key is visible to anyone who
+     views the page source. To stop it being copied and abused elsewhere:
+       - In Google AI Studio / Google Cloud Console, open the key's settings
+       - Under "API restrictions", limit it to the Generative Language API
+       - Under "Application restrictions", choose "Websites" and add your
+         site's exact URL, e.g. https://sparkx-svg.github.io/*
+     This makes the key only work when called from your own site.
+  4. The free tier has a daily/per-minute request limit. If it's exceeded,
+     Duvan will show a friendly "try again in a bit" message instead of
+     crashing — no charges, it just pauses until the quota resets.
+*/
+const DUVAN_API_KEY = "AQ.Ab8RN6KyI6ExSaS02KWKn2t63CN5asQvf_SNqKG2n8jBQuuRDQ";
+const DUVAN_MODEL = "gemini-2.5-flash";
+const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
+
+let duvanHistory = []; // { role: 'user'|'model', text: '...' }
+let duvanOpen = false;
+let duvanBusy = false;
+
+function toggleDuvanChat(){
+  duvanOpen = !duvanOpen;
+  const panel = document.getElementById('duvanPanel');
+  const icon = document.getElementById('duvanFabIcon');
+  if(!panel) return;
+  panel.classList.toggle('hidden', !duvanOpen);
+  if(icon) icon.textContent = duvanOpen ? '✕' : '💬';
+  if(duvanOpen){
+    const input = document.getElementById('duvanInput');
+    if(input) setTimeout(()=>input.focus(), 150);
+    scrollDuvanToBottom();
+  }
+}
+
+function handleDuvanKeydown(e){
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    sendDuvanMessage();
+  }
+}
+
+function clearDuvanChat(){
+  duvanHistory = [];
+  const wrap = document.getElementById('duvanMessages');
+  if(wrap){
+    wrap.innerHTML = '<div class="duvan-msg duvan-msg-bot">Chat cleared! Ask me anything about your subjects. 😊</div>';
+  }
+}
+
+function scrollDuvanToBottom(){
+  const wrap = document.getElementById('duvanMessages');
+  if(wrap) wrap.scrollTop = wrap.scrollHeight;
+}
+
+function appendDuvanMessage(text, cls){
+  const wrap = document.getElementById('duvanMessages');
+  if(!wrap) return null;
+  const el = document.createElement('div');
+  el.className = 'duvan-msg ' + cls;
+  el.textContent = text;
+  wrap.appendChild(el);
+  scrollDuvanToBottom();
+  return el;
+}
+
+function showDuvanTyping(){
+  const wrap = document.getElementById('duvanMessages');
+  if(!wrap) return null;
+  const el = document.createElement('div');
+  el.className = 'duvan-typing';
+  el.id = 'duvanTypingIndicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  wrap.appendChild(el);
+  scrollDuvanToBottom();
+  return el;
+}
+
+function removeDuvanTyping(){
+  const el = document.getElementById('duvanTypingIndicator');
+  if(el) el.remove();
+}
+
+async function sendDuvanMessage(){
+  if(duvanBusy) return;
+  const input = document.getElementById('duvanInput');
+  const sendBtn = document.getElementById('duvanSendBtn');
+  if(!input) return;
+  const text = input.value.trim();
+  if(!text) return;
+
+  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GEMINI_API_KEY_HERE"){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Gemini API key in script.js.", 'duvan-msg-error');
+    return;
+  }
+
+  input.value = '';
+  input.style.height = 'auto';
+  appendDuvanMessage(text, 'duvan-msg-user');
+  duvanHistory.push({ role: 'user', text });
+
+  duvanBusy = true;
+  if(sendBtn) sendBtn.disabled = true;
+  showDuvanTyping();
+
+  try{
+    const contents = duvanHistory.map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      parts: [{ text: m.text }]
+    }));
+
+    const resp = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent?key=${DUVAN_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents,
+          systemInstruction: { parts: [{ text: DUVAN_SYSTEM_PROMPT }] },
+          generationConfig: { temperature: 0.6, maxOutputTokens: 800 }
+        })
+      }
+    );
+
+    const data = await resp.json();
+    removeDuvanTyping();
+
+    if(!resp.ok){
+      const status = resp.status;
+      if(status === 429){
+        appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
+      } else {
+        console.error('Duvan API error:', data);
+        appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
+      }
+      duvanHistory.pop(); // don't keep the failed turn in context
+      return;
+    }
+
+    const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+    if(!reply){
+      appendDuvanMessage("Hmm, I couldn't come up with an answer for that. Could you rephrase your doubt?", 'duvan-msg-error');
+      duvanHistory.pop();
+      return;
+    }
+
+    appendDuvanMessage(reply, 'duvan-msg-bot');
+    duvanHistory.push({ role: 'model', text: reply });
+
+    // keep context window small
+    if(duvanHistory.length > 20) duvanHistory = duvanHistory.slice(-20);
+
+  } catch(err){
+    removeDuvanTyping();
+    console.error('Duvan fetch error:', err);
+    appendDuvanMessage("Couldn't reach Duvan — check your internet connection and try again.", 'duvan-msg-error');
+    duvanHistory.pop();
+  } finally{
+    duvanBusy = false;
+    if(sendBtn) sendBtn.disabled = false;
+  }
+}
+
+// auto-grow the textarea as the student types
+(function initDuvanInput(){
+  document.addEventListener('input', function(e){
+    if(e.target && e.target.id === 'duvanInput'){
+      e.target.style.height = 'auto';
+      e.target.style.height = Math.min(e.target.scrollHeight, 90) + 'px';
+    }
+  });
+})();
