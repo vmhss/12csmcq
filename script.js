@@ -4705,6 +4705,24 @@ function switchScreen(showId, fromPopState){
   if(!fromPopState){
     try{ history.pushState({screen:showId}, '', location.pathname+location.search); }catch(e){}
   }
+  // Duvan (the AI doubt assistant) must never appear while a test is in progress
+  setDuvanVisible(showId !== 'testScreen');
+}
+
+function setDuvanVisible(visible){
+  const fab = document.getElementById('duvanFab');
+  const panel = document.getElementById('duvanPanel');
+  if(!fab) return;
+  if(visible){
+    fab.classList.remove('hidden');
+  } else {
+    fab.classList.add('hidden');
+    // force-close the chat panel too, so it can't be left open behind the test
+    if(panel) panel.classList.add('hidden');
+    duvanOpen = false;
+    const icon = document.getElementById('duvanFabIcon');
+    if(icon) icon.textContent = '💬';
+  }
 }
 
 window.addEventListener('popstate', function(e){
@@ -5819,8 +5837,42 @@ function toggleDuvanChat(){
     const input = document.getElementById('duvanInput');
     if(input) setTimeout(()=>input.focus(), 150);
     scrollDuvanToBottom();
+    adjustDuvanForKeyboard();
   }
 }
+
+/* ---------------- Keep the panel/input properly positioned on mobile
+   when the on-screen keyboard opens. Mobile browsers shrink the visual
+   viewport (not the CSS 100vh layout viewport) when the keyboard shows,
+   which is what pushes the input row out of alignment / off-screen.
+   We listen to the VisualViewport API and reposition the panel to
+   always sit fully inside whatever space is actually visible. ---------------- */
+function adjustDuvanForKeyboard(){
+  const panel = document.getElementById('duvanPanel');
+  const fab = document.getElementById('duvanFab');
+  if(!panel) return;
+  const vv = window.visualViewport;
+  if(!vv){ return; }
+
+  const isMobile = window.innerWidth <= 480;
+  const keyboardGap = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+  const baseBottom = isMobile ? 82 : 90;
+  const baseFabBottom = isMobile ? 14 : 20;
+
+  if(!panel.classList.contains('hidden')){
+    panel.style.bottom = (baseBottom + keyboardGap) + 'px';
+    panel.style.maxHeight = (vv.height - 30) + 'px';
+  }
+  if(fab && !fab.classList.contains('hidden')){
+    fab.style.bottom = (baseFabBottom + keyboardGap) + 'px';
+  }
+}
+
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize', adjustDuvanForKeyboard);
+  window.visualViewport.addEventListener('scroll', adjustDuvanForKeyboard);
+}
+window.addEventListener('orientationchange', ()=>setTimeout(adjustDuvanForKeyboard, 200));
 
 function handleDuvanKeydown(e){
   if(e.key === 'Enter' && !e.shiftKey){
@@ -5899,10 +5951,13 @@ async function sendDuvanMessage(){
     }));
 
     const resp = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent?key=${DUVAN_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent`,
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': DUVAN_API_KEY
+        },
         body: JSON.stringify({
           contents,
           systemInstruction: { parts: [{ text: DUVAN_SYSTEM_PROMPT }] },
@@ -5916,10 +5971,15 @@ async function sendDuvanMessage(){
 
     if(!resp.ok){
       const status = resp.status;
+      // Log the full error so the real cause (bad key, restricted key,
+      // disabled API, quota, etc.) is visible in the browser console
+      // instead of only ever showing a generic message.
+      console.error('Duvan API error:', status, data);
       if(status === 429){
         appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
+      } else if(status === 400 || status === 401 || status === 403){
+        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Gemini API key (it may be invalid, restricted to a different website, or the Generative Language API isn't enabled for it). Details are in the browser console.", 'duvan-msg-error');
       } else {
-        console.error('Duvan API error:', data);
         appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
       }
       duvanHistory.pop(); // don't keep the failed turn in context
