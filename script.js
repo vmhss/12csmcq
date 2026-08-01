@@ -5802,24 +5802,20 @@ window.addEventListener('offline', updateOfflineBanner);
   updateOfflineBanner();
 })();
 
-/* ================= DUVAN — AI DOUBT ASSISTANT (Gemini API) ================= */
+/* ================= DUVAN — AI DOUBT ASSISTANT (Anthropic Claude API) ================= */
 /*
   SETUP:
-  1. Get a free API key at https://aistudio.google.com/apikey
-  2. Paste it below in place of "PASTE_YOUR_GEMINI_API_KEY_HERE"
+  1. Get a free API key at https://console.anthropic.com/
+  2. Paste it below in place of "PASTE_YOUR_ANTHROPIC_API_KEY_HERE"
   3. IMPORTANT — this is a static site, so this key is visible to anyone who
-     views the page source. To stop it being copied and abused elsewhere:
-       - In Google AI Studio / Google Cloud Console, open the key's settings
-       - Under "API restrictions", limit it to the Generative Language API
-       - Under "Application restrictions", choose "Websites" and add your
-         site's exact URL, e.g. https://sparkx-svg.github.io/*
-     This makes the key only work when called from your own site.
-  4. The free tier has a daily/per-minute request limit. If it's exceeded,
-     Duvan will show a friendly "try again in a bit" message instead of
-     crashing — no charges, it just pauses until the quota resets.
+     views the page source. To restrict usage:
+       - In the Anthropic Console, go to API Keys settings
+       - Set spending limits to control costs
+       - The free tier gives $5 in free credits to start
+  4. If the quota is exceeded, Duvan will show a friendly message instead of crashing.
 */
-const DUVAN_API_KEY = "AQ.Ab8RN6LXMJhmuK47YVmCwswmNZH9y2TaWo7rhRKYffIl8SOKiA";
-const DUVAN_MODEL = "gemini-2.5-flash";
+const DUVAN_API_KEY = "PASTE_YOUR_ANTHROPIC_API_KEY_HERE";
+const DUVAN_MODEL = "claude-sonnet-4-6";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
 let duvanHistory = []; // { role: 'user'|'model', text: '...' }
@@ -5930,38 +5926,42 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GEMINI_API_KEY_HERE"){
-    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Gemini API key in script.js.", 'duvan-msg-error');
+  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_ANTHROPIC_API_KEY_HERE"){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add an Anthropic API key in script.js.", 'duvan-msg-error');
     return;
   }
 
   input.value = '';
   input.style.height = 'auto';
   appendDuvanMessage(text, 'duvan-msg-user');
-  duvanHistory.push({ role: 'user', text });
+  duvanHistory.push({ role: 'user', content: text });
 
   duvanBusy = true;
   if(sendBtn) sendBtn.disabled = true;
   showDuvanTyping();
 
   try{
-    const contents = duvanHistory.map(m => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.text }]
+    // Build messages array for Anthropic API (alternating user/assistant)
+    const messages = duvanHistory.map(m => ({
+      role: m.role === 'user' ? 'user' : 'assistant',
+      content: m.content
     }));
 
     const resp = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent`,
+      'https://api.anthropic.com/v1/messages',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-goog-api-key': DUVAN_API_KEY
+          'x-api-key': DUVAN_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
         },
         body: JSON.stringify({
-          contents,
-          systemInstruction: { parts: [{ text: DUVAN_SYSTEM_PROMPT }] },
-          generationConfig: { temperature: 0.6, maxOutputTokens: 800 }
+          model: DUVAN_MODEL,
+          max_tokens: 800,
+          system: DUVAN_SYSTEM_PROMPT,
+          messages
         })
       }
     );
@@ -5971,22 +5971,19 @@ async function sendDuvanMessage(){
 
     if(!resp.ok){
       const status = resp.status;
-      // Log the full error so the real cause (bad key, restricted key,
-      // disabled API, quota, etc.) is visible in the browser console
-      // instead of only ever showing a generic message.
       console.error('Duvan API error:', status, data);
       if(status === 429){
-        appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
-      } else if(status === 400 || status === 401 || status === 403){
-        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Gemini API key (it may be invalid, restricted to a different website, or the Generative Language API isn't enabled for it). Details are in the browser console.", 'duvan-msg-error');
+        appendDuvanMessage("Duvan is getting a lot of questions right now (rate limit reached). Please try again in a minute. ⏳", 'duvan-msg-error');
+      } else if(status === 401 || status === 403){
+        appendDuvanMessage("Duvan can't be reached — the API key may be invalid. Please check the Anthropic API key in script.js.", 'duvan-msg-error');
       } else {
         appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
       }
-      duvanHistory.pop(); // don't keep the failed turn in context
+      duvanHistory.pop();
       return;
     }
 
-    const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+    const reply = data?.content?.map(c => c.text || '').join('') || '';
     if(!reply){
       appendDuvanMessage("Hmm, I couldn't come up with an answer for that. Could you rephrase your doubt?", 'duvan-msg-error');
       duvanHistory.pop();
@@ -5994,7 +5991,7 @@ async function sendDuvanMessage(){
     }
 
     appendDuvanMessage(reply, 'duvan-msg-bot');
-    duvanHistory.push({ role: 'model', text: reply });
+    duvanHistory.push({ role: 'assistant', content: reply });
 
     // keep context window small
     if(duvanHistory.length > 20) duvanHistory = duvanHistory.slice(-20);
