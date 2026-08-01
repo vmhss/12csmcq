@@ -3591,12 +3591,13 @@ function continueAsGuest(){
 
 /* ================= FIREBASE — Google Sign-In ================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyC2pLr4kRH26bkOM73JW-Us6X029qaDp0E",
-  authDomain: "onemarkvmhss.firebaseapp.com",
-  projectId: "onemarkvmhss",
-  storageBucket: "onemarkvmhss.firebasestorage.app",
-  messagingSenderId: "372823957264",
-  appId: "1:372823957264:web:a1a8742ff4a1caaab80f95"
+  apiKey: "AIzaSyAeTikpnQ-vlfp9oszV3XO8CiaOjmvkEYM",
+  authDomain: "vmhssmcq.firebaseapp.com",
+  projectId: "vmhssmcq",
+  storageBucket: "vmhssmcq.firebasestorage.app",
+  messagingSenderId: "290024556016",
+  appId: "1:290024556016:web:12378648bea9e491a60935",
+  measurementId: "G-G3MHG5L9GP"
 };
 firebase.initializeApp(firebaseConfig);
 const fbAuth = firebase.auth();
