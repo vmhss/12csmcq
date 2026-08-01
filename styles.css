@@ -970,14 +970,14 @@ html[data-fontsize="large"]{font-size:126%}
 /* ================= DUVAN — AI DOUBT ASSISTANT ================= */
 .duvan-fab{
   position:fixed;right:20px;bottom:20px;z-index:9990;
-  width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--primary),var(--purple));
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  background:#fff;
   color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;
   box-shadow:0 8px 24px rgba(var(--glow-rgb),.45);
   transition:transform .2s ease,box-shadow .2s ease;
-  padding:12px;
+  padding:0;overflow:hidden;
 }
-.duvan-fab img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));}
+.duvan-fab img{display:block;width:56px;height:56px;max-width:56px;max-height:56px;object-fit:cover;border-radius:50%;}
 .duvan-fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 12px 28px rgba(var(--glow-rgb),.55)}
 .duvan-fab:active{transform:scale(.94)}
 .duvan-fab.is-open img{transform:rotate(90deg);transition:transform .2s ease}
@@ -998,8 +998,8 @@ html[data-fontsize="large"]{font-size:126%}
   padding:14px 16px;background:linear-gradient(135deg,var(--primary),var(--purple));color:#fff;flex-shrink:0;
 }
 .duvan-header-title{display:flex;align-items:center;gap:10px}
-.duvan-avatar{font-size:1.4rem;background:rgba(255,255,255,.2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:6px}
-.duvan-avatar-img{width:100%;height:100%;object-fit:contain}
+.duvan-avatar{background:#fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;padding:0}
+.duvan-avatar-img{display:block;width:34px;height:34px;max-width:34px;max-height:34px;object-fit:cover;border-radius:50%}
 .duvan-header-title b{display:block;font-family:var(--font-head);font-size:.95rem;line-height:1.3}
 .duvan-header-title span{display:block;font-size:.72rem;opacity:.85}
 .duvan-header-actions{display:flex;gap:6px}
