@@ -2807,6 +2807,26 @@ const DESCRIPTIVE_QUESTIONS = {
       {chapter:"Data Visualization using Python", q:"Explain in detail the types of pyplots using Matplotlib.", a:""},
       {chapter:"Data Visualization using Python", q:"Explain the various buttons in a matplotlib window.", a:""},
       {chapter:"Data Visualization using Python", q:"Explain the purpose of the following functions: a. plt.xlabel b. plt.ylabel c. plt.title d. plt.legend() e. plt.show()", a:""},
+    ],
+    /* Dedicated program-writing pool. When present (>=2 questions), the
+       generator always places one of these as the LAST question in Part II
+       (2-mark) and Part III (3-mark), and marks that question as the
+       Compulsory Question — matching how real TN board CS papers require
+       a program-writing question to be compulsory in each part. */
+    program: [
+      {chapter:"Control Structures", q:"Write a Python program to check whether a given number is prime or not.", a:""},
+      {chapter:"Control Structures", q:"Write a Python program to find the sum of digits of a given number.", a:""},
+      {chapter:"Python Functions", q:"Write a Python program using a function to find the factorial of a given number.", a:""},
+      {chapter:"Python Functions", q:"Write a Python program using a function to check whether a given string is a palindrome or not.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a Python program to count the number of vowels present in a given string.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a Python program to reverse a given string using slicing.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write a Python program to find the largest and smallest number in a given list.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write a Python program to count the frequency of each element in a given list.", a:""},
+      {chapter:"Python Classes and Objects", q:"Write a Python program using a class to accept and display the details of a student (name, roll number and marks).", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to write a list of records into a CSV file.", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to read a CSV file and display its contents.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write a Python program to implement linear search on a list of numbers.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write a Python program to implement bubble sort on a list of numbers.", a:""},
     ]
   },
   physics: {
@@ -4395,6 +4415,16 @@ function generateQuestionPaper(){
     part2CompulsoryPos = part2.length;
     part3CompulsoryPos = part3.length;
   }
+  // Subjects with a dedicated program-writing pool (Computer Science) work
+  // the same way: the last question in Part II and Part III is always a
+  // program question, and it's marked as the Compulsory Question.
+  else if(bank.program && bank.program.length >= 2){
+    const programsPicked = shuffle(bank.program).slice(0, 2);
+    part2[part2.length-1] = programsPicked[0];
+    part3[part3.length-1] = programsPicked[1];
+    part2CompulsoryPos = part2.length;
+    part3CompulsoryPos = part3.length;
+  }
 
   openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank});
 }
@@ -4417,15 +4447,18 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
   // own script can swap any single question for another one on demand,
   // without re-opening/regenerating the whole paper.
   const numericalCompulsory = !!(bank.numerical && bank.numerical.length >= 2);
+  const programCompulsory = !numericalCompulsory && !!(bank.program && bank.program.length >= 2);
+  const compulsoryTag = numericalCompulsory ? 'numerical problem' : (programCompulsory ? 'Program \u2013 Compulsory Question' : '');
   const clientData = {
     part1, part2, part3, part4,
-    pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5], numerical: bank.numerical || [] },
+    pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5], numerical: bank.numerical || [], program: bank.program || [] },
     nums: { part1Start, part2Start, part3Start, part4Start },
     numericalSlots: numericalCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null,
+    programSlots: programCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null,
     meta: {
       examTitle, subjectName, totalMarks,
       schoolName: 'Vethathiri Maharishi Higher Secondary School, S.V.G Puram',
-      part2CompulsoryNum, part3CompulsoryNum, numericalCompulsory,
+      part2CompulsoryNum, part3CompulsoryNum, numericalCompulsory, programCompulsory, compulsoryTag,
       part1Count: pattern.part1.count, part2ChooseAny: pattern.part2.chooseAny, part3ChooseAny: pattern.part3.chooseAny, part4Pairs: pattern.part4.pairs
     }
   };
@@ -4484,13 +4517,18 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     '    (kind==="p2" && idx===D.numericalSlots.p2) ||',
     '    (kind==="p3" && idx===D.numericalSlots.p3)',
     '  );',
+    '  var forceProgram = D.programSlots && (',
+    '    (kind==="p2" && idx===D.programSlots.p2) ||',
+    '    (kind==="p3" && idx===D.programSlots.p3)',
+    '  );',
     '  if(forceNumerical){ pool = D.pools.numerical; }',
+    '  else if(forceProgram){ pool = D.pools.program; }',
     '  else if(kind==="p1"){ pool=D.pools.p1; }',
     '  else if(kind==="p2"){ pool=D.pools.p2; }',
     '  else if(kind==="p3"){ pool=D.pools.p3; }',
     '  else if(kind==="p5a" || kind==="p5b"){ pool=D.pools.p5; }',
     '  var repl = pickReplacement(pool);',
-    '  if(!repl){ alert(forceNumerical ? "No more unused numerical questions available to swap in." : "No more unused questions available in this bank to swap in."); return; }',
+    '  if(!repl){ alert(forceNumerical ? "No more unused numerical questions available to swap in." : (forceProgram ? "No more unused program questions available to swap in." : "No more unused questions available in this bank to swap in.")); return; }',
     '  if(kind==="p1"){ D.part1[idx]=repl; renderP1(idx); }',
     '  else if(kind==="p2"){ D.part2[idx]=repl; renderP2(idx); }',
     '  else if(kind==="p3"){ D.part3[idx]=repl; renderP3(idx); }',
@@ -4553,12 +4591,12 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     '  y += 6;',
     '',
     '  addText("Part II", {bold:true, size:11}); y += 1;',
-    '  addText("Question numbers " + D.nums.part2Start + " to " + (D.nums.part3Start-1) + " are two-mark questions, to be answered in about one or two sentences each. Answer any " + M.part2ChooseAny + " questions. Question No. " + M.part2CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part2ChooseAny + " \u00d7 2 = " + (M.part2ChooseAny*2), {italic:true, size:8});',
+    '  addText("Question numbers " + D.nums.part2Start + " to " + (D.nums.part3Start-1) + " are two-mark questions, to be answered in about one or two sentences each. Answer any " + M.part2ChooseAny + " questions. Question No. " + M.part2CompulsoryNum + " is compulsory" + (M.compulsoryTag ? " (" + M.compulsoryTag + ")" : "") + ". " + M.part2ChooseAny + " \u00d7 2 = " + (M.part2ChooseAny*2), {italic:true, size:8});',
     '  D.part2.forEach(function(q,i){ addText((D.nums.part2Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
     '  y += 6;',
     '',
     '  addText("Part III", {bold:true, size:11}); y += 1;',
-    '  addText("Question numbers " + D.nums.part3Start + " to " + (D.nums.part3Start+D.part3.length-1) + " are three-mark questions. Answer any " + M.part3ChooseAny + " questions. Question No. " + M.part3CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part3ChooseAny + " \u00d7 3 = " + (M.part3ChooseAny*3), {italic:true, size:8});',
+    '  addText("Question numbers " + D.nums.part3Start + " to " + (D.nums.part3Start+D.part3.length-1) + " are three-mark questions. Answer any " + M.part3ChooseAny + " questions. Question No. " + M.part3CompulsoryNum + " is compulsory" + (M.compulsoryTag ? " (" + M.compulsoryTag + ")" : "") + ". " + M.part3ChooseAny + " \u00d7 3 = " + (M.part3ChooseAny*3), {italic:true, size:8});',
     '  D.part3.forEach(function(q,i){ addText((D.nums.part3Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
     '  y += 6;',
     '',
@@ -4623,11 +4661,11 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     ${part1Html}
 
     <div class="part-title">Part II</div>
-    <div class="part-note">Question numbers ${part2Start} to ${part3Start-1} are two-mark questions, to be answered in about one or two sentences each. Answer any ${pattern.part2.chooseAny} questions. Question No. ${part2CompulsoryNum} is compulsory${numericalCompulsory ? ' (numerical problem)' : ''}. ${pattern.part2.chooseAny} × 2 = ${pattern.part2.chooseAny*2}</div>
+    <div class="part-note">Question numbers ${part2Start} to ${part3Start-1} are two-mark questions, to be answered in about one or two sentences each. Answer any ${pattern.part2.chooseAny} questions. Question No. ${part2CompulsoryNum} is compulsory${compulsoryTag ? ` (${compulsoryTag})` : ''}. ${pattern.part2.chooseAny} × 2 = ${pattern.part2.chooseAny*2}</div>
     ${part2Html}
 
     <div class="part-title">Part III</div>
-    <div class="part-note">Question numbers ${part3Start} to ${part3Start+part3.length-1} are three-mark questions. Answer any ${pattern.part3.chooseAny} questions. Question No. ${part3CompulsoryNum} is compulsory${numericalCompulsory ? ' (numerical problem)' : ''}. ${pattern.part3.chooseAny} × 3 = ${pattern.part3.chooseAny*3}</div>
+    <div class="part-note">Question numbers ${part3Start} to ${part3Start+part3.length-1} are three-mark questions. Answer any ${pattern.part3.chooseAny} questions. Question No. ${part3CompulsoryNum} is compulsory${compulsoryTag ? ` (${compulsoryTag})` : ''}. ${pattern.part3.chooseAny} × 3 = ${pattern.part3.chooseAny*3}</div>
     ${part3Html}
 
     <div class="part-title">Part IV</div>
