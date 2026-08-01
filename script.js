@@ -5802,24 +5802,23 @@ window.addEventListener('offline', updateOfflineBanner);
   updateOfflineBanner();
 })();
 
-/* ================= DUVAN — AI DOUBT ASSISTANT (Gemini API) ================= */
+/* ================= DUVAN — AI DOUBT ASSISTANT (Groq API) ================= */
 /*
   SETUP:
-  1. Get a free API key at https://aistudio.google.com/apikey
-  2. Paste it below in place of "PASTE_YOUR_GEMINI_API_KEY_HERE"
+  1. Get a free API key at https://console.groq.com/keys (no credit card needed)
+  2. Paste it below in place of "PASTE_YOUR_GROQ_API_KEY_HERE"
   3. IMPORTANT — this is a static site, so this key is visible to anyone who
-     views the page source. To stop it being copied and abused elsewhere:
-       - In Google AI Studio / Google Cloud Console, open the key's settings
-       - Under "API restrictions", limit it to the Generative Language API
-       - Under "Application restrictions", choose "Websites" and add your
-         site's exact URL, e.g. https://sparkx-svg.github.io/*
-     This makes the key only work when called from your own site.
+     views the page source. To limit abuse:
+       - Groq doesn't support domain-restricted keys yet, so the main
+         protection is simply not exposing large limits — the free tier
+         itself acts as a natural cap.
+       - Rotate the key if you ever suspect misuse (console.groq.com/keys).
   4. The free tier has a daily/per-minute request limit. If it's exceeded,
      Duvan will show a friendly "try again in a bit" message instead of
      crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "AQ.Ab8RN6JxKijNrS2yuagM9F407QIRouMx0bYkJTN8qUtdd3ibpA";
-const DUVAN_MODEL = "gemini-2.5-flash";
+const DUVAN_API_KEY = "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";
+const DUVAN_MODEL = "llama-3.3-70b-versatile";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
 let duvanHistory = []; // { role: 'user'|'model', text: '...' }
@@ -5930,8 +5929,8 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GEMINI_API_KEY_HERE"){
-    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Gemini API key in script.js.", 'duvan-msg-error');
+  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GROQ_API_KEY_HERE"){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Groq API key in script.js.", 'duvan-msg-error');
     return;
   }
 
@@ -5945,23 +5944,28 @@ async function sendDuvanMessage(){
   showDuvanTyping();
 
   try{
-    const contents = duvanHistory.map(m => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.text }]
-    }));
+    // Groq uses the OpenAI-compatible chat completions format
+    const messages = [
+      { role: 'system', content: DUVAN_SYSTEM_PROMPT },
+      ...duvanHistory.map(m => ({
+        role: m.role === 'user' ? 'user' : 'assistant',
+        content: m.text
+      }))
+    ];
 
     const resp = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent`,
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-goog-api-key': DUVAN_API_KEY
+          'Authorization': `Bearer ${DUVAN_API_KEY}`
         },
         body: JSON.stringify({
-          contents,
-          systemInstruction: { parts: [{ text: DUVAN_SYSTEM_PROMPT }] },
-          generationConfig: { temperature: 0.6, maxOutputTokens: 800 }
+          model: DUVAN_MODEL,
+          messages,
+          temperature: 0.6,
+          max_tokens: 800
         })
       }
     );
@@ -5971,14 +5975,14 @@ async function sendDuvanMessage(){
 
     if(!resp.ok){
       const status = resp.status;
-      // Log the full error so the real cause (bad key, restricted key,
-      // disabled API, quota, etc.) is visible in the browser console
-      // instead of only ever showing a generic message.
+      // Log the full error so the real cause (bad key, disabled model,
+      // quota, etc.) is visible in the browser console instead of only
+      // ever showing a generic message.
       console.error('Duvan API error:', status, data);
       if(status === 429){
         appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
       } else if(status === 400 || status === 401 || status === 403){
-        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Gemini API key (it may be invalid, restricted to a different website, or the Generative Language API isn't enabled for it). Details are in the browser console.", 'duvan-msg-error');
+        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Groq API key in script.js. Details are in the browser console.", 'duvan-msg-error');
       } else {
         appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
       }
@@ -5986,7 +5990,7 @@ async function sendDuvanMessage(){
       return;
     }
 
-    const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+    const reply = data?.choices?.[0]?.message?.content || '';
     if(!reply){
       appendDuvanMessage("Hmm, I couldn't come up with an answer for that. Could you rephrase your doubt?", 'duvan-msg-error');
       duvanHistory.pop();
