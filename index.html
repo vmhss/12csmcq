@@ -690,7 +690,7 @@
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
         <div class="admin-field" style="flex:1;min-width:180px;margin-bottom:0">
           <label for="paperSubject">Subject</label>
-          <select id="paperSubject" class="admin-input" style="margin-bottom:0"></select>
+          <select id="paperSubject" class="admin-input" style="margin-bottom:0" onchange="populatePaperChapters()"></select>
         </div>
         <div class="admin-field" style="flex:1;min-width:140px;margin-bottom:0">
           <label for="paperTotal">Total marks</label>
@@ -706,6 +706,14 @@
         </div>
       </div>
       <div class="admin-error" id="paperFormError"></div>
+      <div class="admin-field" id="paperChaptersWrap" style="margin-bottom:14px;display:none">
+        <label>Lessons <span style="font-weight:400;color:var(--muted)">(optional — leave all selected to use the whole subject)</span></label>
+        <div style="display:flex;gap:8px;margin:4px 0 8px">
+          <button type="button" class="btn btn-outline btn-sm" onclick="toggleAllPaperChapters(true)">Select All</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="toggleAllPaperChapters(false)">Clear All</button>
+        </div>
+        <div class="lesson-pick-list" id="paperChapterList"></div>
+      </div>
       <button class="btn btn-primary" onclick="generateQuestionPaper()">📤 Generate Paper (opens in new tab)</button>
       <p style="font-size:.78rem;color:var(--muted);margin-top:10px">Opens a printable paper — use your browser's Print → Save as PDF. Computer Science (83 two-mark, 82 three-mark, 61 five-mark) and Physics (254 two-mark, 153 three-mark, 43 numericals across all 11 chapters) have real question banks loaded. For Physics, the last question shown in Part II and Part III is always a numerical problem and marked compulsory, matching the TN board pattern. A few Physics numericals with figures/circuit diagrams were left out where the text extraction was unreliable — worth a quick review before high-stakes use. Model answers aren't available for either subject yet, so no answer key is shown.</p>
     </div>
