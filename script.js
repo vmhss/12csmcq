@@ -4720,8 +4720,7 @@ function setDuvanVisible(visible){
     // force-close the chat panel too, so it can't be left open behind the test
     if(panel) panel.classList.add('hidden');
     duvanOpen = false;
-    const icon = document.getElementById('duvanFabIcon');
-    if(icon) icon.textContent = '💬';
+    fab.classList.remove('is-open');
   }
 }
 
@@ -5828,10 +5827,10 @@ let duvanBusy = false;
 function toggleDuvanChat(){
   duvanOpen = !duvanOpen;
   const panel = document.getElementById('duvanPanel');
-  const icon = document.getElementById('duvanFabIcon');
+  const fab = document.getElementById('duvanFab');
   if(!panel) return;
   panel.classList.toggle('hidden', !duvanOpen);
-  if(icon) icon.textContent = duvanOpen ? '✕' : '💬';
+  if(fab) fab.classList.toggle('is-open', duvanOpen);
   if(duvanOpen){
     const input = document.getElementById('duvanInput');
     if(input) setTimeout(()=>input.focus(), 150);
@@ -5890,7 +5889,13 @@ function clearDuvanChat(){
 
 function scrollDuvanToBottom(){
   const wrap = document.getElementById('duvanMessages');
-  if(wrap) wrap.scrollTop = wrap.scrollHeight;
+  if(!wrap) return;
+  // Wait a frame so the browser has finished laying out the new content
+  // (fixes cases where scrollHeight was measured before text wrapped/rendered)
+  requestAnimationFrame(() => {
+    wrap.scrollTop = wrap.scrollHeight;
+    requestAnimationFrame(() => { wrap.scrollTop = wrap.scrollHeight; });
+  });
 }
 
 function appendDuvanMessage(text, cls){
@@ -5919,6 +5924,7 @@ function showDuvanTyping(){
 function removeDuvanTyping(){
   const el = document.getElementById('duvanTypingIndicator');
   if(el) el.remove();
+  scrollDuvanToBottom();
 }
 
 async function sendDuvanMessage(){
