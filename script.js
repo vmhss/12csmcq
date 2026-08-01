@@ -3923,6 +3923,7 @@ async function openAdminScreen(){
     renderBannedTable();
     loadTestReminders();
     populatePaperSubjectDropdown();
+    populatePaperChapters();
   }
 }
 function closeAdminScreen(){
@@ -4339,6 +4340,44 @@ async function cancelTestReminder(id){
   }
 }
 
+/* Populates the "Lessons" checkbox list for whichever subject is currently
+   selected in the paper generator. All boxes start checked (= whole
+   subject, matching the old default behavior when nothing is filtered). */
+function populatePaperChapters(){
+  const subSel = document.getElementById('paperSubject');
+  const wrap = document.getElementById('paperChaptersWrap');
+  const list = document.getElementById('paperChapterList');
+  if(!subSel || !wrap || !list) return;
+  const subjectKey = subSel.value;
+  const info = SUBJECT_INFO[subjectKey];
+  if(!info){ wrap.style.display = 'none'; return; }
+  const chapters = info.chapters;
+  list.innerHTML = chapters.map((ch,i)=>`
+    <label class="lesson-pick-item">
+      <input type="checkbox" class="paper-lesson-checkbox" value="${ch.name.replace(/"/g,'&quot;')}" checked>
+      <span class="lp-icon">${ch.icon || '📘'}</span>
+      <span class="lp-name">${info.unitLabel} ${i+1}: ${ch.name}</span>
+    </label>
+  `).join('');
+  wrap.style.display = chapters.length ? '' : 'none';
+}
+function toggleAllPaperChapters(select){
+  document.querySelectorAll('.paper-lesson-checkbox').forEach(cb=>cb.checked = select);
+}
+/* Returns the set of chapter names currently checked, or null if every
+   checkbox is checked (meaning "no filter, use the whole subject"). */
+function getSelectedPaperChapters(){
+  const boxes = Array.from(document.querySelectorAll('.paper-lesson-checkbox'));
+  if(!boxes.length) return null;
+  const checked = boxes.filter(cb=>cb.checked).map(cb=>cb.value);
+  if(checked.length === boxes.length) return null; // nothing filtered out
+  return new Set(checked);
+}
+function filterByChapters(arr, chapterSet){
+  if(!chapterSet) return arr;
+  return arr.filter(q=>chapterSet.has(q.chapter));
+}
+
 /* ================= ADMIN: QUESTION PAPER GENERATOR ================= */
 function populatePaperSubjectDropdown(){
   const sel = document.getElementById('paperSubject');
@@ -4376,24 +4415,31 @@ function generateQuestionPaper(){
     return;
   }
 
-  const onemarkPool = collectOneMarkPool(subjectKey);
+  const chapterFilter = getSelectedPaperChapters();
+  const onemarkPool = filterByChapters(collectOneMarkPool(subjectKey), chapterFilter);
+  const bank2 = filterByChapters(bank[2]||[], chapterFilter);
+  const bank3 = filterByChapters(bank[3]||[], chapterFilter);
+  const bank5 = filterByChapters(bank[5]||[], chapterFilter);
+  const bankNumerical = filterByChapters(bank.numerical||[], chapterFilter);
+  const bankProgram = filterByChapters(bank.program||[], chapterFilter);
   const need = {
     p1: pattern.part1.count,
     p2: pattern.part2.shown,
     p3: pattern.part3.shown,
     p4: pattern.part4.pairs
   };
-  if(onemarkPool.length < need.p1 || (bank[2]||[]).length < need.p2 || (bank[3]||[]).length < need.p3 || (bank[5]||[]).length < need.p4*2){
-    if(errEl) errEl.textContent = `Not enough questions in the bank yet for a ${totalMarks}-mark paper (need ${need.p1} one-mark, ${need.p2} two-mark, ${need.p3} three-mark, ${need.p4*2} five-mark questions to make ${need.p4} either/or pairs). Add more questions to DESCRIPTIVE_QUESTIONS.`;
+  const lessonNote = chapterFilter ? ' for the selected lessons — pick more lessons or add more questions' : '';
+  if(onemarkPool.length < need.p1 || bank2.length < need.p2 || bank3.length < need.p3 || bank5.length < need.p4*2){
+    if(errEl) errEl.textContent = `Not enough questions in the bank${lessonNote} for a ${totalMarks}-mark paper (need ${need.p1} one-mark, ${need.p2} two-mark, ${need.p3} three-mark, ${need.p4*2} five-mark questions to make ${need.p4} either/or pairs). ${chapterFilter ? 'Try selecting more lessons, or add' : 'Add'} more questions to DESCRIPTIVE_QUESTIONS.`;
     return;
   }
 
   const part1 = shuffle(onemarkPool).slice(0, need.p1);
-  const part2 = shuffle(bank[2]).slice(0, need.p2);
-  const part3 = shuffle(bank[3]).slice(0, need.p3);
+  const part2 = shuffle(bank2).slice(0, need.p2);
+  const part3 = shuffle(bank3).slice(0, need.p3);
   // 5-mark bank is a flat list (source book doesn't pre-pair either/or
   // questions) — randomly pair two distinct questions per "either/or" slot.
-  const fiveMarkPicked = shuffle(bank[5]).slice(0, need.p4*2);
+  const fiveMarkPicked = shuffle(bank5).slice(0, need.p4*2);
   const part4 = [];
   for(let i=0;i<fiveMarkPicked.length;i+=2){
     part4.push({ chapter: fiveMarkPicked[i].chapter, qa: fiveMarkPicked[i], qb: fiveMarkPicked[i+1] });
@@ -4408,8 +4454,8 @@ function generateQuestionPaper(){
   // Subjects with a dedicated numerical-problem pool (e.g. Physics) always
   // put a numerical question last in Part II and Part III, and that last
   // question is the compulsory one — matching how these papers are set.
-  if(bank.numerical && bank.numerical.length >= 2){
-    const numericalsPicked = shuffle(bank.numerical).slice(0, 2);
+  if(bankNumerical.length >= 2){
+    const numericalsPicked = shuffle(bankNumerical).slice(0, 2);
     part2[part2.length-1] = numericalsPicked[0];
     part3[part3.length-1] = numericalsPicked[1];
     part2CompulsoryPos = part2.length;
@@ -4418,15 +4464,16 @@ function generateQuestionPaper(){
   // Subjects with a dedicated program-writing pool (Computer Science) work
   // the same way: the last question in Part II and Part III is always a
   // program question, and it's marked as the Compulsory Question.
-  else if(bank.program && bank.program.length >= 2){
-    const programsPicked = shuffle(bank.program).slice(0, 2);
+  else if(bankProgram.length >= 2){
+    const programsPicked = shuffle(bankProgram).slice(0, 2);
     part2[part2.length-1] = programsPicked[0];
     part3[part3.length-1] = programsPicked[1];
     part2CompulsoryPos = part2.length;
     part3CompulsoryPos = part3.length;
   }
 
-  openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank});
+  const filteredBank = { 2: bank2, 3: bank3, 5: bank5, numerical: bankNumerical, program: bankProgram };
+  openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank: filteredBank});
 }
 
 function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank}){
