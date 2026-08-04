@@ -3809,7 +3809,20 @@ async function signInWithGoogle(){
     // onAuthStateChanged (below) takes it from here
   }catch(e){
     console.warn('Google sign-in failed', e);
-    err.textContent = 'Google sign-in failed or was cancelled. Please try again.';
+    const code = e && e.code ? e.code : '';
+    if(code === 'auth/popup-blocked'){
+      err.textContent = "Your browser blocked the sign-in popup. Please allow popups for this site and try again.";
+    } else if(code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request'){
+      err.textContent = "The sign-in window was closed before finishing. Please try again and complete the Google sign-in.";
+    } else if(code === 'auth/unauthorized-domain'){
+      err.textContent = "This website's domain isn't authorized for sign-in yet. (Site owner: add it under Firebase Console → Authentication → Settings → Authorized domains.)";
+    } else if(code === 'auth/operation-not-allowed'){
+      err.textContent = "Google sign-in isn't enabled for this app yet. (Site owner: enable it under Firebase Console → Authentication → Sign-in method → Google.)";
+    } else if(code === 'auth/network-request-failed'){
+      err.textContent = "Network error during sign-in. Please check your internet connection and try again.";
+    } else {
+      err.textContent = `Google sign-in failed${code ? ' (' + code + ')' : ''}. Please try again.`;
+    }
   }finally{
     btn.disabled = false;
     label.textContent = prevLabel;
