@@ -1,4 +1,4 @@
-]/* ---------------- floating background bubbles ---------------- */
+/* ---------------- floating background bubbles ---------------- */
 (function(){
   const wrap = document.getElementById('bgBubbles');
   const count = 14;
