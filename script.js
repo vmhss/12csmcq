@@ -3755,10 +3755,23 @@ const firebaseConfig = {
   messagingSenderId: "372823957264",
   appId: "1:372823957264:web:a1a8742ff4a1caaab80f95"
 };
-firebase.initializeApp(firebaseConfig);
-const fbAuth = firebase.auth();
-const fbDB = firebase.firestore();
-fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+let fbAuth = null;
+let fbDB = null;
+try{
+  if(typeof firebase === 'undefined'){
+    throw new Error('Firebase SDK did not load (check network/ad-blocker, or that the firebase-app/auth/firestore <script> tags are present and reachable).');
+  }
+  firebase.initializeApp(firebaseConfig);
+  fbAuth = firebase.auth();
+  fbDB = firebase.firestore();
+  fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+}catch(e){
+  // Guest mode and the rest of the site must keep working even if
+  // Firebase itself is unreachable — only Google Sign-In / cloud sync
+  // will be unavailable in that case, and signInWithGoogle() below
+  // checks for fbAuth being null before using it.
+  console.error('Firebase failed to initialize — Google Sign-In will be unavailable, but Guest mode still works:', e);
+}
 
 /* ================= PUSH NOTIFICATIONS (test reminders) =================
    Uses Firebase Cloud Messaging. Requires:
@@ -3781,6 +3794,10 @@ async function signInWithGoogle(){
   const label = document.getElementById('googleBtnLabel');
   const err = document.getElementById('googleSignInError');
   err.textContent = '';
+  if(!fbAuth){
+    err.textContent = "Sign-in isn't available right now (couldn't connect to Google's servers). Please check your internet connection, disable any ad-blocker for this site, and reload the page — or use Continue as Guest below.";
+    return;
+  }
   btn.disabled = true;
   const prevLabel = label.textContent;
   label.innerHTML = '';
@@ -3800,6 +3817,7 @@ async function signInWithGoogle(){
 }
 
 let googleUser = null;
+if(fbAuth){
 fbAuth.onAuthStateChanged(async (user)=>{
   googleUser = user;
   if(!user){
@@ -3844,6 +3862,9 @@ fbAuth.onAuthStateChanged(async (user)=>{
     document.getElementById('studentName').value = user.displayName || '';
   }
 });
+} else {
+  console.warn('fbAuth unavailable — skipping onAuthStateChanged listener (Guest mode still works).');
+}
 
 const LEVEL_XP = 150;
 function getXP(){ return lsGet('cs_xp', 0); }
