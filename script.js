@@ -2807,6 +2807,26 @@ const DESCRIPTIVE_QUESTIONS = {
       {chapter:"Data Visualization using Python", q:"Explain in detail the types of pyplots using Matplotlib.", a:""},
       {chapter:"Data Visualization using Python", q:"Explain the various buttons in a matplotlib window.", a:""},
       {chapter:"Data Visualization using Python", q:"Explain the purpose of the following functions: a. plt.xlabel b. plt.ylabel c. plt.title d. plt.legend() e. plt.show()", a:""},
+    ],
+    /* Dedicated program-writing pool. When present (>=2 questions), the
+       generator always places one of these as the LAST question in Part II
+       (2-mark) and Part III (3-mark), and marks that question as the
+       Compulsory Question — matching how real TN board CS papers require
+       a program-writing question to be compulsory in each part. */
+    program: [
+      {chapter:"Control Structures", q:"Write a Python program to check whether a given number is prime or not.", a:""},
+      {chapter:"Control Structures", q:"Write a Python program to find the sum of digits of a given number.", a:""},
+      {chapter:"Python Functions", q:"Write a Python program using a function to find the factorial of a given number.", a:""},
+      {chapter:"Python Functions", q:"Write a Python program using a function to check whether a given string is a palindrome or not.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a Python program to count the number of vowels present in a given string.", a:""},
+      {chapter:"Strings and String Manipulation", q:"Write a Python program to reverse a given string using slicing.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write a Python program to find the largest and smallest number in a given list.", a:""},
+      {chapter:"Lists, Tuples, Sets and Dictionary", q:"Write a Python program to count the frequency of each element in a given list.", a:""},
+      {chapter:"Python Classes and Objects", q:"Write a Python program using a class to accept and display the details of a student (name, roll number and marks).", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to write a list of records into a CSV file.", a:""},
+      {chapter:"Python and CSV Files", q:"Write a Python program to read a CSV file and display its contents.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write a Python program to implement linear search on a list of numbers.", a:""},
+      {chapter:"Algorithmic Strategies", q:"Write a Python program to implement bubble sort on a list of numbers.", a:""},
     ]
   },
   physics: {
@@ -3421,166 +3441,9 @@ const DESCRIPTIVE_QUESTIONS = {
       {chapter:"Electronics and Communication", q:"The given circuit has two ideal diodes connected as shown in figure below. Calculate the current flowing through the resistance R 2 \u2126 R1 D D 1 2 10 V 3 \u2126 R3 2 \u2126 R2", a:""},
       {chapter:"Electronics and Communication", q:"Four silicon diodes and a 10 \u03a9 resistor are connected as shown in figure below. Each diode has a resistance of 1\u03a9. Find the current flows through the 18\u03a9 resistor.", a:""},
     ]
-  },
-maths: {
-    2: [
-      {chapter:"Applications of Matrices and Determinants", q:"Define the adjoint of a square matrix.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"State the condition for a square matrix to be invertible.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Define the rank of a matrix.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"What is meant by a consistent system of linear equations?", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"State Cramer's rule for solving a system of two linear equations in two unknowns.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Define an elementary row transformation of a matrix.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Find the adjoint of the matrix [[2, 3], [−1, 4]].", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"If A is a 3×3 matrix, write the relation connecting A, adj A and |A|.", a:""},
-      {chapter:"Complex Numbers", q:"Define the modulus and argument of a complex number.", a:""},
-      {chapter:"Complex Numbers", q:"State the triangle inequality for complex numbers.", a:""},
-      {chapter:"Complex Numbers", q:"Find the conjugate of the complex number 3 − 4i.", a:""},
-      {chapter:"Complex Numbers", q:"Simplify i¹⁹⁴⁸ − i¹²⁴⁹.", a:""},
-      {chapter:"Complex Numbers", q:"Define a complex conjugate root theorem for a polynomial with real coefficients.", a:""},
-      {chapter:"Complex Numbers", q:"Write the polar form of a complex number z = x + iy.", a:""},
-      {chapter:"Complex Numbers", q:"State De Moivre's theorem.", a:""},
-      {chapter:"Complex Numbers", q:"Find the square root of the complex number 5 + 12i in a + ib form (state the method used).", a:""},
-      {chapter:"Theory of Equations", q:"State the fundamental theorem of algebra.", a:""},
-      {chapter:"Theory of Equations", q:"Write the relation between the roots and coefficients of a cubic equation.", a:""},
-      {chapter:"Theory of Equations", q:"State Descartes' rule of signs.", a:""},
-      {chapter:"Theory of Equations", q:"Construct a cubic equation whose roots are 1, 2, and 3.", a:""},
-      {chapter:"Theory of Equations", q:"Define a reciprocal equation.", a:""},
-      {chapter:"Theory of Equations", q:"If α, β are the roots of x² − 3x + 5 = 0, find the value of α² + β².", a:""},
-      {chapter:"Theory of Equations", q:"State the rational root theorem.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Find the principal value of sin⁻¹(1/√2).", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Write the domain and range of tan⁻¹x.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"State the relation between sin⁻¹x and cos⁻¹x for x ∈ [−1, 1].", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Find the value of cos⁻¹(cos(7π/6)).", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Write the formula for tan⁻¹x + tan⁻¹y.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Find the principal value of cosec⁻¹(−1).", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Identify the type of conic represented by 2x² − y² = 7.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Define the eccentricity of a conic section.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the centre and radius of the circle x² + y² − 6x + 4y − 12 = 0.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Write the equation of the directrix of the parabola y² = 4ax.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"State the condition for the line y = mx + c to be a tangent to the circle x² + y² = a².", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Define asymptotes of a hyperbola.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Define the scalar triple product of three vectors and state what it represents geometrically.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"If a = 2i + j − k and b = i − j + 2k, find a × b.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"State the condition for two vectors to be perpendicular.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the angle between the vectors a = i + j and b = j + k.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Define the vector equation of a plane in normal form.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"State the condition for three vectors to be coplanar.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"State Rolle's theorem.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"State Lagrange's Mean Value Theorem.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"A particle moves so that s = 2t² + 3t. Find its instantaneous velocity at t = 3 seconds.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Define a critical point of a function.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"State the second derivative test for local maxima and minima.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"Define the differential dy of a function y = f(x).", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"Use linear approximation to find an approximate value of √26.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"Define a partial derivative of a function of two variables.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"State Clairaut's theorem on mixed partial derivatives.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"Define the relative error and percentage error of a measured quantity.", a:""},
-      {chapter:"Applications of Integration", q:"State Bernoulli's formula for integration by parts.", a:""},
-      {chapter:"Applications of Integration", q:"Write the formula for the area under a curve y = f(x) between x = a and x = b.", a:""},
-      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^(π/2) cos²x dx.", a:""},
-      {chapter:"Applications of Integration", q:"Write the formula for the volume of the solid formed by revolving a curve about the x-axis.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Define the order and degree of a differential equation.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Find the order and degree of (d²y/dx²)³ + dy/dx = x, if they exist.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Define a homogeneous differential equation.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Form the differential equation by eliminating the arbitrary constant from y = mx.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Write the standard form of a first order linear differential equation.", a:""},
-      {chapter:"Probability Distributions", q:"Define a discrete random variable.", a:""},
-      {chapter:"Probability Distributions", q:"State the two conditions a probability mass function must satisfy.", a:""},
-      {chapter:"Probability Distributions", q:"Define the mean and variance of a discrete random variable.", a:""},
-      {chapter:"Probability Distributions", q:"The pdf of a random variable X is f(x) = kx, 0 < x < 4. Find the value of k.", a:""},
-      {chapter:"Probability Distributions", q:"Define the cumulative distribution function of a random variable.", a:""},
-      {chapter:"Discrete Mathematics", q:"Define a binary operation on a non-empty set.", a:""},
-      {chapter:"Discrete Mathematics", q:"Define a tautology and a contradiction in logic.", a:""},
-      {chapter:"Discrete Mathematics", q:"State the associative and commutative properties of a binary operation.", a:""},
-      {chapter:"Discrete Mathematics", q:"Construct the truth table for p ∧ q.", a:""},
-      {chapter:"Discrete Mathematics", q:"Define the identity element of a binary operation.", a:""},
-    ],
-    3: [
-      {chapter:"Applications of Matrices and Determinants", q:"Find the inverse of the matrix A = [[2, −1], [1, 3]], using the adjoint method.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Explain the procedure to solve a system of linear equations using the matrix inversion method.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"If A = [[cos α, 0, sin α], [0, 1, 0], [−sin α, 0, cos α]], show that [A]⁻¹ = A(−α).", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Test the consistency of the system of equations x + y = 1, 2x + 2y = 2, and solve if consistent.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Explain how the rank of a matrix is used to determine whether a system of linear equations has a unique solution, no solution, or infinitely many solutions.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Find the rank of the matrix [[1, 2, −1], [2, 4, 1], [3, 6, 3]].", a:""},
-      {chapter:"Complex Numbers", q:"If z₁ = 2 − i and z₂ = −4 + 3i, find the additive and multiplicative inverse of z₁ and z₂.", a:""},
-      {chapter:"Complex Numbers", q:"Show that the four consecutive powers of i (iⁿ, iⁿ⁺¹, iⁿ⁺², iⁿ⁺³) always sum to zero, for any integer n.", a:""},
-      {chapter:"Complex Numbers", q:"Find the modulus and principal argument of the complex number −1 − i√3.", a:""},
-      {chapter:"Complex Numbers", q:"Simplify (cos 2θ + i sin 2θ)⁵ / (cos 3θ − i sin 3θ)⁴ using De Moivre's theorem.", a:""},
-      {chapter:"Complex Numbers", q:"If z = 3 + 4i, verify that z · z̄ = |z|².", a:""},
-      {chapter:"Theory of Equations", q:"Solve the equation x⁴ − 9x² + 20 = 0.", a:""},
-      {chapter:"Theory of Equations", q:"Find a polynomial equation of minimum degree with rational coefficients, having 2 − √3 as a root.", a:""},
-      {chapter:"Theory of Equations", q:"Discuss the nature of the roots of the equation x³ − 5x² + 8x − 4 = 0, given that 2 is a root.", a:""},
-      {chapter:"Theory of Equations", q:"If α, β, γ are the roots of x³ + px² + qx + r = 0, express α² + β² + γ² in terms of p and q.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Prove that tan⁻¹(1/2) + tan⁻¹(1/3) = π/4.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Solve: sin⁻¹x + sin⁻¹(2x) = π/3.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Find the value of sin(cos⁻¹(3/5) + tan⁻¹(1/4)).", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Prove that 2 tan⁻¹x = sin⁻¹(2x / (1 + x²)), for |x| ≤ 1.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the circle passing through the points (1, 0), (−1, 0) and (0, 1).", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the vertex, focus, and directrix of the parabola y² = 8x.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the ellipse whose foci are (±2, 0) and eccentricity 1/2.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the tangent to the circle x² + y² − 6x + 6y − 8 = 0 at the point (2, 2).", a:""},
-      {chapter:"Applications of Vector Algebra", q:"If a = i − 2j + 3k, b = 2i + j − 2k, c = 3i + 2j + k, verify that (a × b) × c ≠ a × (b × c).", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the volume of the parallelepiped with coterminous edges a = 2i − 3j + 4k, b = i + 2j − k, c = 3i − j + 2k.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the shortest distance between two skew lines given in vector form.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the vector and cartesian equations of the plane passing through the point (1, 2, 3) and perpendicular to the vector 2i + 3j − k.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Verify Rolle's theorem for f(x) = x² − x on the interval [0, 1].", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Verify Lagrange's Mean Value Theorem for f(x) = x² − 3x + 2 on the interval [−2, 2].", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Find the intervals of monotonicity for the function f(x) = 2x³ − 3x² − 12x + 5.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Find the local maximum and local minimum values of f(x) = x³ − 3x.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"The radius of a circular plate is measured as 12.65 cm instead of its actual length 12.5 cm. Find the percentage error in calculating the area of the plate.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"If u = x² + y², find ∂u/∂x and ∂u/∂y.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"Verify Clairaut's theorem for u = x³y² + x²y³.", a:""},
-      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^1 x tan⁻¹x dx.", a:""},
-      {chapter:"Applications of Integration", q:"Find the area bounded by the curve y = x² and the line y = 4.", a:""},
-      {chapter:"Applications of Integration", q:"Evaluate: ∫ x² e^x dx using Bernoulli's formula.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Find the differential equation of the family of curves y = A cos 3x + B sin 3x, where A and B are arbitrary constants.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Solve the differential equation dy/dx = (x + y)/x, using the substitution y = vx.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Solve: dy + (xy − cos x) dx = 0, given it can be rewritten as a first-order linear equation.", a:""},
-      {chapter:"Probability Distributions", q:"Three fair coins are tossed once simultaneously. If X denotes the number of tails that occur, find the probability distribution of X.", a:""},
-      {chapter:"Probability Distributions", q:"The pdf of a random variable X is f(x) = kx, 0 < x < 4. Find k and P(1 < X < 2).", a:""},
-      {chapter:"Probability Distributions", q:"Find the mean of the discrete random variable whose probability distribution is X = 0, 1, 2 with P(X) = 0.3, 0.4, 0.3 respectively.", a:""},
-      {chapter:"Discrete Mathematics", q:"Determine whether * is a binary operation on the given sets: (i) a * b = a√b on R, (ii) a * b = min(a, b) on A = {1, 2, 3, 4, 5}.", a:""},
-      {chapter:"Discrete Mathematics", q:"Construct the truth table for (p ∧ q) → q.", a:""},
-      {chapter:"Discrete Mathematics", q:"Verify whether the set of all 2×2 real matrices forms a group under matrix addition.", a:""},
-    ],
-    5: [
-      {chapter:"Applications of Matrices and Determinants", q:"Solve the following system of linear equations using Cramer's rule: 3x + 3y − z = 11, 2x − y + 2z = 9, 4x + 3y + 2z = 25.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"If A = [[3, 1], [−1, 2]], show that A² − 5A + 7I₂ = O, where I₂ is the identity matrix and O is the zero matrix. Hence find A⁻¹.", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"A boy is walking from his house at a speed of 2 km/hr along a fixed direction. Formulate the problem as a system of linear equations and solve it using matrices (as given in the textbook example).", a:""},
-      {chapter:"Applications of Matrices and Determinants", q:"Solve the system of equations x + y + z = 6, 2x + 3y + 4z = 20, x + 2y + 3z = 14, by finding the inverse of the coefficient matrix.", a:""},
-      {chapter:"Complex Numbers", q:"If z₁ = 2 − i and z₂ = −4 + 3i, find the inverse of z₁z₂ and of z₁/z₂.", a:""},
-      {chapter:"Complex Numbers", q:"Solve the equation z² + 2 = 0 in the set of complex numbers and represent the solutions in the Argand plane.", a:""},
-      {chapter:"Complex Numbers", q:"Using De Moivre's theorem, find all the cube roots of unity and show that their sum is zero.", a:""},
-      {chapter:"Theory of Equations", q:"Solve the cubic equation 9x³ − 36x² + 44x − 16 = 0, given that the roots form an arithmetic progression.", a:""},
-      {chapter:"Theory of Equations", q:"If α, β, γ are the roots of x³ + 2x² + 3x + 4 = 0, form a cubic equation whose roots are 2α, 2β, 2γ.", a:""},
-      {chapter:"Theory of Equations", q:"Solve the equation 6x⁴ − 35x³ + 62x² − 35x + 6 = 0, given that it is a reciprocal equation.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"Solve: tan⁻¹(x − 1)/(x − 2) + tan⁻¹(x + 1)/(x + 2) = π/4.", a:""},
-      {chapter:"Inverse Trigonometric Functions", q:"If cos⁻¹x + cos⁻¹y + cos⁻¹z = π, prove that x² + y² + z² + 2xyz = 1.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the tangent and normal to the parabola y² = 8x at the point (2, 4).", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the hyperbola whose foci are (±5, 0) and the transverse axis is of length 8.", a:""},
-      {chapter:"Two Dimensional Analytical Geometry-II", q:"Prove that the tangents drawn at the ends of any focal chord of a parabola meet at right angles on the directrix.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"A particle acted on by constant forces 8i + 2j − 6k and 6i + 2j − 2k is displaced from the point (1, 2, 3) to the point (5, 4, 1). Find the total work done by the forces.", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the shortest distance between the lines r = (i + 2j + k) + s(i − j + k) and r = (2i − j − k) + t(2i + j + 2k).", a:""},
-      {chapter:"Applications of Vector Algebra", q:"Find the vector and cartesian equations of the plane passing through the points (1, 1, 0), (1, 2, 1), and (−2, 2, −1).", a:""},
-      {chapter:"Applications of Differential Calculus", q:"A wire of length 28 m is to be cut into two pieces. One piece is to be made into a square and the other into a circle. Find the length of each piece so that the combined area of the square and the circle is minimum.", a:""},
-      {chapter:"Applications of Differential Calculus", q:"Find the equations of the tangent and normal to the curve y = x³ + 2x² − x − 2 at the point where x = 1, and find the angle at which the curve crosses the x-axis.", a:""},
-      {chapter:"Differentials and Partial Derivatives", q:"If u = x³ + y³ + z³ − 3xyz, show that x(∂u/∂x) + y(∂u/∂y) + z(∂u/∂z) = 3u.", a:""},
-      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^π x sin x dx, using Bernoulli's formula for integration by parts.", a:""},
-      {chapter:"Applications of Integration", q:"Find the area of the region bounded by the parabola y² = 4x and the line x = 3.", a:""},
-      {chapter:"Applications of Integration", q:"Find the volume of the solid generated when the region bounded by y = x², x = 0 and y = 4 is revolved about the y-axis.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Solve the differential equation dy/dx = (3x + y + 4)⁵, by using a suitable substitution.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"Solve the linear differential equation dy/dx + y tan x = cos x.", a:""},
-      {chapter:"Ordinary Differential Equations", q:"A radioactive substance decays at a rate proportional to the amount present. Given that the amount decreases from 20 g to 10 g in 4 hours, find the amount remaining after 8 hours.", a:""},
-      {chapter:"Probability Distributions", q:"The probability density function of a continuous random variable X is f(x) = ke⁻³ˣ for x > 0, and 0 otherwise. Find (i) the value of k, (ii) the distribution function F(x), and (iii) P(X < 3).", a:""},
-      {chapter:"Probability Distributions", q:"An urn contains 5 mangoes and 4 apples. Three fruits are taken at random. If X denotes the number of apples drawn, find the probability distribution of X, its mean, and variance.", a:""},
-      {chapter:"Probability Distributions", q:"A random variable X has the following probability mass function: X = 1, 2, 3, 4, 5, 6 with probabilities k, 2k, 3k, 4k, 5k, 6k respectively. Find k, and hence find P(X ≤ 4) and the mean of X.", a:""},
-      {chapter:"Discrete Mathematics", q:"Let A = {1, 2, 3, 4, 5} and let * be defined by a * b = min(a, b). Verify whether (A, *) is a semigroup, and if it is a monoid, find its identity element.", a:""},
-      {chapter:"Discrete Mathematics", q:"Construct the truth table for (p → q) ∧ (q → p) and determine whether it is a tautology, contradiction, or contingency.", a:""},
-      {chapter:"Discrete Mathematics", q:"Show that the relation 'is a factor of' on the set of natural numbers is a partial order relation, and draw its Hasse diagram for the set {1, 2, 3, 6, 12}.", a:""},
-    ],
-  },
+  }
 };
-  // physics, chemistry, ca, biology, commerce, economics: add the
+  // maths, physics, chemistry, ca, biology, commerce, economics: add the
   // same { 2:[], 3:[], 5:[] } shape here once you send that subject's
   // question bank text.
 
@@ -3748,30 +3611,18 @@ function continueAsGuest(){
 
 /* ================= FIREBASE — Google Sign-In ================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyC2pLr4kRH26bkOM73JW-Us6X029qaDp0E",
-  authDomain: "onemarkvmhss.firebaseapp.com",
-  projectId: "onemarkvmhss",
-  storageBucket: "onemarkvmhss.firebasestorage.app",
-  messagingSenderId: "372823957264",
-  appId: "1:372823957264:web:a1a8742ff4a1caaab80f95"
+  apiKey: "AIzaSyAeTikpnQ-vlfp9oszV3XO8CiaOjmvkEYM",
+  authDomain: "vmhssmcq.firebaseapp.com",
+  projectId: "vmhssmcq",
+  storageBucket: "vmhssmcq.firebasestorage.app",
+  messagingSenderId: "290024556016",
+  appId: "1:290024556016:web:12378648bea9e491a60935",
+  measurementId: "G-G3MHG5L9GP"
 };
-let fbAuth = null;
-let fbDB = null;
-try{
-  if(typeof firebase === 'undefined'){
-    throw new Error('Firebase SDK did not load (check network/ad-blocker, or that the firebase-app/auth/firestore <script> tags are present and reachable).');
-  }
-  firebase.initializeApp(firebaseConfig);
-  fbAuth = firebase.auth();
-  fbDB = firebase.firestore();
-  fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
-}catch(e){
-  // Guest mode and the rest of the site must keep working even if
-  // Firebase itself is unreachable — only Google Sign-In / cloud sync
-  // will be unavailable in that case, and signInWithGoogle() below
-  // checks for fbAuth being null before using it.
-  console.error('Firebase failed to initialize — Google Sign-In will be unavailable, but Guest mode still works:', e);
-}
+firebase.initializeApp(firebaseConfig);
+const fbAuth = firebase.auth();
+const fbDB = firebase.firestore();
+fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
 
 /* ================= PUSH NOTIFICATIONS (test reminders) =================
    Uses Firebase Cloud Messaging. Requires:
@@ -3794,10 +3645,6 @@ async function signInWithGoogle(){
   const label = document.getElementById('googleBtnLabel');
   const err = document.getElementById('googleSignInError');
   err.textContent = '';
-  if(!fbAuth){
-    err.textContent = "Sign-in isn't available right now (couldn't connect to Google's servers). Please check your internet connection, disable any ad-blocker for this site, and reload the page — or use Continue as Guest below.";
-    return;
-  }
   btn.disabled = true;
   const prevLabel = label.textContent;
   label.innerHTML = '';
@@ -3809,20 +3656,7 @@ async function signInWithGoogle(){
     // onAuthStateChanged (below) takes it from here
   }catch(e){
     console.warn('Google sign-in failed', e);
-    const code = e && e.code ? e.code : '';
-    if(code === 'auth/popup-blocked'){
-      err.textContent = "Your browser blocked the sign-in popup. Please allow popups for this site and try again.";
-    } else if(code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request'){
-      err.textContent = "The sign-in window was closed before finishing. Please try again and complete the Google sign-in.";
-    } else if(code === 'auth/unauthorized-domain'){
-      err.textContent = "This website's domain isn't authorized for sign-in yet. (Site owner: add it under Firebase Console → Authentication → Settings → Authorized domains.)";
-    } else if(code === 'auth/operation-not-allowed'){
-      err.textContent = "Google sign-in isn't enabled for this app yet. (Site owner: enable it under Firebase Console → Authentication → Sign-in method → Google.)";
-    } else if(code === 'auth/network-request-failed'){
-      err.textContent = "Network error during sign-in. Please check your internet connection and try again.";
-    } else {
-      err.textContent = `Google sign-in failed${code ? ' (' + code + ')' : ''}. Please try again.`;
-    }
+    err.textContent = 'Google sign-in failed or was cancelled. Please try again.';
   }finally{
     btn.disabled = false;
     label.textContent = prevLabel;
@@ -3830,7 +3664,6 @@ async function signInWithGoogle(){
 }
 
 let googleUser = null;
-if(fbAuth){
 fbAuth.onAuthStateChanged(async (user)=>{
   googleUser = user;
   if(!user){
@@ -3875,9 +3708,6 @@ fbAuth.onAuthStateChanged(async (user)=>{
     document.getElementById('studentName').value = user.displayName || '';
   }
 });
-} else {
-  console.warn('fbAuth unavailable — skipping onAuthStateChanged listener (Guest mode still works).');
-}
 
 const LEVEL_XP = 150;
 function getXP(){ return lsGet('cs_xp', 0); }
@@ -4093,6 +3923,7 @@ async function openAdminScreen(){
     renderBannedTable();
     loadTestReminders();
     populatePaperSubjectDropdown();
+    populatePaperChapters();
   }
 }
 function closeAdminScreen(){
@@ -4509,6 +4340,44 @@ async function cancelTestReminder(id){
   }
 }
 
+/* Populates the "Lessons" checkbox list for whichever subject is currently
+   selected in the paper generator. All boxes start checked (= whole
+   subject, matching the old default behavior when nothing is filtered). */
+function populatePaperChapters(){
+  const subSel = document.getElementById('paperSubject');
+  const wrap = document.getElementById('paperChaptersWrap');
+  const list = document.getElementById('paperChapterList');
+  if(!subSel || !wrap || !list) return;
+  const subjectKey = subSel.value;
+  const info = SUBJECT_INFO[subjectKey];
+  if(!info){ wrap.style.display = 'none'; return; }
+  const chapters = info.chapters;
+  list.innerHTML = chapters.map((ch,i)=>`
+    <label class="lesson-pick-item">
+      <input type="checkbox" class="paper-lesson-checkbox" value="${ch.name.replace(/"/g,'&quot;')}" checked>
+      <span class="lp-icon">${ch.icon || '📘'}</span>
+      <span class="lp-name">${info.unitLabel} ${i+1}: ${ch.name}</span>
+    </label>
+  `).join('');
+  wrap.style.display = chapters.length ? '' : 'none';
+}
+function toggleAllPaperChapters(select){
+  document.querySelectorAll('.paper-lesson-checkbox').forEach(cb=>cb.checked = select);
+}
+/* Returns the set of chapter names currently checked, or null if every
+   checkbox is checked (meaning "no filter, use the whole subject"). */
+function getSelectedPaperChapters(){
+  const boxes = Array.from(document.querySelectorAll('.paper-lesson-checkbox'));
+  if(!boxes.length) return null;
+  const checked = boxes.filter(cb=>cb.checked).map(cb=>cb.value);
+  if(checked.length === boxes.length) return null; // nothing filtered out
+  return new Set(checked);
+}
+function filterByChapters(arr, chapterSet){
+  if(!chapterSet) return arr;
+  return arr.filter(q=>chapterSet.has(q.chapter));
+}
+
 /* ================= ADMIN: QUESTION PAPER GENERATOR ================= */
 function populatePaperSubjectDropdown(){
   const sel = document.getElementById('paperSubject');
@@ -4546,24 +4415,31 @@ function generateQuestionPaper(){
     return;
   }
 
-  const onemarkPool = collectOneMarkPool(subjectKey);
+  const chapterFilter = getSelectedPaperChapters();
+  const onemarkPool = filterByChapters(collectOneMarkPool(subjectKey), chapterFilter);
+  const bank2 = filterByChapters(bank[2]||[], chapterFilter);
+  const bank3 = filterByChapters(bank[3]||[], chapterFilter);
+  const bank5 = filterByChapters(bank[5]||[], chapterFilter);
+  const bankNumerical = filterByChapters(bank.numerical||[], chapterFilter);
+  const bankProgram = filterByChapters(bank.program||[], chapterFilter);
   const need = {
     p1: pattern.part1.count,
     p2: pattern.part2.shown,
     p3: pattern.part3.shown,
     p4: pattern.part4.pairs
   };
-  if(onemarkPool.length < need.p1 || (bank[2]||[]).length < need.p2 || (bank[3]||[]).length < need.p3 || (bank[5]||[]).length < need.p4*2){
-    if(errEl) errEl.textContent = `Not enough questions in the bank yet for a ${totalMarks}-mark paper (need ${need.p1} one-mark, ${need.p2} two-mark, ${need.p3} three-mark, ${need.p4*2} five-mark questions to make ${need.p4} either/or pairs). Add more questions to DESCRIPTIVE_QUESTIONS.`;
+  const lessonNote = chapterFilter ? ' for the selected lessons — pick more lessons or add more questions' : '';
+  if(onemarkPool.length < need.p1 || bank2.length < need.p2 || bank3.length < need.p3 || bank5.length < need.p4*2){
+    if(errEl) errEl.textContent = `Not enough questions in the bank${lessonNote} for a ${totalMarks}-mark paper (need ${need.p1} one-mark, ${need.p2} two-mark, ${need.p3} three-mark, ${need.p4*2} five-mark questions to make ${need.p4} either/or pairs). ${chapterFilter ? 'Try selecting more lessons, or add' : 'Add'} more questions to DESCRIPTIVE_QUESTIONS.`;
     return;
   }
 
   const part1 = shuffle(onemarkPool).slice(0, need.p1);
-  const part2 = shuffle(bank[2]).slice(0, need.p2);
-  const part3 = shuffle(bank[3]).slice(0, need.p3);
+  const part2 = shuffle(bank2).slice(0, need.p2);
+  const part3 = shuffle(bank3).slice(0, need.p3);
   // 5-mark bank is a flat list (source book doesn't pre-pair either/or
   // questions) — randomly pair two distinct questions per "either/or" slot.
-  const fiveMarkPicked = shuffle(bank[5]).slice(0, need.p4*2);
+  const fiveMarkPicked = shuffle(bank5).slice(0, need.p4*2);
   const part4 = [];
   for(let i=0;i<fiveMarkPicked.length;i+=2){
     part4.push({ chapter: fiveMarkPicked[i].chapter, qa: fiveMarkPicked[i], qb: fiveMarkPicked[i+1] });
@@ -4578,15 +4454,26 @@ function generateQuestionPaper(){
   // Subjects with a dedicated numerical-problem pool (e.g. Physics) always
   // put a numerical question last in Part II and Part III, and that last
   // question is the compulsory one — matching how these papers are set.
-  if(bank.numerical && bank.numerical.length >= 2){
-    const numericalsPicked = shuffle(bank.numerical).slice(0, 2);
+  if(bankNumerical.length >= 2){
+    const numericalsPicked = shuffle(bankNumerical).slice(0, 2);
     part2[part2.length-1] = numericalsPicked[0];
     part3[part3.length-1] = numericalsPicked[1];
     part2CompulsoryPos = part2.length;
     part3CompulsoryPos = part3.length;
   }
+  // Subjects with a dedicated program-writing pool (Computer Science) work
+  // the same way: the last question in Part II and Part III is always a
+  // program question, and it's marked as the Compulsory Question.
+  else if(bankProgram.length >= 2){
+    const programsPicked = shuffle(bankProgram).slice(0, 2);
+    part2[part2.length-1] = programsPicked[0];
+    part3[part3.length-1] = programsPicked[1];
+    part2CompulsoryPos = part2.length;
+    part3CompulsoryPos = part3.length;
+  }
 
-  openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank});
+  const filteredBank = { 2: bank2, 3: bank3, 5: bank5, numerical: bankNumerical, program: bankProgram };
+  openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank: filteredBank});
 }
 
 function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, part2, part3, part4, part2CompulsoryPos, part3CompulsoryPos, onemarkPool, bank}){
@@ -4607,15 +4494,18 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
   // own script can swap any single question for another one on demand,
   // without re-opening/regenerating the whole paper.
   const numericalCompulsory = !!(bank.numerical && bank.numerical.length >= 2);
+  const programCompulsory = !numericalCompulsory && !!(bank.program && bank.program.length >= 2);
+  const compulsoryTag = numericalCompulsory ? 'numerical problem' : (programCompulsory ? 'Program \u2013 Compulsory Question' : '');
   const clientData = {
     part1, part2, part3, part4,
-    pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5], numerical: bank.numerical || [] },
+    pools: { p1: onemarkPool, p2: bank[2], p3: bank[3], p5: bank[5], numerical: bank.numerical || [], program: bank.program || [] },
     nums: { part1Start, part2Start, part3Start, part4Start },
     numericalSlots: numericalCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null,
+    programSlots: programCompulsory ? { p2: part2.length-1, p3: part3.length-1 } : null,
     meta: {
       examTitle, subjectName, totalMarks,
       schoolName: 'Vethathiri Maharishi Higher Secondary School, S.V.G Puram',
-      part2CompulsoryNum, part3CompulsoryNum, numericalCompulsory,
+      part2CompulsoryNum, part3CompulsoryNum, numericalCompulsory, programCompulsory, compulsoryTag,
       part1Count: pattern.part1.count, part2ChooseAny: pattern.part2.chooseAny, part3ChooseAny: pattern.part3.chooseAny, part4Pairs: pattern.part4.pairs
     }
   };
@@ -4674,13 +4564,18 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     '    (kind==="p2" && idx===D.numericalSlots.p2) ||',
     '    (kind==="p3" && idx===D.numericalSlots.p3)',
     '  );',
+    '  var forceProgram = D.programSlots && (',
+    '    (kind==="p2" && idx===D.programSlots.p2) ||',
+    '    (kind==="p3" && idx===D.programSlots.p3)',
+    '  );',
     '  if(forceNumerical){ pool = D.pools.numerical; }',
+    '  else if(forceProgram){ pool = D.pools.program; }',
     '  else if(kind==="p1"){ pool=D.pools.p1; }',
     '  else if(kind==="p2"){ pool=D.pools.p2; }',
     '  else if(kind==="p3"){ pool=D.pools.p3; }',
     '  else if(kind==="p5a" || kind==="p5b"){ pool=D.pools.p5; }',
     '  var repl = pickReplacement(pool);',
-    '  if(!repl){ alert(forceNumerical ? "No more unused numerical questions available to swap in." : "No more unused questions available in this bank to swap in."); return; }',
+    '  if(!repl){ alert(forceNumerical ? "No more unused numerical questions available to swap in." : (forceProgram ? "No more unused program questions available to swap in." : "No more unused questions available in this bank to swap in.")); return; }',
     '  if(kind==="p1"){ D.part1[idx]=repl; renderP1(idx); }',
     '  else if(kind==="p2"){ D.part2[idx]=repl; renderP2(idx); }',
     '  else if(kind==="p3"){ D.part3[idx]=repl; renderP3(idx); }',
@@ -4743,12 +4638,12 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     '  y += 6;',
     '',
     '  addText("Part II", {bold:true, size:11}); y += 1;',
-    '  addText("Question numbers " + D.nums.part2Start + " to " + (D.nums.part3Start-1) + " are two-mark questions, to be answered in about one or two sentences each. Answer any " + M.part2ChooseAny + " questions. Question No. " + M.part2CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part2ChooseAny + " \u00d7 2 = " + (M.part2ChooseAny*2), {italic:true, size:8});',
+    '  addText("Question numbers " + D.nums.part2Start + " to " + (D.nums.part3Start-1) + " are two-mark questions, to be answered in about one or two sentences each. Answer any " + M.part2ChooseAny + " questions. Question No. " + M.part2CompulsoryNum + " is compulsory" + (M.compulsoryTag ? " (" + M.compulsoryTag + ")" : "") + ". " + M.part2ChooseAny + " \u00d7 2 = " + (M.part2ChooseAny*2), {italic:true, size:8});',
     '  D.part2.forEach(function(q,i){ addText((D.nums.part2Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
     '  y += 6;',
     '',
     '  addText("Part III", {bold:true, size:11}); y += 1;',
-    '  addText("Question numbers " + D.nums.part3Start + " to " + (D.nums.part3Start+D.part3.length-1) + " are three-mark questions. Answer any " + M.part3ChooseAny + " questions. Question No. " + M.part3CompulsoryNum + " is compulsory" + (M.numericalCompulsory ? " (numerical problem)" : "") + ". " + M.part3ChooseAny + " \u00d7 3 = " + (M.part3ChooseAny*3), {italic:true, size:8});',
+    '  addText("Question numbers " + D.nums.part3Start + " to " + (D.nums.part3Start+D.part3.length-1) + " are three-mark questions. Answer any " + M.part3ChooseAny + " questions. Question No. " + M.part3CompulsoryNum + " is compulsory" + (M.compulsoryTag ? " (" + M.compulsoryTag + ")" : "") + ". " + M.part3ChooseAny + " \u00d7 3 = " + (M.part3ChooseAny*3), {italic:true, size:8});',
     '  D.part3.forEach(function(q,i){ addText((D.nums.part3Start+i) + ". " + q.q, {size:9.5}); y += 2; });',
     '  y += 6;',
     '',
@@ -4813,11 +4708,11 @@ function openPrintablePaper({subjectKey, totalMarks, examTitle, pattern, part1, 
     ${part1Html}
 
     <div class="part-title">Part II</div>
-    <div class="part-note">Question numbers ${part2Start} to ${part3Start-1} are two-mark questions, to be answered in about one or two sentences each. Answer any ${pattern.part2.chooseAny} questions. Question No. ${part2CompulsoryNum} is compulsory${numericalCompulsory ? ' (numerical problem)' : ''}. ${pattern.part2.chooseAny} × 2 = ${pattern.part2.chooseAny*2}</div>
+    <div class="part-note">Question numbers ${part2Start} to ${part3Start-1} are two-mark questions, to be answered in about one or two sentences each. Answer any ${pattern.part2.chooseAny} questions. Question No. ${part2CompulsoryNum} is compulsory${compulsoryTag ? ` (${compulsoryTag})` : ''}. ${pattern.part2.chooseAny} × 2 = ${pattern.part2.chooseAny*2}</div>
     ${part2Html}
 
     <div class="part-title">Part III</div>
-    <div class="part-note">Question numbers ${part3Start} to ${part3Start+part3.length-1} are three-mark questions. Answer any ${pattern.part3.chooseAny} questions. Question No. ${part3CompulsoryNum} is compulsory${numericalCompulsory ? ' (numerical problem)' : ''}. ${pattern.part3.chooseAny} × 3 = ${pattern.part3.chooseAny*3}</div>
+    <div class="part-note">Question numbers ${part3Start} to ${part3Start+part3.length-1} are three-mark questions. Answer any ${pattern.part3.chooseAny} questions. Question No. ${part3CompulsoryNum} is compulsory${compulsoryTag ? ` (${compulsoryTag})` : ''}. ${pattern.part3.chooseAny} × 3 = ${pattern.part3.chooseAny*3}</div>
     ${part3Html}
 
     <div class="part-title">Part IV</div>
@@ -4911,8 +4806,7 @@ function setDuvanVisible(visible){
     // force-close the chat panel too, so it can't be left open behind the test
     if(panel) panel.classList.add('hidden');
     duvanOpen = false;
-    const icon = document.getElementById('duvanFabIcon');
-    if(icon) icon.textContent = '💬';
+    fab.classList.remove('is-open');
   }
 }
 
@@ -5993,24 +5887,23 @@ window.addEventListener('offline', updateOfflineBanner);
   updateOfflineBanner();
 })();
 
-/* ================= DUVAN — AI DOUBT ASSISTANT (Gemini API) ================= */
+/* ================= DUVAN — AI DOUBT ASSISTANT (Groq API) ================= */
 /*
   SETUP:
-  1. Get a free API key at https://aistudio.google.com/apikey
-  2. Paste it below in place of "PASTE_YOUR_GEMINI_API_KEY_HERE"
+  1. Get a free API key at https://console.groq.com/keys (no credit card needed)
+  2. Paste it below in place of "PASTE_YOUR_GROQ_API_KEY_HERE"
   3. IMPORTANT — this is a static site, so this key is visible to anyone who
-     views the page source. To stop it being copied and abused elsewhere:
-       - In Google AI Studio / Google Cloud Console, open the key's settings
-       - Under "API restrictions", limit it to the Generative Language API
-       - Under "Application restrictions", choose "Websites" and add your
-         site's exact URL, e.g. https://sparkx-svg.github.io/*
-     This makes the key only work when called from your own site.
+     views the page source. To limit abuse:
+       - Groq doesn't support domain-restricted keys yet, so the main
+         protection is simply not exposing large limits — the free tier
+         itself acts as a natural cap.
+       - Rotate the key if you ever suspect misuse (console.groq.com/keys).
   4. The free tier has a daily/per-minute request limit. If it's exceeded,
      Duvan will show a friendly "try again in a bit" message instead of
      crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "AQ.Ab8RN6LXMJhmuK47YVmCwswmNZH9y2TaWo7rhRKYffIl8SOKiA";
-const DUVAN_MODEL = "gemini-2.5-flash";
+const DUVAN_API_KEY = "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";
+const DUVAN_MODEL = "llama-3.3-70b-versatile";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
 let duvanHistory = []; // { role: 'user'|'model', text: '...' }
@@ -6020,10 +5913,10 @@ let duvanBusy = false;
 function toggleDuvanChat(){
   duvanOpen = !duvanOpen;
   const panel = document.getElementById('duvanPanel');
-  const icon = document.getElementById('duvanFabIcon');
+  const fab = document.getElementById('duvanFab');
   if(!panel) return;
   panel.classList.toggle('hidden', !duvanOpen);
-  if(icon) icon.textContent = duvanOpen ? '✕' : '💬';
+  if(fab) fab.classList.toggle('is-open', duvanOpen);
   if(duvanOpen){
     const input = document.getElementById('duvanInput');
     if(input) setTimeout(()=>input.focus(), 150);
@@ -6082,7 +5975,13 @@ function clearDuvanChat(){
 
 function scrollDuvanToBottom(){
   const wrap = document.getElementById('duvanMessages');
-  if(wrap) wrap.scrollTop = wrap.scrollHeight;
+  if(!wrap) return;
+  // Wait a frame so the browser has finished laying out the new content
+  // (fixes cases where scrollHeight was measured before text wrapped/rendered)
+  requestAnimationFrame(() => {
+    wrap.scrollTop = wrap.scrollHeight;
+    requestAnimationFrame(() => { wrap.scrollTop = wrap.scrollHeight; });
+  });
 }
 
 function appendDuvanMessage(text, cls){
@@ -6111,6 +6010,7 @@ function showDuvanTyping(){
 function removeDuvanTyping(){
   const el = document.getElementById('duvanTypingIndicator');
   if(el) el.remove();
+  scrollDuvanToBottom();
 }
 
 async function sendDuvanMessage(){
@@ -6121,8 +6021,8 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GEMINI_API_KEY_HERE"){
-    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Gemini API key in script.js.", 'duvan-msg-error');
+  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GROQ_API_KEY_HERE"){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Groq API key in script.js.", 'duvan-msg-error');
     return;
   }
 
@@ -6136,23 +6036,28 @@ async function sendDuvanMessage(){
   showDuvanTyping();
 
   try{
-    const contents = duvanHistory.map(m => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.text }]
-    }));
+    // Groq uses the OpenAI-compatible chat completions format
+    const messages = [
+      { role: 'system', content: DUVAN_SYSTEM_PROMPT },
+      ...duvanHistory.map(m => ({
+        role: m.role === 'user' ? 'user' : 'assistant',
+        content: m.text
+      }))
+    ];
 
     const resp = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${DUVAN_MODEL}:generateContent`,
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-goog-api-key': DUVAN_API_KEY
+          'Authorization': `Bearer ${DUVAN_API_KEY}`
         },
         body: JSON.stringify({
-          contents,
-          systemInstruction: { parts: [{ text: DUVAN_SYSTEM_PROMPT }] },
-          generationConfig: { temperature: 0.6, maxOutputTokens: 800 }
+          model: DUVAN_MODEL,
+          messages,
+          temperature: 0.6,
+          max_tokens: 800
         })
       }
     );
@@ -6162,14 +6067,14 @@ async function sendDuvanMessage(){
 
     if(!resp.ok){
       const status = resp.status;
-      // Log the full error so the real cause (bad key, restricted key,
-      // disabled API, quota, etc.) is visible in the browser console
-      // instead of only ever showing a generic message.
+      // Log the full error so the real cause (bad key, disabled model,
+      // quota, etc.) is visible in the browser console instead of only
+      // ever showing a generic message.
       console.error('Duvan API error:', status, data);
       if(status === 429){
         appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
       } else if(status === 400 || status === 401 || status === 403){
-        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Gemini API key (it may be invalid, restricted to a different website, or the Generative Language API isn't enabled for it). Details are in the browser console.", 'duvan-msg-error');
+        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Groq API key in script.js. Details are in the browser console.", 'duvan-msg-error');
       } else {
         appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
       }
@@ -6177,7 +6082,7 @@ async function sendDuvanMessage(){
       return;
     }
 
-    const reply = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+    const reply = data?.choices?.[0]?.message?.content || '';
     if(!reply){
       appendDuvanMessage("Hmm, I couldn't come up with an answer for that. Could you rephrase your doubt?", 'duvan-msg-error');
       duvanHistory.pop();
