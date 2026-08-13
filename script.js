@@ -3620,43 +3620,254 @@ const PAPER_PATTERNS = {
 };
 
 
-/* ================= 10th STANDARD — SOCIAL SCIENCE (History, Geography, Civics, Economics) =================
-   Supports MCQ, fill-blanks, match-following, caption-style questions.
-   type: 'mcq' (default) | 'fill' | 'match' | 'caption'
-   For fill: correct is string or array of acceptable answers (case-insensitive).
-   For match: options are the pairing choices (as MCQ of combinations) OR use pairs.
-   For caption: treat like fill or MCQ describing the image.
+
+/* ================= 10th STANDARD — SOCIAL SCIENCE (Full set from Padasalai / Cheddilal Govt HS One-Mark PDF)
+   Types: mcq | fill | match | caption
+   Source: 10th Social One Mark Questions English Medium
 */
 const SS_HISTORY = [
-  {type:'mcq', q:"Who was the founder of the Mauryan Empire?", options:["Ashoka","Chandragupta Maurya","Bindusara","Chanakya"], correct:1, exp:"Chandragupta Maurya founded the Mauryan Empire with the help of Chanakya."},
-  {type:'fill', q:"The capital of the Mauryan Empire was ________.", correct:["Pataliputra","Patna"], exp:"Pataliputra (modern Patna) was the capital of the Mauryan Empire."},
-  {type:'mcq', q:"The Battle of Plassey was fought in the year", options:["1757","1764","1857","1947"], correct:0, exp:"The Battle of Plassey was fought in 1757 between the British East India Company and Siraj-ud-Daulah."},
-  {type:'match', q:"Match the following leaders with their movements:\\nA) Mahatma Gandhi  B) Subhash Chandra Bose  C) Bhagat Singh  D) Jawaharlal Nehru\\n1) Indian National Army  2) Non-Cooperation Movement  3) Hindustan Socialist Republican Association  4) Discovery of India", options:["A-2, B-1, C-3, D-4","A-1, B-2, C-4, D-3","A-2, B-3, C-1, D-4","A-4, B-1, C-2, D-3"], correct:0, exp:"Gandhi – Non-Cooperation, Bose – INA, Bhagat Singh – HSRA, Nehru – Discovery of India."},
-  {type:'caption', q:"Write a suitable caption for a picture showing the Dandi March (Salt March) led by Mahatma Gandhi in 1930.", correct:["Dandi March 1930","Salt Satyagraha","Gandhi leading the Salt March","The famous Dandi March against salt tax"], exp:"A good caption would mention the Dandi / Salt March of 1930 led by Gandhi as a protest against the British salt tax."}
+  // UNIT 1 MCQ
+  {type:'mcq',q:"What were the three major empires shattered by the end of First World War?",options:["Germany, Austria-Hungary and the Ottomans","Germany, Austria-Hungary and Russia","Spain, Portugal and Italy","Germany, Austria-Hungary, Italy"],correct:0,exp:"The three major empires shattered were Germany, Austria-Hungary and the Ottomans."},
+  {type:'mcq',q:"Where did the Ethiopian army defeat the Italian army?",options:["Delville","Orange State","Adowa","Algiers"],correct:2,exp:"The Ethiopian army defeated the Italian army at Adowa."},
+  {type:'mcq',q:"Which country emerged as the strongest in Asia towards the close of nineteenth century?",options:["China","Japan","Korea","Mongolia"],correct:1,exp:"Japan emerged as the strongest in Asia towards the close of the nineteenth century."},
+  {type:'mcq',q:"Who said \"imperialism is the highest stage of capitalism\"?",options:["Lenin","Marx","Sun Yat-sen","Mao Tsetung"],correct:0,exp:"Lenin said that imperialism is the highest stage of capitalism."},
+  {type:'mcq',q:"What is the Battle of Marne remembered for?",options:["Air Warfare","Trench Warfare","Submarine Warfare","Ship Warfare"],correct:1,exp:"The Battle of Marne is remembered for Trench Warfare."},
+  {type:'mcq',q:"Which country after the World War I took to policy of Isolation?",options:["Britain","France","Germany","USA"],correct:3,exp:"USA took to the policy of Isolation after World War I."},
+  {type:'mcq',q:"To which country the first Secretary General of League of Nations belonged?",options:["Britain","France","Dutch","USA"],correct:0,exp:"The first Secretary General of the League of Nations belonged to Britain."},
+  {type:'mcq',q:"Which country was expelled from the League of Nations for attacking Finland?",options:["Germany","Russia","Italy","France"],correct:1,exp:"Russia was expelled from the League of Nations for attacking Finland."},
+  // UNIT 2 MCQ
+  {type:'mcq',q:"With whom of the following was the Lateran Treaty signed by Italy?",options:["Germany","Russia","Pope","Spain"],correct:2,exp:"Italy signed the Lateran Treaty with the Pope."},
+  {type:'mcq',q:"With whose conquest the Mexican civilization collapsed?",options:["Hernan Cortes","Francisco Pizarro","Toussaint Louverture","Pedro I"],correct:0,exp:"Mexican civilization collapsed with the conquest of Hernan Cortes."},
+  {type:'mcq',q:"Who made Peru as part of their dominions?",options:["English","Spaniards","Russians","French"],correct:1,exp:"Spaniards made Peru part of their dominions."},
+  {type:'mcq',q:"Which President of the USA pursued \"Good Neighbour\" policy towards Latin America?",options:["Roosevelt","Truman","Woodrow Wilson","Eisenhower"],correct:0,exp:"Roosevelt pursued the Good Neighbour policy towards Latin America."},
+  {type:'mcq',q:"Which part of the World disliked dollar Imperialism?",options:["Europe","Latin America","India","China"],correct:1,exp:"Latin America disliked dollar Imperialism."},
+  {type:'mcq',q:"Who was the brain behind the apartheid policy in South Africa?",options:["Verwoerd","Smut","Herzog","Botha"],correct:0,exp:"Verwoerd was the brain behind the apartheid policy in South Africa."},
+  {type:'mcq',q:"Which quickened the process of liberation in Latin America?",options:["Support of US","Napoleonic Invasion","Simon Bolivar's involvement","French Revolution"],correct:1,exp:"Napoleonic Invasion quickened the process of liberation in Latin America."},
+  {type:'mcq',q:"Name the President who made amendment to Munro doctrine to justify American intervention in the affairs of Latin America.",options:["Theodore Roosevelt","Truman","Eisenhower","Woodrow Wilson"],correct:0,exp:"Theodore Roosevelt made the amendment to the Monroe doctrine."},
+  // UNIT 3 MCQ
+  {type:'mcq',q:"When did the Japanese formally sign of their surrender?",options:["2 September, 1945","2 October, 1945","12 September, 1945","12 October, 1945"],correct:0,exp:"Japan formally signed the surrender on 2 September 1945."},
+  {type:'mcq',q:"Who initiated the formation of League of Nations?",options:["Roosevelt","Chamberlain","Woodrow Wilson","Baldwin"],correct:2,exp:"Woodrow Wilson initiated the formation of the League of Nations."},
+  {type:'mcq',q:"Where was the Japanese Navy defeated by the US Navy?",options:["Battle of Guadalcanal","Battle of Midway","Battle of Leningrad","Battle of El Alamein"],correct:1,exp:"The Japanese Navy was defeated by the US Navy at the Battle of Midway."},
+  {type:'mcq',q:"Where did the US drop its first Atomic Bomb?",options:["Kavashaki","Innoshima","Hiroshima","Nagasaki"],correct:2,exp:"The US dropped its first Atomic Bomb on Hiroshima."},
+  {type:'mcq',q:"Who were mainly persecuted by Hitler?",options:["Russians","Arabs","Turks","Jews"],correct:3,exp:"Jews were mainly persecuted by Hitler."},
+  {type:'mcq',q:"Which Prime Minister of England signed the Munich Pact with Germany?",options:["Chamberlain","Winston Churchill","Lloyd George","Stanley Baldwin"],correct:0,exp:"Chamberlain signed the Munich Pact with Germany."},
+  {type:'mcq',q:"When was the Charter of the UN signed?",options:["June 26, 1942","June 26, 1945","January 1, 1942","January 1, 1945"],correct:1,exp:"The Charter of the UN was signed on June 26, 1945."},
+  {type:'mcq',q:"Where is the Headquarters of the International Court of Justice located?",options:["New York","Chicago","London","The Hague"],correct:3,exp:"The Headquarters of the International Court of Justice is at The Hague."},
+  // UNIT 4 MCQ
+  {type:'mcq',q:"Who was the first director of Whampoa Military Academy?",options:["Sun Yat-Sen","Chiang Kai-Shek","Michael Borodin","Chou En Lai"],correct:1,exp:"Chiang Kai-Shek was the first director of Whampoa Military Academy."},
+  {type:'mcq',q:"Which American President followed the policy of containment of Communism?",options:["Woodrow Wilson","Truman","Theodore Roosevelt","Franklin Roosevelt"],correct:1,exp:"Truman followed the policy of containment of Communism."},
+  {type:'mcq',q:"When was People's Political Consultative Conference held in China?",options:["September 1959","September 1948","September 1954","September 1949"],correct:3,exp:"People's Political Consultative Conference was held in September 1949."},
+  {type:'mcq',q:"The United States and European allies formed _____ to resist any Soviet aggression in Europe.",options:["SEATO","NATO","SENTO","Warsaw Pact"],correct:1,exp:"NATO was formed to resist any Soviet aggression in Europe."},
+  {type:'mcq',q:"Who became the Chairman of the PLO's Executive Committee in 1969?",options:["Hafez al-Assad","Yasser Arafat","Nasser","Saddam Hussein"],correct:1,exp:"Yasser Arafat became the Chairman of the PLO's Executive Committee in 1969."},
+  {type:'mcq',q:"When was North and South Vietnam united?",options:["1975","1976","1973","1974"],correct:1,exp:"North and South Vietnam were united in 1976."},
+  {type:'mcq',q:"Where was Arab League formed?",options:["Cairo","Jordan","Lebanon","Syria"],correct:0,exp:"Arab League was formed in Cairo."},
+  {type:'mcq',q:"When was the Warsaw Pact dissolved?",options:["1979","1989","1990","1991"],correct:3,exp:"The Warsaw Pact was dissolved in 1991."},
+  // UNIT 5 MCQ
+  {type:'mcq',q:"In which year was Sati abolished?",options:["1827","1829","1826","1927"],correct:1,exp:"Sati was abolished in 1829."},
+  {type:'mcq',q:"What was the name of the Samaj founded by Dayanand Saraswati?",options:["Arya Samaj","Brahmo Samaj","Prarthana Samaj","Adi Brahmo Samaj"],correct:0,exp:"Dayanand Saraswati founded Arya Samaj."},
+  {type:'mcq',q:"Whose campaign and work led to the enactment of Widow Remarriage Reform Act of 1856?",options:["Iswarchandra Vidyasagar","Raja Ram Mohan Roy","Annie Besant","Jyotiba Phule"],correct:0,exp:"Iswarchandra Vidyasagar's campaign led to the Widow Remarriage Reform Act of 1856."},
+  {type:'mcq',q:"Whose voice was Rast Goftar?",options:["Parsi Movement","Aligarh Movement","Ramakrishna Mission","Dravida Mahajana Sabha"],correct:0,exp:"Rast Goftar was the voice of the Parsi Movement."},
+  {type:'mcq',q:"Who was the founder of Namdhari Movement?",options:["Baba Dayal Das","Baba Ramsingh","Gurunanak","Jyotiba Phule"],correct:1,exp:"Baba Ramsingh was the founder of the Namdhari Movement."},
+  {type:'mcq',q:"Who was Swami Shradhananda?",options:["a disciple of Swami Vivekananda","one who caused split in Brahmo Samaj of India","one who caused split in the Arya Samaj","founder of Samathuva Samajam"],correct:2,exp:"Swami Shradhananda caused a split in the Arya Samaj."},
+  {type:'mcq',q:"Who was the founder of Widow Remarriage Association?",options:["M.G. Ranade","Devendranath Tagore","Jyotiba Phule","Ayyankali"],correct:0,exp:"M.G. Ranade founded the Widow Remarriage Association."},
+  {type:'mcq',q:"Who was the author of the book Satyarthaprakash?",options:["Dayananda Saraswathi","Vaikunda Swamy","Annie Besant","Swami Shradanatha"],correct:0,exp:"Dayananda Saraswathi was the author of Satyarthaprakash."},
+  // FILL IN THE BLANKS - History
+  {type:'fill',q:"Japan forced a war on China in the year ________.",correct:["1894"],exp:"Japan forced a war on China in 1894."},
+  {type:'fill',q:"The new state of Albania was created according to the ________ signed in May 1913.",correct:["Treaty of London","treaty of london"],exp:"The new state of Albania was created according to the Treaty of London signed in May 1913."},
+  {type:'fill',q:"Japan entered into an alliance with England in the year ________.",correct:["1902"],exp:"Japan entered into an alliance with England in 1902."},
+  {type:'fill',q:"In the Balkans ________ had mixed population.",correct:["Macedonia"],exp:"In the Balkans Macedonia had mixed population."},
+  {type:'fill',q:"In the battle of Tannenberg ________ suffered heavy losses.",correct:["Russia"],exp:"In the battle of Tannenberg Russia suffered heavy losses."},
+  {type:'fill',q:"________ as Prime Minister represented France in Paris Peace Conference.",correct:["Clemenceau"],exp:"Clemenceau as Prime Minister represented France in Paris Peace Conference."},
+  {type:'fill',q:"________ became Prime Minister leading a new coalition of liberals and moderate Socialists before Lenin established the Bolshevik Government.",correct:["Kerensky"],exp:"Kerensky became Prime Minister leading a new coalition before Lenin."},
+  {type:'fill',q:"Locarno Treaty was signed in the year ________.",correct:["1925"],exp:"Locarno Treaty was signed in 1925."},
+  {type:'fill',q:"The founder of Social Democratic Party was ________.",correct:["Ferdinand Lassalle"],exp:"The founder of Social Democratic Party was Ferdinand Lassalle."},
+  {type:'fill',q:"The Nazi Party's propaganda was led by ________.",correct:["Josef Goebbels","Goebbels"],exp:"The Nazi Party's propaganda was led by Josef Goebbels."},
+  {type:'fill',q:"The Vietnam Nationalist Party was formed in ________.",correct:["1927"],exp:"The Vietnam Nationalist Party was formed in 1927."},
+  {type:'fill',q:"The Secret State Police in Nazi Germany was known as ________.",correct:["The Gestapo","Gestapo"],exp:"The Secret State Police in Nazi Germany was known as The Gestapo."},
+  {type:'fill',q:"The Union of South Africa came into being in May ________.",correct:["1910"],exp:"The Union of South Africa came into being in May 1910."},
+  {type:'fill',q:"The ANC leader Nelson Mandela was put behind the bars for ________ years.",correct:["27"],exp:"Nelson Mandela was imprisoned for 27 years."},
+  {type:'fill',q:"________ were a military nation.",correct:["The Aztecs","Aztecs"],exp:"The Aztecs were a military nation."},
+  {type:'fill',q:"Boers were also known as ________.",correct:["Afrikaners"],exp:"Boers were also known as Afrikaners."},
+  {type:'fill',q:"Hitler attacked ________ which was a demilitarised Zone.",correct:["Rhineland"],exp:"Hitler attacked Rhineland which was a demilitarised Zone."},
+  {type:'fill',q:"The alliance between Italy, Germany and Japan is known as ________.",correct:["Rome-Berlin Tokyo Axis","Rome-Berlin-Tokyo Axis"],exp:"The alliance is known as Rome-Berlin Tokyo Axis."},
+  {type:'fill',q:"________ started the Lend Lease programme.",correct:["President Roosevelt","Roosevelt"],exp:"President Roosevelt started the Lend Lease programme."},
+  {type:'fill',q:"Britain Prime Minister ________ resigned in 1940.",correct:["Chamberlain"],exp:"Chamberlain resigned in 1940."},
+  {type:'fill',q:"Saluting the bravery of the ________ Churchill said that \"Never was so much owed by so many to so few\".",correct:["Royal Air Force","RAF"],exp:"Churchill saluted the bravery of the Royal Air Force."},
+  {type:'fill',q:"________ is a device used to find out the enemies aircraft from a distance.",correct:["Radar"],exp:"Radar is used to detect enemy aircraft from a distance."},
+  {type:'fill',q:"After the World War II ________ was voted into Power in Great Britain.",correct:["The Labour Party","Labour Party"],exp:"The Labour Party was voted into power in Great Britain after WWII."},
+  {type:'fill',q:"________ was known as \"The morning star of China\".",correct:["Dr. Sun Yat Sen","Sun Yat Sen","Sun Yat-Sen"],exp:"Dr. Sun Yat Sen was known as the morning star of China."},
+  {type:'fill',q:"In 1918, the society for the study of Marxism was formed in ________ University.",correct:["Peking"],exp:"The society for the study of Marxism was formed in Peking University."},
+  {type:'fill',q:"After the death of Dr. Sun Yat Sen, the leader of the Kuomintang Party was ________.",correct:["Chiang Kai-Shek","Chiang Kai Shek"],exp:"Chiang Kai-Shek became the leader of the Kuomintang Party."},
+  {type:'fill',q:"Germany joined the NATO in ________.",correct:["1955"],exp:"Germany joined NATO in 1955."},
+  {type:'fill',q:"________ was the Head Quarters of the Council of Europe.",correct:["Strasbourg"],exp:"Strasbourg was the Headquarters of the Council of Europe."},
+  {type:'fill',q:"________ treaty signed on February 7, 1992 created the European Union.",correct:["The Maastricht","Maastricht"],exp:"The Maastricht treaty created the European Union."},
+  {type:'fill',q:"________ founded the Samarasa Vedha Sanmarga Sangam.",correct:["Vallalar","Ramalinga Adigal","Vallalar (Ramalinga Adigal)"],exp:"Vallalar (Ramalinga Adigal) founded the Samarasa Vedha Sanmarga Sangam."},
+  {type:'fill',q:"The founder of Poona Sarvajanik Sabha was ________.",correct:["M.G.Ranade","M.G. Ranade","MG Ranade"],exp:"M.G. Ranade founded Poona Sarvajanik Sabha."},
+  {type:'fill',q:"Satyashodak Samaj was launched by ________.",correct:["Jyotiba Govindrai Phule","Jyotiba Phule"],exp:"Satyashodak Samaj was launched by Jyotiba Phule."},
+  {type:'fill',q:"Ramakrishna Mission was established by ________.",correct:["Vivekanand","Swami Vivekananda","Vivekananda"],exp:"Ramakrishna Mission was established by Vivekananda."},
+  {type:'fill',q:"________ was the forerunner of Akali Movement.",correct:["Singh Sabha"],exp:"Singh Sabha was the forerunner of Akali Movement."},
+  {type:'fill',q:"Oru paisa Tamilan was started by ________.",correct:["Jyothee Thassar","Iyothee Thass"],exp:"Oru paisa Tamilan was started by Jyothee Thassar."},
+  // MATCH THE FOLLOWING - History (as MCQ of combinations)
+  {type:'match',q:"Match the following (Unit 1):\n1. Treaty of Brest-Litovsk\n2. Jingoism\n3. Kemal Pasha\n4. Emden\n5. Hall of Mirrors\n\na. Versailles  b. Turkey  c. Russia with Germany  d. England  e. Madras",options:["1-c, 2-d, 3-b, 4-e, 5-a","1-a, 2-b, 3-c, 4-d, 5-e","1-c, 2-e, 3-b, 4-d, 5-a","1-d, 2-c, 3-a, 4-e, 5-b"],correct:0,exp:"Correct matching: 1-c, 2-d, 3-b, 4-e, 5-a"},
+  {type:'match',q:"Match the following (Unit 2):\n1. Transvaal\n2. Tongking\n3. Hindenburg\n4. Third Reich\n5. Matteotti\n\na. Germany  b. Hitler  c. Italy  d. Gold  e. guerilla activities",options:["1-d, 2-e, 3-a, 4-b, 5-c","1-a, 2-b, 3-c, 4-d, 5-e","1-d, 2-a, 3-e, 4-b, 5-c","1-e, 2-d, 3-a, 4-c, 5-b"],correct:0,exp:"Correct matching: 1-d, 2-e, 3-a, 4-b, 5-c"},
+  {type:'match',q:"Match the following (Unit 3):\n1. Blitzkrieg\n2. Royal Navy\n3. Lend Lease\n4. Volga\n5. Guadalcanal\n\na. Roosevelt  b. Stalingrad  c. Solomon Island  d. Britain  e. Lightning Strike",options:["1-e, 2-d, 3-a, 4-b, 5-c","1-a, 2-b, 3-c, 4-d, 5-e","1-e, 2-a, 3-d, 4-b, 5-c","1-d, 2-e, 3-a, 4-c, 5-b"],correct:0,exp:"Correct matching: 1-e, 2-d, 3-a, 4-b, 5-c"},
+  {type:'match',q:"Match the following (Unit 4):\n1. Dr. Sun Yat-Sen\n2. Syngman Rhee\n3. Anwar Sadat\n4. Ho-Chi Minh\n5. Ngo Dinh Diem\n\na. South Vietnam  b. Kuomintang  c. South Korea  d. Egypt  e. North Vietnam",options:["1-b, 2-c, 3-d, 4-e, 5-a","1-a, 2-b, 3-c, 4-d, 5-e","1-b, 2-a, 3-d, 4-e, 5-c","1-c, 2-b, 3-d, 4-a, 5-e"],correct:0,exp:"Correct matching: 1-b, 2-c, 3-d, 4-e, 5-a"},
+  {type:'match',q:"Match the following (Unit 5):\n1. Ayyavazhi\n2. Thiruvarutpa\n3. Baba Dayal Das\n4. Iswarchandra Vidyasagar\n5. Debendranath\n\na. Widows Remarriage Reform Act  b. Nirankari  c. Adi Brahmo Samaj  d. Vaikunda Swamigal  e. Songs of Grace",options:["1-d, 2-e, 3-b, 4-a, 5-c","1-a, 2-b, 3-c, 4-d, 5-e","1-d, 2-a, 3-e, 4-b, 5-c","1-e, 2-d, 3-b, 4-a, 5-c"],correct:0,exp:"Correct matching: 1-d, 2-e, 3-b, 4-a, 5-c"},
+  // CAPTION style (as fill with accepted answers)
+  {type:'caption',q:"Imperialism – Write short notes covering: What is monopoly capitalism? How did Japan emerge as an imperial power? Why did industrial countries need colonies? What contrasts did capitalism produce?",correct:["Monopoly capitalism is the highest stage of capitalism where a few large firms control production. Japan modernised after Meiji Restoration and defeated China (1894) and Russia. Industrial countries needed colonies for raw materials and markets. Capitalism produced contrasts of wealth and poverty."],exp:"Key points: monopoly capitalism (Lenin), Meiji Japan, need for raw materials & markets, rich-poor contrasts."},
+  {type:'caption',q:"Balkan Wars – Why was Balkan League formed? Outcome of first Balkan War? Who were defeated? Name of the Treaty after second Balkan War?",correct:["Balkan League was formed to free Balkan states from Ottoman rule. First Balkan War ended Ottoman defeat. Turkey was defeated. Treaty of Bucharest ended the second Balkan War."],exp:"Balkan League vs Ottomans; Treaty of Bucharest after Second Balkan War."}
 ];
 
 const SS_GEOGRAPHY = [
-  {type:'mcq', q:"Which is the longest river in India?", options:["Yamuna","Ganga","Godavari","Narmada"], correct:1, exp:"The Ganga is the longest river in India."},
-  {type:'fill', q:"The Tropic of Cancer passes through ________ Indian states.", correct:["8","eight"], exp:"The Tropic of Cancer passes through 8 Indian states."},
-  {type:'mcq', q:"Black soil is ideal for the cultivation of", options:["Wheat","Rice","Cotton","Tea"], correct:2, exp:"Black soil (regur) is ideal for cotton cultivation."},
-  {type:'match', q:"Match the following:\\nA) Western Ghats  B) Eastern Ghats  C) Himalayas  D) Aravalli\\n1) Oldest fold mountain  2) Continuous range  3) Discontinuous range  4) Young fold mountains", options:["A-2, B-3, C-4, D-1","A-3, B-2, C-1, D-4","A-2, B-1, C-4, D-3","A-1, B-3, C-2, D-4"], correct:0, exp:"Western Ghats continuous, Eastern Ghats discontinuous, Himalayas young fold, Aravalli oldest."},
-  {type:'caption', q:"Suggest a caption for a diagram showing the water cycle (evaporation, condensation, precipitation).", correct:["The Water Cycle","Hydrological Cycle","Water Cycle – Evaporation Condensation Precipitation","Nature's Water Cycle"], exp:"A clear caption is 'The Water Cycle' or 'Hydrological Cycle'."}
+  // Unit 1 MCQ
+  {type:'mcq',q:"The north–south extent of India is _______________.",options:["2,500 km","2,933 km","3,214 km","2,814 km"],correct:2,exp:"The north–south extent of India is 3,214 km."},
+  {type:'mcq',q:"The Southern most point of India is _______________.",options:["Andaman","Kanyakumari","Indira Point","Kavaratti"],correct:2,exp:"Indira Point is the southernmost point of India."},
+  {type:'mcq',q:"The extent of Himalayas in the east-west is about _______________.",options:["2,500 km","2,400 km","800 km","2,200 km"],correct:0,exp:"The east-west extent of the Himalayas is about 2,500 km."},
+  {type:'mcq',q:"_______________ River is known as 'Sorrow of Bihar'.",options:["Narmada","Godavari","Kosi","Damodar"],correct:2,exp:"Kosi is known as the Sorrow of Bihar."},
+  {type:'mcq',q:"Deccan Plateau covers an area of about ________ sq.km.",options:["8 lakh","6 lakh","5 lakh","7 lakh"],correct:3,exp:"Deccan Plateau covers about 7 lakh sq.km."},
+  {type:'mcq',q:"A landmass bounded by sea on three sides is referred to as _______________.",options:["Coast","Island","Peninsula","Strait"],correct:2,exp:"A landmass bounded by sea on three sides is a Peninsula."},
+  {type:'mcq',q:"The Palk Strait and Gulf of Mannar separates India from _______________.",options:["Goa","West Bengal","Sri Lanka","Maldives"],correct:2,exp:"Palk Strait and Gulf of Mannar separate India from Sri Lanka."},
+  {type:'mcq',q:"The highest peak in South India is _______________.",options:["Ooty","Kodaikanal","Anaimudi","Jindhagada"],correct:2,exp:"Anaimudi is the highest peak in South India."},
+  {type:'mcq',q:"_______________ Plains are formed by the older alluviums.",options:["Bhabar","Tarai","Bhangar","Khadar"],correct:2,exp:"Bhangar plains are formed by older alluviums."},
+  {type:'mcq',q:"Pulicat Lake is located between the states of _______________.",options:["West Bengal and Odisha","Karnataka and Kerala","Odisha and Andhra Pradesh","Tamil Nadu and Andhra Pradesh"],correct:3,exp:"Pulicat Lake lies between Tamil Nadu and Andhra Pradesh."},
+  // Unit 2 MCQ
+  {type:'mcq',q:"Meteorology is the science of ____________________",options:["Weather","Social","Political","Human"],correct:0,exp:"Meteorology is the science of weather."},
+  {type:'mcq',q:"We wear cotton during ____________________",options:["Summer","Winter","Rainy","Northeast monsoon"],correct:0,exp:"We wear cotton during summer."},
+  {type:'mcq',q:"Western disturbances cause rainfall in ____________________",options:["Tamil Nadu","Kerala","Punjab","Madhya Pradesh"],correct:2,exp:"Western disturbances cause rainfall in Punjab (and northwest India)."},
+  {type:'mcq',q:"________ helps in quick ripening of mangoes along the Coast of Kerala and Karnataka.",options:["Loo","Norwester","Mango showers","Jet stream"],correct:2,exp:"Mango showers help in quick ripening of mangoes."},
+  {type:'mcq',q:"________ is a line joining the places of equal rainfall.",options:["Isohyets","Isobar","Isotherm","Latitudes"],correct:0,exp:"Isohyets join places of equal rainfall."},
+  {type:'mcq',q:"Climate of India is labelled as ____________________",options:["Tropical humid","Equatorial Climate","Tropical Monsoon Climate","Temperate Climate"],correct:2,exp:"Climate of India is Tropical Monsoon Climate."},
+  {type:'mcq',q:"The monsoon forests are otherwise called as ____________________",options:["Tropical Evergreen Forest","Deciduous Forest","Mangrove Forest","Mountain Forest"],correct:1,exp:"Monsoon forests are also called Deciduous Forest."},
+  {type:'mcq',q:"____________________ forests are found above 2400m Himalayas.",options:["Deciduous Forests","Alpine Forests","Mangrove Forests","Tidal Forests"],correct:1,exp:"Alpine Forests are found above 2400m in the Himalayas."},
+  {type:'mcq',q:"Seshachalam hills, a Biosphere reserve is situated in ____________________",options:["Tamil Nadu","Andhra Pradesh","Madhya Pradesh","Karnataka"],correct:1,exp:"Seshachalam hills Biosphere reserve is in Andhra Pradesh."},
+  {type:'mcq',q:"________ is a part of the world network biosphere reserves of UNESCO.",options:["Nilgiri","Agasthiyamalai","Great Nicobar","Kachch"],correct:0,exp:"Nilgiri is part of the UNESCO world network of biosphere reserves."},
+  // Unit 3 MCQ
+  {type:'mcq',q:"The soil which is rich in iron oxides is ____________________.",options:["Alluvial","Black","Red","Alkaline"],correct:2,exp:"Red soil is rich in iron oxides."},
+  {type:'mcq',q:"Which of the following organization has divided the Indian soils into 8 major groups?",options:["Indian Council of Agricultural Research","Indian Meteorological Department","Soil Survey of India","Indian Institute of Soil Science"],correct:0,exp:"ICAR has divided Indian soils into 8 major groups."},
+  {type:'mcq',q:"The soils formed by the rivers are:",options:["Red soils","Black soils","Desert soils","Alluvial soils"],correct:3,exp:"Alluvial soils are formed by rivers."},
+  {type:'mcq',q:"________ dam is the highest gravity dam in India.",options:["Hirakud dam","Bhakra Nangal dam","Mettur dam","Nagarjuna Sagar dam"],correct:1,exp:"Bhakra Nangal is the highest gravity dam in India."},
+  {type:'mcq',q:"____________________ is a cash crop.",options:["Cotton","Wheat","Rice","Maize"],correct:0,exp:"Cotton is a cash crop."},
+  {type:'mcq',q:"Black soils are also called as ____________________",options:["Arid soils","Saline soils","Regur soils","Mountain soils"],correct:2,exp:"Black soils are also called Regur soils."},
+  {type:'mcq',q:"The longest dam in the world is ____________________",options:["Mettur dam","Kosi dam","Hirakud dam","Bhakra-Nangal dam"],correct:2,exp:"Hirakud is the longest dam in the world."},
+  {type:'mcq',q:"The leading producer of rice in India is ____________________",options:["Punjab","Maharashtra","Uttar Pradesh","West Bengal"],correct:3,exp:"West Bengal is the leading producer of rice in India."},
+  {type:'mcq',q:"Which crop is called as \"Golden Fibre\" in India?",options:["Cotton","Wheat","Jute","Tobacco"],correct:2,exp:"Jute is called the Golden Fibre."},
+  {type:'mcq',q:"The state which leads in the production of coffee is ____________________",options:["West Bengal","Karnataka","Odisha","Punjab"],correct:1,exp:"Karnataka leads in coffee production."},
+  // Unit 4 MCQ
+  {type:'mcq',q:"Manganese is used in ____________________",options:["Storage batteries","Steel Making","Copper smelting","Petroleum Refining"],correct:1,exp:"Manganese is used in steel making."},
+  {type:'mcq',q:"The Anthracite coal has ____________________",options:["80 to 95% Carbon","Above 70% Carbon","60 to 70% Carbon","Below 50% Carbon"],correct:0,exp:"Anthracite coal has 80 to 95% Carbon."},
+  {type:'mcq',q:"The most important constituents of petroleum are hydrogen and ____________________",options:["Oxygen","Water","Carbon","Nitrogen"],correct:2,exp:"Petroleum's most important constituents are hydrogen and carbon."},
+  {type:'mcq',q:"The city which is called as the Manchester of South India is ____________________",options:["Chennai","Salem","Madurai","Coimbatore"],correct:3,exp:"Coimbatore is called the Manchester of South India."},
+  {type:'mcq',q:"The first Jute mill of India was established at ____________________",options:["Kolkata","Mumbai","Ahmedabad","Baroda"],correct:0,exp:"The first Jute mill was established at Kolkata."},
+  {type:'mcq',q:"The first Nuclear Power station was commissioned in ____________________",options:["Gujarat","Rajasthan","Maharashtra","Tamil Nadu"],correct:2,exp:"The first Nuclear Power station was commissioned in Maharashtra (Tarapur)."},
+  {type:'mcq',q:"The most abundant source of energy is ____________________",options:["Bio mass","Sun","Coal","Oil"],correct:1,exp:"The Sun is the most abundant source of energy."},
+  {type:'mcq',q:"The famous Sindri Fertilizer Plant is located in ____________________",options:["Jharkhand","Bihar","Rajasthan","Assam"],correct:0,exp:"Sindri Fertilizer Plant is in Jharkhand."},
+  {type:'mcq',q:"The nucleus for the development of the Chotanagpur Plateau Region is ____________________",options:["Transport","Mineral Deposits","Large demand","Power Availability"],correct:1,exp:"Mineral deposits are the nucleus for Chotanagpur Plateau development."},
+  {type:'mcq',q:"One of the shore based steel plants of India is located at ____________________",options:["Kolkata","Tuticorin","Goa","Visakhapatnam"],correct:3,exp:"Visakhapatnam has a shore-based steel plant."},
+  // Unit 5 MCQ
+  {type:'mcq',q:"The scientific study of different aspects of population is called _______________",options:["Photography","Demography","Choreography","Population density"],correct:1,exp:"Demography is the scientific study of population."},
+  {type:'mcq',q:"The state with highest literacy rate as per 2011 census is _______________",options:["Tamil Nadu","Karnataka","Kerala","Uttar Pradesh"],correct:2,exp:"Kerala has the highest literacy rate as per 2011 census."},
+  {type:'mcq',q:"Human Development is measured in terms of _______________",options:["Human Resource Index","Per capita index","Human Development Index","UNDP"],correct:2,exp:"Human Development is measured by the Human Development Index (HDI)."},
+  {type:'mcq',q:"_______________ transport provides door to door services.",options:["Railways","Roadways","Airways","Waterways"],correct:1,exp:"Roadways provide door-to-door services."},
+  {type:'mcq',q:"The length of Golden Quadrilateral super highways in India is _______________",options:["5846 km","5847 km","5849 km","5800 km"],correct:0,exp:"Golden Quadrilateral is about 5846 km."},
+  {type:'mcq',q:"The length of navigable Inland waterways in India is _______________",options:["17,500 km","5000 km","14,500 km","1000 km"],correct:2,exp:"Navigable inland waterways in India are about 14,500 km."},
+  {type:'mcq',q:"The National Remote sensing Centre (NRSC) is located at _______________",options:["Bengaluru","Chennai","Delhi","Hyderabad"],correct:3,exp:"NRSC is located at Hyderabad."},
+  {type:'mcq',q:"The transport useful in the inaccessible areas is _______________",options:["Roadways","Railways","Airways","Waterways"],correct:2,exp:"Airways are useful in inaccessible areas."},
+  {type:'mcq',q:"Which of the following is associated with helicopter service?",options:["Air India","Indian Airlines","Vayudoot","Pavan Hans"],correct:3,exp:"Pavan Hans is associated with helicopter service."},
+  {type:'mcq',q:"The major import item of India is _______________",options:["Cement","Jewels","Tea","Petroleum"],correct:3,exp:"Petroleum is the major import item of India."},
+  // Geography Match
+  {type:'match',q:"Match the following (Location, Relief):\n1. Tsangpo\n2. Yamuna\n3. New alluvium\n4. Mt. Godwin Austen (K2)\n5. Coromandel Coast\n\na. Tributary of River Ganga  b. Highest peak in India  c. River Brahmaputra in Tibet  d. Southern part of East Coastal Plain  e. Khadar",options:["1-c, 2-a, 3-e, 4-b, 5-d","1-a, 2-b, 3-c, 4-d, 5-e","1-c, 2-e, 3-a, 4-b, 5-d","1-d, 2-a, 3-e, 4-b, 5-c"],correct:0,exp:"Correct: 1-c, 2-a, 3-e, 4-b, 5-d"},
+  {type:'match',q:"Match the following (Climate):\n1. Project Elephant\n2. Biodiversity hotspot\n3. North East Monsoon\n4. Tropical thorn Forests\n5. Coastal Forests\n\na. Desert and Semi Desert Vegetation  b. October-December  c. Littoral forest  d. Protect the Elephants  e. The Himalayas",options:["1-d, 2-e, 3-b, 4-a, 5-c","1-a, 2-b, 3-c, 4-d, 5-e","1-d, 2-a, 3-b, 4-e, 5-c","1-e, 2-d, 3-b, 4-a, 5-c"],correct:0,exp:"Correct: 1-d, 2-e, 3-b, 4-a, 5-c"},
+  {type:'match',q:"Match the following (Agriculture):\n1. Sugar bowl of India\n2. Coffee\n3. Tehri\n4. Hirakud\n5. Horticulture\n\na. Mahanadi  b. Golden Revolution  c. Karnataka  d. Uttar Pradesh and Bihar  e. Highest Dam in India",options:["1-d, 2-c, 3-e, 4-a, 5-b","1-a, 2-b, 3-c, 4-d, 5-e","1-d, 2-a, 3-e, 4-b, 5-c","1-c, 2-d, 3-e, 4-a, 5-b"],correct:0,exp:"Correct: 1-d, 2-c, 3-e, 4-a, 5-b"}
 ];
 
 const SS_CIVICS = [
-  {type:'mcq', q:"The Indian Constitution came into force on", options:["15 August 1947","26 January 1950","26 November 1949","2 October 1947"], correct:1, exp:"The Constitution of India came into force on 26 January 1950 (Republic Day)."},
-  {type:'fill', q:"The head of the State in India is the ________.", correct:["President","President of India"], exp:"The President is the constitutional head of the State in India."},
-  {type:'mcq', q:"Which of the following is a Fundamental Right?", options:["Right to Property","Right to Equality","Right to Work","Right to Free Education only"], correct:1, exp:"Right to Equality is a Fundamental Right under Articles 14–18."},
-  {type:'match', q:"Match the following:\\nA) Lok Sabha  B) Rajya Sabha  C) President  D) Prime Minister\\n1) Council of States  2) House of the People  3) Head of Government  4) Head of State", options:["A-2, B-1, C-4, D-3","A-1, B-2, C-3, D-4","A-2, B-1, C-3, D-4","A-1, B-2, C-4, D-3"], correct:0, exp:"Lok Sabha = House of the People, Rajya Sabha = Council of States, President = Head of State, PM = Head of Government."},
-  {type:'caption', q:"Write a caption for an image of the Parliament House of India.", correct:["Parliament of India","Sansad Bhavan","Indian Parliament Building","The Parliament House, New Delhi"], exp:"Suitable captions include 'Parliament of India' or 'Sansad Bhavan'."}
+  // Unit 1 MCQ
+  {type:'mcq',q:"Which of the following sequences is right regarding the Preamble?",options:["Republic, democratic, secular, socialist, sovereign","Sovereign, socialist, secular, republic, democratic","Sovereign, republic, secular, socialist, democratic","Sovereign, socialist, secular, democratic, republic"],correct:3,exp:"The correct order is Sovereign, socialist, secular, democratic, republic."},
+  {type:'mcq',q:"How many times has the Preamble to the Constitution of India been amended?",options:["Once","Twice","Thrice","Never"],correct:0,exp:"The Preamble has been amended once (42nd Amendment)."},
+  {type:'mcq',q:"The Indian Constitution gives to its citizens _______________",options:["Double Citizenship","Single Citizenship","Single Citizenship in some States and Double in others","None of the above"],correct:1,exp:"India follows Single Citizenship."},
+  {type:'mcq',q:"A foreigner can acquire Indian citizenship through",options:["Descent","Registration","Naturalisation","All of the above"],correct:3,exp:"A foreigner can acquire citizenship by Descent, Registration or Naturalisation."},
+  {type:'mcq',q:"Find the odd one out.",options:["Right to Equality","Right against Exploitation","Right to Property","Cultural and Educational Rights"],correct:2,exp:"Right to Property is no longer a Fundamental Right."},
+  {type:'mcq',q:"One of the following is not an instance of an exercise of a fundamental right?",options:["Workers from Karnataka go to Kerala to work on the farms","Christian missions set up a chain of missionary schools","Men and Women Government employees got the same salary","Parents property is inherited by their children"],correct:3,exp:"Inheritance of parents' property is not a Fundamental Right."},
+  {type:'mcq',q:"If the fundamental rights of Indian citizen are violated, they possess the right to have an access to",options:["The Parliament","The Attorney General","The President of India","The Supreme court of India"],correct:3,exp:"Citizens can approach the Supreme Court for enforcement of Fundamental Rights."},
+  {type:'mcq',q:"Which one of the following rights was described by Dr. B.R. Ambedkar as the heart and soul of the Constitution?",options:["Right to freedom of religion","Right to equality","Right to Constitutional remedies","Right to property"],correct:2,exp:"Dr. Ambedkar called Right to Constitutional Remedies the heart and soul of the Constitution."},
+  {type:'mcq',q:"How can the Fundamental Rights be suspended?",options:["If the Supreme Court so desires","If the Prime Minister orders to this effect","If the President orders it during the national emergency","All of the above"],correct:2,exp:"Fundamental Rights can be suspended by the President during national emergency."},
+  {type:'mcq',q:"We borrowed the Fundamental Duties from the _______________",options:["American Constitution","Canadian Constitution","Russian Constitution","Irish Constitution"],correct:2,exp:"Fundamental Duties were borrowed from the Russian (Soviet) Constitution."},
+  {type:'mcq',q:"The Directive Principles can be classified into _______________",options:["Liberal and Communist principles","Socialist and Communist principles","Liberal, Gandhian and Communist principles","Socialist, Gandhian and Liberal principles"],correct:3,exp:"Directive Principles are classified into Socialist, Gandhian and Liberal principles."},
+  {type:'mcq',q:"Under which Article financial emergency can be proclaimed?",options:["Article 352","Article 356","Article 360","Article 368"],correct:2,exp:"Financial emergency is under Article 360."},
+  {type:'mcq',q:"The procedure for the Amendment of the Indian Constitution is given in _______________",options:["Article 352","Article 356","Article 360","Article 368"],correct:3,exp:"Amendment procedure is in Article 368."},
+  {type:'mcq',q:"Which of the following committees/commissions made recommendations about the Centre-State Relations?\n1. Sarkaria Commission  2. Rajamannar Committee  3. M.N.Venkatachaliah Commission",options:["1, 2 & 3","1 & 2","1 & 3","2 & 3"],correct:1,exp:"Sarkaria Commission and Rajamannar Committee dealt with Centre-State relations."},
+  // Unit 2 MCQ
+  {type:'mcq',q:"The Constitutional Head of the Union is __________",options:["The President","The Chief Justice","The Prime Minister","Council of Ministers"],correct:0,exp:"The President is the Constitutional Head of the Union."},
+  {type:'mcq',q:"Who is the real executive in a parliamentary type of government?",options:["Army","The Prime Minister","The President","Judiciary"],correct:1,exp:"The Prime Minister is the real executive in a parliamentary system."},
+  {type:'mcq',q:"Who among the following decides whether a Bill is a Money Bill or not?",options:["The President","Attorney General","Parliamentary Affairs Minister","Speaker of Lok Sabha"],correct:3,exp:"The Speaker of Lok Sabha decides whether a Bill is a Money Bill."},
+  {type:'mcq',q:"The Council of Ministers is collectively responsible to the ________",options:["The President","Lok Sabha","The Prime Minister","Rajya Sabha"],correct:1,exp:"The Council of Ministers is collectively responsible to the Lok Sabha."},
+  {type:'mcq',q:"The Joint sittings of Indian Parliament for transacting legislative business are presided over by?",options:["Senior most member of Parliament","Speaker of the Lok Sabha","The President of India","The Chairman of the Rajya Sabha"],correct:1,exp:"Joint sittings are presided over by the Speaker of the Lok Sabha."},
+  {type:'mcq',q:"What is minimum age laid down for a candidate to seek election to the Lok Sabha?",options:["18 years","21 years","25 years","30 years"],correct:2,exp:"Minimum age for Lok Sabha is 25 years."},
+  {type:'mcq',q:"The authority to alter the boundaries of state in India rests with?",options:["The President","The Prime Minister","State Government","Parliament"],correct:3,exp:"Parliament has the authority to alter state boundaries."},
+  {type:'mcq',q:"Under which Article the President is vested with the power to proclaim Financial Emergency",options:["Article 352","Article 360","Article 356","Article 365"],correct:1,exp:"Article 360 deals with Financial Emergency."},
+  {type:'mcq',q:"The Chief Justice and other Judges of the Supreme court are appointed by the ________",options:["President","Attorney General of India","Governor","Prime Minister"],correct:0,exp:"Judges of the Supreme Court are appointed by the President."},
+  {type:'mcq',q:"Dispute between States of India comes to the Supreme Court under:",options:["Appellate Jurisdiction","Original Jurisdiction","Advisory Jurisdiction","None of these"],correct:1,exp:"Inter-state disputes come under Original Jurisdiction of the Supreme Court."},
+  // Unit 3 MCQ
+  {type:'mcq',q:"The Governor of the State is appointed by the ________",options:["Prime Minister","Chief Minister","President","Chief Justice"],correct:2,exp:"The Governor is appointed by the President."},
+  {type:'mcq',q:"The Speaker of a State is a ________",options:["Head of State","Head of Government","President's Agent","None of these"],correct:3,exp:"The Speaker is none of the given options in that sense."},
+  {type:'mcq',q:"Which among the following is not one of the powers of the Governor?",options:["Legislative","Executive","Judicial","Diplomatic"],correct:3,exp:"Governor does not have Diplomatic powers."},
+  {type:'mcq',q:"Who can nominate one representative of the Anglo-Indian Community to the State Legislative Assembly?",options:["The President","The Governor","The Chief Minister","The Speaker of State Legislature"],correct:1,exp:"The Governor can nominate one Anglo-Indian representative."},
+  {type:'mcq',q:"The Governor does not appoint ________",options:["Chief Minister","Chairman of the State Public Service Commission","Advocate General of the State","Judges of the High Court"],correct:3,exp:"Judges of the High Court are not appointed by the Governor."},
+  {type:'mcq',q:"The Chief Minister of a State is appointed by ________",options:["The State Legislature","The Governor","The President","The Speaker of State Legislative Assembly"],correct:1,exp:"The Chief Minister is appointed by the Governor."},
+  {type:'mcq',q:"The State Council of Ministers is headed by ________",options:["The Chief Minister","The Governor","The Speaker","The Prime Minister"],correct:0,exp:"The State Council of Ministers is headed by the Chief Minister."},
+  {type:'mcq',q:"The Legislative Council ________",options:["Has a term of five years","Has a term of six years","Is a permanent house","Has a term of four years"],correct:2,exp:"The Legislative Council is a permanent house."},
+  {type:'mcq',q:"The minimum age for the membership of the Legislative Council is ________",options:["25 years","21 years","30 years","35 years"],correct:2,exp:"Minimum age for Legislative Council is 30 years."},
+  {type:'mcq',q:"Which one of the following States does not possess a bicameral legislature?",options:["Andhra Pradesh","Telangana","Tamil Nadu","Uttar Pradesh"],correct:2,exp:"Tamil Nadu does not have a bicameral legislature."},
+  {type:'mcq',q:"The High Courts in India were first started at ________",options:["Calcutta, Bombay, Madras","Delhi and Calcutta","Delhi, Calcutta, Madras","Calcutta, Madras, Delhi"],correct:0,exp:"High Courts were first started at Calcutta, Bombay and Madras."},
+  {type:'mcq',q:"Which of the following States have a common High Court?",options:["Tamil Nadu and Andhra Pradesh","Kerala and Telangana","Punjab and Haryana","Maharashtra and Gujarat"],correct:2,exp:"Punjab and Haryana have a common High Court."},
+  // Civics Fill
+  {type:'fill',q:"The concept of constitution first originated in ________.",correct:["USA","United States of America"],exp:"The concept of constitution first originated in the USA."},
+  {type:'fill',q:"________ was elected as the temporary President of the Constituent Assembly.",correct:["Sachchidananda Sinha","Sachchdanandan Sinha"],exp:"Sachchidananda Sinha was the temporary President of the Constituent Assembly."},
+  {type:'fill',q:"The Constitution of India was adopted on ________.",correct:["26 November 1949","Nov 26th 1949","26th November 1949"],exp:"The Constitution was adopted on 26 November 1949."},
+  {type:'fill',q:"Five writs are mentioned in Article ________.",correct:["32"],exp:"Five writs are mentioned in Article 32."},
+  {type:'fill',q:"Fundamental duties have been given to the citizen of India under Article ________.",correct:["51A","51 A"],exp:"Fundamental Duties are under Article 51A."},
+  {type:'fill',q:"________ is the Ex-officio Chair Person of the Rajya Sabha.",correct:["Vice-President","Vice President"],exp:"Vice-President is the Ex-officio Chairperson of the Rajya Sabha."},
+  {type:'fill',q:"The Chief Justice and other judges of the Supreme Court hold the office up to the age of ________ years.",correct:["65"],exp:"Supreme Court judges hold office up to 65 years."},
+  {type:'fill',q:"The Supreme Court is the ________ of the Constitution.",correct:["Guardian"],exp:"The Supreme Court is the Guardian of the Constitution."},
+  // Civics Match
+  {type:'match',q:"Match the following (Constitution):\n1. Citizenship Act\n2. The Preamble\n3. The Mini Constitution\n4. Classical Language\n5. National Emergency\n\na. Jawaharlal Nehru  b. 42nd Amendment  c. 1955  d. 1962  e. Tamil",options:["1-c, 2-a, 3-b, 4-e, 5-d","1-a, 2-b, 3-c, 4-d, 5-e","1-c, 2-b, 3-a, 4-e, 5-d","1-d, 2-a, 3-b, 4-e, 5-c"],correct:0,exp:"Correct: 1-c, 2-a, 3-b, 4-e, 5-d"},
+  {type:'match',q:"Match the following (Central Government):\n1. Article 53\n2. Article 63\n3. Article 356\n4. Article 76\n5. Article 352\n\na. State Emergency  b. Internal Emergency  c. Executive Power of President  d. Office of the Vice President  e. Office of the Attorney General",options:["1-c, 2-d, 3-a, 4-e, 5-b","1-a, 2-b, 3-c, 4-d, 5-e","1-c, 2-d, 3-b, 4-e, 5-a","1-d, 2-c, 3-a, 4-e, 5-b"],correct:0,exp:"Correct: 1-c, 2-d, 3-a, 4-e, 5-b"}
 ];
 
 const SS_ECONOMICS = [
-  {type:'mcq', q:"Which sector is known as the primary sector?", options:["Manufacturing","Agriculture","Banking","Transport"], correct:1, exp:"Agriculture and related activities form the primary sector."},
-  {type:'fill', q:"GDP stands for ________.", correct:["Gross Domestic Product","gross domestic product"], exp:"GDP means Gross Domestic Product."},
-  {type:'mcq', q:"Which of the following is not a feature of money?", options:["Medium of exchange","Store of value","Measure of value","Source of all happiness"], correct:3, exp:"'Source of all happiness' is not an economic function of money."},
-  {type:'match', q:"Match the following:\\nA) Primary Sector  B) Secondary Sector  C) Tertiary Sector\\n1) Services  2) Agriculture  3) Industry / Manufacturing", options:["A-2, B-3, C-1","A-1, B-2, C-3","A-3, B-1, C-2","A-2, B-1, C-3"], correct:0, exp:"Primary = Agriculture, Secondary = Industry, Tertiary = Services."},
-  {type:'caption', q:"Write a suitable caption for a chart comparing organised and unorganised sectors in India.", correct:["Organised vs Unorganised Sector","Comparison of Organised and Unorganised Sectors","Sectoral Classification of Employment","Organised and Unorganised Sectors in India"], exp:"A clear descriptive caption about organised vs unorganised sectors works well."}
+  // Unit 1 MCQ
+  {type:'mcq',q:"GNP equals _______________",options:["NNP adjusted for inflation","GDP adjusted for inflation","GDP plus net property income from abroad","NNP plus net property income from abroad"],correct:2,exp:"GNP = GDP plus net property income from abroad."},
+  {type:'mcq',q:"National Income is a measure of _______________",options:["Total value of money","Total value of producer goods","Total value of consumption goods","Total value of goods and services"],correct:3,exp:"National Income measures the total value of goods and services."},
+  {type:'mcq',q:"Primary sector consists of _______________",options:["Agriculture","Automobiles","Trade","Banking"],correct:0,exp:"Primary sector consists of Agriculture."},
+  {type:'mcq',q:"__________ approach is the value added by each intermediate good is summed to estimate the value of the final good.",options:["Expenditure approach","Value added approach","Income approach","National Income"],correct:1,exp:"Value added approach sums the value added by each intermediate good."},
+  {type:'mcq',q:"Which one sector has highest employment in the GDP?",options:["Agricultural sector","Industrial sector","Service sector","None of the above"],correct:2,exp:"Service sector has the highest share in GDP and employment."},
+  {type:'mcq',q:"Gross value added at current prices for services sector is estimated at _______________ lakh crore in 2018-19.",options:["91.06","92.26","80.07","98.29"],correct:1,exp:"It was estimated at 92.26 lakh crore in 2018-19."},
+  {type:'mcq',q:"India is _______________ larger producer in agricultural product.",options:["1st","3rd","4th","2nd"],correct:3,exp:"India is the 2nd largest producer of agricultural products."},
+  {type:'mcq',q:"India's life expectancy at birth is _______________",options:["65","60","70","55"],correct:0,exp:"India's life expectancy at birth is around 65 (as per the data in the material)."},
+  {type:'mcq',q:"Which one is a trade policy?",options:["Irrigation Policy","Import and export Policy","Land-reform Policy","Wage policy"],correct:1,exp:"Import and export Policy is a trade policy."},
+  {type:'mcq',q:"Indian Economy is _______________",options:["Developing Economy","Emerging Economy","Dual Economy","All the above"],correct:3,exp:"Indian Economy is Developing, Emerging and Dual."},
+  // Unit 2 MCQ
+  {type:'mcq',q:"Who is the head of the World Trade Organisation (WTO)?",options:["Ministerial conference","Director General","Deputy Director General","None of these"],correct:1,exp:"The Director General is the head of the WTO."},
+  {type:'mcq',q:"How many countries were members in WTO at present?",options:["159","164","148","128"],correct:1,exp:"WTO has 164 member countries."},
+  {type:'mcq',q:"Colonial advent in India",options:["Portuguese, Dutch, English, Danish, French","Dutch, English, Danish, French","Portuguese, Danish, Dutch, French, English","Danish, Portuguese, French, English, Dutch"],correct:0,exp:"The colonial powers were Portuguese, Dutch, English, Danish, French."},
+  {type:'mcq',q:"Who first came to India for trading purpose?",options:["Roman Empire","Portuguese","Dutch","Danish"],correct:1,exp:"Portuguese first came to India for trading."},
+  {type:'mcq',q:"When did Portuguese colonize India?",options:["1600 BC","1602 BC","1498 BC","1616 BC"],correct:2,exp:"Portuguese arrived in 1498 (Vasco da Gama)."},
+  {type:'mcq',q:"GATT's first round held in _______________",options:["Tokyo","Uruguay","Torquay","Geneva"],correct:3,exp:"GATT's first round was held in Geneva."},
+  {type:'mcq',q:"India signed the Dunket proposal in",options:["1984","1976","1950","1994"],correct:3,exp:"India signed the Dunkel proposal in 1994."},
+  {type:'mcq',q:"Who granted the English \"Golden Fireman\" in 1632?",options:["Jahangir","Sultan of Golconda","Akbar","Aurangzeb"],correct:1,exp:"Sultan of Golconda granted the English Golden Fireman in 1632."},
+  {type:'mcq',q:"Foreign Investment policy (FIP) announced in _______________",options:["June 1991","July 1991","July-Aug 1991","Aug 1991"],correct:2,exp:"FIP was announced in July-August 1991."},
+  {type:'mcq',q:"Indian government introduced _______________ in 1991",options:["Globalization","World Trade Organisation","New Economic Policy","none"],correct:2,exp:"New Economic Policy was introduced in 1991."},
+  // Economics Fill
+  {type:'fill',q:"Service sector is the ________ sector in India.",correct:["largest"],exp:"Service sector is the largest sector in India."},
+  {type:'fill',q:"GDP is the indicator of ________ of an economy.",correct:["Health","health"],exp:"GDP is the indicator of the health of an economy."},
+  {type:'fill',q:"Secondary sector is otherwise called as ________ Sector.",correct:["Industrial","Industry"],exp:"Secondary sector is also called Industrial Sector."},
+  {type:'fill',q:"Service sector is the ________ engine of Indian economy.",correct:["growth"],exp:"Service sector is the growth engine of Indian economy."},
+  {type:'fill',q:"India is ________ largest economy of the world.",correct:["6th","sixth","6"],exp:"India is the 6th largest economy of the world (as per the material)."},
+  {type:'fill',q:"WTO Agreement came into force from ________.",correct:["January 1, 1995","1 January 1995","January 1 1995"],exp:"WTO Agreement came into force from 1 January 1995."},
+  {type:'fill',q:"The term Globalization was invented by ________.",correct:["Prof. Theodore Levitt","Theodore Levitt"],exp:"The term Globalization was coined by Prof. Theodore Levitt."},
+  // Economics Match
+  {type:'match',q:"Match the following (GDP):\n1. Electricity/Gas and Water\n2. Price Policy\n3. GST\n4. Per capita Income\n5. C + I + G + (X-M)\n\na. National Income / Population  b. Gross National Product  c. Industry Sector  d. Agriculture  e. Tax on Goods and Service",options:["1-c, 2-d, 3-e, 4-a, 5-b","1-a, 2-b, 3-c, 4-d, 5-e","1-c, 2-a, 3-e, 4-b, 5-d","1-d, 2-c, 3-e, 4-a, 5-b"],correct:0,exp:"Correct: 1-c, 2-d, 3-e, 4-a, 5-b"},
+  {type:'match',q:"Match the following (Globalization):\n1. Multinational Corporation in India\n2. MNC\n3. GATT\n4. 8th Uruguay Round\n5. WTO\n\na. 1947  b. Enforce International Trade  c. Minimize cost of Production  d. Infosys  e. 1986",options:["1-d, 2-c, 3-a, 4-e, 5-b","1-a, 2-b, 3-c, 4-d, 5-e","1-d, 2-a, 3-c, 4-e, 5-b","1-c, 2-d, 3-a, 4-e, 5-b"],correct:0,exp:"Correct: 1-d, 2-c, 3-a, 4-e, 5-b"}
 ];
 
 const CHAPTERS_SS = [
@@ -3665,7 +3876,6 @@ const CHAPTERS_SS = [
   {id:3, name:"Civics", icon:"⚖️", questions:SS_CIVICS},
   {id:4, name:"Economics", icon:"📈", questions:SS_ECONOMICS}
 ];
-
 
 const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
@@ -3676,7 +3886,7 @@ const SUBJECT_INFO = {
   biology: {key:'biology', name:'Biology',          icon:'🧬', short:'Bio',  heroLine:'Biology — One Mark Practice',           themeColor:'#EC4899', tagline:'22 chapters • Botany & Zoology, Genetics, Human Health & more', chapters:CHAPTERS_BIOLOGY, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   commerce: {key:'commerce', name:'Commerce',       icon:'📊', short:'Com',  heroLine:'Commerce — One Mark Practice',          themeColor:'#F97316', tagline:'28 chapters • Management, Markets, Marketing, Company Law & more', chapters:CHAPTERS_COMMERCE, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   economics: {key:'economics', name:'Economics',    icon:'🌐', short:'Eco',  heroLine:'Economics — One Mark Practice',         themeColor:'#0D9488', tagline:'12 chapters • Macroeconomics, Banking, Fiscal & International Economics', chapters:CHAPTERS_ECONOMICS, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
-  ss: {key:'ss', name:'Social Science', icon:'📚', short:'SS', heroLine:'Social Science — One Mark Practice', themeColor:'#D97706', tagline:'4 units • History, Geography, Civics & Economics', chapters:CHAPTERS_SS, unitLabel:'Unit', sourceNote:'Source: 10th Std Book Back / Practice — MCQ, Fill-ups, Match & Caption', standards:['10']}
+  ss: {key:'ss', name:'Social Science', icon:'📚', short:'SS', heroLine:'Social Science — One Mark Practice', themeColor:'#D97706', tagline:'History, Geography, Civics & Economics — MCQ, Fill, Match & Caption', chapters:CHAPTERS_SS, unitLabel:'Unit', sourceNote:'Source: 10th Std Book Back / Practice — MCQ, Fill-ups, Match & Caption', standards:['10']}
 };
 let currentSubject = 'cs';
 let currentStandard = '12'; // '10' or '12'
