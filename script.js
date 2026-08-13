@@ -3441,7 +3441,164 @@ const DESCRIPTIVE_QUESTIONS = {
       {chapter:"Electronics and Communication", q:"The given circuit has two ideal diodes connected as shown in figure below. Calculate the current flowing through the resistance R 2 \u2126 R1 D D 1 2 10 V 3 \u2126 R3 2 \u2126 R2", a:""},
       {chapter:"Electronics and Communication", q:"Four silicon diodes and a 10 \u03a9 resistor are connected as shown in figure below. Each diode has a resistance of 1\u03a9. Find the current flows through the 18\u03a9 resistor.", a:""},
     ]
-  }
+  },
+maths: {
+    2: [
+      {chapter:"Applications of Matrices and Determinants", q:"Define the adjoint of a square matrix.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"State the condition for a square matrix to be invertible.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Define the rank of a matrix.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"What is meant by a consistent system of linear equations?", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"State Cramer's rule for solving a system of two linear equations in two unknowns.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Define an elementary row transformation of a matrix.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Find the adjoint of the matrix [[2, 3], [−1, 4]].", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"If A is a 3×3 matrix, write the relation connecting A, adj A and |A|.", a:""},
+      {chapter:"Complex Numbers", q:"Define the modulus and argument of a complex number.", a:""},
+      {chapter:"Complex Numbers", q:"State the triangle inequality for complex numbers.", a:""},
+      {chapter:"Complex Numbers", q:"Find the conjugate of the complex number 3 − 4i.", a:""},
+      {chapter:"Complex Numbers", q:"Simplify i¹⁹⁴⁸ − i¹²⁴⁹.", a:""},
+      {chapter:"Complex Numbers", q:"Define a complex conjugate root theorem for a polynomial with real coefficients.", a:""},
+      {chapter:"Complex Numbers", q:"Write the polar form of a complex number z = x + iy.", a:""},
+      {chapter:"Complex Numbers", q:"State De Moivre's theorem.", a:""},
+      {chapter:"Complex Numbers", q:"Find the square root of the complex number 5 + 12i in a + ib form (state the method used).", a:""},
+      {chapter:"Theory of Equations", q:"State the fundamental theorem of algebra.", a:""},
+      {chapter:"Theory of Equations", q:"Write the relation between the roots and coefficients of a cubic equation.", a:""},
+      {chapter:"Theory of Equations", q:"State Descartes' rule of signs.", a:""},
+      {chapter:"Theory of Equations", q:"Construct a cubic equation whose roots are 1, 2, and 3.", a:""},
+      {chapter:"Theory of Equations", q:"Define a reciprocal equation.", a:""},
+      {chapter:"Theory of Equations", q:"If α, β are the roots of x² − 3x + 5 = 0, find the value of α² + β².", a:""},
+      {chapter:"Theory of Equations", q:"State the rational root theorem.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Find the principal value of sin⁻¹(1/√2).", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Write the domain and range of tan⁻¹x.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"State the relation between sin⁻¹x and cos⁻¹x for x ∈ [−1, 1].", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Find the value of cos⁻¹(cos(7π/6)).", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Write the formula for tan⁻¹x + tan⁻¹y.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Find the principal value of cosec⁻¹(−1).", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Identify the type of conic represented by 2x² − y² = 7.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Define the eccentricity of a conic section.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the centre and radius of the circle x² + y² − 6x + 4y − 12 = 0.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Write the equation of the directrix of the parabola y² = 4ax.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"State the condition for the line y = mx + c to be a tangent to the circle x² + y² = a².", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Define asymptotes of a hyperbola.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Define the scalar triple product of three vectors and state what it represents geometrically.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"If a = 2i + j − k and b = i − j + 2k, find a × b.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"State the condition for two vectors to be perpendicular.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the angle between the vectors a = i + j and b = j + k.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Define the vector equation of a plane in normal form.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"State the condition for three vectors to be coplanar.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"State Rolle's theorem.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"State Lagrange's Mean Value Theorem.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"A particle moves so that s = 2t² + 3t. Find its instantaneous velocity at t = 3 seconds.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Define a critical point of a function.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"State the second derivative test for local maxima and minima.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"Define the differential dy of a function y = f(x).", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"Use linear approximation to find an approximate value of √26.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"Define a partial derivative of a function of two variables.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"State Clairaut's theorem on mixed partial derivatives.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"Define the relative error and percentage error of a measured quantity.", a:""},
+      {chapter:"Applications of Integration", q:"State Bernoulli's formula for integration by parts.", a:""},
+      {chapter:"Applications of Integration", q:"Write the formula for the area under a curve y = f(x) between x = a and x = b.", a:""},
+      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^(π/2) cos²x dx.", a:""},
+      {chapter:"Applications of Integration", q:"Write the formula for the volume of the solid formed by revolving a curve about the x-axis.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Define the order and degree of a differential equation.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Find the order and degree of (d²y/dx²)³ + dy/dx = x, if they exist.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Define a homogeneous differential equation.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Form the differential equation by eliminating the arbitrary constant from y = mx.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Write the standard form of a first order linear differential equation.", a:""},
+      {chapter:"Probability Distributions", q:"Define a discrete random variable.", a:""},
+      {chapter:"Probability Distributions", q:"State the two conditions a probability mass function must satisfy.", a:""},
+      {chapter:"Probability Distributions", q:"Define the mean and variance of a discrete random variable.", a:""},
+      {chapter:"Probability Distributions", q:"The pdf of a random variable X is f(x) = kx, 0 < x < 4. Find the value of k.", a:""},
+      {chapter:"Probability Distributions", q:"Define the cumulative distribution function of a random variable.", a:""},
+      {chapter:"Discrete Mathematics", q:"Define a binary operation on a non-empty set.", a:""},
+      {chapter:"Discrete Mathematics", q:"Define a tautology and a contradiction in logic.", a:""},
+      {chapter:"Discrete Mathematics", q:"State the associative and commutative properties of a binary operation.", a:""},
+      {chapter:"Discrete Mathematics", q:"Construct the truth table for p ∧ q.", a:""},
+      {chapter:"Discrete Mathematics", q:"Define the identity element of a binary operation.", a:""},
+    ],
+    3: [
+      {chapter:"Applications of Matrices and Determinants", q:"Find the inverse of the matrix A = [[2, −1], [1, 3]], using the adjoint method.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Explain the procedure to solve a system of linear equations using the matrix inversion method.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"If A = [[cos α, 0, sin α], [0, 1, 0], [−sin α, 0, cos α]], show that [A]⁻¹ = A(−α).", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Test the consistency of the system of equations x + y = 1, 2x + 2y = 2, and solve if consistent.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Explain how the rank of a matrix is used to determine whether a system of linear equations has a unique solution, no solution, or infinitely many solutions.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Find the rank of the matrix [[1, 2, −1], [2, 4, 1], [3, 6, 3]].", a:""},
+      {chapter:"Complex Numbers", q:"If z₁ = 2 − i and z₂ = −4 + 3i, find the additive and multiplicative inverse of z₁ and z₂.", a:""},
+      {chapter:"Complex Numbers", q:"Show that the four consecutive powers of i (iⁿ, iⁿ⁺¹, iⁿ⁺², iⁿ⁺³) always sum to zero, for any integer n.", a:""},
+      {chapter:"Complex Numbers", q:"Find the modulus and principal argument of the complex number −1 − i√3.", a:""},
+      {chapter:"Complex Numbers", q:"Simplify (cos 2θ + i sin 2θ)⁵ / (cos 3θ − i sin 3θ)⁴ using De Moivre's theorem.", a:""},
+      {chapter:"Complex Numbers", q:"If z = 3 + 4i, verify that z · z̄ = |z|².", a:""},
+      {chapter:"Theory of Equations", q:"Solve the equation x⁴ − 9x² + 20 = 0.", a:""},
+      {chapter:"Theory of Equations", q:"Find a polynomial equation of minimum degree with rational coefficients, having 2 − √3 as a root.", a:""},
+      {chapter:"Theory of Equations", q:"Discuss the nature of the roots of the equation x³ − 5x² + 8x − 4 = 0, given that 2 is a root.", a:""},
+      {chapter:"Theory of Equations", q:"If α, β, γ are the roots of x³ + px² + qx + r = 0, express α² + β² + γ² in terms of p and q.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Prove that tan⁻¹(1/2) + tan⁻¹(1/3) = π/4.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Solve: sin⁻¹x + sin⁻¹(2x) = π/3.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Find the value of sin(cos⁻¹(3/5) + tan⁻¹(1/4)).", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Prove that 2 tan⁻¹x = sin⁻¹(2x / (1 + x²)), for |x| ≤ 1.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the circle passing through the points (1, 0), (−1, 0) and (0, 1).", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the vertex, focus, and directrix of the parabola y² = 8x.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the ellipse whose foci are (±2, 0) and eccentricity 1/2.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the tangent to the circle x² + y² − 6x + 6y − 8 = 0 at the point (2, 2).", a:""},
+      {chapter:"Applications of Vector Algebra", q:"If a = i − 2j + 3k, b = 2i + j − 2k, c = 3i + 2j + k, verify that (a × b) × c ≠ a × (b × c).", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the volume of the parallelepiped with coterminous edges a = 2i − 3j + 4k, b = i + 2j − k, c = 3i − j + 2k.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the shortest distance between two skew lines given in vector form.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the vector and cartesian equations of the plane passing through the point (1, 2, 3) and perpendicular to the vector 2i + 3j − k.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Verify Rolle's theorem for f(x) = x² − x on the interval [0, 1].", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Verify Lagrange's Mean Value Theorem for f(x) = x² − 3x + 2 on the interval [−2, 2].", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Find the intervals of monotonicity for the function f(x) = 2x³ − 3x² − 12x + 5.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Find the local maximum and local minimum values of f(x) = x³ − 3x.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"The radius of a circular plate is measured as 12.65 cm instead of its actual length 12.5 cm. Find the percentage error in calculating the area of the plate.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"If u = x² + y², find ∂u/∂x and ∂u/∂y.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"Verify Clairaut's theorem for u = x³y² + x²y³.", a:""},
+      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^1 x tan⁻¹x dx.", a:""},
+      {chapter:"Applications of Integration", q:"Find the area bounded by the curve y = x² and the line y = 4.", a:""},
+      {chapter:"Applications of Integration", q:"Evaluate: ∫ x² e^x dx using Bernoulli's formula.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Find the differential equation of the family of curves y = A cos 3x + B sin 3x, where A and B are arbitrary constants.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Solve the differential equation dy/dx = (x + y)/x, using the substitution y = vx.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Solve: dy + (xy − cos x) dx = 0, given it can be rewritten as a first-order linear equation.", a:""},
+      {chapter:"Probability Distributions", q:"Three fair coins are tossed once simultaneously. If X denotes the number of tails that occur, find the probability distribution of X.", a:""},
+      {chapter:"Probability Distributions", q:"The pdf of a random variable X is f(x) = kx, 0 < x < 4. Find k and P(1 < X < 2).", a:""},
+      {chapter:"Probability Distributions", q:"Find the mean of the discrete random variable whose probability distribution is X = 0, 1, 2 with P(X) = 0.3, 0.4, 0.3 respectively.", a:""},
+      {chapter:"Discrete Mathematics", q:"Determine whether * is a binary operation on the given sets: (i) a * b = a√b on R, (ii) a * b = min(a, b) on A = {1, 2, 3, 4, 5}.", a:""},
+      {chapter:"Discrete Mathematics", q:"Construct the truth table for (p ∧ q) → q.", a:""},
+      {chapter:"Discrete Mathematics", q:"Verify whether the set of all 2×2 real matrices forms a group under matrix addition.", a:""},
+    ],
+    5: [
+      {chapter:"Applications of Matrices and Determinants", q:"Solve the following system of linear equations using Cramer's rule: 3x + 3y − z = 11, 2x − y + 2z = 9, 4x + 3y + 2z = 25.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"If A = [[3, 1], [−1, 2]], show that A² − 5A + 7I₂ = O, where I₂ is the identity matrix and O is the zero matrix. Hence find A⁻¹.", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"A boy is walking from his house at a speed of 2 km/hr along a fixed direction. Formulate the problem as a system of linear equations and solve it using matrices (as given in the textbook example).", a:""},
+      {chapter:"Applications of Matrices and Determinants", q:"Solve the system of equations x + y + z = 6, 2x + 3y + 4z = 20, x + 2y + 3z = 14, by finding the inverse of the coefficient matrix.", a:""},
+      {chapter:"Complex Numbers", q:"If z₁ = 2 − i and z₂ = −4 + 3i, find the inverse of z₁z₂ and of z₁/z₂.", a:""},
+      {chapter:"Complex Numbers", q:"Solve the equation z² + 2 = 0 in the set of complex numbers and represent the solutions in the Argand plane.", a:""},
+      {chapter:"Complex Numbers", q:"Using De Moivre's theorem, find all the cube roots of unity and show that their sum is zero.", a:""},
+      {chapter:"Theory of Equations", q:"Solve the cubic equation 9x³ − 36x² + 44x − 16 = 0, given that the roots form an arithmetic progression.", a:""},
+      {chapter:"Theory of Equations", q:"If α, β, γ are the roots of x³ + 2x² + 3x + 4 = 0, form a cubic equation whose roots are 2α, 2β, 2γ.", a:""},
+      {chapter:"Theory of Equations", q:"Solve the equation 6x⁴ − 35x³ + 62x² − 35x + 6 = 0, given that it is a reciprocal equation.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"Solve: tan⁻¹(x − 1)/(x − 2) + tan⁻¹(x + 1)/(x + 2) = π/4.", a:""},
+      {chapter:"Inverse Trigonometric Functions", q:"If cos⁻¹x + cos⁻¹y + cos⁻¹z = π, prove that x² + y² + z² + 2xyz = 1.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the tangent and normal to the parabola y² = 8x at the point (2, 4).", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Find the equation of the hyperbola whose foci are (±5, 0) and the transverse axis is of length 8.", a:""},
+      {chapter:"Two Dimensional Analytical Geometry-II", q:"Prove that the tangents drawn at the ends of any focal chord of a parabola meet at right angles on the directrix.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"A particle acted on by constant forces 8i + 2j − 6k and 6i + 2j − 2k is displaced from the point (1, 2, 3) to the point (5, 4, 1). Find the total work done by the forces.", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the shortest distance between the lines r = (i + 2j + k) + s(i − j + k) and r = (2i − j − k) + t(2i + j + 2k).", a:""},
+      {chapter:"Applications of Vector Algebra", q:"Find the vector and cartesian equations of the plane passing through the points (1, 1, 0), (1, 2, 1), and (−2, 2, −1).", a:""},
+      {chapter:"Applications of Differential Calculus", q:"A wire of length 28 m is to be cut into two pieces. One piece is to be made into a square and the other into a circle. Find the length of each piece so that the combined area of the square and the circle is minimum.", a:""},
+      {chapter:"Applications of Differential Calculus", q:"Find the equations of the tangent and normal to the curve y = x³ + 2x² − x − 2 at the point where x = 1, and find the angle at which the curve crosses the x-axis.", a:""},
+      {chapter:"Differentials and Partial Derivatives", q:"If u = x³ + y³ + z³ − 3xyz, show that x(∂u/∂x) + y(∂u/∂y) + z(∂u/∂z) = 3u.", a:""},
+      {chapter:"Applications of Integration", q:"Evaluate: ∫₀^π x sin x dx, using Bernoulli's formula for integration by parts.", a:""},
+      {chapter:"Applications of Integration", q:"Find the area of the region bounded by the parabola y² = 4x and the line x = 3.", a:""},
+      {chapter:"Applications of Integration", q:"Find the volume of the solid generated when the region bounded by y = x², x = 0 and y = 4 is revolved about the y-axis.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Solve the differential equation dy/dx = (3x + y + 4)⁵, by using a suitable substitution.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"Solve the linear differential equation dy/dx + y tan x = cos x.", a:""},
+      {chapter:"Ordinary Differential Equations", q:"A radioactive substance decays at a rate proportional to the amount present. Given that the amount decreases from 20 g to 10 g in 4 hours, find the amount remaining after 8 hours.", a:""},
+      {chapter:"Probability Distributions", q:"The probability density function of a continuous random variable X is f(x) = ke⁻³ˣ for x > 0, and 0 otherwise. Find (i) the value of k, (ii) the distribution function F(x), and (iii) P(X < 3).", a:""},
+      {chapter:"Probability Distributions", q:"An urn contains 5 mangoes and 4 apples. Three fruits are taken at random. If X denotes the number of apples drawn, find the probability distribution of X, its mean, and variance.", a:""},
+      {chapter:"Probability Distributions", q:"A random variable X has the following probability mass function: X = 1, 2, 3, 4, 5, 6 with probabilities k, 2k, 3k, 4k, 5k, 6k respectively. Find k, and hence find P(X ≤ 4) and the mean of X.", a:""},
+      {chapter:"Discrete Mathematics", q:"Let A = {1, 2, 3, 4, 5} and let * be defined by a * b = min(a, b). Verify whether (A, *) is a semigroup, and if it is a monoid, find its identity element.", a:""},
+      {chapter:"Discrete Mathematics", q:"Construct the truth table for (p → q) ∧ (q → p) and determine whether it is a tautology, contradiction, or contingency.", a:""},
+      {chapter:"Discrete Mathematics", q:"Show that the relation 'is a factor of' on the set of natural numbers is a partial order relation, and draw its Hasse diagram for the set {1, 2, 3, 6, 12}.", a:""},
+    ],
+  },
 };
   // maths, physics, chemistry, ca, biology, commerce, economics: add the
   // same { 2:[], 3:[], 5:[] } shape here once you send that subject's
@@ -3619,10 +3776,19 @@ const firebaseConfig = {
   appId: "1:290024556016:web:12378648bea9e491a60935",
   measurementId: "G-G3MHG5L9GP"
 };
-firebase.initializeApp(firebaseConfig);
-const fbAuth = firebase.auth();
-const fbDB = firebase.firestore();
-fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+let fbAuth = null;
+let fbDB = null;
+try{
+  if(typeof firebase === 'undefined'){
+    throw new Error('Firebase SDK did not load (check network/ad-blocker, or that the firebase-app/auth/firestore <script> tags are present and reachable).');
+  }
+  firebase.initializeApp(firebaseConfig);
+  fbAuth = firebase.auth();
+  fbDB = firebase.firestore();
+  fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+}catch(e){
+  console.error('Firebase failed to initialize — Google Sign-In will be unavailable, but Guest mode still works:', e);
+}
 
 /* ================= PUSH NOTIFICATIONS (test reminders) =================
    Uses Firebase Cloud Messaging. Requires:
@@ -3645,6 +3811,10 @@ async function signInWithGoogle(){
   const label = document.getElementById('googleBtnLabel');
   const err = document.getElementById('googleSignInError');
   err.textContent = '';
+  if(!fbAuth){
+    err.textContent = "Sign-in isn't available right now (couldn't connect to Google's servers). Please check your internet connection, disable any ad-blocker for this site, and reload the page — or use Continue as Guest below.";
+    return;
+  }
   btn.disabled = true;
   const prevLabel = label.textContent;
   label.innerHTML = '';
@@ -3656,7 +3826,22 @@ async function signInWithGoogle(){
     // onAuthStateChanged (below) takes it from here
   }catch(e){
     console.warn('Google sign-in failed', e);
-    err.textContent = 'Google sign-in failed or was cancelled. Please try again.';
+    const code = e && e.code ? e.code : '';
+    if(code === 'auth/popup-blocked'){
+      err.textContent = "Your browser blocked the sign-in popup. Please allow popups for this site and try again.";
+    } else if(code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request'){
+      err.textContent = "The sign-in window was closed before finishing. Please try again and complete the Google sign-in.";
+    } else if(code === 'auth/unauthorized-domain'){
+      err.textContent = "This website's domain isn't authorized for sign-in yet. (Site owner: add it under Firebase Console → Authentication → Settings → Authorized domains.)";
+    } else if(code === 'auth/operation-not-allowed'){
+      err.textContent = "Google sign-in isn't enabled for this app yet. (Site owner: enable it under Firebase Console → Authentication → Sign-in method → Google.)";
+    } else if(code === 'auth/network-request-failed'){
+      err.textContent = "Network error during sign-in. Please check your internet connection and try again.";
+    } else if(code === 'auth/api-key-not-valid.-please-pass-a-valid-api-key.' || code === 'auth/invalid-api-key'){
+      err.textContent = "This site's Firebase API key isn't valid. (Site owner: check Project Settings → General → Your apps, and Google Cloud Console → APIs & Services → Credentials.)";
+    } else {
+      err.textContent = `Google sign-in failed${code ? ' (' + code + ')' : ''}. Please try again.`;
+    }
   }finally{
     btn.disabled = false;
     label.textContent = prevLabel;
@@ -3664,6 +3849,7 @@ async function signInWithGoogle(){
 }
 
 let googleUser = null;
+if(fbAuth){
 fbAuth.onAuthStateChanged(async (user)=>{
   googleUser = user;
   if(!user){
@@ -3708,6 +3894,9 @@ fbAuth.onAuthStateChanged(async (user)=>{
     document.getElementById('studentName').value = user.displayName || '';
   }
 });
+} else {
+  console.warn('fbAuth unavailable — skipping onAuthStateChanged listener (Guest mode still works).');
+}
 
 const LEVEL_XP = 150;
 function getXP(){ return lsGet('cs_xp', 0); }
@@ -5902,7 +6091,7 @@ window.addEventListener('offline', updateOfflineBanner);
      Duvan will show a friendly "try again in a bit" message instead of
      crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "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";
+const DUVAN_API_KEY = "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";
 const DUVAN_MODEL = "llama-3.3-70b-versatile";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
