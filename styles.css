@@ -420,6 +420,8 @@ footer .fname{font-weight:800;color:var(--primary)}
 
 /* ---- animated class picker (replaces plain <select>) ---- */
 .class-picker{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.class-group-label{grid-column:1 / -1;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:6px;margin-bottom:-2px}
+.class-group-label:first-child{margin-top:0}
 .class-chip{
   position:relative;overflow:hidden;padding:14px 10px;border-radius:16px;text-align:center;
   border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;
@@ -1047,3 +1049,14 @@ html[data-fontsize="large"]{font-size:126%}
   }
   .duvan-fab{right:14px;bottom:14px}
 }
+
+
+/* ---- Fill / Caption answer input ---- */
+.fill-input{
+  width:100%;padding:16px 18px;border-radius:16px;border:2px solid var(--border,rgba(0,0,0,.12));
+  background:var(--card, #fff);color:var(--text,#0f172a);font-size:1.05rem;font-weight:600;
+  font-family:var(--font-body);outline:none;transition:border-color .2s, box-shadow .2s;
+  margin-bottom:8px;
+}
+.fill-input:focus{border-color:var(--primary,#4F46E5);box-shadow:0 0 0 4px rgba(79,70,229,.18)}
+.fill-note{font-size:.8rem;color:var(--muted,#64748b);margin-top:4px;line-height:1.4}

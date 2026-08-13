@@ -3619,6 +3619,54 @@ const PAPER_PATTERNS = {
   30: { part1:{marks:1, count:5},                part2:{marks:2, shown:5, chooseAny:3},  part3:{marks:3, shown:5, chooseAny:3},  part4:{marks:5, pairs:2} }
 };
 
+
+/* ================= 10th STANDARD — SOCIAL SCIENCE (History, Geography, Civics, Economics) =================
+   Supports MCQ, fill-blanks, match-following, caption-style questions.
+   type: 'mcq' (default) | 'fill' | 'match' | 'caption'
+   For fill: correct is string or array of acceptable answers (case-insensitive).
+   For match: options are the pairing choices (as MCQ of combinations) OR use pairs.
+   For caption: treat like fill or MCQ describing the image.
+*/
+const SS_HISTORY = [
+  {type:'mcq', q:"Who was the founder of the Mauryan Empire?", options:["Ashoka","Chandragupta Maurya","Bindusara","Chanakya"], correct:1, exp:"Chandragupta Maurya founded the Mauryan Empire with the help of Chanakya."},
+  {type:'fill', q:"The capital of the Mauryan Empire was ________.", correct:["Pataliputra","Patna"], exp:"Pataliputra (modern Patna) was the capital of the Mauryan Empire."},
+  {type:'mcq', q:"The Battle of Plassey was fought in the year", options:["1757","1764","1857","1947"], correct:0, exp:"The Battle of Plassey was fought in 1757 between the British East India Company and Siraj-ud-Daulah."},
+  {type:'match', q:"Match the following leaders with their movements:\\nA) Mahatma Gandhi  B) Subhash Chandra Bose  C) Bhagat Singh  D) Jawaharlal Nehru\\n1) Indian National Army  2) Non-Cooperation Movement  3) Hindustan Socialist Republican Association  4) Discovery of India", options:["A-2, B-1, C-3, D-4","A-1, B-2, C-4, D-3","A-2, B-3, C-1, D-4","A-4, B-1, C-2, D-3"], correct:0, exp:"Gandhi – Non-Cooperation, Bose – INA, Bhagat Singh – HSRA, Nehru – Discovery of India."},
+  {type:'caption', q:"Write a suitable caption for a picture showing the Dandi March (Salt March) led by Mahatma Gandhi in 1930.", correct:["Dandi March 1930","Salt Satyagraha","Gandhi leading the Salt March","The famous Dandi March against salt tax"], exp:"A good caption would mention the Dandi / Salt March of 1930 led by Gandhi as a protest against the British salt tax."}
+];
+
+const SS_GEOGRAPHY = [
+  {type:'mcq', q:"Which is the longest river in India?", options:["Yamuna","Ganga","Godavari","Narmada"], correct:1, exp:"The Ganga is the longest river in India."},
+  {type:'fill', q:"The Tropic of Cancer passes through ________ Indian states.", correct:["8","eight"], exp:"The Tropic of Cancer passes through 8 Indian states."},
+  {type:'mcq', q:"Black soil is ideal for the cultivation of", options:["Wheat","Rice","Cotton","Tea"], correct:2, exp:"Black soil (regur) is ideal for cotton cultivation."},
+  {type:'match', q:"Match the following:\\nA) Western Ghats  B) Eastern Ghats  C) Himalayas  D) Aravalli\\n1) Oldest fold mountain  2) Continuous range  3) Discontinuous range  4) Young fold mountains", options:["A-2, B-3, C-4, D-1","A-3, B-2, C-1, D-4","A-2, B-1, C-4, D-3","A-1, B-3, C-2, D-4"], correct:0, exp:"Western Ghats continuous, Eastern Ghats discontinuous, Himalayas young fold, Aravalli oldest."},
+  {type:'caption', q:"Suggest a caption for a diagram showing the water cycle (evaporation, condensation, precipitation).", correct:["The Water Cycle","Hydrological Cycle","Water Cycle – Evaporation Condensation Precipitation","Nature's Water Cycle"], exp:"A clear caption is 'The Water Cycle' or 'Hydrological Cycle'."}
+];
+
+const SS_CIVICS = [
+  {type:'mcq', q:"The Indian Constitution came into force on", options:["15 August 1947","26 January 1950","26 November 1949","2 October 1947"], correct:1, exp:"The Constitution of India came into force on 26 January 1950 (Republic Day)."},
+  {type:'fill', q:"The head of the State in India is the ________.", correct:["President","President of India"], exp:"The President is the constitutional head of the State in India."},
+  {type:'mcq', q:"Which of the following is a Fundamental Right?", options:["Right to Property","Right to Equality","Right to Work","Right to Free Education only"], correct:1, exp:"Right to Equality is a Fundamental Right under Articles 14–18."},
+  {type:'match', q:"Match the following:\\nA) Lok Sabha  B) Rajya Sabha  C) President  D) Prime Minister\\n1) Council of States  2) House of the People  3) Head of Government  4) Head of State", options:["A-2, B-1, C-4, D-3","A-1, B-2, C-3, D-4","A-2, B-1, C-3, D-4","A-1, B-2, C-4, D-3"], correct:0, exp:"Lok Sabha = House of the People, Rajya Sabha = Council of States, President = Head of State, PM = Head of Government."},
+  {type:'caption', q:"Write a caption for an image of the Parliament House of India.", correct:["Parliament of India","Sansad Bhavan","Indian Parliament Building","The Parliament House, New Delhi"], exp:"Suitable captions include 'Parliament of India' or 'Sansad Bhavan'."}
+];
+
+const SS_ECONOMICS = [
+  {type:'mcq', q:"Which sector is known as the primary sector?", options:["Manufacturing","Agriculture","Banking","Transport"], correct:1, exp:"Agriculture and related activities form the primary sector."},
+  {type:'fill', q:"GDP stands for ________.", correct:["Gross Domestic Product","gross domestic product"], exp:"GDP means Gross Domestic Product."},
+  {type:'mcq', q:"Which of the following is not a feature of money?", options:["Medium of exchange","Store of value","Measure of value","Source of all happiness"], correct:3, exp:"'Source of all happiness' is not an economic function of money."},
+  {type:'match', q:"Match the following:\\nA) Primary Sector  B) Secondary Sector  C) Tertiary Sector\\n1) Services  2) Agriculture  3) Industry / Manufacturing", options:["A-2, B-3, C-1","A-1, B-2, C-3","A-3, B-1, C-2","A-2, B-1, C-3"], correct:0, exp:"Primary = Agriculture, Secondary = Industry, Tertiary = Services."},
+  {type:'caption', q:"Write a suitable caption for a chart comparing organised and unorganised sectors in India.", correct:["Organised vs Unorganised Sector","Comparison of Organised and Unorganised Sectors","Sectoral Classification of Employment","Organised and Unorganised Sectors in India"], exp:"A clear descriptive caption about organised vs unorganised sectors works well."}
+];
+
+const CHAPTERS_SS = [
+  {id:1, name:"History", icon:"📜", questions:SS_HISTORY},
+  {id:2, name:"Geography", icon:"🌍", questions:SS_GEOGRAPHY},
+  {id:3, name:"Civics", icon:"⚖️", questions:SS_CIVICS},
+  {id:4, name:"Economics", icon:"📈", questions:SS_ECONOMICS}
+];
+
+
 const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
   maths:   {key:'maths',   name:'Mathematics',      icon:'📐', short:'Math', heroLine:'Mathematics — One Mark Practice',       themeColor:'#6366F1', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
@@ -3627,9 +3675,19 @@ const SUBJECT_INFO = {
   ca:      {key:'ca',      name:'Computer Applications', icon:'💻', short:'CA', heroLine:'Computer Applications — One Mark Practice', themeColor:'#F59E0B', tagline:'16 chapters • Multimedia, PHP, Networking, E-Commerce & more', chapters:CHAPTERS_CA, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   biology: {key:'biology', name:'Biology',          icon:'🧬', short:'Bio',  heroLine:'Biology — One Mark Practice',           themeColor:'#EC4899', tagline:'22 chapters • Botany & Zoology, Genetics, Human Health & more', chapters:CHAPTERS_BIOLOGY, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   commerce: {key:'commerce', name:'Commerce',       icon:'📊', short:'Com',  heroLine:'Commerce — One Mark Practice',          themeColor:'#F97316', tagline:'28 chapters • Management, Markets, Marketing, Company Law & more', chapters:CHAPTERS_COMMERCE, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
-  economics: {key:'economics', name:'Economics',    icon:'🌐', short:'Eco',  heroLine:'Economics — One Mark Practice',         themeColor:'#0D9488', tagline:'12 chapters • Macroeconomics, Banking, Fiscal & International Economics', chapters:CHAPTERS_ECONOMICS, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
+  economics: {key:'economics', name:'Economics',    icon:'🌐', short:'Eco',  heroLine:'Economics — One Mark Practice',         themeColor:'#0D9488', tagline:'12 chapters • Macroeconomics, Banking, Fiscal & International Economics', chapters:CHAPTERS_ECONOMICS, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
+  ss: {key:'ss', name:'Social Science', icon:'📚', short:'SS', heroLine:'Social Science — One Mark Practice', themeColor:'#D97706', tagline:'4 units • History, Geography, Civics & Economics', chapters:CHAPTERS_SS, unitLabel:'Unit', sourceNote:'Source: 10th Std Book Back / Practice — MCQ, Fill-ups, Match & Caption', standards:['10']}
 };
 let currentSubject = 'cs';
+let currentStandard = '12'; // '10' or '12'
+
+function getStudentStandard(){
+  const cls = (student && student.cls) ? student.cls : '';
+  if(cls.startsWith('10')) return '10';
+  if(cls.startsWith('12')) return '12';
+  return currentStandard || '12';
+}
+
 function activeChapters(){ return SUBJECT_INFO[currentSubject].chapters; }
 
 /* ================= SUBJECT THEME ENGINE =================
@@ -3758,7 +3816,13 @@ function continueAsGuest(){
     applyStudentUI();
     applyLoadedPreferences();
     document.getElementById('welcomeScreen').style.display = 'none';
-    switchScreen('subjectScreen');
+    currentStandard = getStudentStandard() || lsGet('cs_standard', null);
+    if(currentStandard){
+      renderSubjectGrid();
+      switchScreen('subjectScreen');
+    } else {
+      switchScreen('standardScreen');
+    }
   } else {
     document.getElementById('classStep').classList.remove('hidden');
     document.getElementById('studentName').value = '';
@@ -3881,7 +3945,13 @@ fbAuth.onAuthStateChanged(async (user)=>{
     applyStudentUI();
     applyLoadedPreferences();
     document.getElementById('welcomeScreen').style.display = 'none';
-    switchScreen('subjectScreen');
+    currentStandard = getStudentStandard() || lsGet('cs_standard', null);
+    if(currentStandard){
+      renderSubjectGrid();
+      switchScreen('subjectScreen');
+    } else {
+      switchScreen('standardScreen');
+    }
     mirrorToClassLeaderboard();
     // if reminders were enabled before, silently refresh the push token
     // (tokens can rotate; this keeps them receiving reminders without
@@ -4945,6 +5015,7 @@ function applyLoadedPreferences(){
   vibrationOn = lsGet('cs_vibration_on', true);
   applyFontSize(lsGet('cs_fontsize', 'normal'));
   currentSubject = lsGet('cs_subject', 'cs');
+  currentStandard = lsGet('cs_standard', getStudentStandard() || '12');
   document.documentElement.setAttribute('data-reduce-motion', lsGet('cs_reduce_motion', false) ? 'true' : '');
   applyTheme(lsGet('cs_theme', 'light') === 'dark');
   updateNotifSettingsUI();
@@ -5125,7 +5196,14 @@ function finishLogin(){
   gate.style.transform = 'scale(1.03)';
   setTimeout(()=>{
     gate.style.display = 'none';
-    switchScreen('subjectScreen');
+    // After profile, let student pick 10th or 12th
+    currentStandard = getStudentStandard() || lsGet('cs_standard', null);
+    if(currentStandard){
+      renderSubjectGrid();
+      switchScreen('subjectScreen');
+    } else {
+      switchScreen('standardScreen');
+    }
   }, 480);
 }
 
@@ -5547,9 +5625,71 @@ function startCustomTest(){
   openStartScreenFor(activeChapter);
 }
 
+function showStandardScreen(){
+  clearInterval(timerInterval);
+  switchScreen('standardScreen');
+  applySubjectTheme(null);
+}
+
+function selectStandard(std){
+  currentStandard = std;
+  lsSet('cs_standard', std);
+  // If student class doesn't match the chosen standard prefix, leave it;
+  // subjects will still filter by currentStandard.
+  renderSubjectGrid();
+  showSubjectScreen();
+}
+
+function subjectsForStandard(std){
+  const all = Object.keys(SUBJECT_INFO);
+  return all.filter(key => {
+    const info = SUBJECT_INFO[key];
+    if(info.standards) return info.standards.includes(std);
+    // default subjects are for 12th
+    return std === '12';
+  });
+}
+
+function renderSubjectGrid(){
+  const std = currentStandard || getStudentStandard() || '12';
+  currentStandard = std;
+  const keys = subjectsForStandard(std);
+  const grid = document.getElementById('subjectGrid');
+  if(!grid) return;
+  const subTitle = document.getElementById('subjectSubtitle');
+  const hubTitle = document.getElementById('subjectHubTitle');
+  if(hubTitle) hubTitle.textContent = std + 'th Standard — Choose your world';
+  if(subTitle) subTitle.textContent = keys.length + ' subject' + (keys.length!==1?'s':'') + ' available for ' + std + 'th standard';
+  const changeBtn = document.getElementById('changeStandardBtn');
+  if(changeBtn) changeBtn.style.display = 'inline-flex';
+
+  const emojiOrb = (icon) => `<div class="subject-orb"><span class="subject-emoji">${icon}</span></div>`;
+  grid.innerHTML = keys.map(key => {
+    const info = SUBJECT_INFO[key];
+    const chCount = (info.chapters || []).length;
+    const unit = info.unitLabel === 'Unit' ? 'Units' : 'Chapters';
+    return `<div class="subject-card sub-${key} tilt-card" onclick="selectSubject('${key}')" style="--card-accent:${info.themeColor || '#4F46E5'}">
+      <div class="subject-card-sheen"></div>
+      <div class="subject-badge">${chCount} ${unit}</div>
+      ${emojiOrb(info.icon)}
+      <div class="subject-name">${info.name}</div>
+      <div class="subject-desc">${(info.tagline || '').replace(/^\d+\s*(chapters?|units?)\s*•\s*/i,'')}</div>
+      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
+    </div>`;
+  }).join('');
+  // re-init tilt if present
+  if(typeof initTiltCards === 'function') try{ initTiltCards(); }catch(e){}
+}
+
 function showSubjectScreen(){
   clearInterval(timerInterval);
+  // Ensure we have a standard
+  if(!currentStandard){
+    currentStandard = getStudentStandard() || lsGet('cs_standard', '12');
+  }
+  renderSubjectGrid();
   switchScreen('subjectScreen');
+  applySubjectTheme(null);
 }
 
 function selectSubject(key){
@@ -5627,10 +5767,11 @@ function mathify(str){
 
 function renderQuestion(){
   const q = testQuestions[currentIndex];
-  document.getElementById('qBadge').textContent = activeChapter.name;
+  const qType = q.type || 'mcq';
+  document.getElementById('qBadge').textContent = activeChapter.name + (qType!=='mcq' ? ' · ' + qType.toUpperCase() : '');
   document.getElementById('qCounter').textContent = `Question ${currentIndex+1} / ${testQuestions.length}`;
   document.getElementById('progressFill').style.width = `${((currentIndex+1)/testQuestions.length)*100}%`;
-  document.getElementById('qText').innerHTML = mathify(q.q);
+  document.getElementById('qText').innerHTML = mathify(String(q.q).replace(/\n/g,'<br>'));
   updateBookmarkBtn();
 
   // re-trigger card entrance animation (only happens when moving to a new question)
@@ -5641,14 +5782,37 @@ function renderQuestion(){
 
   const wrap = document.getElementById('optionsWrap');
   wrap.innerHTML = '';
-  const letters = ['A','B','C','D'];
-  q.options.forEach((opt,i)=>{
-    const div = document.createElement('div');
-    div.className = 'option' + (answers[currentIndex]===i?' selected':'');
-    div.innerHTML = `<span class="opt-letter">${letters[i]}</span><span>${mathify(opt)}</span>`;
-    div.onclick = (e)=> selectOption(i, div, e);
-    wrap.appendChild(div);
-  });
+
+  if(qType === 'fill' || qType === 'caption'){
+    // Free-text answer
+    const prev = answers[currentIndex];
+    const val = (typeof prev === 'string') ? prev : '';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fill-input';
+    input.placeholder = qType === 'caption' ? 'Type a suitable caption…' : 'Type your answer…';
+    input.value = val;
+    input.autocomplete = 'off';
+    input.oninput = () => { answers[currentIndex] = input.value.trim(); };
+    wrap.appendChild(input);
+    // helper note
+    const note = document.createElement('div');
+    note.className = 'fill-note';
+    note.textContent = qType === 'caption' ? 'Write a clear, relevant caption. Close matches are accepted.' : 'Fill in the blank. Spelling should match the expected answer.';
+    wrap.appendChild(note);
+    setTimeout(()=>input.focus(), 80);
+  } else {
+    // MCQ / Match (presented as options)
+    const letters = ['A','B','C','D','E','F'];
+    const opts = q.options || [];
+    opts.forEach((opt,i)=>{
+      const div = document.createElement('div');
+      div.className = 'option' + (answers[currentIndex]===i?' selected':'');
+      div.innerHTML = `<span class="opt-letter">${letters[i]||(i+1)}</span><span>${mathify(opt)}</span>`;
+      div.onclick = (e)=> selectOption(i, div, e);
+      wrap.appendChild(div);
+    });
+  }
 
   document.getElementById('prevBtn').disabled = currentIndex===0;
   document.getElementById('nextBtn').textContent = currentIndex===testQuestions.length-1 ? 'Submit ✓' : 'Next →';
@@ -5727,6 +5891,22 @@ function exitTestToHome(){
   showChapterScreen();
 }
 
+
+function isAnswerCorrect(q, chosen){
+  const qType = q.type || 'mcq';
+  if(qType === 'fill' || qType === 'caption'){
+    const acceptable = Array.isArray(q.correct) ? q.correct : [q.correct];
+    const norm = (s) => String(s||'').trim().toLowerCase().replace(/\s+/g,' ');
+    const c = norm(chosen);
+    return acceptable.some(a => {
+      const na = norm(a);
+      return c === na || c.includes(na) || na.includes(c);
+    });
+  }
+  // mcq / match — chosen is option index
+  return chosen === q.correct;
+}
+
 function submitTest(){
   closeModal();
   clearInterval(timerInterval);
@@ -5735,8 +5915,8 @@ function submitTest(){
   const details = testQuestions.map((q,i)=>{
     const chosen = answers[i];
     let status;
-    if(chosen===undefined){ status='skipped'; skipped++; }
-    else if(chosen===q.correct){ status='correct'; correct++; }
+    if(chosen===undefined || chosen==='' || chosen===null){ status='skipped'; skipped++; }
+    else if(isAnswerCorrect(q, chosen)){ status='correct'; correct++; }
     else { status='wrong'; wrong++; }
     return {...q, chosen, status, bookmarked: !!bookmarks[i]};
   });
@@ -5821,18 +6001,28 @@ function renderReview(){
   list.forEach((d)=>{
     const card = document.createElement('div');
     card.className = `review-card ${d.status}`;
-    let optsHtml = d.options.map((opt,i)=>{
-      let cls = 'review-opt';
-      if(d.status==='wrong' && i===d.chosen) cls += ' your-wrong';
-      if(i===d.correct) cls += ' answer-key';
-      return `<div class="${cls}">${letters[i]}. ${mathify(opt)}${i===d.correct?' ✓ (Correct Answer)':''}${d.status==='wrong'&&i===d.chosen?' ✗ (Your Answer)':''}</div>`;
-    }).join('');
+    const qType = d.type || 'mcq';
+    let optsHtml = '';
+    if(qType === 'fill' || qType === 'caption'){
+      const acceptable = Array.isArray(d.correct) ? d.correct.join(' / ') : d.correct;
+      const yourAns = (d.chosen !== undefined && d.chosen !== '' && d.chosen !== null) ? d.chosen : '(skipped)';
+      optsHtml = `<div class="review-opt ${d.status==='correct'?'answer-key':''}"><b>Your answer:</b> ${mathify(String(yourAns))}</div>
+        <div class="review-opt answer-key"><b>Accepted:</b> ${mathify(String(acceptable))} ✓</div>`;
+    } else {
+      const opts = d.options || [];
+      optsHtml = opts.map((opt,i)=>{
+        let cls = 'review-opt';
+        if(d.status==='wrong' && i===d.chosen) cls += ' your-wrong';
+        if(i===d.correct) cls += ' answer-key';
+        return `<div class="${cls}">${letters[i]}. ${mathify(opt)}${i===d.correct?' ✓ (Correct Answer)':''}${d.status==='wrong'&&i===d.chosen?' ✗ (Your Answer)':''}</div>`;
+      }).join('');
+    }
     const refId = d.chapterId ?? activeChapter.id;
     const refName = d.chapterName ?? activeChapter.name;
     const refLabel = refName;
     card.innerHTML = `
-      <div class="review-status ${d.status}">${d.status}${d.bookmarked?' • ★ Bookmarked':''}</div>
-      <div style="font-weight:700;margin-bottom:6px">${mathify(d.q)}</div>
+      <div class="review-status ${d.status}">${d.status}${d.bookmarked?' • ★ Bookmarked':''}${qType!=='mcq'?' • '+qType:''}</div>
+      <div style="font-weight:700;margin-bottom:6px">${mathify(String(d.q).replace(/\n/g,'<br>'))}</div>
       <div class="review-opts">${optsHtml}</div>
       <div class="explain-box">${d.exp ? `<b>Explanation:</b> ${d.exp}<br>` : ''}<b>Reference:</b> ${refLabel}</div>
     `;
@@ -5842,7 +6032,7 @@ function renderReview(){
 
 function retryWrongOnly(){
   const wrongOrig = lastResultData.details.filter(d=>d.status!=='correct').map(d=>{
-    return {q:d.q, options:d.options, correct:d.correct, exp:d.exp, chapterId:d.chapterId, chapterName:d.chapterName};
+    return {q:d.q, options:d.options, correct:d.correct, exp:d.exp, type:d.type, chapterId:d.chapterId, chapterName:d.chapterName};
   });
   if(wrongOrig.length===0){ showToast('No wrong/skipped questions — great job! 🎉'); return; }
   testQuestions = buildTestSet(wrongOrig);

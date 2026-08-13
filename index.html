@@ -90,11 +90,16 @@
         <label>Your Class</label>
         <input type="hidden" id="studentClass" value="">
         <div class="class-picker" id="classPicker">
-          <button type="button" class="class-chip" data-cls="12 A1" style="animation-delay:.05s">12 A1<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 A2" style="animation-delay:.1s">12 A2<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 B1" style="animation-delay:.15s">12 B1<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 B2" style="animation-delay:.2s">12 B2<span class="chip-check">✓</span></button>
-          <button type="button" class="class-chip" data-cls="12 B3" style="animation-delay:.25s">12 B3<span class="chip-check">✓</span></button>
+          <div class="class-group-label">10th Standard</div>
+          <button type="button" class="class-chip" data-cls="10 A" style="animation-delay:.05s">10 A<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="10 B" style="animation-delay:.08s">10 B<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="10 C" style="animation-delay:.11s">10 C<span class="chip-check">✓</span></button>
+          <div class="class-group-label">12th Standard</div>
+          <button type="button" class="class-chip" data-cls="12 A1" style="animation-delay:.15s">12 A1<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 A2" style="animation-delay:.18s">12 A2<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B1" style="animation-delay:.21s">12 B1<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B2" style="animation-delay:.24s">12 B2<span class="chip-check">✓</span></button>
+          <button type="button" class="class-chip" data-cls="12 B3" style="animation-delay:.27s">12 B3<span class="chip-check">✓</span></button>
           <button type="button" class="class-chip" data-cls="Other" style="animation-delay:.3s">Other<span class="chip-check">✓</span></button>
         </div>
       </div>
@@ -142,110 +147,41 @@
   </div>
 </div>
 
+<!-- STANDARD / CLASS SELECTION SCREEN -->
+<div id="standardScreen" class="chapter-wrap hidden app-screen">
+  <h2 class="subject-hub-title">Select your Standard</h2>
+  <p id="standardSubtitle">Choose 10th or 12th to see the right subjects</p>
+  <div class="subject-grid tilt-parent" style="max-width:640px;margin:0 auto">
+    <div class="subject-card sub-ss tilt-card" onclick="selectStandard('10')" style="--card-accent:#D97706">
+      <div class="subject-card-sheen"></div>
+      <div class="subject-badge">Class 10</div>
+      <div class="subject-orb">
+        <span class="subject-emoji" style="font-size:2.8rem">📘</span>
+      </div>
+      <div class="subject-name">10th Standard</div>
+      <div class="subject-desc">Social Science (History, Geography, Civics, Economics) &amp; more</div>
+      <div class="subject-cta">Enter 10th <span class="arrow">→</span></div>
+    </div>
+    <div class="subject-card sub-cs tilt-card" onclick="selectStandard('12')">
+      <div class="subject-card-sheen"></div>
+      <div class="subject-badge">Class 12</div>
+      <div class="subject-orb">
+        <span class="subject-emoji" style="font-size:2.8rem">🎓</span>
+      </div>
+      <div class="subject-name">12th Standard</div>
+      <div class="subject-desc">Computer Science, Maths, Physics, Chemistry, Commerce &amp; more</div>
+      <div class="subject-cta">Enter 12th <span class="arrow">→</span></div>
+    </div>
+  </div>
+</div>
+
 <!-- SUBJECT PICKER SCREEN -->
 <div id="subjectScreen" class="chapter-wrap hidden app-screen">
-  <h2 class="subject-hub-title">Choose your world</h2>
-  <p id="subjectSubtitle">Six subjects, six practice worlds — pick one to begin</p>
+  <button class="back-link" id="changeStandardBtn" onclick="showStandardScreen()" style="margin-bottom:8px">← Change Standard (10th / 12th)</button>
+  <h2 class="subject-hub-title" id="subjectHubTitle">Choose your world</h2>
+  <p id="subjectSubtitle">Pick a subject to begin practising</p>
   <div class="subject-grid tilt-parent" id="subjectGrid">
-    <div class="subject-card sub-cs tilt-card" onclick="selectSubject('cs')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">16 Chapters</div>
-      <div class="subject-orb">
-        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
-        <span class="subject-emoji">🖥️</span>
-      </div>
-      <div class="subject-name">Computer Science</div>
-      <div class="subject-desc">Python, SQL, Data Structures &amp; more</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-maths tilt-card" onclick="selectSubject('maths')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">12 Units</div>
-      <div class="subject-orb">
-        <div class="gyro-3d"><div class="gring g1"></div><div class="gring g2"></div><div class="gring g3"></div></div>
-        <span class="subject-emoji">📐</span>
-      </div>
-      <div class="subject-name">Mathematics</div>
-      <div class="subject-desc">Matrices, Calculus, Probability &amp; more</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-physics tilt-card" onclick="selectSubject('physics')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">11 Chapters</div>
-      <div class="subject-orb">
-        <div class="atom-3d">
-          <div class="nucleus"></div>
-          <div class="orbit-tilt t1"><div class="eorbit"><span class="e"></span></div></div>
-          <div class="orbit-tilt t2"><div class="eorbit"><span class="e"></span></div></div>
-          <div class="orbit-tilt t3"><div class="eorbit"><span class="e"></span></div></div>
-        </div>
-        <span class="subject-emoji">⚛️</span>
-      </div>
-      <div class="subject-name">Physics</div>
-      <div class="subject-desc">Electrostatics, Optics, Modern Physics &amp; more</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-chemistry tilt-card" onclick="selectSubject('chemistry')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">15 Units</div>
-      <div class="subject-orb">
-        <div class="molecule-3d"><div class="mol-plane">
-          <div class="mol-center"></div>
-          <div class="mol-bond" style="transform:rotate(0deg)"><span class="mol-atom"></span></div>
-          <div class="mol-bond" style="transform:rotate(120deg)"><span class="mol-atom"></span></div>
-          <div class="mol-bond" style="transform:rotate(240deg)"><span class="mol-atom"></span></div>
-        </div></div>
-        <span class="subject-emoji">⚗️</span>
-      </div>
-      <div class="subject-name">Chemistry</div>
-      <div class="subject-desc">Metallurgy, Organic Chemistry, Biomolecules &amp; more</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-ca tilt-card" onclick="selectSubject('ca')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">16 Chapters</div>
-      <div class="subject-orb">
-        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
-        <span class="subject-emoji">💻</span>
-      </div>
-      <div class="subject-name">Computer Applications</div>
-      <div class="subject-desc">Multimedia, PHP, Networking &amp; E-Commerce</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-biology tilt-card" onclick="selectSubject('biology')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">22 Chapters</div>
-      <div class="subject-orb">
-        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
-        <span class="subject-emoji">🧬</span>
-      </div>
-      <div class="subject-name">Biology</div>
-      <div class="subject-desc">Botany &amp; Zoology — Genetics, Human Health &amp; more</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-    <div class="subject-card sub-commerce tilt-card" onclick="selectSubject('commerce')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">28 Chapters</div>
-      <div class="subject-orb">
-        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
-        <span class="subject-emoji">📊</span>
-      </div>
-      <div class="subject-name">Commerce</div>
-      <div class="subject-desc">Management, Markets, Marketing &amp; Company Law</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
-
-    <div class="subject-card sub-economics tilt-card" onclick="selectSubject('economics')">
-      <div class="subject-card-sheen"></div>
-      <div class="subject-badge">12 Chapters</div>
-      <div class="subject-orb">
-        <div class="cube-3d"><div class="cf cf-f"></div><div class="cf cf-bk"></div><div class="cf cf-l"></div><div class="cf cf-r"></div><div class="cf cf-t"></div><div class="cf cf-bt"></div></div>
-        <span class="subject-emoji">🌐</span>
-      </div>
-      <div class="subject-name">Economics</div>
-      <div class="subject-desc">Macroeconomics, Banking, Fiscal &amp; International Economics</div>
-      <div class="subject-cta">Enter world <span class="arrow">→</span></div>
-    </div>
+    <!-- dynamically filled by renderSubjectGrid() -->
   </div>
 </div>
 
