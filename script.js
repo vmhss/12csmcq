@@ -3877,6 +3877,326 @@ const CHAPTERS_SS = [
   {id:4, name:"Economics", icon:"📈", questions:SS_ECONOMICS}
 ];
 
+const CHAPTERS_SCIENCE_10 = [
+  // Laws of Motion (10 questions)
+  {
+    id: "laws_of_motion",
+    name: "Laws of Motion",
+    unit: "Chapter 1 \u00b7 Physics",
+    questions: [
+      {q:"Inertia of a body depends on", options:["Weight of the object", "Acceleration due to gravity of the planet", "Mass of the object", "Both a & b"], correct:2},
+      {q:"Impulse is equal to", options:["Rate of change of momentum", "Rate of force and time", "Change of momentum", "Rate of change of mass"], correct:2},
+      {q:"Newton's III law is applicable", options:["For a body at rest", "For a body in motion", "Both (a) and (b)", "Only for bodies with equal masses"], correct:2},
+      {q:"Plotting a graph for momentum on the X-axis and time on Y-axis, the slope of the momentum-time graph gives", options:["Impulsive force", "Acceleration", "Force", "Rate of force"], correct:2},
+      {q:"In which of the following sports is the turning effect of force used?", options:["Swimming", "Tennis", "Cycling", "Hockey"], correct:2},
+      {q:"The unit of 'g' is m s\u207b\u00b2. It can be also expressed as", options:["cm s\u207b\u00b9", "N kg\u207b\u00b9", "N m\u00b2 kg\u207b\u00b2", "cm\u00b2 s\u207b\u00b2"], correct:1},
+      {q:"One kilogram force equals to", options:["9.8 dyne", "9.8 \u00d7 10\u2074 N", "98 \u00d7 10\u2074 dyne", "980 dyne"], correct:2},
+      {q:"The mass of a body is measured on planet Earth as M kg. When it is taken to a planet of radius half that of Earth, its value will be __________ kg", options:["4 M", "2 M", "M/4", "M"], correct:3},
+      {q:"If the Earth shrinks to 50% of its real radius, its mass remaining the same, the weight of a body on the Earth will", options:["Decrease by 50%", "Increase by 50%", "Decrease by 25%", "Increase by 300%"], correct:3},
+      {q:"To project rockets, which of the following principle(s) is/are required?", options:["Newton's third law of motion", "Newton's law of gravitation", "Law of conservation of linear momentum", "Both (a) and (c)"], correct:3},
+    ]
+  },
+  // Optics (10 questions)
+  {
+    id: "optics",
+    name: "Optics",
+    unit: "Chapter 2 \u00b7 Physics",
+    questions: [
+      {q:"The refractive index of four substances A, B, C and D are 1.31, 1.43, 1.33, 2.4 respectively. The speed of light is maximum in", options:["A", "B", "C", "D"], correct:0},
+      {q:"Where should an object be placed so that a real and inverted image of the same size is obtained by a convex lens?", options:["f", "2f", "Infinity", "Between f and 2f"], correct:1},
+      {q:"A small bulb is placed at the principal focus of a convex lens. When the bulb is switched on, the lens will produce", options:["A convergent beam of light", "A divergent beam of light", "A parallel beam of light", "A coloured beam of light"], correct:2},
+      {q:"Magnification of a convex lens is", options:["Positive", "Negative", "Either positive or negative", "Zero"], correct:2},
+      {q:"A convex lens forms a real, diminished point sized image at focus. Then the position of the object is at", options:["Focus", "Infinity", "At 2f", "Between f and 2f"], correct:1},
+      {q:"Power of a lens is \u20134D, then its focal length is", options:["4 m", "\u201340 m", "\u20130.25 m", "\u20132.5 m"], correct:2},
+      {q:"In a myopic eye, the image of the object is formed", options:["Behind the retina", "On the retina", "In front of the retina", "On the blind spot"], correct:2},
+      {q:"The eye defect 'presbyopia' can be corrected by", options:["Convex lens", "Concave lens", "Convex mirror", "Bi focal lenses"], correct:3},
+      {q:"Which of the following lens would you prefer to use while reading small letters found in a dictionary?", options:["A convex lens of focal length 5 cm", "A concave lens of focal length 5 cm", "A convex lens of focal length 10 cm", "A concave lens of focal length 10 cm"], correct:0},
+      {q:"If VB, VG, VR be the velocity of blue, green and red light respectively in a glass prism, then which of the following statement gives the correct relation?", options:["VB = VG = VR", "VB > VG > VR", "VB < VG < VR", "VB < VG > VR"], correct:2},
+    ]
+  },
+  // Thermal Physics (5 questions)
+  {
+    id: "thermal_physics",
+    name: "Thermal Physics",
+    unit: "Chapter 3 \u00b7 Physics",
+    questions: [
+      {q:"The value of universal gas constant is", options:["3.81 mol\u207b\u00b9 K\u207b\u00b9", "8.03 mol\u207b\u00b9 K\u207b\u00b9", "1.38 mol\u207b\u00b9 K\u207b\u00b9", "8.31 mol\u207b\u00b9 K\u207b\u00b9"], correct:3},
+      {q:"If a substance is heated or cooled, the change in mass of that substance is", options:["Positive", "Negative", "Zero", "None of the above"], correct:2},
+      {q:"If a substance is heated or cooled, the linear expansion occurs along the axis of", options:["X or \u2013X", "Y or \u2013Y", "Both (a) and (b)", "(a) or (b)"], correct:2},
+      {q:"Temperature is the average __________ of the molecules of a substance.", options:["Difference in K.E and P.E", "Sum of P.E and K.E", "Difference in T.E and P.E", "Difference in K.E and T.E"], correct:2},
+      {q:"In a diagram showing blocks at 303 K, 304 K and 305 K, the possible direction of heat energy transformation is (303 K block A, 304 K block B, 305 K block C)", options:["A \u2190 B, A \u2190 C, B \u2190 C", "A \u2192 B, A \u2192 C, B \u2192 C", "A \u2192 B, A \u2190 C, B \u2192 C", "A \u2190 B, A \u2192 C, B \u2190 C"], correct:0},
+    ]
+  },
+  // Electricity (4 questions)
+  {
+    id: "electricity",
+    name: "Electricity",
+    unit: "Chapter 4 \u00b7 Physics",
+    questions: [
+      {q:"Which of the following is correct?", options:["Rate of change of charge is electrical power", "Rate of change of charge is current", "Rate of change of energy is current", "Rate of change of current is charge"], correct:1},
+      {q:"SI unit of resistance is", options:["mho", "joule", "ohm", "ohm meter"], correct:2},
+      {q:"In a simple circuit, why does the bulb glow when you close the switch?", options:["The switch produces electricity", "Closing the switch completes the circuit", "Closing the switch breaks the circuit", "The bulb is getting charged"], correct:1},
+      {q:"Kilowatt hour is the unit of", options:["Resistivity", "Conductivity", "Electrical energy", "Electrical power"], correct:2},
+    ]
+  },
+  // Acoustics (7 questions)
+  {
+    id: "acoustics",
+    name: "Acoustics",
+    unit: "Chapter 5 \u00b7 Physics",
+    questions: [
+      {q:"When a sound wave travels through air, the air particles", options:["Vibrate along the direction of the wave motion", "Vibrate but not in any fixed direction", "Vibrate perpendicular to the direction of the wave motion", "Do not vibrate"], correct:0},
+      {q:"Velocity of sound in a gaseous medium is 330 m s\u207b\u00b9. If the pressure is increased by 4 times without causing a change in the temperature, the velocity of sound in the gas is", options:["330 m s\u207b\u00b9", "660 m s\u207b\u00b9", "156 m s\u207b\u00b9", "990 m s\u207b\u00b9"], correct:0},
+      {q:"The frequency, which is audible to the human ear is", options:["50 kHz", "20 kHz", "15000 kHz", "10000 kHz"], correct:1},
+      {q:"The velocity of sound in air at a particular temperature is 330 m s\u207b\u00b9. What will be its value when the temperature is doubled and the pressure is halved?", options:["330 m s\u207b\u00b9", "165 m s\u207b\u00b9", "330 \u00d7 \u221a2 m s\u207b\u00b9", "320 / \u221a2 m s\u207b\u00b9"], correct:2},
+      {q:"If a sound wave travels with a frequency of 1.25 \u00d7 10\u2074 Hz at 344 m s\u207b\u00b9, the wavelength will be", options:["27.52 m", "275.2 m", "0.02752 m", "2.752 m"], correct:2},
+      {q:"The sound waves are reflected from an obstacle into the same medium from which they were incident. Which of the following changes?", options:["Speed", "Frequency", "Wavelength", "None of these"], correct:3},
+      {q:"Velocity of sound in the atmosphere of a planet is 500 m s\u207b\u00b9. The minimum distance between the source of sound and the obstacle to hear the echo, should be", options:["17 m", "20 m", "25 m", "50 m"], correct:2},
+    ]
+  },
+  // Nuclear Physics (9 questions)
+  {
+    id: "nuclear_physics",
+    name: "Nuclear Physics",
+    unit: "Chapter 6 \u00b7 Physics",
+    questions: [
+      {q:"Man-made radioactivity is also known as", options:["Induced radioactivity", "Spontaneous radioactivity", "Artificial radioactivity", "(a) & (c)"], correct:3},
+      {q:"Unit of radioactivity is", options:["Roentgen", "Curie", "Becquerel", "All the above"], correct:3},
+      {q:"Artificial radioactivity was discovered by", options:["Bequerel", "Irene Curie", "Roentgen", "Neils Bohr"], correct:1},
+      {q:"In which of the following does no change in mass number of the daughter nuclei take place?", options:["(i) is correct", "(ii) and (iii) are correct", "(i) & (iv) are correct", "(ii) & (iv) are correct"], correct:1},
+      {q:"__________ isotope is used for the treatment of cancer.", options:["Radio Iodine", "Radio Cobalt", "Radio Carbon", "Radio Nickel"], correct:1},
+      {q:"Gamma radiations are dangerous because", options:["It affects eyes & bones", "It affects tissues", "It produces genetic disorder", "It produces enormous amount of heat"], correct:2},
+      {q:"__________ aprons are used to protect us from gamma radiations", options:["Lead oxide", "Iron", "Lead", "Aluminium"], correct:2},
+      {q:"Proton-Proton chain reaction is an example of", options:["Nuclear fission", "\u03b1-decay", "Nuclear fusion", "\u03b2-decay"], correct:2},
+      {q:"Kamini reactor is located at", options:["Kalpakkam", "Koodankulam", "Mumbai", "Rajasthan"], correct:0},
+    ]
+  },
+  // Atoms and Molecules (8 questions)
+  {
+    id: "atoms_and_molecules",
+    name: "Atoms and Molecules",
+    unit: "Chapter 7 \u00b7 Chemistry",
+    questions: [
+      {q:"Which of the following has the smallest mass?", options:["6.023 \u00d7 10\u00b2\u00b3 atoms of He", "1 atom of He", "2 g of He", "1 mole atoms of He"], correct:1},
+      {q:"Which of the following is a triatomic molecule?", options:["Glucose", "Helium", "Carbon dioxide", "Hydrogen"], correct:2},
+      {q:"The volume occupied by 4.4 g of CO2 at S.T.P is", options:["22.4 litre", "2.24 litre", "0.24 litre", "0.1 litre"], correct:1},
+      {q:"Mass of 1 mole of Nitrogen atom is", options:["28 amu", "14 amu", "28 g", "14 g"], correct:3},
+      {q:"Which of the following represents 1 amu?", options:["Mass of a C-12 atom", "Mass of a hydrogen atom", "1/12th of the mass of a C\u201312 atom", "Mass of O\u201316 atom"], correct:2},
+      {q:"The volume occupied by 1 mole of a diatomic gas at S.T.P is", options:["11.2 litre", "5.6 litre", "22.4 litre", "44.8 litre"], correct:2},
+      {q:"The gram molecular mass of oxygen molecule is", options:["16 g", "18 g", "32 g", "17 g"], correct:2},
+      {q:"1 mole of any substance contains ____ molecules.", options:["6.023 \u00d7 10\u00b2\u00b3", "6.023 \u00d7 10\u207b\u00b2\u00b3", "3.0115 \u00d7 10\u00b2\u00b3", "12.046 \u00d7 10\u00b2\u00b3"], correct:0},
+    ]
+  },
+  // Periodic Classification of Elements (8 questions)
+  {
+    id: "periodic_classification_of_elements",
+    name: "Periodic Classification of Elements",
+    unit: "Chapter 8 \u00b7 Chemistry",
+    questions: [
+      {q:"The number of periods and groups in the periodic table are", options:["6, 16", "7, 17", "8, 18", "7, 18"], correct:3},
+      {q:"The basis of modern periodic law is", options:["Atomic number", "Atomic mass", "Isotopic mass", "Number of neutrons"], correct:0},
+      {q:"__________ group contains the member of halogen family.", options:["17th", "15th", "18th", "16th"], correct:0},
+      {q:"__________ is a relative periodic property.", options:["Atomic radii", "Ionic radii", "Electron affinity", "Electronegativity"], correct:3},
+      {q:"Chemical formula of rust is", options:["FeO.xH2O", "FeO4.xH2O", "Fe2O3.xH2O", "FeO"], correct:2},
+      {q:"The process of coating the surface of metal with a thin layer of zinc is called", options:["Painting", "Thinning", "Galvanization", "Electroplating"], correct:2},
+      {q:"Which of the following inert gases has 2 electrons in the outermost shell?", options:["He", "Ne", "Ar", "Kr"], correct:0},
+      {q:"__________ is an important metal to form amalgam.", options:["Ag", "Hg", "Mg", "Al"], correct:1},
+    ]
+  },
+  // Solutions (7 questions)
+  {
+    id: "solutions",
+    name: "Solutions",
+    unit: "Chapter 9 \u00b7 Chemistry",
+    questions: [
+      {q:"A solution is a __________ mixture.", options:["Homogeneous", "Heterogeneous", "Homogeneous and heterogeneous", "Non homogeneous"], correct:0},
+      {q:"The number of components in a binary solution is", options:["2", "3", "4", "5"], correct:0},
+      {q:"Which of the following is the universal solvent?", options:["Acetone", "Benzene", "Water", "Alcohol"], correct:2},
+      {q:"A solution in which no more solute can be dissolved in a definite amount of solvent at a given temperature is called", options:["Saturated solution", "Un saturated solution", "Super saturated solution", "Dilute solution"], correct:0},
+      {q:"Identify the non aqueous solution.", options:["Sodium chloride in water", "Glucose in water", "Copper sulphate in water", "Sulphur in carbon-di-sulphide"], correct:3},
+      {q:"When pressure is increased at constant temperature the solubility of gases in liquid", options:["No change", "Increases", "Decreases", "No reaction"], correct:1},
+      {q:"Which of the following is hygroscopic in nature?", options:["Ferric chloride", "Copper sulphate penta hydrate", "Silica gel", "None of the above"], correct:2},
+    ]
+  },
+  // Types of Chemical Reactions (4 questions)
+  {
+    id: "types_of_chemical_reactions",
+    name: "Types of Chemical Reactions",
+    unit: "Chapter 10 \u00b7 Chemistry",
+    questions: [
+      {q:"H2(g) + Cl2(g) \u2192 2HCl(g) is a", options:["Decomposition Reaction", "Combination Reaction", "Single Displacement Reaction", "Double Displacement Reaction"], correct:1},
+      {q:"Photolysis is a decomposition reaction caused by", options:["Heat", "Electricity", "Light", "Mechanical energy"], correct:2},
+      {q:"The chemical equation Na2SO4(aq) + BaCl2(aq) \u2192 BaSO4(s)\u2193 + 2NaCl(aq) represents which of the following types of reaction?", options:["Neutralisation", "Combustion", "Precipitation", "Single displacement"], correct:2},
+      {q:"Powdered CaCO3 reacts more rapidly than flaky CaCO3 because of", options:["Large surface area", "High pressure", "High concentration", "High temperature"], correct:0},
+    ]
+  },
+  // Carbon and its Compounds (7 questions)
+  {
+    id: "carbon_and_its_compounds",
+    name: "Carbon and its Compounds",
+    unit: "Chapter 11 \u00b7 Chemistry",
+    questions: [
+      {q:"The molecular formula of an open chain organic compound is C3H6. The class of the compound is", options:["Alkane", "Alkene", "Alkyne", "Alcohol"], correct:1},
+      {q:"The IUPAC name of an organic compound is 3-Methyl butan-1-ol. What type of compound is it?", options:["Aldehyde", "Carboxylic acid", "Ketone", "Alcohol"], correct:3},
+      {q:"The secondary suffix used in IUPAC nomenclature of an aldehyde is", options:["\u2013ol", "\u2013oic acid", "\u2013al", "\u2013one"], correct:2},
+      {q:"Which of the following pairs can be the successive members of a homologous series?", options:["C3H8 and C4H10", "C2H2 and C2H4", "CH4 and C3H6", "C2H5OH and C4H8OH"], correct:0},
+      {q:"C2H5OH + 3O2 \u2192 2CO2 + 3H2O is a", options:["Reduction of ethanol", "Combustion of ethanol", "Oxidation of ethanoic acid", "Oxidation of ethanol"], correct:1},
+      {q:"Which of the following are used as anaesthetics?", options:["Carboxylic acids", "Ethers", "Esters", "Aldehydes"], correct:1},
+      {q:"Which of the following statements is wrong about detergents?", options:["It is a sodium salt of long chain fatty acids", "It is sodium salts of sulphonic acids", "The ionic part in a detergent is \u2013SO3\u207bNa\u207a", "It is effective even in hard water"], correct:0},
+    ]
+  },
+  // Plant Anatomy and Plant Physiology (6 questions)
+  {
+    id: "plant_anatomy_and_plant_physiology",
+    name: "Plant Anatomy and Plant Physiology",
+    unit: "Chapter 12 \u00b7 Biology",
+    questions: [
+      {q:"Casparian strips are present in the __________ of the root.", options:["Cortex", "Pith", "Pericycle", "Endodermis"], correct:3},
+      {q:"The endarch condition is the characteristic feature of", options:["Root", "Stem", "Leaves", "Flower"], correct:1},
+      {q:"The xylem and phloem arranged side by side on the same radius is called", options:["Radial", "Amphivasal", "Conjoint", "None of these"], correct:2},
+      {q:"Which is formed during anaerobic respiration?", options:["Carbohydrate", "Ethyl alcohol", "Acetyl CoA", "Pyruvate"], correct:1},
+      {q:"Kreb's cycle takes place in", options:["Chloroplast", "Mitochondrial matrix", "Stomata", "Inner mitochondrial membrane"], correct:1},
+      {q:"Oxygen is produced at what point during photosynthesis?", options:["When ATP is converted to ADP", "When CO2 is fixed", "When H2O is splitted", "All of these"], correct:2},
+    ]
+  },
+  // Structural Organisation of Animals (6 questions)
+  {
+    id: "structural_organisation_of_animals",
+    name: "Structural Organisation of Animals",
+    unit: "Chapter 13 \u00b7 Biology",
+    questions: [
+      {q:"In leech, locomotion is performed by", options:["Anterior sucker", "Posterior sucker", "Setae", "None of the above"], correct:0},
+      {q:"The segments of leech are known as", options:["Metameres (somites)", "Proglottids", "Strobila", "All the above"], correct:0},
+      {q:"The brain of leech lies above the", options:["Mouth", "Buccal Cavity", "Pharynx", "Crop"], correct:2},
+      {q:"The body of leech has", options:["23 segments", "33 segments", "38 segments", "30 segments"], correct:1},
+      {q:"Mammals are __________ animals.", options:["Cold blooded", "Warm blooded", "Poikilothermic", "All the above"], correct:1},
+      {q:"The animals which give birth to young ones are", options:["Oviparous", "Viviparous", "Ovoviviparous", "All the above"], correct:1},
+    ]
+  },
+  // Transportation in Plants and Circulation in Animals (6 questions)
+  {
+    id: "transportation_in_plants_and_circulation_in_animals",
+    name: "Transportation in Plants and Circulation in Animals",
+    unit: "Chapter 14 \u00b7 Biology",
+    questions: [
+      {q:"Active transport involves", options:["Movement of molecules from lower to higher concentration", "Expenditure of energy", "It is an uphill task", "All of the above"], correct:3},
+      {q:"Water which is absorbed by roots is transported to aerial parts of the plant through", options:["Cortex", "Epidermis", "Phloem", "Xylem"], correct:3},
+      {q:"During transpiration there is loss of", options:["Carbon dioxide", "Oxygen", "Water", "None of the above"], correct:2},
+      {q:"The wall of human heart is made up of", options:["Endocardium", "Epicardium", "Myocardium", "All of the above"], correct:3},
+      {q:"Which is the sequence of correct blood flow?", options:["Ventricle \u2013 atrium \u2013 vein \u2013 arteries", "Atrium \u2013 ventricle \u2013 veins \u2013 arteries", "Atrium \u2013 ventricle \u2013 arteries \u2013 veins", "Ventricles \u2013 vein \u2013 atrium \u2013 arteries"], correct:2},
+      {q:"'Heart of heart' is called", options:["SA node", "AV node", "Purkinje fibres", "Bundle of His"], correct:0},
+    ]
+  },
+  // Nervous System (7 questions)
+  {
+    id: "nervous_system",
+    name: "Nervous System",
+    unit: "Chapter 15 \u00b7 Biology",
+    questions: [
+      {q:"Bipolar neurons are found in", options:["Retina of eye", "Cerebral cortex", "Embryo", "Respiratory epithelium"], correct:0},
+      {q:"Site for processing of vision, hearing, memory, speech, intelligence and thought is", options:["Kidney", "Ear", "Brain", "Lungs"], correct:2},
+      {q:"In reflex action, the reflex arc is formed by", options:["Brain, spinal cord, muscle", "Receptor, muscle, spinal cord", "Muscle, receptor, brain", "Receptor, spinal cord, muscle"], correct:3},
+      {q:"The outermost of the three cranial meninges is", options:["Arachnoid membrane", "Piamater", "Duramater", "Myelin sheath"], correct:2},
+      {q:"The neurons which carry impulse from the central nervous system to the muscle fibre are", options:["Afferent neurons", "Association neuron", "Efferent neuron", "Unipolar neuron"], correct:2},
+      {q:"Node of Ranvier is found in", options:["Muscles", "Axons", "Dendrites", "Cyton"], correct:1},
+      {q:"Vomiting centre is located in", options:["Medulla oblongata", "Stomach", "Cerebrum", "Hypothalamus"], correct:0},
+    ]
+  },
+  // Plant and Animal Hormones (5 questions)
+  {
+    id: "plant_and_animal_hormones",
+    name: "Plant and Animal Hormones",
+    unit: "Chapter 16 \u00b7 Biology",
+    questions: [
+      {q:"Gibberellins cause:", options:["Shortening of genetically tall plants", "Elongation of dwarf plants", "Promotion of rooting", "Yellowing of young leaves"], correct:1},
+      {q:"Which one of the following hormones is naturally not found in plants?", options:["2,4-D", "GA 3", "Gibberellin", "IAA"], correct:0},
+      {q:"LH is secreted by", options:["Adrenal gland", "Thyroid gland", "Anterior pituitary", "Hypothalamus"], correct:2},
+      {q:"Which organ acts as both exocrine gland as well as endocrine gland?", options:["Pancreas", "Kidney", "Liver", "Lungs"], correct:0},
+      {q:"Which one is referred as \u201cMaster Gland\u201d?", options:["Pineal gland", "Pituitary gland", "Thyroid gland", "Adrenal gland"], correct:1},
+    ]
+  },
+  // Reproduction in Plants and Animals (6 questions)
+  {
+    id: "reproduction_in_plants_and_animals",
+    name: "Reproduction in Plants and Animals",
+    unit: "Chapter 17 \u00b7 Biology",
+    questions: [
+      {q:"The plant which propagates with the help of its leaves is", options:["Onion", "Neem", "Ginger", "Bryophyllum"], correct:3},
+      {q:"Asexual reproduction takes place through budding in", options:["Amoeba", "Yeast", "Plasmodium", "Bacteria"], correct:1},
+      {q:"Syngamy results in the formation of", options:["Zoospores", "Conidia", "Zygote", "Chlamydospores"], correct:2},
+      {q:"The essential parts of a flower are", options:["Calyx and Corolla", "Calyx and Androecium", "Corolla and Gynoecium", "Androecium and Gynoecium"], correct:3},
+      {q:"Male gametes in angiosperms are formed by the division of", options:["Generative cell", "Vegetative cell", "Microspore mother cell", "Microspore"], correct:0},
+      {q:"Which one of the following is an IUCD?", options:["Copper \u2013 T", "Oral pills", "Diaphragm", "Tubectomy"], correct:0},
+    ]
+  },
+  // Genetics (6 questions)
+  {
+    id: "genetics",
+    name: "Genetics",
+    unit: "Chapter 18 \u00b7 Biology",
+    questions: [
+      {q:"According to Mendel, alleles have the following character", options:["Pair of genes", "Responsible for character", "Production of gametes", "Recessive factors"], correct:1},
+      {q:"9 : 3 : 3 : 1 ratio is due to", options:["Segregation", "Crossing over", "Independent assortment", "Recessiveness"], correct:2},
+      {q:"The centromere is found at the centre of the __________ chromosome.", options:["Telocentric", "Metacentric", "Sub-metacentric", "Acrocentric"], correct:1},
+      {q:"Okasaki fragments are joined together by", options:["Helicase", "DNA polymerase", "RNA primer", "DNA ligase"], correct:3},
+      {q:"The number of chromosomes found in human beings are", options:["22 pairs of autosomes and 1 pair of allosomes", "22 autosomes and 1 allosome", "46 autosomes", "46 pairs of autosomes and 1 pair of allosomes"], correct:0},
+      {q:"The loss of one or more chromosome in a ploidy is called", options:["Tetraploidy", "Aneuploidy", "Euploidy", "Polyploidy"], correct:1},
+    ]
+  },
+  // Origin and Evolution of Life (4 questions)
+  {
+    id: "origin_and_evolution_of_life",
+    name: "Origin and Evolution of Life",
+    unit: "Chapter 19 \u00b7 Biology",
+    questions: [
+      {q:"Biogenetic law states that", options:["Ontogeny and phylogeny go together", "Ontogeny recapitulates phylogeny", "Phylogeny recapitulates ontogeny", "There is no relationship between phylogeny and ontogeny"], correct:1},
+      {q:"The 'use and disuse theory' was proposed by", options:["Charles Darwin", "Ernst Haeckel", "Jean Baptiste Lamarck", "Gregor Mendel"], correct:2},
+      {q:"Palaeontologists deal with", options:["Embryological evidences", "Fossil evidences", "Vestigial organ evidences", "All the above"], correct:1},
+      {q:"The best way of direct dating fossils of recent origin is by", options:["Radio-carbon method", "Uranium lead method", "Potassium-argon method", "Both (a) and (c)"], correct:0},
+    ]
+  },
+  // Breeding and Biotechnology (5 questions)
+  {
+    id: "breeding_and_biotechnology",
+    name: "Breeding and Biotechnology",
+    unit: "Chapter 20 \u00b7 Biology",
+    questions: [
+      {q:"Which method of crop improvement can be practised by a farmer if he is inexperienced?", options:["Clonal selection", "Mass selection", "Pureline selection", "Hybridisation"], correct:1},
+      {q:"Himgiri, developed by hybridisation and selection for disease resistance against rust pathogens, is a variety of", options:["Chilli", "Maize", "Sugarcane", "Wheat"], correct:3},
+      {q:"We can cut the DNA with the help of", options:["Scissors", "Restriction endonucleases", "Knife", "RNAase"], correct:1},
+      {q:"rDNA is a", options:["Vector DNA", "Circular DNA", "Recombinant of vector DNA and desired DNA", "Satellite DNA"], correct:2},
+      {q:"DNA fingerprinting is based on the principle of identifying __________ sequences of DNA", options:["Single stranded", "Mutated", "Polymorphic", "Repetitive"], correct:3},
+    ]
+  },
+  // Health and Diseases (6 questions)
+  {
+    id: "health_and_diseases",
+    name: "Health and Diseases",
+    unit: "Chapter 21 \u00b7 Biology",
+    questions: [
+      {q:"Tobacco consumption is known to stimulate secretion of adrenaline. The component causing this could be", options:["Nicotine", "Tannic acid", "Curcumin", "Heptin"], correct:0},
+      {q:"Cancer cells are more easily damaged by radiations than normal cells because they are", options:["Different in structure", "Non dividing", "Starved mutation", "Undergoing rapid division"], correct:3},
+      {q:"Which type of cancer affects lymph nodes and spleen?", options:["Carcinoma", "Sarcoma", "Leukemia", "Lymphoma"], correct:2},
+      {q:"Coronary heart disease is due to", options:["Streptococci bacteria", "Inflammation of pericardium", "Weakening of heart valves", "Insufficient blood supply to heart muscles"], correct:3},
+      {q:"Cancer of the epithelial cells is called", options:["Leukemia", "Sarcoma", "Carcinoma", "Lipoma"], correct:2},
+      {q:"Polyphagia is a condition seen in", options:["Obesity", "Diabetes mellitus", "Diabetes insipidus", "AIDS"], correct:1},
+    ]
+  },
+  // Environmental Management (5 questions)
+  {
+    id: "environmental_management",
+    name: "Environmental Management",
+    unit: "Chapter 22 \u00b7 Biology",
+    questions: [
+      {q:"What are the steps you will adopt for better waste management?", options:["Reduce the amount of waste formed", "Reuse the waste", "Recycle the waste", "All of the above"], correct:3},
+      {q:"Soil erosion can be prevented by", options:["Deforestation", "Afforestation", "Over grazing", "Removal of vegetation"], correct:1},
+      {q:"A renewable source of energy is", options:["Petroleum", "Coal", "Nuclear fuel", "Trees"], correct:3},
+      {q:"Green house effect refers to", options:["Cooling of earth", "Trapping of UV rays", "Cultivation of plants", "Warming of earth"], correct:3},
+      {q:"Global warming will cause", options:["Rise in level of oceans", "Melting of glaciers", "Sinking of islands", "All of these"], correct:3},
+    ]
+  },
+];
+
 const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
   maths:   {key:'maths',   name:'Mathematics',      icon:'📐', short:'Math', heroLine:'Mathematics — One Mark Practice',       themeColor:'#6366F1', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
@@ -3886,7 +4206,8 @@ const SUBJECT_INFO = {
   biology: {key:'biology', name:'Biology',          icon:'🧬', short:'Bio',  heroLine:'Biology — One Mark Practice',           themeColor:'#EC4899', tagline:'22 chapters • Botany & Zoology, Genetics, Human Health & more', chapters:CHAPTERS_BIOLOGY, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   commerce: {key:'commerce', name:'Commerce',       icon:'📊', short:'Com',  heroLine:'Commerce — One Mark Practice',          themeColor:'#F97316', tagline:'28 chapters • Management, Markets, Marketing, Company Law & more', chapters:CHAPTERS_COMMERCE, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   economics: {key:'economics', name:'Economics',    icon:'🌐', short:'Eco',  heroLine:'Economics — One Mark Practice',         themeColor:'#0D9488', tagline:'12 chapters • Macroeconomics, Banking, Fiscal & International Economics', chapters:CHAPTERS_ECONOMICS, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
-  ss: {key:'ss', name:'Social Science', icon:'📚', short:'SS', heroLine:'Social Science — One Mark Practice', themeColor:'#D97706', tagline:'History, Geography, Civics & Economics — MCQ, Fill, Match & Caption', chapters:CHAPTERS_SS, unitLabel:'Unit', sourceNote:'Source: 10th Std Book Back / Practice — MCQ, Fill-ups, Match & Caption', standards:['10']}
+  ss: {key:'ss', name:'Social Science', icon:'📚', short:'SS', heroLine:'Social Science — One Mark Practice', themeColor:'#D97706', tagline:'History, Geography, Civics & Economics — MCQ, Fill, Match & Caption', chapters:CHAPTERS_SS, unitLabel:'Unit', sourceNote:'Source: 10th Std Book Back / Practice — MCQ, Fill-ups, Match & Caption', standards:['10']},
+  science10: {key:'science10', name:'Science', icon:'🔬', short:'Sci', heroLine:'Science — One Mark Practice', themeColor:'#059669', tagline:'22 chapters • Physics, Chemistry & Biology', chapters:CHAPTERS_SCIENCE_10, unitLabel:'Ch', sourceNote:'Source: 10th Std Book Back — Choose the Best Answer (Physics, Chemistry, Biology)', standards:['10']}
 };
 let currentSubject = 'cs';
 let currentStandard = '12'; // '10' or '12'
