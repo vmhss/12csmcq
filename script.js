@@ -1,16 +1,133 @@
-/* ---------------- floating background bubbles ---------------- */
+/* ---------------- floating luxury glass bubbles (tap to pop) ---------------- */
 (function(){
   const wrap = document.getElementById('bgBubbles');
-  const count = 14;
-  for(let i=0;i<count;i++){
+  if(!wrap) return;
+  const COUNT = 16;
+
+  function spawnBubble(delay){
     const b = document.createElement('span');
-    const size = 20 + Math.random()*50;
+    const size = 22 + Math.random()*56;
     b.style.width = size+'px';
     b.style.height = size+'px';
     b.style.left = Math.random()*100+'vw';
-    b.style.animationDuration = (12+Math.random()*14)+'s';
-    b.style.animationDelay = (Math.random()*10)+'s';
+    b.style.animationDuration = (13+Math.random()*15)+'s';
+    b.style.animationDelay = (delay!=null ? delay : Math.random()*10)+'s';
     wrap.appendChild(b);
+    return b;
+  }
+
+  function burstAt(x,y,size){
+    // gold ring shockwave
+    const ring = document.createElement('div');
+    ring.className = 'bubble-burst';
+    const ringSize = Math.max(30, size*0.9);
+    ring.style.left = x+'px';
+    ring.style.top = y+'px';
+    ring.style.width = ringSize+'px';
+    ring.style.height = ringSize+'px';
+    wrap.appendChild(ring);
+    ring.addEventListener('animationend', ()=> ring.remove());
+
+    // little gold sparkle shards
+    const shardCount = 6 + Math.floor(Math.random()*4);
+    for(let i=0;i<shardCount;i++){
+      const s = document.createElement('div');
+      s.className = 'bubble-sparkle';
+      s.style.left = x+'px';
+      s.style.top = y+'px';
+      const angle = (Math.PI*2/shardCount)*i + Math.random()*0.5;
+      const dist = 22 + Math.random()*30;
+      s.style.setProperty('--fly', `${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px`);
+      s.style.animationDelay = (Math.random()*0.05)+'s';
+      wrap.appendChild(s);
+      s.addEventListener('animationend', ()=> s.remove());
+    }
+  }
+
+  function popBubble(bubble){
+    if(bubble.dataset.popped) return;
+    bubble.dataset.popped = '1';
+    const rect = bubble.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    burstAt(cx, cy, rect.width);
+    bubble.classList.add('popping');
+    bubble.addEventListener('transitionend', function onEnd(){
+      bubble.removeEventListener('transitionend', onEnd);
+      bubble.remove();
+      // gently replace it so the sky always feels alive
+      spawnBubble(0);
+    }, {once:true});
+    // safety fallback in case transitionend doesn't fire (e.g. reduced motion)
+    setTimeout(()=>{ if(bubble.isConnected){ bubble.remove(); spawnBubble(0); } }, 500);
+  }
+
+  for(let i=0;i<COUNT;i++) spawnBubble();
+
+  wrap.addEventListener('pointerdown', function(e){
+    const target = e.target;
+    if(target && target.tagName === 'SPAN' && target.parentElement === wrap){
+      popBubble(target);
+    }
+  });
+})();
+
+/* ---------------- gold scroll progress rail ---------------- */
+(function(){
+  const rail = document.createElement('div');
+  rail.id = 'scrollProgressRail';
+  document.body.appendChild(rail);
+  let ticking = false;
+  function update(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    rail.style.width = (max > 0 ? Math.min(100, (scrolled/max)*100) : 0) + '%';
+    ticking = false;
+  }
+  document.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+})();
+
+/* ---------------- reveal-on-scroll (premium entrance motion) ---------------- */
+var revealObserver = null;
+function resetRevealIn(container){
+  if(!container || !revealObserver) return;
+  const targets = container.classList && container.classList.contains('reveal-up')
+    ? [container, ...container.querySelectorAll('.reveal-up')]
+    : [...container.querySelectorAll('.reveal-up')];
+  targets.forEach(el=>{
+    el.classList.remove('is-visible');
+    revealObserver.unobserve(el);
+    revealObserver.observe(el);
+  });
+}
+(function(){
+  const SELECTORS = ['.hero-inner', '.chapter-wrap', '.start-wrap .start-card', '.question-wrap .q-card', 'footer'];
+  const STAGGER_SELECTORS = ['.chapter-wrap'];
+  function tag(){
+    SELECTORS.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>el.classList.add('reveal-up'));
+    });
+    STAGGER_SELECTORS.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>el.classList.add('stagger-in'));
+    });
+  }
+  function init(){
+    tag();
+    revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal-up').forEach(el=>revealObserver.observe(el));
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();
 
@@ -5573,6 +5690,7 @@ function switchScreen(showId, fromPopState){
       el.style.animation='none';
       void el.offsetWidth;
       el.style.animation='';
+      resetRevealIn(el);
     } else {
       el.classList.add('hidden');
     }
