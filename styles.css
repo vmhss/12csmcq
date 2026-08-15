@@ -792,6 +792,7 @@ html[data-fontsize="large"]{font-size:126%}
 .sub-biology{--sc-1:#EC4899;--sc-2:#BE185D;--sc-3:#3B0A24;--sc-glow:rgba(236,72,153,.6)}
 .sub-commerce{--sc-1:#F97316;--sc-2:#C2410C;--sc-3:#431407;--sc-glow:rgba(249,115,22,.6)}
 .sub-economics{--sc-1:#0D9488;--sc-2:#0F766E;--sc-3:#042F2E;--sc-glow:rgba(13,148,136,.6)}
+.sub-science10{--sc-1:#059669;--sc-2:#047857;--sc-3:#022C22;--sc-glow:rgba(5,150,105,.6)}
 .subject-badge{position:relative;z-index:2;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);padding:4px 13px;border-radius:20px;font-size:.68rem;font-weight:700;letter-spacing:.03em;margin-bottom:8px}
 .subject-name{position:relative;z-index:2;font-family:var(--font-head);font-weight:700;font-size:1.18rem;margin:8px 0 4px}
 .subject-desc{position:relative;z-index:2;font-size:.8rem;opacity:.88;line-height:1.5;margin-bottom:16px;max-width:220px}
