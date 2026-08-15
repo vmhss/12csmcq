@@ -37,27 +37,75 @@
 
 <!-- WELCOME / ONBOARDING GATE -->
 <div id="welcomeScreen">
+  <!-- floating particles layer -->
+  <div class="welcome-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="welcome-aurora" aria-hidden="true"></div>
+  <div class="welcome-grid-overlay" aria-hidden="true"></div>
+
   <div class="welcome-card">
-    <div class="welcome-logo" id="welcomeLogo">VM</div>
-    <h1>Welcome! 👋</h1>
+    <div class="welcome-card-glow" aria-hidden="true"></div>
+    <div class="welcome-card-shine" aria-hidden="true"></div>
+
+    <div class="welcome-logo-wrap">
+      <div class="welcome-logo-ring"></div>
+      <div class="welcome-logo-ring ring-2"></div>
+      <div class="welcome-logo" id="welcomeLogo">
+        <img src="logo-vmhss.jpg" alt="VMHSS" class="welcome-logo-img" onerror="this.style.display='none';this.parentElement.textContent='VM'">
+      </div>
+    </div>
+
+    <div class="welcome-school-badge">
+      <span class="wsb-dot"></span>
+      Vethathiri Maharishi HSS
+    </div>
+
+    <h1 class="welcome-title">
+      <span class="wt-line">Welcome</span>
+      <span class="wt-emoji">✨</span>
+    </h1>
+    <p class="welcome-subtitle">Your premium chapter practice portal</p>
 
     <!-- STEP 1: Google sign-in -->
     <div id="googleStep" class="step">
-      <p class="tag">Sign in with your Google account to continue.</p>
+      <p class="tag">Sign in to sync XP, streaks &amp; badges across every device.</p>
+
       <button class="google-btn" id="googleSignInBtn" onclick="signInWithGoogle()">
+        <span class="google-btn-glow"></span>
         <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.3-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.5 29.6 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"/><path fill="#4CAF50" d="M24 43.5c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 34.6 26.9 35.5 24 35.5c-5.3 0-9.7-3.3-11.3-8l-6.6 5c3.3 6 9.9 10 17.9 10z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.7 2.1-2.1 4-3.9 5.3l6.6 5.4C41.4 36.1 43.5 30.5 43.5 24c0-1.2-.1-2.4-.3-3.5z"/></svg>
-        <span id="googleBtnLabel">Sign in with Google</span>
+        <span id="googleBtnLabel">Continue with Google</span>
+        <span class="google-btn-arrow">→</span>
       </button>
 
-      <ul class="welcome-perks">
-        <li><span class="ic">☁️</span> Your XP, streaks &amp; badges are saved to your account</li>
-        <li><span class="ic">🔄</span> Log in on any phone or computer — nothing resets</li>
-        <li><span class="ic">🔒</span> Only you can see your own progress</li>
-      </ul>
+      <div class="welcome-features">
+        <div class="wf-item" style="--d:.05s">
+          <div class="wf-icon">☁️</div>
+          <div class="wf-text"><b>Cloud sync</b><span>XP &amp; streaks saved forever</span></div>
+        </div>
+        <div class="wf-item" style="--d:.12s">
+          <div class="wf-icon">🔄</div>
+          <div class="wf-text"><b>Any device</b><span>Phone, tablet or laptop</span></div>
+        </div>
+        <div class="wf-item" style="--d:.19s">
+          <div class="wf-icon">🔒</div>
+          <div class="wf-text"><b>Private</b><span>Only you see your progress</span></div>
+        </div>
+        <div class="wf-item" style="--d:.26s">
+          <div class="wf-icon">🏆</div>
+          <div class="wf-text"><b>Badges</b><span>Earn rewards as you practice</span></div>
+        </div>
+      </div>
 
-      <div class="or-divider">or</div>
-      <button class="guest-btn" id="guestBtn" onclick="continueAsGuest()">👤 Continue as Guest</button>
-      <p class="guest-note">No account needed — jump straight into a test. Guest progress stays on this device only and isn't backed up to the cloud.</p>
+      <div class="or-divider"><span>or start instantly</span></div>
+      <button class="guest-btn" id="guestBtn" onclick="continueAsGuest()">
+        <span class="guest-icon">👤</span>
+        <span class="guest-label">Continue as Guest</span>
+        <span class="guest-tag-new">Local only</span>
+      </button>
+      <p class="guest-note">No account needed — jump straight into a test. Progress stays on this device only.</p>
 
       <div class="welcome-error" id="googleSignInError"></div>
     </div>
@@ -107,7 +155,11 @@
       <button class="btn btn-primary" onclick="confirmProfile()">Continue →</button>
     </div>
 
-    <p class="welcome-note">Vethathiri Maharishi Higher Secondary School, S.V.G Puram • 12th Standard Exam Practice Portal</p>
+    <div class="welcome-footer">
+      <div class="welcome-footer-line"></div>
+      <p class="welcome-note">Vethathiri Maharishi Higher Secondary School · S.V.G Puram</p>
+      <p class="welcome-note-sub">Official 10th &amp; 12th One-Mark Practice Portal</p>
+    </div>
   </div>
 </div>
 
