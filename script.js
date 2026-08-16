@@ -2,74 +2,88 @@
 (function(){
   const wrap = document.getElementById('bgBubbles');
   if(!wrap) return;
-  const COUNT = 16;
+  const COUNT = 18;
+  // Stagger horizontal drift per bubble for organic feel
+  const drifts = [['12px','-14px','6px'],['‑8px','18px','-10px'],['16px','-6px','14px'],
+                  ['-12px','10px','-8px'],['6px','-20px','12px'],['-16px','8px','-4px']];
 
   function spawnBubble(delay){
     const b = document.createElement('span');
-    const size = 22 + Math.random()*56;
-    b.style.width = size+'px';
-    b.style.height = size+'px';
-    b.style.left = Math.random()*100+'vw';
-    b.style.animationDuration = (13+Math.random()*15)+'s';
-    b.style.animationDelay = (delay!=null ? delay : Math.random()*10)+'s';
+    const size = 18 + Math.random()*60;
+    const dur  = 12 + Math.random()*16;
+    const d    = drifts[Math.floor(Math.random()*drifts.length)];
+    b.style.cssText = [
+      `width:${size}px`,`height:${size}px`,
+      `left:${Math.random()*100}vw`,
+      `animation-duration:${dur}s`,
+      `animation-delay:${delay!=null ? delay : Math.random()*12}s`,
+      `--dx1:${d[0]}`,`--dx2:${d[1]}`,`--dx3:${d[2]}`,
+    ].join(';');
     wrap.appendChild(b);
     return b;
   }
 
   function burstAt(x,y,size){
-    // gold ring shockwave
+    // Shockwave ring
     const ring = document.createElement('div');
     ring.className = 'bubble-burst';
-    const ringSize = Math.max(30, size*0.9);
-    ring.style.left = x+'px';
-    ring.style.top = y+'px';
-    ring.style.width = ringSize+'px';
-    ring.style.height = ringSize+'px';
+    const rs = Math.max(28, size*0.85);
+    Object.assign(ring.style,{left:x+'px',top:y+'px',width:rs+'px',height:rs+'px'});
     wrap.appendChild(ring);
-    ring.addEventListener('animationend', ()=> ring.remove());
+    ring.addEventListener('animationend', ()=> ring.remove(), {once:true});
 
-    // little gold sparkle shards
-    const shardCount = 6 + Math.floor(Math.random()*4);
+    // Sparkle shards — more of them, varied colours
+    const colours = ['rgba(212,175,55,.95)','rgba(255,255,255,.9)','rgba(167,139,250,.85)','rgba(56,189,248,.8)'];
+    const shardCount = 8 + Math.floor(Math.random()*5);
     for(let i=0;i<shardCount;i++){
       const s = document.createElement('div');
       s.className = 'bubble-sparkle';
-      s.style.left = x+'px';
-      s.style.top = y+'px';
-      const angle = (Math.PI*2/shardCount)*i + Math.random()*0.5;
-      const dist = 22 + Math.random()*30;
-      s.style.setProperty('--fly', `${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px`);
-      s.style.animationDelay = (Math.random()*0.05)+'s';
+      const angle = (Math.PI*2/shardCount)*i + Math.random()*0.4;
+      const dist  = 20 + Math.random()*38;
+      Object.assign(s.style,{
+        left:x+'px', top:y+'px',
+        background: colours[i % colours.length],
+        width: (3+Math.random()*4)+'px',
+        height: (3+Math.random()*4)+'px',
+        animationDelay: (Math.random()*0.04)+'s',
+      });
+      s.style.setProperty('--fly',`${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px`);
       wrap.appendChild(s);
-      s.addEventListener('animationend', ()=> s.remove());
+      s.addEventListener('animationend', ()=> s.remove(), {once:true});
     }
+
+    // Haptic-style micro bounce on the wrap (visual only)
+    wrap.style.transition = 'transform .1s';
+    wrap.style.transform = 'scale(1.003)';
+    setTimeout(()=>{ wrap.style.transform = ''; }, 110);
   }
 
   function popBubble(bubble){
     if(bubble.dataset.popped) return;
     bubble.dataset.popped = '1';
+    bubble.style.pointerEvents = 'none';
     const rect = bubble.getBoundingClientRect();
     const cx = rect.left + rect.width/2;
     const cy = rect.top + rect.height/2;
     burstAt(cx, cy, rect.width);
     bubble.classList.add('popping');
-    bubble.addEventListener('transitionend', function onEnd(){
-      bubble.removeEventListener('transitionend', onEnd);
-      bubble.remove();
-      // gently replace it so the sky always feels alive
-      spawnBubble(0);
-    }, {once:true});
-    // safety fallback in case transitionend doesn't fire (e.g. reduced motion)
-    setTimeout(()=>{ if(bubble.isConnected){ bubble.remove(); spawnBubble(0); } }, 500);
+    // Replace after animation finishes
+    setTimeout(()=>{
+      if(bubble.isConnected) bubble.remove();
+      spawnBubble(Math.random()*2);
+    }, 340);
   }
 
   for(let i=0;i<COUNT;i++) spawnBubble();
 
+  // Support both click and touch for instant feel
   wrap.addEventListener('pointerdown', function(e){
-    const target = e.target;
-    if(target && target.tagName === 'SPAN' && target.parentElement === wrap){
-      popBubble(target);
+    const t = e.target;
+    if(t && t.tagName==='SPAN' && t.parentElement===wrap){
+      e.preventDefault();
+      popBubble(t);
     }
-  });
+  }, {passive:false});
 })();
 
 /* ---------------- gold scroll progress rail ---------------- */
@@ -4452,7 +4466,44 @@ function loadGuestData(){
   }
 }
 
+/* ---- guest activity mirror: lets teachers see who's using the portal as
+   a guest (never signed in), since guest data otherwise never leaves the
+   device. A random id is generated once per device/browser and reused, so
+   repeat visits update the same row instead of creating duplicates.
+   Requires a Firestore rule allowing writes to 'guestActivity' — see the
+   teacher-access notes for the exact rule to add. Fails silently if that
+   rule isn't in place yet, so it never blocks guest mode from working. ---- */
+const GUEST_ID_KEY = 'cs_guest_id';
+function getGuestId(){
+  let id = localStorage.getItem(GUEST_ID_KEY);
+  if(!id){
+    id = 'guest_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    try{ localStorage.setItem(GUEST_ID_KEY, id); }catch(e){}
+  }
+  return id;
+}
+function mirrorGuestActivity(){
+  if(!isGuest || typeof fbDB === 'undefined' || !fbDB) return;
+  const payload = {
+    name: student.name || 'Guest',
+    cls: student.cls || '-',
+    xp: getXP(),
+    testsCompleted: getLeaderboard().length,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+  fbDB.collection('guestActivity').doc(getGuestId()).set(payload, {merge:true})
+    .catch(e=>console.warn('Guest activity mirror failed (Firestore rule for guestActivity may be missing)', e));
+}
+
 let isGuest = false;
+/* --- smooth welcome screen exit --- */
+function hideWelcomeScreen(cb){
+  const ws = document.getElementById('welcomeScreen');
+  if(!ws || ws.style.display==='none') { cb && cb(); return; }
+  ws.classList.add('exiting');
+  setTimeout(()=>{ ws.style.display='none'; ws.classList.remove('exiting'); cb && cb(); }, 520);
+}
+
 function continueAsGuest(){
   isGuest = true;
   loadGuestData();
@@ -4463,7 +4514,7 @@ function continueAsGuest(){
     student = saved;
     applyStudentUI();
     applyLoadedPreferences();
-    document.getElementById('welcomeScreen').style.display = 'none';
+    hideWelcomeScreen();
     currentStandard = getStudentStandard() || lsGet('cs_standard', null);
     if(currentStandard){
       renderSubjectGrid();
@@ -4471,6 +4522,7 @@ function continueAsGuest(){
     } else {
       switchScreen('standardScreen');
     }
+    mirrorGuestActivity();
   } else {
     document.getElementById('classStep').classList.remove('hidden');
     document.getElementById('studentName').value = '';
@@ -4592,7 +4644,7 @@ fbAuth.onAuthStateChanged(async (user)=>{
     student = saved;
     applyStudentUI();
     applyLoadedPreferences();
-    document.getElementById('welcomeScreen').style.display = 'none';
+    hideWelcomeScreen();
     currentStandard = getStudentStandard() || lsGet('cs_standard', null);
     if(currentStandard){
       renderSubjectGrid();
@@ -4601,6 +4653,7 @@ fbAuth.onAuthStateChanged(async (user)=>{
       switchScreen('standardScreen');
     }
     mirrorToClassLeaderboard();
+    mirrorGuestActivity();
     // if reminders were enabled before, silently refresh the push token
     // (tokens can rotate; this keeps them receiving reminders without
     // having to flip the toggle again)
@@ -4789,7 +4842,9 @@ async function adminLogin(){
 
 let adminData = [];
 let bannedData = [];
+let guestActivityData = [];
 let adminSort = {key:'xp', dir:'desc'};
+let guestActivitySort = {key:'updatedAt', dir:'desc'};
 
 function isSignedInAsAdmin(){
   return CLOUD.mode === 'cloud' && googleUser && ADMIN_EMAILS.includes(googleUser.email);
@@ -4801,6 +4856,7 @@ function applyAdminModeVisibility(){
   document.getElementById('bannedSection')?.classList.toggle('hidden', !admin);
   document.getElementById('testReminderSection')?.classList.toggle('hidden', !admin);
   document.getElementById('paperGeneratorSection')?.classList.toggle('hidden', !admin);
+  document.getElementById('guestActivitySection')?.classList.toggle('hidden', !admin);
 }
 
 async function openAdminScreen(){
@@ -4831,6 +4887,17 @@ async function openAdminScreen(){
     loadTestReminders();
     populatePaperSubjectDropdown();
     populatePaperChapters();
+
+    document.getElementById('guestActivityTableBody').innerHTML = `<tr><td colspan="5">Loading…</td></tr>`;
+    try{
+      const gsnap = await fbDB.collection('guestActivity').get();
+      guestActivityData = gsnap.docs.map(doc=>({id:doc.id, ...doc.data()}));
+    }catch(e){
+      console.warn('Guest activity fetch failed (Firestore rule for guestActivity may be missing)', e);
+      guestActivityData = [];
+      document.getElementById('guestActivityTableBody').innerHTML = `<tr><td colspan="5">Couldn't load guest activity — this needs a Firestore rule allowing admins to read the 'guestActivity' collection.</td></tr>`;
+    }
+    renderGuestActivityTable();
   }
 }
 function closeAdminScreen(){
@@ -4859,7 +4926,10 @@ function renderAdminTable(){
     return dir==='asc' ? (av||0)-(bv||0) : (bv||0)-(av||0);
   });
   const countEl = document.getElementById('adminCount');
-  if(countEl) countEl.textContent = `${rows.length} student${rows.length===1?'':'s'}`;
+  if(countEl){
+    const avgXP = rows.length ? Math.round(rows.reduce((s,d)=>s+(d.xp||0),0)/rows.length) : 0;
+    countEl.textContent = `${rows.length} student${rows.length===1?'':'s'} • avg ${avgXP} XP`;
+  }
   const colCount = admin ? 7 : 6;
   document.getElementById('adminTableBody').innerHTML = rows.length ? rows.map(d=>{
     const last = (d.updatedAt && d.updatedAt.toDate) ? d.updatedAt.toDate().toLocaleString() : '—';
@@ -4886,6 +4956,33 @@ function renderBannedTable(){
     return `<tr>
       <td>${safeName}</td><td>${escapeHtml(d.cls||'-')}</td><td>${when}</td>
       <td><button class="admin-action-btn unban" onclick="unbanStudent('${d.id}', '${safeName.replace(/'/g,"\\'")}')">Unban</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function sortGuestActivityBy(key){
+  if(guestActivitySort.key === key){ guestActivitySort.dir = guestActivitySort.dir === 'asc' ? 'desc' : 'asc'; }
+  else { guestActivitySort.key = key; guestActivitySort.dir = (key==='name'||key==='cls') ? 'asc' : 'desc'; }
+  renderGuestActivityTable();
+}
+function renderGuestActivityTable(){
+  const body = document.getElementById('guestActivityTableBody');
+  if(!guestActivityData.length){
+    body.innerHTML = `<tr><td colspan="5">No guest activity recorded yet.</td></tr>`;
+    return;
+  }
+  const {key, dir} = guestActivitySort;
+  const rows = guestActivityData.slice().sort((a,b)=>{
+    let av = a[key], bv = b[key];
+    if(key === 'updatedAt'){ av = av && av.toDate ? av.toDate().getTime() : 0; bv = bv && bv.toDate ? bv.toDate().getTime() : 0; }
+    if(typeof av === 'string') return dir==='asc' ? av.localeCompare(bv||'') : (bv||'').localeCompare(av);
+    return dir==='asc' ? (av||0)-(bv||0) : (bv||0)-(av||0);
+  });
+  body.innerHTML = rows.map(d=>{
+    const when = (d.updatedAt && d.updatedAt.toDate) ? d.updatedAt.toDate().toLocaleString() : '—';
+    return `<tr>
+      <td>${escapeHtml(d.name||'Guest')}</td><td>${escapeHtml(d.cls||'-')}</td>
+      <td>${d.xp||0}</td><td>${d.testsCompleted||0}</td><td>${when}</td>
     </tr>`;
   }).join('');
 }
@@ -5016,6 +5113,7 @@ function toggleLeaderboardVisibility(){
   lsSet('cs_leaderboard_visible', visible);
   if(visible){
     mirrorToClassLeaderboard();
+    mirrorGuestActivity();
   } else if(CLOUD.mode === 'cloud' && CLOUD.uid){
     fbDB.collection('leaderboard').doc(CLOUD.uid).delete().catch(e=>console.warn('Leaderboard hide failed', e));
   }
@@ -5789,6 +5887,15 @@ function editProfile(){
   document.getElementById('welcomeError').textContent = '';
   document.getElementById('editModeBadge')?.classList.remove('hidden');
 
+  // The class-picker step gets hidden again as soon as a returning user's
+  // saved profile is auto-loaded (see onAuthStateChanged / continueAsGuest),
+  // so it has to be explicitly re-shown here — otherwise reopening the
+  // welcome screen shows nothing usable (blank Google/guest step instead).
+  document.getElementById('googleStep')?.classList.add('hidden');
+  document.getElementById('blockedStep')?.classList.add('hidden');
+  document.getElementById('cloudLoading')?.classList.add('hidden');
+  document.getElementById('classStep')?.classList.remove('hidden');
+
   const gate = document.getElementById('welcomeScreen');
   gate.style.transition = 'none';
   gate.style.display = 'flex';
@@ -5814,6 +5921,7 @@ function confirmProfile(){
   student = {name, cls};
   lsSet('student', student); // saved to Firestore automatically, tied to this Google account
   mirrorToClassLeaderboard();
+  mirrorGuestActivity();
 
   if(editingProfile){
     editingProfile = false;
@@ -5979,6 +6087,7 @@ function resetProgress(){
   lsSet('cs_leaderboard', []);
   lsSet('cs_wrong_pool', {});
   mirrorToClassLeaderboard();
+  mirrorGuestActivity();
   applyStudentUI();
   refreshNavGamificationChips();
   if(document.getElementById('dashboardScreen') && !document.getElementById('dashboardScreen').classList.contains('hidden')){
@@ -6587,6 +6696,7 @@ function submitTest(){
     elapsed, date: Date.now()
   });
   mirrorToClassLeaderboard();
+  mirrorGuestActivity();
   lastResultData.xpGained = gained;
   lastResultData.leveledUp = levelAfter > levelBefore;
   lastResultData.newLevel = levelAfter;
@@ -6815,6 +6925,26 @@ function renderDashboard(){
     </div>`;
   }).join('');
   progList.innerHTML = rows || `<div class="dash-empty">No attempts yet. Start a chapter to see your progress here!</div>`;
+
+  // Focus Area: point out the lowest-scoring attempted chapter so students
+  // know exactly what to revise next, instead of just seeing a wall of bars.
+  const focusEl = document.getElementById('focusAreaCallout');
+  if(focusEl){
+    const attempted = activeChapters()
+      .map((ch,i)=>({ch, i, pct: progress[ch.id] && progress[ch.id].best ? progress[ch.id].best.pct : null}))
+      .filter(r=>r.pct !== null);
+    if(attempted.length >= 2){
+      const weakest = attempted.slice().sort((a,b)=>a.pct-b.pct)[0];
+      if(weakest.pct < 70){
+        focusEl.classList.remove('hidden');
+        focusEl.innerHTML = `<span class="fac-icon">🎯</span><div class="fac-text"><b>Focus area:</b> ${SUBJECT_INFO[currentSubject].unitLabel} ${weakest.i+1} — ${escapeHtml(weakest.ch.name)} <span class="fac-pct">(${weakest.pct}%)</span>. A quick re-attempt here would boost your average the most.</div>`;
+      } else {
+        focusEl.classList.add('hidden');
+      }
+    } else {
+      focusEl.classList.add('hidden');
+    }
+  }
 
   // Your best attempts (personal history, this device/account only)
   const board = getLeaderboard();
