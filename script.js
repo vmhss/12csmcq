@@ -7060,7 +7060,8 @@ window.addEventListener('offline', updateOfflineBanner);
      Duvan will show a friendly "try again in a bit" message instead of
      crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "PASTE_YOUR_GROQ_API_KEY_HERE";
+// API key is secret — stored in Vercel env variables, never in code.
+const DUVAN_PROXY_URL = "https://YOUR-PROJECT.vercel.app/api/duvan";
 const DUVAN_MODEL = "llama-3.3-70b-versatile";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
@@ -7179,8 +7180,8 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY === "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"){
-    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Groq API key in script.js.", 'duvan-msg-error');
+  if(!DUVAN_PROXY_URL || DUVAN_PROXY_URL.includes("YOUR-PROJECT")){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to set the Vercel proxy URL in script.js.", 'duvan-msg-error');
     return;
   }
 
@@ -7204,12 +7205,11 @@ async function sendDuvanMessage(){
     ];
 
     const resp = await fetch(
-      'https://api.groq.com/openai/v1/chat/completions',
+      DUVAN_PROXY_URL,
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${DUVAN_API_KEY}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: DUVAN_MODEL,
