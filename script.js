@@ -7179,7 +7179,7 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY === "PASTE_YOUR_GROQ_API_KEY_HERE"){
+  if(!DUVAN_API_KEY || DUVAN_API_KEY === "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"){
     appendDuvanMessage("Duvan isn't set up yet — the site owner needs to add a Groq API key in script.js.", 'duvan-msg-error');
     return;
   }
