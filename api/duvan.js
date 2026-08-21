@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-
   res.setHeader('Access-Control-Allow-Origin', 'https://vmhss.github.io');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -19,10 +18,8 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify(req.body)
     });
-
     const data = await groqRes.json();
     return res.status(groqRes.status).json(data);
-
   } catch (err) {
     return res.status(502).json({ error: 'Failed to reach Groq.', detail: err.message });
   }
