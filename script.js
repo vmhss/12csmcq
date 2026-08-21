@@ -7045,20 +7045,24 @@ window.addEventListener('offline', updateOfflineBanner);
   updateOfflineBanner();
 })();
 
-/* ================= DUVAN — AI DOUBT ASSISTANT (DeepSeek API) ================= */
+/* ================= DUVAN — AI DOUBT ASSISTANT (Groq API) ================= */
 /*
   SETUP:
-  1. Get a free API key at https://platform.deepseek.com (new accounts get free tokens)
-  2. The API key is set below — rotate it at platform.deepseek.com if misused.
+  1. Get a free API key at https://console.groq.com/keys (no credit card needed)
+  2. Paste it below in place of "PASTE_YOUR_GROQ_API_KEY_HERE"
   3. IMPORTANT — this is a static site, so this key is visible to anyone who
-     views the page source. To limit abuse, rotate the key if you ever suspect misuse.
-  4. DeepSeek has a per-minute request limit. If it's exceeded,
+     views the page source. To limit abuse:
+       - Groq doesn't support domain-restricted keys yet, so the main
+         protection is simply not exposing large limits — the free tier
+         itself acts as a natural cap.
+       - Rotate the key if you ever suspect misuse (console.groq.com/keys).
+  4. The free tier has a daily/per-minute request limit. If it's exceeded,
      Duvan will show a friendly "try again in a bit" message instead of
-     crashing — no charges until free tokens run out.
+     crashing — no charges, it just pauses until the quota resets.
 */
-const DUVAN_API_KEY = "sk-c92fc844947747f280171e1f7428f9e9";
-const DUVAN_PROXY_URL = "https://api.deepseek.com/v1/chat/completions";
-const DUVAN_MODEL = "deepseek-chat";
+// API key is secret — stored in Vercel env variables, never in code.
+const DUVAN_PROXY_URL = "https://12csmcq-hu62aa2kq-duvaneshwebansco.vercel.app/";
+const DUVAN_MODEL = "llama-3.3-70b-versatile";
 const DUVAN_SYSTEM_PROMPT = "You are Duvan, a friendly AI doubt-clearing assistant built into the Vethathiri Maharishi Higher Secondary School exam practice portal for 12th standard students. Students ask you doubts about Computer Science, Maths, Physics, Chemistry and Commerce (Tamil Nadu state board syllabus). Give clear, correct, exam-relevant explanations. Keep answers concise and well-structured (use short paragraphs or bullet points), suitable for a 12th-standard student. If a question is outside these subjects or inappropriate, politely redirect the student back to their studies. Do not answer questions unrelated to academics.";
 
 let duvanHistory = []; // { role: 'user'|'model', text: '...' }
@@ -7176,8 +7180,8 @@ async function sendDuvanMessage(){
   const text = input.value.trim();
   if(!text) return;
 
-  if(!DUVAN_API_KEY || DUVAN_API_KEY.length < 10){
-    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to set the DeepSeek API key in script.js.", 'duvan-msg-error');
+  if(!DUVAN_PROXY_URL || DUVAN_PROXY_URL.includes("YOUR-PROJECT")){
+    appendDuvanMessage("Duvan isn't set up yet — the site owner needs to set the Vercel proxy URL in script.js.", 'duvan-msg-error');
     return;
   }
 
@@ -7205,8 +7209,7 @@ async function sendDuvanMessage(){
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + DUVAN_API_KEY
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: DUVAN_MODEL,
@@ -7229,7 +7232,7 @@ async function sendDuvanMessage(){
       if(status === 429){
         appendDuvanMessage("Duvan is getting a lot of questions right now (free quota reached). Please try again in a minute. ⏳", 'duvan-msg-error');
       } else if(status === 400 || status === 401 || status === 403){
-        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the DeepSeek API key in script.js. Details are in the browser console.", 'duvan-msg-error');
+        appendDuvanMessage("Duvan can't be reached right now — the site owner needs to check the Groq API key in script.js. Details are in the browser console.", 'duvan-msg-error');
       } else {
         appendDuvanMessage("Sorry, something went wrong reaching Duvan. Please try again.", 'duvan-msg-error');
       }
